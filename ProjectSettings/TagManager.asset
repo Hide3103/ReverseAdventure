@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Goat
+  - Sword
   layers:
   - Default
   - TransparentFX
