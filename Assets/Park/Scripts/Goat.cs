@@ -40,6 +40,9 @@ public class Goat : MonoBehaviour
 
         this.firstScale = transform.localScale;
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        beforeColor = spriteRenderer.color;
+
         Initialize();
     }
 
@@ -59,9 +62,8 @@ public class Goat : MonoBehaviour
         if (collision.gameObject.tag == "Sword")
         {
             flg_damage = true;
-            var rigidbody = GetComponent<Rigidbody2D>();
        
-            rigidbody.AddForce(new Vector3(transform.localScale.x * 60.0f, 50.0f, 0.0f));
+            rigid2D.AddForce(new Vector3(transform.localScale.x * 600.0f, 50.0f, 0.0f));
         }
     }
 
@@ -191,6 +193,7 @@ public class Goat : MonoBehaviour
                 flg_damage = false;
                 m_DamageDelta = 0.0f;
             }
+
         }
     }
 
