@@ -22,7 +22,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool m_TurnFlg = false;
 
-    public int m_PlayerHp = 3;
+    //UIで管理するのにstaticにしました 3/20
+    public static int m_PlayerHp = 3;
     public int m_StoneBoardStock = 0;
 
     public GameObject Sword;
