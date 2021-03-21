@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    public bool IsGoal = false;
     public GameObject MainCamera;
     public GameObject GoalCamera;
     // Start is called before the first frame update
@@ -16,7 +15,7 @@ public class Goal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsGoal)
+        if(GameSystem.IsGoal)
         {
             GoalCamera.SetActive(true);
             MainCamera.SetActive(false);
@@ -26,7 +25,7 @@ public class Goal : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            IsGoal = true;
+            GameSystem.IsGoal = true;
         }
     }
 }
