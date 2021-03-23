@@ -5,8 +5,8 @@ using UnityEngine;
 public class Goat : MonoBehaviour
 {
     GameObject player;
-    GameObject lookPlayer;
-    GameObject lostPlayer;
+    public GameObject lookPlayer;
+    public GameObject lostPlayer;
 
     Rigidbody2D rigid2D;
 
@@ -22,19 +22,20 @@ public class Goat : MonoBehaviour
     bool flg_lostPlayer;
     bool flg_danger;
     bool flg_damage;
+    bool flg_blinking;
 
+    float m_hp;
     float m_speed;
     float m_direction;
     float m_moveToplayerTime;
     float m_lostPlayerTime;
-    float m_DamageDelta = 0.0f;
-    float m_DamageLimit = 1.0f;
+    float m_damageDelta;
+    float m_damageLimit;
+    float m_dieTime;
     // Start is called before the first frame update
     void Start()
     {
         this.player = GameObject.Find("Player");
-        this.lookPlayer = GameObject.Find("LookPlayer");
-        this.lostPlayer = GameObject.Find("LostPlayer");
 
         this.rigid2D = GetComponent<Rigidbody2D>();
 
@@ -49,11 +50,15 @@ public class Goat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
+        if (player)
+        {
+            rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
 
-        Move();
-        MoveToPlayer();
-        Damage();
+            Move();
+            MoveToPlayer();
+            Damage();
+            Die();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,9 +66,12 @@ public class Goat : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            flg_damage = true;
-       
-            rigid2D.AddForce(new Vector3(transform.localScale.x * 600.0f, 50.0f, 0.0f));
+            if (flg_blinking == false)
+            {
+                flg_damage = true;
+
+                rigid2D.AddForce(new Vector3(transform.localScale.x * 500.0f, 50.0f, 0.0f));
+            }
         }
     }
 
@@ -75,11 +83,16 @@ public class Goat : MonoBehaviour
         flg_lostPlayer = false;
         flg_danger = false;
         flg_damage = false;
+        flg_blinking = false;
 
+        m_hp = 1.0f;
         m_direction = -1.0f;
         m_speed = 0.5f;
         m_moveToplayerTime = 0.0f;
         m_lostPlayerTime = 0.0f;
+        m_damageDelta = 0.0f;
+        m_damageLimit = 1.0f;
+        m_dieTime = 0.0f;
     }
 
     void Move()
@@ -181,17 +194,24 @@ public class Goat : MonoBehaviour
     {
         if (flg_damage)
         {
-            if (m_DamageDelta < m_DamageLimit)
+            if (m_damageDelta < m_damageLimit)
             {
                 float level = Mathf.Abs(Mathf.Sin(Time.time * 20));
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, level);
-                m_DamageDelta += Time.deltaTime;
+                m_damageDelta += Time.deltaTime;
+
+                flg_blinking = true;
+                flg_moveToPlayer = false;
             }
             else
             {
+                m_hp--;
                 spriteRenderer.color = beforeColor;
+                m_damageDelta = 0.0f;
+
+                flg_blinking = false;
                 flg_damage = false;
-                m_DamageDelta = 0.0f;
+                flg_moveToPlayer = true;
             }
 
         }
@@ -207,6 +227,16 @@ public class Goat : MonoBehaviour
         else if (player.transform.position.x > this.transform.position.x)
         {
             transform.localScale = new Vector3(-firstScale.x, firstScale.y);
+        }
+    }
+
+    void Die()
+    {
+        if (m_hp <= 0.0f)
+        {
+            m_hp = 0.0f;
+
+            Destroy(gameObject);
         }
     }
 }
