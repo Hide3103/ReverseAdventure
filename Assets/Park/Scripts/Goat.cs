@@ -5,6 +5,7 @@ using UnityEngine;
 public class Goat : MonoBehaviour
 {
     GameObject player;
+    GameObject enemy;
     public GameObject lookPlayer;
     public GameObject lostPlayer;
 
@@ -36,6 +37,7 @@ public class Goat : MonoBehaviour
     void Start()
     {
         this.player = GameObject.Find("Player");
+        this.enemy = GameObject.FindGameObjectWithTag("Enemy");
 
         this.rigid2D = GetComponent<Rigidbody2D>();
 
@@ -53,6 +55,8 @@ public class Goat : MonoBehaviour
         if (player)
         {
             rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
+
+            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
             Move();
             MoveToPlayer();
