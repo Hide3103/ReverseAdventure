@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Diamond : MonoBehaviour
 {
-    public GameObject door;
-    public GameObject key;
-
-    DoorManager doorScript;
-    
+    public GameObject diamond;
     // Start is called before the first frame update
     void Start()
     {
-        doorScript = door.GetComponent<DoorManager>();
+        
     }
 
     // Update is called once per frame
@@ -24,11 +20,9 @@ public class Key : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
-        {
-            doorScript.SetPlayerKeyFlg(true);
-
+        {           
             Destroy(gameObject);
-            Destroy(key);
+            Destroy(diamond);
         }
     }
 }
