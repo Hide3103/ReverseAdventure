@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
-    public Text GetCoin;
+    public Text GetJewel;
     public Text GetStar;
     public Text ClearTime;
     public Text TitleBack;
@@ -14,7 +14,7 @@ public class Result : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetCoin.gameObject.SetActive(true);
+        GetJewel.gameObject.SetActive(true);
         GetStar.gameObject.SetActive(true);
         ClearTime.gameObject.SetActive(true);
         TitleBack.gameObject.SetActive(false);
@@ -24,14 +24,14 @@ public class Result : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetCoin.text = "獲得コイン数　:　" + GameSystem.GetCoin;
+        GetJewel.text = "獲得コイン数　:　" + GameSystem.GetCoin;
         GetStar.text = "獲得スター数　:　" + GameSystem.GetStar;
         ClearTime.text = "クリア時間　;　" + GameSystem.ClearTime;
 
         StayTime += Time.deltaTime;
         if(StayTime>5)
         {
-            GetCoin.gameObject.SetActive(false);
+            GetJewel.gameObject.SetActive(false);
             GetStar.gameObject.SetActive(false);
             ClearTime.gameObject.SetActive(false);
             TitleBack.gameObject.SetActive(true);
