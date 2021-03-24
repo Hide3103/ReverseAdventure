@@ -21,7 +21,7 @@ public class Diamond : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Result.NumGetJewel += 1;
+            GameSystem.NumJewel += 1;
             Destroy(gameObject);
             Destroy(diamond);
         }
