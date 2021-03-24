@@ -24,6 +24,7 @@ public class Goat : MonoBehaviour
     bool flg_danger;
     bool flg_damage;
     bool flg_blinking;
+    bool flg_attackPlayer;
 
     float m_hp;
     float m_speed;
@@ -33,6 +34,7 @@ public class Goat : MonoBehaviour
     float m_damageDelta;
     float m_damageLimit;
     float m_dieTime;
+    float m_attackTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,7 @@ public class Goat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(flg_moveToPlayer);
         if (player)
         {
             rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
@@ -80,6 +83,15 @@ public class Goat : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //flg_moveToPlayer = false;
+            flg_attackPlayer = true;
+        }
+    }
+
     void Initialize()
     {
         flg_normal = true;
@@ -89,6 +101,7 @@ public class Goat : MonoBehaviour
         flg_danger = false;
         flg_damage = false;
         flg_blinking = false;
+        flg_attackPlayer = false;
 
         m_hp = 1.0f;
         m_direction = -1.0f;
@@ -98,6 +111,7 @@ public class Goat : MonoBehaviour
         m_damageDelta = 0.0f;
         m_damageLimit = 1.0f;
         m_dieTime = 0.0f;
+        m_attackTime = 0.0f;
     }
 
     void Move()
@@ -167,6 +181,21 @@ public class Goat : MonoBehaviour
                 flg_moveToPlayer = false;
                 flg_lostPlayer = false;
                 flg_danger = false;
+            }
+        }
+
+        if (flg_attackPlayer)
+        {
+            m_attackTime += Time.deltaTime;
+
+            flg_moveToPlayer = false;
+
+            if (m_attackTime >= 1.0f)
+            {
+                flg_moveToPlayer = true;
+                flg_attackPlayer = false;
+
+                m_attackTime = 0.0f;
             }
         }
     }
