@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916d7fa9dfd88424aa98599fba3f94ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetCoin: {fileID: 1641662346}
+  GetJewel: {fileID: 1641662346}
   GetStar: {fileID: 180600976}
   ClearTime: {fileID: 1633622292}
   TitleBack: {fileID: 676563168}
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1641662347}
   - component: {fileID: 1641662346}
   m_Layer: 5
-  m_Name: GetCoin
+  m_Name: GetJewel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
