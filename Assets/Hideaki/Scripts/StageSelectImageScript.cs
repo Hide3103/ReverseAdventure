@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class StageSelectImageScript : MonoBehaviour
 {
-    public int SelectingStageNum = 1;
-    int StageMaxNum = 5;
+    public int SelectingStageNum = 0;
+    public GameObject CameraObject;
+    StageSelectCameraScript cameraScript;
+
+    Vector3 firstScale;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cameraScript = CameraObject.GetComponent<StageSelectCameraScript>();
+        firstScale = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SelectingStageNum < StageMaxNum)
+        if (cameraScript.SelectingStageNum == SelectingStageNum)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                transform.position += new Vector3(5.0f, 0.0f, 0.0f);
-                SelectingStageNum += 1;
-            }
+            this.transform.localScale = firstScale + new Vector3(0.1f, 0.1f, 0.1f) * Mathf.Abs(Mathf.Sin(Time.time * 2));
         }
-        if (1 < SelectingStageNum)
+        else
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
-                SelectingStageNum -= 1;
-            }
+            this.transform.localScale = firstScale;
         }
     }
 }
