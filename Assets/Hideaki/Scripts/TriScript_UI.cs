@@ -32,23 +32,25 @@ public class TriScript_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = player.GetComponent<Transform>().position;
+        if (player)
+        {
+            playerPos = player.GetComponent<Transform>().position;
 
-        Vector3 StageDistace = goalPos - startPos;
-        Vector3 toGoalDistance = goalPos - playerPos;
-        float goalStartDistance = Vector3.Distance(goalPos, startPos);
+            Vector3 StageDistace = goalPos - startPos;
+            Vector3 toGoalDistance = goalPos - playerPos;
+            float goalStartDistance = Vector3.Distance(goalPos, startPos);
 
-        Vector3 toPlayerPos = playerPos - startPos;
-        float playerStartDistance = Vector3.Distance(playerPos, startPos);
+            Vector3 toPlayerPos = playerPos - startPos;
+            float playerStartDistance = Vector3.Distance(playerPos, startPos);
 
-        Vector3 UI_StageDistance = UI_GoalPos - UI_StartPos; 
+            Vector3 UI_StageDistance = UI_GoalPos - UI_StartPos;
 
-        float PosX = StageDistace.x - toGoalDistance.x; // スタートからの距離
-        float UI_PosX = StageBar.transform.position.x - 7.0f + playerStartDistance * 14 / goalStartDistance;
+            float PosX = StageDistace.x - toGoalDistance.x; // スタートからの距離
+            float UI_PosX = StageBar.transform.position.x - 2.0f + playerStartDistance * 4 / goalStartDistance;
 
-        uiPosx = UI_PosX;
+            uiPosx = UI_PosX;
 
-        this.transform.position = new Vector3(UI_PosX, this.transform.position.y, this.transform.position.z);
-
+            this.transform.position = new Vector3(UI_PosX, this.transform.position.y, this.transform.position.z);
+        }
     }
 }

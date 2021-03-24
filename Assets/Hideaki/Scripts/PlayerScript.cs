@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D rigid2D;
     Transform transform;
     float m_MoveSpeed = 3.0f;
-    float m_JumpForce = 350.0f;
+    float m_JumpForce = 240.0f;
 
     Vector3 m_FirstScale;
 
@@ -145,7 +145,6 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
