@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameSystem : MonoBehaviour
 {
     public static bool IsGoal = false;
+    public static float ClearTime = 0;
+    public static float GetCoin = 0;
+    public static float GetStar = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +17,9 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(PlayerScript.m_IsPlay)
+        {
+            ClearTime += Time.deltaTime;
+        }
     }
 }

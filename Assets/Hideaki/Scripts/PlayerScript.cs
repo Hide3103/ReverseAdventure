@@ -20,7 +20,9 @@ public class PlayerScript : MonoBehaviour
 
     Vector3 m_FirstScale;
 
-    public bool m_TurnFlg = false;
+    public  bool m_TurnFlg = false;
+
+    public static bool m_IsPlay = false;
 
     //UIで管理するのにstaticにしました 3/20
     public static int m_PlayerHp = 3;
@@ -49,74 +51,78 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        // 移動
-        if (m_DamagedFlg == false)
+        //ゴールなどプレイを中断させたい時のフラグ
+        if (m_IsPlay)
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            // 移動
+            if (m_DamagedFlg == false)
             {
-                //m_LookKey = 1;
-                transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                //m_LookKey = -1;
-                transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
-            }
-        }
-
-        // ジャンプ
-        float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-        if (speedY <= 0.0f)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                this.rigid2D.AddForce(transform.up * m_JumpForce);
-            }
-        }
-
-        //ステージ反転
-        if (m_TurnFlg == true)
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                //gameManagerScript.SetWorldFrontSideFlg(!(gameManagerScript.GetWorldFrontSideFlg()));
-            }
-        }
-
-        //攻撃
-        if (attackSpan < attackDelta)
-        {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                AttackLange.SetActive(true);
-                attackSpan = 0.0f;
-            }
-        }
-        attackDelta += Time.deltaTime;
-
-        // ダメージを受けた時の処理
-        if (m_DamagedFlg == true)
-        {
-            if (m_DamageDelta < m_DamageLimit)
-            {
-                float level = Mathf.Abs(Mathf.Sin(Time.time * 20));
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, level);
-            }
-            else
-            {
-                spriteRenderer.color = beforeColor;
-                m_DamagedFlg = false;
-                m_DamageDelta = 0.0f;
-
-                if (m_PlayerHp <= 0.0f)
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    Destroy(this.gameObject);
+                    //m_LookKey = 1;
+                    transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
+                    transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    //m_LookKey = -1;
+                    transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
+                    transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                 }
             }
 
-            m_DamageDelta += Time.deltaTime;
+            // ジャンプ
+            float speedY = Mathf.Abs(this.rigid2D.velocity.y);
+            if (speedY <= 0.0f)
+            {
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    this.rigid2D.AddForce(transform.up * m_JumpForce);
+                }
+            }
+
+            //ステージ反転
+            if (m_TurnFlg == true)
+            {
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    //gameManagerScript.SetWorldFrontSideFlg(!(gameManagerScript.GetWorldFrontSideFlg()));
+                }
+            }
+
+            //攻撃
+            if (attackSpan < attackDelta)
+            {
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    AttackLange.SetActive(true);
+                    attackSpan = 0.0f;
+                }
+            }
+            attackDelta += Time.deltaTime;
+
+            // ダメージを受けた時の処理
+            if (m_DamagedFlg == true)
+            {
+                if (m_DamageDelta < m_DamageLimit)
+                {
+                    float level = Mathf.Abs(Mathf.Sin(Time.time * 20));
+                    gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, level);
+                }
+                else
+                {
+                    spriteRenderer.color = beforeColor;
+                    m_DamagedFlg = false;
+                    m_DamageDelta = 0.0f;
+
+                    if (m_PlayerHp <= 0.0f)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                }
+
+                m_DamageDelta += Time.deltaTime;
+            }
         }
     }
 

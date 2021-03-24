@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     public Text TimeText;
     public GameObject Obj_TimeText;
     public static float TotalTime;
+    public static float CUTotalTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,5 +47,20 @@ public class Timer : MonoBehaviour
         {
             Debug.Log("制限時間終了");
         }
+    }
+    void CountUp()
+    {
+        CUTotalTime = minute * 60 + seconds;
+        CUTotalTime += Time.deltaTime;
+
+
+        minute = (int)TotalTime / 60;
+        seconds = CUTotalTime - minute * 60;
+
+        //if ((int)seconds != (int)oldseconds)
+        //{
+        //    TimeText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
+        //}
+        oldseconds = seconds;
     }
 }

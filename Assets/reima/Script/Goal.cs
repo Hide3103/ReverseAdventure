@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
     public GameObject MainCamera;
     public GameObject GoalCamera;
+    public float StayTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +19,13 @@ public class Goal : MonoBehaviour
     {
         if(GameSystem.IsGoal)
         {
-            GoalCamera.SetActive(true);
-            MainCamera.SetActive(false);
+            StayTime += Time.deltaTime;
+            if (StayTime > 3)
+            {
+                GoalCamera.SetActive(true);
+                MainCamera.SetActive(false);
+                SceneManager.LoadScene("Result");
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
