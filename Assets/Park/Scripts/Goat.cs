@@ -196,6 +196,7 @@ public class Goat : MonoBehaviour
                 flg_attackPlayer = false;
 
                 m_attackTime = 0.0f;
+                //
             }
         }
     }
