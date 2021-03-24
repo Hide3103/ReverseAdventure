@@ -56,6 +56,7 @@ public class Goat : MonoBehaviour
         {
             rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
 
+            //エネミー同士は衝突無視
             Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
             Move();
