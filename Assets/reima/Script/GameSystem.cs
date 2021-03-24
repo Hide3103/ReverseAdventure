@@ -6,8 +6,7 @@ public class GameSystem : MonoBehaviour
 {
     public static bool IsGoal = false;
     public static float ClearTime = 0;
-    public static float GetCoin = 0;
-    public static float GetStar = 0;
+    public static float NumJewel = 0;
     // Start is called before the first frame update
     void Start()
     {
