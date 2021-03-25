@@ -61,13 +61,13 @@ public class PlayerScript : MonoBehaviour
                 {
                     //m_LookKey = 1;
                     transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                    transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                    transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     //m_LookKey = -1;
                     transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                    transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                    transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                 }
             }
 
