@@ -20,5 +20,10 @@ public class ChangeWorld : MonoBehaviour
             UraObj.SetActive(!UraObj.activeSelf);
             OmoteObj.SetActive(!OmoteObj.activeSelf);
         }
+        if(GameSystem.IsGoal==true)
+        {
+            UraObj.SetActive(false);
+            OmoteObj.SetActive(true);
+        }
     }
 }
