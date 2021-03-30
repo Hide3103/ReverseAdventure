@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StageSelectCameraScript : MonoBehaviour
 {
-    public int SelectingStageNum = 1;
-    int NowSelectingStageNum = 0;
+    public static int SelectingStageNum = 1;
     int StageMaxNum = 5;
     int StageMinNum = -1;
     bool BackButtonSelecting = false;

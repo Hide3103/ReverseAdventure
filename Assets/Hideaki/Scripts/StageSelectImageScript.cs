@@ -20,7 +20,7 @@ public class StageSelectImageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraScript.SelectingStageNum == SelectingStageNum)
+        if (StageSelectCameraScript.SelectingStageNum == SelectingStageNum)
         {
             this.transform.localScale = firstScale + new Vector3(0.1f, 0.1f, 0.1f) * Mathf.Abs(Mathf.Sin(Time.time * 2));
         }

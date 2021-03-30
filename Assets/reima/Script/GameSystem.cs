@@ -13,10 +13,20 @@ public class GameSystem : MonoBehaviour
     public static int NumMaxGetJewelStage1 = 0;
     public static int NumMaxGetJewelStage2 = 0;
     public static int NumMaxGetJewelStage3 = 0;
+    public static int NumMaxGetJewelStage4 = 0;
+    public static int NumMaxGetJewelStage5 = 0;
     //今のゲームで何個とったかを入れる変数
     public static int NumNowMaxGetJewelStage1 = 0;
     public static int NumNowMaxGetJewelStage2 = 0;
     public static int NumNowMaxGetJewelStage3 = 0;
+    public static int NumNowMaxGetJewelStage4 = 0;
+    public static int NumNowMaxGetJewelStage5 = 0;
+    //ステージにあるダイヤの最大数
+    public static int NumStage1MaxJewel = 10;
+    public static int NumStage2MaxJewel = 20;
+    public static int NumStage3MaxJewel = 30;
+    public static int NumStage4MaxJewel = 40;
+    public static int NumStage5MaxJewel = 50;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +51,14 @@ public class GameSystem : MonoBehaviour
         if (NumNowMaxGetJewelStage3 > NumMaxGetJewelStage3)
         {
             NumMaxGetJewelStage3 = NumNowMaxGetJewelStage3;
+        }
+        if (NumNowMaxGetJewelStage4 > NumMaxGetJewelStage4)
+        {
+            NumMaxGetJewelStage4 = NumNowMaxGetJewelStage4;
+        }
+        if (NumNowMaxGetJewelStage5 > NumMaxGetJewelStage5)
+        {
+            NumMaxGetJewelStage5 = NumNowMaxGetJewelStage5;
         }
     }
 }
