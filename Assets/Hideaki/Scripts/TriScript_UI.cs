@@ -12,8 +12,11 @@ public class TriScript_UI : MonoBehaviour
     Vector3 startPos;
     Vector3 goalPos;
     Vector3 playerPos;
+    [SerializeField]
     Vector3 UI_StartPos;
+    [SerializeField]
     Vector3 UI_GoalPos;
+    [SerializeField]
     Vector3 UI_PlayerPos;
 
     public float uiPosx = 0.0f;
@@ -46,7 +49,7 @@ public class TriScript_UI : MonoBehaviour
             Vector3 UI_StageDistance = UI_GoalPos - UI_StartPos;
 
             float PosX = StageDistace.x - toGoalDistance.x; // スタートからの距離
-            float UI_PosX = StageBar.transform.position.x - 2.0f + playerStartDistance * 4 / goalStartDistance;
+            float UI_PosX = StageBar.transform.position.x - 2.25f + playerStartDistance * 4 / goalStartDistance;
 
             uiPosx = UI_PosX;
 
