@@ -30,7 +30,6 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(NowNumSelect);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             PauseUI.SetActive(!PauseUI.activeSelf);
