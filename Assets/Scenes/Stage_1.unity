@@ -24412,6 +24412,11 @@ PrefabInstance:
       propertyPath: GoalObject
       value: 
       objectReference: {fileID: 1305181729}
+    - target: {fileID: 224969751734164183, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
+        type: 3}
+      propertyPath: PauseUI
+      value: 
+      objectReference: {fileID: 1053558186}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be1f0e6fc6f423a44a51cca9f51d8ee4, type: 3}
 --- !u!1001 &1495972106

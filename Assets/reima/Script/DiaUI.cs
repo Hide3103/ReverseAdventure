@@ -15,6 +15,6 @@ public class DiaUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DiaUIText.text = ("× " + GameSystem.NumJewel);
+        DiaUIText.text = ("× " + GameSystem.NumJewel + " / " + GameSystem.NumStage1MaxJewel);
     }
 }

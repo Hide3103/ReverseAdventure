@@ -79,7 +79,7 @@ public class ShopManager : MonoBehaviour
             {
                 case (int)ProductNumber.ReverseTimeUp:
                     productNameText.text = "リバース時間延長";
-                    productSentenceText.text = "リバースを使用する時間が延びる";
+                    productSentenceText.text = "リバースを使用する時間が延びる \nリバース持続時間：" + ChangeWorld.UraActiveTime;
                     break;
                 case (int)ProductNumber.shield:
                     productNameText.text = "シールド";
@@ -100,8 +100,16 @@ public class ShopManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return))
                 {
                     BuyPanel.gameObject.SetActive(true);
-                    BuyProductName.text = productNameText.text;
-                    BuyText.text = "を購入しますか？";
+                    if(GameSystem.HavingNumJuwel < productPrice[SelectingProductNum])
+                    {
+                        BuyProductName.text = productNameText.text;
+                        BuyText.text = "必要な宝石が足りません";
+                    }
+                    else
+                    {
+                        BuyProductName.text = productNameText.text;
+                        BuyText.text = "を購入しますか？";
+                    }
                 }
             }
         }
@@ -137,9 +145,11 @@ public class ShopManager : MonoBehaviour
                     case 0:
                         BuyPanel.gameObject.SetActive(false);
                         GameSystem.HavingNumJuwel -= productPrice[SelectingProductNum];
+                        ChangeWorld.UraActiveTime += 1.0f;
                         break;
                     case 1:
                         BuyPanel.gameObject.SetActive(false);
+                        PlayerScript.ArmorUsing = true;
                         break;
                     default:
                         break;

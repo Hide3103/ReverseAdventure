@@ -9,7 +9,7 @@ public class GameSystem : MonoBehaviour
     public static float ClearTime = 0;
 
     //ステージセレクト・ショップでの現在の宝石所持数
-    public static int HavingNumJuwel = 0;
+    public static int HavingNumJuwel = 10;
 
     //ステージ内での所持宝石数
     public static float NumJewel = 0;

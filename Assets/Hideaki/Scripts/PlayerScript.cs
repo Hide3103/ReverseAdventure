@@ -36,6 +36,9 @@ public class PlayerScript : MonoBehaviour
     //UIで管理するのにstaticにしました 3/20
     public static int m_PlayerHp = 3;
     int playerMaxHP = 3;
+
+    //アーマーを装備しているか
+    public static bool ArmorUsing = false;
     
     //攻撃のクールタイム
     float attackSpan = 0.5f;
@@ -45,6 +48,8 @@ public class PlayerScript : MonoBehaviour
     public int m_LookKey = 1;
     // 攻撃範囲
     public GameObject AttackLange;
+
+    public GameObject PauseUI;
 
     //public GameObject gameManager;
     //GameManagerScript gameManagerScript;
@@ -92,13 +97,16 @@ public class PlayerScript : MonoBehaviour
                 }
             }
 
-            // ジャンプ
-            float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-            if (speedY <= 0.0f)
+            if (PauseUI.activeSelf == false)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                // ジャンプ
+                float speedY = Mathf.Abs(this.rigid2D.velocity.y);
+                if (speedY <= 0.0f)
                 {
-                    this.rigid2D.AddForce(transform.up * m_JumpForce);
+                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        this.rigid2D.AddForce(transform.up * m_JumpForce);
+                    }
                 }
             }
 
@@ -155,7 +163,14 @@ public class PlayerScript : MonoBehaviour
         {
             if (m_DamagedFlg == false)
             {
-                m_PlayerHp -= 1;
+                if (ArmorUsing == true)
+                {
+                    m_PlayerHp -= 1;
+                }
+                else
+                {
+                    ArmorUsing = false;
+                }
                 m_DamagedFlg = true;
                 var rigidbody2D = GetComponent<Rigidbody2D>();
                 //rigidbody.AddForce(-transform.forward * 5f, ForceMode.VelocityChange);
