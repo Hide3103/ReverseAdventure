@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -45,7 +46,9 @@ public class Timer : MonoBehaviour
 
         if (TotalTime <= 0f)
         {
+            SceneManager.LoadScene("GameOver");
             Debug.Log("制限時間終了");
+
         }
     }
     void CountUp()
