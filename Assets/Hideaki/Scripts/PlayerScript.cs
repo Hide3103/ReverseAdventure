@@ -165,11 +165,11 @@ public class PlayerScript : MonoBehaviour
             {
                 if (ArmorUsing == true)
                 {
-                    m_PlayerHp -= 1;
+                    ArmorUsing = false;
                 }
                 else
                 {
-                    ArmorUsing = false;
+                    m_PlayerHp -= 1;
                 }
                 m_DamagedFlg = true;
                 var rigidbody2D = GetComponent<Rigidbody2D>();
