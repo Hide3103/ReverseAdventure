@@ -16,7 +16,7 @@ public class Title : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("Hideaki_StageSelect");
+            SceneManager.LoadScene("StageSelect");
         }
     }
 }

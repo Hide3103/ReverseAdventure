@@ -8,7 +8,7 @@ public class CursorScript : MonoBehaviour
     SpriteRenderer spriteRenderer = null;
     Color firstColor;
     float flashLimit = 0.3f;
-    float flashDelta = 0.0f;
+    public float flashDelta = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class CursorScript : MonoBehaviour
         if (ButtonPressed == true)
         {
             float level = Mathf.Abs(Mathf.Sin(Time.time * 20));
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(firstColor.r, firstColor.g, level, 1);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(level, level, level, 1);
 
             if(flashDelta < flashLimit)
             {

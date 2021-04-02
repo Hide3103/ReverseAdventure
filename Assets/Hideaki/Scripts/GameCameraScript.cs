@@ -19,7 +19,7 @@ public class GameCameraScript : MonoBehaviour
         if (player)
         {
             playerTrans = player.GetComponent<Transform>();
-            this.transform.position = new Vector3(playerTrans.position.x, this.transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y, this.transform.position.z);
         }
     }
 }
