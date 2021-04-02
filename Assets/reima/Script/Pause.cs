@@ -30,28 +30,31 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (GameSystem.IsGoal == false)
         {
-            PauseUI.SetActive(!PauseUI.activeSelf);
-        }
-        if(PauseUI.activeSelf==true)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
-        //ポーズ画面がtrueの時
-        if(PauseUI.activeSelf==true)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow)&&NowNumSelect>1)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                NowNumSelect--;
+                PauseUI.SetActive(!PauseUI.activeSelf);
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow)&&NowNumSelect<3)
+            if (PauseUI.activeSelf == true)
             {
-                NowNumSelect++;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+            //ポーズ画面がtrueの時
+            if (PauseUI.activeSelf == true)
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow) && NowNumSelect > 1)
+                {
+                    NowNumSelect--;
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow) && NowNumSelect < 3)
+                {
+                    NowNumSelect++;
+                }
             }
         }
 

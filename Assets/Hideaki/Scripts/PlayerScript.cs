@@ -51,6 +51,9 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+
+        GameSystem.IsGoal = false;
+
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.transform = GetComponent<Transform>();
         m_FirstScale = transform.localScale;

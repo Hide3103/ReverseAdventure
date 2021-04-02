@@ -31,10 +31,12 @@ public class GameSystem : MonoBehaviour
     public static int NumStage3MaxJewel = 30;
     public static int NumStage4MaxJewel = 40;
     public static int NumStage5MaxJewel = 50;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
+        IsGoal = false;
     }
 
     // Update is called once per frame

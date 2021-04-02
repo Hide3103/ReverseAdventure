@@ -10725,7 +10725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791138720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0899992, y: 0.94, z: 10}
+  m_LocalPosition: {x: 0.0899992, y: -0.94, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 361394716}
@@ -10768,7 +10768,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: d1d6ec6b7df53634aa5ef37343c7357e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3127de26d5bc87840a02a46035ee7953, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -21900,7 +21900,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 4.01}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -21924,6 +21924,8 @@ MonoBehaviour:
   MainCamera: {fileID: 361394713}
   GoalCamera: {fileID: 503265900}
   StayTime: 0
+  open: {fileID: 21300000, guid: 75ddb4a37387bae43a7b706d76c175d8, type: 3}
+  close: {fileID: 21300000, guid: 6cc7e3df1d971374b9349dbea1fe1636, type: 3}
 --- !u!212 &1305181734
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21961,7 +21963,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e609e4c40dc3c644e96bcdc7e9b7401a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cc7e3df1d971374b9349dbea1fe1636, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -24150,7 +24152,7 @@ PrefabInstance:
     - target: {fileID: 224969751734163754, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.801
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 224969751734163754, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
         type: 3}
