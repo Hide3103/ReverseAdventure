@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
+    // ダメージを受けたかのフラグ
     public bool m_DamagedFlg = false;
+    // ダメージを受けてからの秒数    
     float m_DamageDelta = 0.0f;
+    //ダメージ後の無敵時間の秒数
     float m_DamageLimit = 1.0f;
 
     //被ダメージ時に透明にする用のコンポーネント
@@ -16,10 +19,15 @@ public class PlayerScript : MonoBehaviour
 
     Rigidbody2D rigid2D;
     Transform transform;
+    // プレイヤーの移動速度
     float m_MoveSpeed = 3.0f;
+    // ジャンプ時に上方向へかかる力
     float m_JumpForce = 240.0f;
-
+    // 最初のスケール
     Vector3 m_FirstScale;
+    //宝箱のオブジェクト
+    public GameObject GoalObject;
+    Vector3 GoalPos;
 
     public  bool m_TurnFlg = false;
 
@@ -27,13 +35,15 @@ public class PlayerScript : MonoBehaviour
 
     //UIで管理するのにstaticにしました 3/20
     public static int m_PlayerHp = 3;
-    public int m_StoneBoardStock = 0;
-
-    public GameObject Sword;
+    int playerMaxHP = 3;
+    
+    //攻撃のクールタイム
     float attackSpan = 0.5f;
+    //攻撃を行ってからの時間
     float attackDelta = 0.0f;
+    //　今向いている方向
     public int m_LookKey = 1;
-
+    // 攻撃範囲
     public GameObject AttackLange;
 
     //public GameObject gameManager;
@@ -46,8 +56,12 @@ public class PlayerScript : MonoBehaviour
         m_FirstScale = transform.localScale;
         //gameManagerScript = gameManager.GetComponent<GameManagerScript>();
 
+        GoalPos = GoalObject.GetComponent<Transform>().position;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
+
+        m_PlayerHp = playerMaxHP;
     }
 
     void Update()
@@ -60,15 +74,18 @@ public class PlayerScript : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    //m_LookKey = 1;
-                    transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                    transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                    if (this.transform.position.x < GoalPos.x)
+                    {
+                        //m_LookKey = 1;
+                        transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
+                        transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                    }
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     //m_LookKey = -1;
                     transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                    transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                    transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                 }
             }
 
