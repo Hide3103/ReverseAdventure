@@ -33,7 +33,6 @@ public class Goat : MonoBehaviour
     float m_lostPlayerTime;
     float m_damageDelta;
     float m_damageLimit;
-    float m_dieTime;
     float m_attackTime;
     // Start is called before the first frame update
     void Start()
@@ -54,18 +53,19 @@ public class Goat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(flg_moveToPlayer);
+        rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
+
         if (player)
         {
-            rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
-
-            //エネミー同士は衝突無視
-            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
             Move();
             MoveToPlayer();
             Damage();
             Die();
+        }
+
+        if (enemy)
+        {
+            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
@@ -110,7 +110,6 @@ public class Goat : MonoBehaviour
         m_lostPlayerTime = 0.0f;
         m_damageDelta = 0.0f;
         m_damageLimit = 1.0f;
-        m_dieTime = 0.0f;
         m_attackTime = 0.0f;
     }
 
