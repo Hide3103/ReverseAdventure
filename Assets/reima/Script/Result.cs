@@ -7,37 +7,139 @@ using UnityEngine.SceneManagement;
 public class Result : MonoBehaviour
 {
     public Text GetJewel;
-    public Text GetStar;
     public Text ClearTime;
-    public Text TitleBack;
     float StayTime = 0;
+    int NowSelect = 1;
+
+    public CanvasGroup TitleCanvasGroupstage1;
+    public CanvasGroup TitleCanvasGroupstage2;
+    public CanvasGroup TitleCanvasGroupstage3;
+
+    float FlashTime = 0;
+    float WaitTime = 0;
+
+    public float SetAlpha = 0.0f;
+    public float SetAlpha2 = 0.0f;
+    public float SetAlpha3 = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
         GetJewel.gameObject.SetActive(true);
-        GetStar.gameObject.SetActive(true);
         ClearTime.gameObject.SetActive(true);
-        TitleBack.gameObject.SetActive(false);
-        TitleBack.text = "Enterでタイトルに戻る";
     }
 
     // Update is called once per frame
     void Update()
     {
         GetJewel.text = "獲得ダイヤ数　:　" + GameSystem.NumJewel;
-        ClearTime.text = "クリア時間　;　" + GameSystem.ClearTime;
+        ClearTime.text = "クリア時間　:　" + GameSystem.ClearTime;
 
         StayTime += Time.deltaTime;
-        if(StayTime>5)
+        SelectSystem();
+    }
+
+    //セレクトするときのシステム
+    void SelectSystem()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow) && NowSelect < 3)
         {
-            GetJewel.gameObject.SetActive(false);
-            GetStar.gameObject.SetActive(false);
-            ClearTime.gameObject.SetActive(false);
-            TitleBack.gameObject.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                SceneManager.LoadScene("Title");
-            }
+            NowSelect++;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && NowSelect > 1)
+        {
+            NowSelect--;
+        }
+        switch (NowSelect)
+        {
+            case 1:
+                if (NowSelect == 1)
+                {
+                    TitleCanvasGroupstage3.alpha = 1.0f;
+                    FlashTime += Time.deltaTime;
+                    if (FlashTime< 1.5 && SetAlpha< 1)
+                    {
+                        if (SetAlpha< 1)
+                        {
+                            SetAlpha += 0.7f * Time.deltaTime;
+                        }
+                    TitleCanvasGroupstage1.alpha = SetAlpha;
+                    }
+                    if (FlashTime > 1.5 && SetAlpha > 0)
+                    {
+                        SetAlpha -= 0.7f * Time.deltaTime;
+                        if (SetAlpha< 0)
+                        {
+                            FlashTime = 0;
+                        }
+                    }
+                    TitleCanvasGroupstage1.alpha = SetAlpha;
+                    TitleCanvasGroupstage2.alpha = 1.0f;
+                    TitleCanvasGroupstage3.alpha = 1.0f;
+                }
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+
+                    SceneManager.LoadScene("Stage_1");
+                }
+                break;
+            case 2:
+                if (NowSelect == 2)
+                {
+                    TitleCanvasGroupstage1.alpha = 1.0f;
+                    FlashTime += Time.deltaTime;
+                    if (FlashTime< 1.5 && SetAlpha< 1)
+                    {
+                        if (SetAlpha< 1)
+                        {
+                            SetAlpha += 0.7f * Time.deltaTime;
+                        }
+                        TitleCanvasGroupstage2.alpha = SetAlpha;
+                    }
+                    if (FlashTime > 1.5 && SetAlpha > 0)
+                    {
+                        SetAlpha -= 0.7f * Time.deltaTime;
+                        if (SetAlpha< 0)
+                        {
+                            FlashTime = 0;
+                        }
+                    }
+                    TitleCanvasGroupstage2.alpha = SetAlpha;
+                    TitleCanvasGroupstage1.alpha = 1.0f;
+                    TitleCanvasGroupstage3.alpha = 1.0f;
+                }
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SceneManager.LoadScene("Stage_2");
+                }
+                break;
+            case 3:
+                if (NowSelect == 3)
+                {
+                    TitleCanvasGroupstage2.alpha = 1.0f;
+                    FlashTime += Time.deltaTime;
+                    if (FlashTime< 1.5 && SetAlpha< 1)
+                    {
+                        if (SetAlpha< 1)
+                            SetAlpha += 0.7f * Time.deltaTime;
+                    }
+                    TitleCanvasGroupstage3.alpha = SetAlpha;
+                    if (FlashTime > 1.5 && SetAlpha > 0)
+                    {
+                        SetAlpha -= 0.7f * Time.deltaTime;
+                        if (SetAlpha< 0)
+                        {
+                            FlashTime = 0;
+                        }
+                        TitleCanvasGroupstage3.alpha = SetAlpha;
+                        TitleCanvasGroupstage1.alpha = 1.0f;
+                        TitleCanvasGroupstage2.alpha = 1.0f;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SceneManager.LoadScene("Stage_3");
+                }
+                break;
         }
     }
 }
