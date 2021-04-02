@@ -205,7 +205,7 @@ public class Wolf : MonoBehaviour
         Transform target = player.transform;
         float distance = Vector2.Distance(target.position, transform.position);
 
-        if (distance <= 7.0f)
+        if (distance <= 4.0f)
         {
             flg_normal = false;
             flg_lookPlayer = true;
@@ -214,7 +214,7 @@ public class Wolf : MonoBehaviour
 
             m_lostPlayerTime = 0.0f;
         }
-        else if (distance > 7.0f && flg_danger)
+        else if (distance > 4.0f && flg_danger)
         {
             flg_lookPlayer = false;
             flg_moveToPlayer = false;
