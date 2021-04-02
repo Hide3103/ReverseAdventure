@@ -26,6 +26,7 @@ public class Result : MonoBehaviour
     {
         GetJewel.gameObject.SetActive(true);
         ClearTime.gameObject.SetActive(true);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -38,6 +39,7 @@ public class Result : MonoBehaviour
         SelectSystem();
     }
 
+
     //セレクトするときのシステム
     void SelectSystem()
     {
@@ -49,8 +51,11 @@ public class Result : MonoBehaviour
         {
             NowSelect--;
         }
+
+        //セレクトシステム
         switch (NowSelect)
         {
+
             case 1:
                 if (NowSelect == 1)
                 {
@@ -78,8 +83,28 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-
-                    SceneManager.LoadScene("Stage_1");
+                    //次にどこのステージに行くか(ステージ追加時は必須)
+                    switch (GameSystem.WasPlayStage)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            SceneManager.LoadScene("Stage_2");
+                            GameSystem.WasPlayStage = 2;
+                            break;
+                        case 2:
+                            SceneManager.LoadScene("Stage_3");
+                            GameSystem.WasPlayStage = 3;
+                            break;
+                        case 3:
+                            SceneManager.LoadScene("Stage_4");
+                            GameSystem.WasPlayStage = 4;
+                            break;
+                        case 4:
+                            SceneManager.LoadScene("Stage_5");
+                            GameSystem.WasPlayStage = 5;
+                            break;
+                    }
                 }
                 break;
             case 2:
@@ -109,7 +134,7 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    SceneManager.LoadScene("Stage_2");
+                    SceneManager.LoadScene("StageSelect");
                 }
                 break;
             case 3:
@@ -137,9 +162,29 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    SceneManager.LoadScene("Stage_3");
+                    //もう一回同じステージを読み込む(ステージ追加時は必須)
+                    switch (GameSystem.WasPlayStage)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            SceneManager.LoadScene("Stage_1");
+                            break;
+                        case 2:
+                            SceneManager.LoadScene("Stage_2");
+                            break;
+                        case 3:
+                            SceneManager.LoadScene("Stage_3");
+                            break;
+                        case 4:
+                            SceneManager.LoadScene("Stage_4");
+                            break;
+                    }
                 }
                 break;
+
         }
+
+
     }
 }

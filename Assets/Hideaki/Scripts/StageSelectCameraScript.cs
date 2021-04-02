@@ -94,6 +94,7 @@ public class StageSelectCameraScript : MonoBehaviour
                     break;
                 case 1:
                     SceneManager.LoadScene("Stage_1");
+                    GameSystem.WasPlayStage = 1;
                     break;
             }
         }
