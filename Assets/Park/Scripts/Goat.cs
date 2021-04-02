@@ -33,7 +33,6 @@ public class Goat : MonoBehaviour
     float m_lostPlayerTime;
     float m_damageDelta;
     float m_damageLimit;
-    float m_dieTime;
     float m_attackTime;
     // Start is called before the first frame update
     void Start()
@@ -54,18 +53,19 @@ public class Goat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(flg_moveToPlayer);
+        rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
+
         if (player)
         {
-            rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
-
-            //エネミー同士は衝突無視
-            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
             Move();
             MoveToPlayer();
             Damage();
             Die();
+        }
+
+        if (enemy)
+        {
+            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
@@ -110,7 +110,6 @@ public class Goat : MonoBehaviour
         m_lostPlayerTime = 0.0f;
         m_damageDelta = 0.0f;
         m_damageLimit = 1.0f;
-        m_dieTime = 0.0f;
         m_attackTime = 0.0f;
     }
 
@@ -206,7 +205,7 @@ public class Goat : MonoBehaviour
         Transform target = player.transform;
         float distance = Vector2.Distance(target.position, transform.position);
 
-        if (distance <= 7.0f)
+        if (distance <= 4.0f)
         {
             flg_normal = false;
             flg_lookPlayer = true;
@@ -215,7 +214,7 @@ public class Goat : MonoBehaviour
 
             m_lostPlayerTime = 0.0f;
         }
-        else if(distance > 7.0f && flg_danger)
+        else if(distance > 4.0f && flg_danger)
         {
             flg_lookPlayer = false;
             flg_moveToPlayer = false;

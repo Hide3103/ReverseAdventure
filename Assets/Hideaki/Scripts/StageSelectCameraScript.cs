@@ -8,7 +8,7 @@ public class StageSelectCameraScript : MonoBehaviour
     public static int SelectingStageNum = 1;
     int StageMaxNum = 5;
     int StageMinNum = -1;
-    bool BackButtonSelecting = false;
+    static bool BackButtonSelecting = false;
     int beforeStageNum = 1;
 
     public GameObject RightCursor;
@@ -39,6 +39,7 @@ public class StageSelectCameraScript : MonoBehaviour
                     transform.position += new Vector3(5.0f, 0.0f, 0.0f);
                     SelectingStageNum += 1;
                     RightCursorScript.ButtonPressed = true;
+                    RightCursorScript.flashDelta = 0.0f;
                 }
             }
             if (1 < SelectingStageNum)
@@ -48,6 +49,7 @@ public class StageSelectCameraScript : MonoBehaviour
                     transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
                     SelectingStageNum -= 1;
                     LeftCursorScript.ButtonPressed = true;
+                    LeftCursorScript.flashDelta = 0.0f;
                 }
             }
 
@@ -60,22 +62,22 @@ public class StageSelectCameraScript : MonoBehaviour
         }
         else
         {
-            if (StageMinNum < SelectingStageNum)
-            {
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    SelectingStageNum += 1;
-                    RightCursorScript.ButtonPressed = true;
-                }
-            }
-            if (SelectingStageNum < 0)
-            {
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    SelectingStageNum -= 1;
-                    LeftCursorScript.ButtonPressed = true;
-                }
-            }
+            //if (StageMinNum < SelectingStageNum)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.RightArrow))
+            //    {
+            //        SelectingStageNum += 1;
+            //        RightCursorScript.ButtonPressed = true;
+            //    }
+            //}
+            //if (SelectingStageNum < 0)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.LeftArrow))
+            //    {
+            //        SelectingStageNum -= 1;
+            //        LeftCursorScript.ButtonPressed = true;
+            //    }
+            //}
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 SelectingStageNum = beforeStageNum;
@@ -83,12 +85,12 @@ public class StageSelectCameraScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return))
         {
             switch(SelectingStageNum)
             {
                 case 0:
-                    SceneManager.LoadScene("Title");
+                    SceneManager.LoadScene("Shop_2");
                     break;
                 case 1:
                     SceneManager.LoadScene("Stage_1");

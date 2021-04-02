@@ -7,7 +7,11 @@ public class GameSystem : MonoBehaviour
     public static bool IsGoal = false;
     //クリアタイム
     public static float ClearTime = 0;
-    
+
+    //ステージセレクト・ショップでの現在の宝石所持数
+    public static int HavingNumJuwel = 0;
+
+    //ステージ内での所持宝石数
     public static float NumJewel = 0;
     //これまでで最大何個とったかを入れる変数
     public static int NumMaxGetJewelStage1 = 0;

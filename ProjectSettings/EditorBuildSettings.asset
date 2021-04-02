@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Hideaki/Hideaki_StageSelect.unity
     guid: 0a5c47c7393e0ac49a185675165a5500
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 4bbe6d94af5e2f843a79cf40287845ac
+  - enabled: 1
+    path: Assets/Scenes/Shop_2.unity
+    guid: a58a53a19b801904b96fa37acbafe7df
   m_configObjects: {}
