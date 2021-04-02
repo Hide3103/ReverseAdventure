@@ -5,8 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class Next : MonoBehaviour
 {
-    public void OnClick()
+    void Start()
     {
-        SceneManager.LoadScene("");//()の中に移動先のシーン名
+
     }
+
+    void Update()
+    {
+
+    }
+
+    public void PushBotton()
+    {
+        SceneManager.LoadScene("");
+    }
+
+    //public void OnClick()
+    //{
+    //    SceneManager.LoadScene("");//()の中に移動先のシーン名
+    //}
 }

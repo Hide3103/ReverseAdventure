@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Choice : MonoBehaviour
+public class Choice2 : MonoBehaviour
 {
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         
@@ -17,11 +19,6 @@ public class Choice : MonoBehaviour
 
     public void PushBotton()
     {
-        SceneManager.LoadScene("StageSelect");
+            SceneManager.LoadScene("StageSelect");
     }
-    //public void OnClick()
-    //{
-    //    SceneManager.LoadScene("StageSelect");//()の中に移動先のシーン名
-    //}
-
 }
