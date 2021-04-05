@@ -32,8 +32,8 @@ public class Result : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetJewel.text = "獲得ダイヤ数　:　" + GameSystem.NumJewel;
-        ClearTime.text = "クリア時間　:　" + GameSystem.ClearTime;
+        GetJewel.text = "獲得宝石数　:　" + GameSystem.NumJewel;
+        ClearTime.text = "クリアタイム　:　" + GameSystem.ClearTime;
 
         StayTime += Time.deltaTime;
         SelectSystem();
