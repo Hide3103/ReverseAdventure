@@ -69,10 +69,10 @@ public class Result : MonoBehaviour
                         }
                     TitleCanvasGroupstage1.alpha = SetAlpha;
                     }
-                    if (FlashTime > 1.5 && SetAlpha > 0)
+                    if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
                         SetAlpha -= 0.7f * Time.deltaTime;
-                        if (SetAlpha< 0)
+                        if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
                         }
@@ -120,10 +120,10 @@ public class Result : MonoBehaviour
                         }
                         TitleCanvasGroupstage2.alpha = SetAlpha;
                     }
-                    if (FlashTime > 1.5 && SetAlpha > 0)
+                    if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
                         SetAlpha -= 0.7f * Time.deltaTime;
-                        if (SetAlpha< 0)
+                        if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
                         }
@@ -148,10 +148,10 @@ public class Result : MonoBehaviour
                             SetAlpha += 0.7f * Time.deltaTime;
                     }
                     TitleCanvasGroupstage3.alpha = SetAlpha;
-                    if (FlashTime > 1.5 && SetAlpha > 0)
+                    if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
                         SetAlpha -= 0.7f * Time.deltaTime;
-                        if (SetAlpha< 0)
+                        if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
                         }
