@@ -16,6 +16,7 @@ public class Result : MonoBehaviour
     public CanvasGroup TitleCanvasGroupstage3;
 
     float FlashTime = 0;
+    float FlashSpeed = 0.7f;
     float WaitTime = 0;
 
     public float SetAlpha = 0.0f;
@@ -65,13 +66,13 @@ public class Result : MonoBehaviour
                     {
                         if (SetAlpha< 1)
                         {
-                            SetAlpha += 0.7f * Time.deltaTime;
+                            SetAlpha += FlashSpeed * Time.deltaTime;
                         }
                     TitleCanvasGroupstage1.alpha = SetAlpha;
                     }
                     if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
-                        SetAlpha -= 0.7f * Time.deltaTime;
+                        SetAlpha -= FlashSpeed * Time.deltaTime;
                         if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
@@ -116,13 +117,13 @@ public class Result : MonoBehaviour
                     {
                         if (SetAlpha< 1)
                         {
-                            SetAlpha += 0.7f * Time.deltaTime;
+                            SetAlpha += FlashSpeed * Time.deltaTime;
                         }
                         TitleCanvasGroupstage2.alpha = SetAlpha;
                     }
                     if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
-                        SetAlpha -= 0.7f * Time.deltaTime;
+                        SetAlpha -= FlashSpeed * Time.deltaTime;
                         if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
@@ -145,12 +146,12 @@ public class Result : MonoBehaviour
                     if (FlashTime< 1.5 && SetAlpha< 1)
                     {
                         if (SetAlpha< 1)
-                            SetAlpha += 0.7f * Time.deltaTime;
+                            SetAlpha += FlashSpeed * Time.deltaTime;
                     }
                     TitleCanvasGroupstage3.alpha = SetAlpha;
                     if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
-                        SetAlpha -= 0.7f * Time.deltaTime;
+                        SetAlpha -= FlashSpeed * Time.deltaTime;
                         if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
