@@ -47,7 +47,9 @@ public class GameSystem : MonoBehaviour
     {
         if(PlayerScript.m_IsPlay)
         {
+            Debug.Log(ClearTime);
             ClearTime += Time.deltaTime;
+
         }
         if(NumNowMaxGetJewelStage1>NumMaxGetJewelStage1)
         {

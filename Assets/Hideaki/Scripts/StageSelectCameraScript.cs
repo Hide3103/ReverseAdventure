@@ -93,8 +93,9 @@ public class StageSelectCameraScript : MonoBehaviour
                     SceneManager.LoadScene("Shop_2");
                     break;
                 case 1:
-                    SceneManager.LoadScene("Stage_1");
                     GameSystem.WasPlayStage = 1;
+                    PlayerScript.m_IsPlay = true;
+                    SceneManager.LoadScene("Stage_1");
                     break;
             }
         }

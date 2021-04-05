@@ -17,8 +17,6 @@ public class ChangeWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CoolDownTime);
-        Debug.Log(UraActiveTime);
         if (Input.GetKeyDown(KeyCode.K)&&CoolDownTime<=0)
         {
             UraObj.SetActive(!UraObj.activeSelf);

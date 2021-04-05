@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
 
     public  bool m_TurnFlg = false;
 
-    public static bool m_IsPlay = true;
+    public static bool m_IsPlay = false;
 
     //UIで管理するのにstaticにしました 3/20
     public static int m_PlayerHp = 3;
@@ -77,6 +77,7 @@ public class PlayerScript : MonoBehaviour
         //ゴールなどプレイを中断させたい時のフラグ
         if (m_IsPlay)
         {
+            Debug.Log(m_IsPlay);
             // 移動
             if (m_DamagedFlg == false)
             {
