@@ -18,6 +18,7 @@ public class Title : MonoBehaviour
 
     public float SetAlpha = 0.0f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,7 @@ public class Title : MonoBehaviour
                 TitleImgPart2.SetActive(true);
                 break;
         }
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene("StageSelect");
         }
