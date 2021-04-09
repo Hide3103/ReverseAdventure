@@ -2137,7 +2137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &103158780
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2169,11 +2169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6962f207096a642807e179604f700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1698404298}
-  UraObj: {fileID: 1195762565}
-  CoolDownTimeUI: {fileID: 868429696}
-  UraActiveUI: {fileID: 103158779}
-  OmoteObj: {fileID: 1015429749}
   CoolDownTimeUseUI: 0
 --- !u!114 &103158782
 MonoBehaviour:
@@ -5596,6 +5591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UraObj: {fileID: 1195762565}
   OmoteObj: {fileID: 1015429749}
+  CoolDownUI: {fileID: 868429696}
+  UraActiveUI: {fileID: 103158779}
 --- !u!4 &381304812
 Transform:
   m_ObjectHideFlags: 0
@@ -16333,11 +16330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6962f207096a642807e179604f700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1849113497}
-  UraObj: {fileID: 1195762565}
-  CoolDownTimeUI: {fileID: 868429696}
-  UraActiveUI: {fileID: 103158779}
-  OmoteObj: {fileID: 1015429749}
   CoolDownTimeUseUI: 0
 --- !u!114 &868429698
 MonoBehaviour:
@@ -16364,7 +16356,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
