@@ -8,14 +8,14 @@ public class Setting : MonoBehaviour
     public GameObject TitleCanvas;
     public GameObject SettingCanvas;
 
-    // Start is called before the first frame update
+    //Start is called before the first frame update
     void Start()
     {
 
     }
 
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
 
