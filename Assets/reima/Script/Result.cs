@@ -35,6 +35,9 @@ public class Result : MonoBehaviour
     {
         GetJewel.text = "獲得宝石数　:　" + GameSystem.NumJewel+"個";
         ClearTime.text = "クリアタイム　:　" + Mathf.CeilToInt(GameSystem.ClearTime)+"秒";
+        GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        GameSystem.SetStageCleared(true);
+
 
         StayTime += Time.deltaTime;
         SelectSystem();
