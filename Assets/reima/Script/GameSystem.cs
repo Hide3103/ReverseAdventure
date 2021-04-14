@@ -33,7 +33,7 @@ public class GameSystem : MonoBehaviour
     public static int NumStage5MaxJewel = 50;
 
     //各ステージのクリアタイム
-    public static float[] StageClearTimes = new float[] {0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+    public static float[] StageClearTimes = new float[] { 600.0f, 600.0f, 600.0f, 600.0f, 600.0f };
     // 各ステージのクリア状況
     public static bool[] StageCleared = new bool[] { true, false, false, false, false };
 
@@ -45,18 +45,20 @@ public class GameSystem : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        ClearTime = 0.0f;
         IsGoal = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PlayerScript.m_IsPlay)
+        if (PlayerScript.m_IsPlay)
         {
+            Debug.Log(ClearTime);
             ClearTime += Time.deltaTime;
 
         }
-        if(NumNowMaxGetJewelStage1>NumMaxGetJewelStage1)
+        if (NumNowMaxGetJewelStage1 > NumMaxGetJewelStage1)
         {
             NumMaxGetJewelStage1 = NumNowMaxGetJewelStage1;
         }
@@ -88,12 +90,12 @@ public class GameSystem : MonoBehaviour
     }
 
     //クリア済みステージの代入・取得
-    public static void SetStageCleared(bool stageCleared)
+    public static void SetStageCleared(bool stageCleared, int stageNum)
     {
-        StageCleared[WasPlayStage] = stageCleared;
+        StageCleared[stageNum] = stageCleared;
     }
     public static bool GetStageCleared(int stageNum)
     {
-        return StageCleared[stageNum];
+        return StageCleared[stageNum - 1];
     }
 }

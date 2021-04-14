@@ -28,6 +28,11 @@ public class Result : MonoBehaviour
         GetJewel.gameObject.SetActive(true);
         ClearTime.gameObject.SetActive(true);
         Time.timeScale = 1;
+
+        if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
+        {
+            GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        }
     }
 
     // Update is called once per frame
@@ -35,8 +40,8 @@ public class Result : MonoBehaviour
     {
         GetJewel.text = "獲得宝石数　:　" + GameSystem.NumJewel+"個";
         ClearTime.text = "クリアタイム　:　" + Mathf.CeilToInt(GameSystem.ClearTime)+"秒";
-        GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
-        GameSystem.SetStageCleared(true);
+        //GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        GameSystem.SetStageCleared(true, GameSystem.WasPlayStage);
 
 
         StayTime += Time.deltaTime;

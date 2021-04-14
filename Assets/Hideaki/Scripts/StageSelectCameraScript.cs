@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StageSelectCameraScript : MonoBehaviour
 {
+    [SerializeField]
     public static int SelectingStageNum = 1;
     int StageMaxNum = 5;
     int StageMinNum = -1;
@@ -18,6 +19,10 @@ public class StageSelectCameraScript : MonoBehaviour
 
     [SerializeField]
     bool MovingFlg = false;
+
+    string stageName;
+
+    public bool test;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +90,12 @@ public class StageSelectCameraScript : MonoBehaviour
             }
         }
 
+        //if ()
+        //{
+        test = GameSystem.GetStageCleared(SelectingStageNum);
+        //}
+        //Debug.Log(SelectingStageNum);
+
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return))
         {
             switch(SelectingStageNum)
@@ -93,11 +104,46 @@ public class StageSelectCameraScript : MonoBehaviour
                     SceneManager.LoadScene("Shop_2");
                     break;
                 case 1:
-                    GameSystem.WasPlayStage = 1;
-                    PlayerScript.m_IsPlay = true;
-                    SceneManager.LoadScene("Stage_1");
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    if (test == true)
+                    {
+                        GameSystem.WasPlayStage = SelectingStageNum;
+                        PlayerScript.m_IsPlay = true;
+                        SceneManager.LoadScene(GetStageName(SelectingStageNum));
+                    }
+                    break;
+                default:
                     break;
             }
         }
+    }
+
+    string GetStageName(int selectingStageNum)
+    {
+        switch (selectingStageNum)
+        {
+            case 1:
+                stageName = "Stage_1";
+                break;
+            case 2:
+                stageName = "Stage_2";
+                break;
+            case 3:
+                stageName = "Stage_3";
+                break;
+            //case 4:
+            //    stageName = "Stage_4";
+            //    break;
+            //case 5:
+            //    stageName = "Stage_5";
+            //    break;
+            default:
+                break;
+        }
+
+        return stageName;
     }
 }

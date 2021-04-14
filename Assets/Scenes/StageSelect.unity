@@ -164,8 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197be19d7c15e6b4d9bd0b73049ece17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectingStageNum: 2
+  ThisStageNum: 2
   CameraObject: {fileID: 1756271198}
+  LockImage: {fileID: 21300000, guid: cefad2a0f4c9f3b4083e3bdaee4b7f94, type: 3}
+  OpenImage: {fileID: 21300000, guid: 0c33a65f43fb1b04db33b2e07fe8342e, type: 3}
 --- !u!212 &75814884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -586,8 +588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197be19d7c15e6b4d9bd0b73049ece17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectingStageNum: 4
+  ThisStageNum: 4
   CameraObject: {fileID: 1756271198}
+  LockImage: {fileID: 21300000, guid: cefad2a0f4c9f3b4083e3bdaee4b7f94, type: 3}
+  OpenImage: {fileID: 21300000, guid: 0c33a65f43fb1b04db33b2e07fe8342e, type: 3}
 --- !u!212 &364646616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -680,8 +684,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197be19d7c15e6b4d9bd0b73049ece17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectingStageNum: 5
+  ThisStageNum: 5
   CameraObject: {fileID: 1756271198}
+  LockImage: {fileID: 21300000, guid: cefad2a0f4c9f3b4083e3bdaee4b7f94, type: 3}
+  OpenImage: {fileID: 21300000, guid: 0c33a65f43fb1b04db33b2e07fe8342e, type: 3}
 --- !u!212 &539020204
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -800,8 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197be19d7c15e6b4d9bd0b73049ece17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectingStageNum: 0
+  ThisStageNum: 0
   CameraObject: {fileID: 1756271198}
+  LockImage: {fileID: 0}
+  OpenImage: {fileID: 0}
 --- !u!212 &952752857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -894,8 +902,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197be19d7c15e6b4d9bd0b73049ece17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectingStageNum: 3
+  ThisStageNum: 3
   CameraObject: {fileID: 1756271198}
+  LockImage: {fileID: 21300000, guid: cefad2a0f4c9f3b4083e3bdaee4b7f94, type: 3}
+  OpenImage: {fileID: 21300000, guid: c0176f77d4413694c8566d13108fb394, type: 3}
 --- !u!212 &958275687
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1234,14 +1244,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 5
-    m_MaxSize: 75
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u30AF\u30EA\u30A2\u30BF\u30A4\u30E0"
 --- !u!222 &1702859243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1284,6 +1294,7 @@ MonoBehaviour:
   RightCursor: {fileID: 1804299504}
   LeftCursor: {fileID: 867907636}
   MovingFlg: 0
+  test: 0
 --- !u!81 &1756271200
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1575,7 +1586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClearTimeText: {fileID: 1702859242}
-  cameraObject: {fileID: 0}
+  cameraObject: {fileID: 1756271198}
 --- !u!1 &2101873133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,8 +1631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197be19d7c15e6b4d9bd0b73049ece17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectingStageNum: 1
+  ThisStageNum: 1
   CameraObject: {fileID: 1756271198}
+  LockImage: {fileID: 21300000, guid: cefad2a0f4c9f3b4083e3bdaee4b7f94, type: 3}
+  OpenImage: {fileID: 21300000, guid: 87f7369c2dbe06841978f8028b2948c8, type: 3}
 --- !u!212 &2101873136
 SpriteRenderer:
   m_ObjectHideFlags: 0
