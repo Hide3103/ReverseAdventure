@@ -29,6 +29,7 @@ public class Snake : MonoBehaviour
     bool flg_isSleeping;
 
     float m_hp;
+    float m_systemHp;
     float m_speed;
     float m_direction;
     float m_changeDirectionTime;
@@ -60,12 +61,17 @@ public class Snake : MonoBehaviour
 
         if (player)
         {
-            Move();
-            MoveToPlayer();
+            if (m_systemHp > 0)
+            {
+                Move();
+                MoveToPlayer();
+            }
+
             Damage();
             ChargeForAttack();
             Sleep();
             Die();
+            SystemDie();
         }
 
         if (enemy)
@@ -82,6 +88,7 @@ public class Snake : MonoBehaviour
             if (flg_blinking == false)
             {
                 flg_damage = true;
+                m_systemHp--;
 
                 rigid2D.AddForce(new Vector3(transform.localScale.x * 500.0f, 50.0f, 0.0f));
             }
@@ -100,7 +107,8 @@ public class Snake : MonoBehaviour
         flg_chargeAttack = false;
         flg_isSleeping = true;
 
-        m_hp = 2.0f;
+        m_hp = 3.0f;
+        m_systemHp = m_hp;
         m_speed = 0.5f;
         m_direction = -1.0f;
         m_changeDirectionTime = 0.0f;
@@ -336,6 +344,14 @@ public class Snake : MonoBehaviour
             m_hp = 0.0f;
 
             Destroy(gameObject);
+        }
+    }
+
+    void SystemDie()
+    {
+        if (m_systemHp <= 0.0f)
+        {
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 }
