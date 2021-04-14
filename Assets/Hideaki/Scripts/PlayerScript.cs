@@ -77,7 +77,6 @@ public class PlayerScript : MonoBehaviour
         //ゴールなどプレイを中断させたい時のフラグ
         if (m_IsPlay)
         {
-            Debug.Log(m_IsPlay);
             // 移動
             if (m_DamagedFlg == false)
             {

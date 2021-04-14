@@ -10,6 +10,7 @@ public class ChangeWorld : MonoBehaviour
     public static float UraActiveTime = 10;
     public GameObject CoolDownUI;
     public GameObject UraActiveUI;
+    public static bool StateFront = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class ChangeWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CoolDownTime);
+        Debug.Log(StateFront);
         if (CoolDownTime <= 0)
         {
             CoolDownUI.SetActive(false);
@@ -29,6 +30,7 @@ public class ChangeWorld : MonoBehaviour
                 OmoteObj.SetActive(!OmoteObj.activeSelf);
                 UraActiveUI.SetActive(true);
                 CoolDownTime = 10;
+                StateFront = !StateFront;
             }
         }
         if(OmoteObj.activeSelf==true&&CoolDownTime>0)

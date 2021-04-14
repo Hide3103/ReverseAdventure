@@ -53,7 +53,6 @@ public class GameSystem : MonoBehaviour
     {
         if(PlayerScript.m_IsPlay)
         {
-            Debug.Log(ClearTime);
             ClearTime += Time.deltaTime;
 
         }
