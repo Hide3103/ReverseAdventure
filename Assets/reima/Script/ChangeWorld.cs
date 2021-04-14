@@ -30,7 +30,7 @@ public class ChangeWorld : MonoBehaviour
                 OmoteObj.SetActive(!OmoteObj.activeSelf);
                 UraActiveUI.SetActive(true);
                 CoolDownTime = 10;
-                StateFront = !StateFront;
+                StateFront = false;
             }
         }
         if(OmoteObj.activeSelf==true&&CoolDownTime>0)
@@ -39,6 +39,7 @@ public class ChangeWorld : MonoBehaviour
             UraActiveTime = 10;
            CoolDownUI.SetActive(true);
             UraActiveUI.SetActive(false);
+            StateFront = true;
         }
         
         if (UraObj.activeSelf == true )
@@ -48,6 +49,7 @@ public class ChangeWorld : MonoBehaviour
             {
                 OmoteObj.SetActive(true);
                 UraObj.SetActive(false);
+                StateFront = true;
             }
         }
         if (GameSystem.IsGoal==true)
