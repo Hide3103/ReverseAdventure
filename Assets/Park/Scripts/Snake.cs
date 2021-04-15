@@ -72,6 +72,8 @@ public class Snake : MonoBehaviour
             Sleep();
             Die();
             SystemDie();
+
+            Debug.Log(flg_isSleeping);
         }
 
         if (enemy)
@@ -325,7 +327,7 @@ public class Snake : MonoBehaviour
 
             flg_normal = false;
 
-            if (distance <= 1.0f)
+            if (distance <= 1.0f && ChangeWorld.StateFront == false)
             {
                 m_moveToplayerTime = 0.5f;
 
@@ -352,6 +354,17 @@ public class Snake : MonoBehaviour
         if (m_systemHp <= 0.0f)
         {
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+
+        if (flg_isSleeping)
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            rigid2D.isKinematic = true;
+        }
+        else
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            rigid2D.isKinematic = false;
         }
     }
 }
