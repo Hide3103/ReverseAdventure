@@ -22,6 +22,10 @@ public class Result : MonoBehaviour
     public float SetAlpha = 0.0f;
     public float SetAlpha2 = 0.0f;
     public float SetAlpha3 = 0.0f;
+
+    bool[] array;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,27 @@ public class Result : MonoBehaviour
         if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
         {
             GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        }
+
+        switch(GameSystem.WasPlayStage)
+        {
+            case 1:
+                array = GameSystem.Stage1JuwelGetted;
+                break;
+            case 2:
+                array = GameSystem.Stage2JuwelGetted;
+                break;
+            case 3:
+                array = GameSystem.Stage3JuwelGetted;
+                break;
+        }
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if(GameSystem.GetJuwelGetted(i) == true)
+            {
+                GameSystem.SetJuwelCollection(i);
+            }
         }
     }
 

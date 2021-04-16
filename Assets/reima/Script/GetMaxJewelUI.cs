@@ -19,17 +19,41 @@ public class GetMaxJewelUI : MonoBehaviour
         {
             case 1:
                 {
-                    MaxJewelUI.text = "宝石 : "+ GameSystem.NumMaxGetJewelStage1 + "/"+ GameSystem.NumStage1MaxJewel;
+                    int GettedJuwel = 0;
+                    for(int i = 0; i < GameSystem.Stage1JuwelCollection.Length; i++)
+                    {
+                        if (GameSystem.GetJuwelCollection(i) == true)
+                        {
+                            GettedJuwel += 1;
+                        }
+                    }
+                    MaxJewelUI.text = "宝石 : "+ GettedJuwel + "/"+ GameSystem.Stage1JuwelCollection.Length;
                     break;
                 }
             case 2:
                 {
-                    MaxJewelUI.text = "宝石 : " + GameSystem.NumMaxGetJewelStage2 + "/" + GameSystem.NumStage2MaxJewel;
+                    int GettedJuwel = 0;
+                    for (int i = 0; i < GameSystem.Stage2JuwelCollection.Length; i++)
+                    {
+                        if (GameSystem.GetJuwelCollection(i) == true)
+                        {
+                            GettedJuwel += 1;
+                        }
+                    }
+                    MaxJewelUI.text = "宝石 : " + GettedJuwel + "/" + GameSystem.Stage2JuwelCollection.Length;
                     break;
                 }
             case 3:
                 {
-                    MaxJewelUI.text = "宝石 : " + GameSystem.NumMaxGetJewelStage3 + "/" + GameSystem.NumStage3MaxJewel;
+                    int GettedJuwel = 0;
+                    for (int i = 0; i < GameSystem.Stage3JuwelCollection.Length; i++)
+                    {
+                        if (GameSystem.GetJuwelCollection(i) == true)
+                        {
+                            GettedJuwel += 1;
+                        }
+                    }
+                    MaxJewelUI.text = "宝石 : " + GettedJuwel + "/" + GameSystem.Stage3JuwelCollection.Length;
                     break;
                 }
             case 4:
