@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeWorld : MonoBehaviour
 {
+    GameObject Player;
     public GameObject UraObj;
     public GameObject OmoteObj;
     public static float CoolDownTime = 0;
@@ -11,21 +12,23 @@ public class ChangeWorld : MonoBehaviour
     public GameObject CoolDownUI;
     public GameObject UraActiveUI;
     public static bool StateFront = true;
+    private Vector3 SetAfterSwitchingPlayerPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(StateFront);
+
         if (CoolDownTime <= 0)
         {
             CoolDownUI.SetActive(false);
             if (Input.GetKeyDown(KeyCode.K))
             {
+                //SetAfterSwitchingPlayerPos = Player.transform.position;
                 UraObj.SetActive(!UraObj.activeSelf);
                 OmoteObj.SetActive(!OmoteObj.activeSelf);
                 UraActiveUI.SetActive(true);
@@ -50,6 +53,10 @@ public class ChangeWorld : MonoBehaviour
                 OmoteObj.SetActive(true);
                 UraObj.SetActive(false);
                 StateFront = true;
+                if(Player.transform.position.y<0.4)
+                {
+                    Player.transform.position = SetAfterSwitchingPlayerPos;
+                }
             }
         }
         if (GameSystem.IsGoal==true)
