@@ -90,10 +90,10 @@ public class StageSelectCameraScript : MonoBehaviour
             }
         }
 
-        //if ()
-        //{
-        test = GameSystem.GetStageCleared(SelectingStageNum);
-        //}
+        if (SelectingStageNum != 0)
+        {
+            test = GameSystem.GetStageCleared(SelectingStageNum);
+        }
         //Debug.Log(SelectingStageNum);
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return))

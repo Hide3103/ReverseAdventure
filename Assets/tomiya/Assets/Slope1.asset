@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Slope1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: a700752d1bc0c52428987f98c82b9fea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e46527643c748b419e73cc64da831b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

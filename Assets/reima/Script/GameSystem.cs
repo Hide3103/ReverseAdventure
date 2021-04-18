@@ -32,6 +32,14 @@ public class GameSystem : MonoBehaviour
     public static int NumStage4MaxJewel = 40;
     public static int NumStage5MaxJewel = 50;
 
+    //1ステージ目のダイヤの数
+    public static bool[] Stage1JuwelGetted = new bool[] { false, false, false, false, false, false, false, false, false, false, };
+    public static bool[] Stage1JuwelCollection = new bool[] { false, false, false, false, false, false, false, false, false, false, };
+    public static bool[] Stage2JuwelGetted = new bool[] { false, false, false, false, false, false, false, false, false, false, };
+    public static bool[] Stage2JuwelCollection = new bool[] { false, false, false, false, false, false, false, false, false, false, };
+    public static bool[] Stage3JuwelGetted = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+    public static bool[] Stage3JuwelCollection = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+
     //各ステージのクリアタイム
     public static float[] StageClearTimes = new float[] { 600.0f, 600.0f, 600.0f, 600.0f, 600.0f };
     // 各ステージのクリア状況
@@ -47,6 +55,28 @@ public class GameSystem : MonoBehaviour
         Time.timeScale = 1;
         ClearTime = 0.0f;
         IsGoal = false;
+
+        switch (WasPlayStage)
+        {
+            case 1:
+                for (int i = 0; i < GameSystem.Stage1JuwelGetted.Length; i++)
+                {
+                    SetJuwelGetted(i, false);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < GameSystem.Stage2JuwelGetted.Length; i++)
+                {
+                    SetJuwelGetted(i, false);
+                }
+                break;
+            case 3:
+                for (int i = 0; i < GameSystem.Stage3JuwelGetted.Length; i++)
+                {
+                    SetJuwelGetted(i, false);
+                }
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -96,5 +126,73 @@ public class GameSystem : MonoBehaviour
     public static bool GetStageCleared(int stageNum)
     {
         return StageCleared[stageNum - 1];
+    }
+
+    // 現在プレイしているステージの宝石獲得状況
+    public static void SetJuwelGetted(int juwelNum, bool flg)
+    {
+        switch (WasPlayStage)
+        {
+            case 1:
+                Stage1JuwelGetted[juwelNum] = flg;
+                break;
+            case 2:
+                Stage2JuwelGetted[juwelNum] = flg;
+                break;
+            case 3:
+                Stage3JuwelGetted[juwelNum] = flg;
+                break;
+            default:
+                break;
+        }
+    }
+    public static bool GetJuwelGetted(int juwelNum)
+    {
+        switch (WasPlayStage)
+        {
+            case 1:
+                return Stage1JuwelGetted[juwelNum];
+            case 2:
+                return Stage2JuwelGetted[juwelNum];
+            case 3:
+                return Stage3JuwelGetted[juwelNum];
+            default:
+                break;
+        }
+        return false;
+    }
+
+    // クリアしたステージの宝石を記録する
+    public static void SetJuwelCollection(int juwelNum)
+    {
+        switch (WasPlayStage)
+        {
+            case 1:
+                Stage1JuwelCollection[juwelNum] = Stage1JuwelGetted[juwelNum];
+                break;
+            case 2:
+                Stage2JuwelCollection[juwelNum] = Stage2JuwelGetted[juwelNum];
+                break;
+            case 3:
+                Stage3JuwelCollection[juwelNum] = Stage3JuwelGetted[juwelNum];
+                break;
+            default:
+                break;
+        }
+    }
+    public static bool GetJuwelCollection(int juwelNum)
+    {
+        switch (WasPlayStage)
+        {
+            case 1:
+                return Stage1JuwelCollection[juwelNum];
+            case 2:
+                return Stage2JuwelCollection[juwelNum];
+            case 3:
+                return Stage3JuwelCollection[juwelNum];
+            default:
+                break;
+        }
+        return false;
     }
 }
