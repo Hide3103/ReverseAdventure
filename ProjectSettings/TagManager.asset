@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Stage
   - ura
+  - BrokeFloor
   layers:
   - Default
   - TransparentFX
