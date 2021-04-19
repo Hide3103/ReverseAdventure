@@ -7,11 +7,24 @@ public class Title : MonoBehaviour
 {
     public GameObject TitleImgPart1;
     public GameObject TitleImgPart2;
+
+    public GameObject TitleCanvas;
+    public GameObject SettingCanvas;
+
     int ImagePartRandom;
 
 
     public CanvasGroup TitleCanvasGroupstage1;
+    public CanvasGroup TitleCanvasGroupstage2;
+    public CanvasGroup TitleCanvasGroupstage3;
+    public CanvasGroup TitleCanvasGroupstage4;
 
+
+    int NumSelect = 1;
+    //1=ボタンを押してスタート
+    //2=オプション
+    //3=クレジット
+    //4=ゲームを終わる
     float FlashTime = 0;
     float FlashSpeed = 0.8f;
     float WaitTime = 0;
@@ -28,7 +41,39 @@ public class Title : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Flash();
+        MenuMove();
+        switch (NumSelect)
+        {
+            case 1:
+                StartFlash();
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SceneManager.LoadScene("StageSelect");
+                }
+                break;
+            case 2:
+                StartFlash();
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SettingScene();
+                }
+                break;
+            case 3:
+                StartFlash();
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SceneManager.LoadScene("CreditScene");
+                }
+                break;
+            case 4:
+                StartFlash();
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    Application.Quit();
+                }
+                break;
+        }
+
         switch (ImagePartRandom)
         {
             case 1:
@@ -40,13 +85,11 @@ public class Title : MonoBehaviour
                 TitleImgPart2.SetActive(true);
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SceneManager.LoadScene("StageSelect");
-        }
+
+
     }
 
-    void Flash()
+    void StartFlash()
     {
         FlashTime += Time.deltaTime;
         if (FlashTime < 1.5 && SetAlpha < 1)
@@ -55,7 +98,33 @@ public class Title : MonoBehaviour
             {
                 SetAlpha += FlashSpeed * Time.deltaTime;
             }
-            TitleCanvasGroupstage1.alpha = SetAlpha;
+        }
+        switch (NumSelect)
+        {
+            case 1:
+                TitleCanvasGroupstage1.alpha = SetAlpha;
+                TitleCanvasGroupstage2.alpha = 1;
+                TitleCanvasGroupstage3.alpha = 1;
+                TitleCanvasGroupstage4.alpha = 1;
+                break;
+            case 2:
+                TitleCanvasGroupstage1.alpha = 1;
+                TitleCanvasGroupstage2.alpha = SetAlpha;
+                TitleCanvasGroupstage3.alpha = 1;
+                TitleCanvasGroupstage4.alpha = 1;
+                break;
+            case 3:
+                TitleCanvasGroupstage1.alpha = 1;
+                TitleCanvasGroupstage2.alpha = 1;
+                TitleCanvasGroupstage3.alpha = SetAlpha;
+                TitleCanvasGroupstage4.alpha = 1;
+                break;
+            case 4:
+                TitleCanvasGroupstage1.alpha = 1;
+                TitleCanvasGroupstage2.alpha = 1;
+                TitleCanvasGroupstage3.alpha = 1;
+                TitleCanvasGroupstage4.alpha = SetAlpha;
+                break;
         }
         if (FlashTime > 1.5 && SetAlpha > 0)
         {
@@ -65,6 +134,82 @@ public class Title : MonoBehaviour
                 FlashTime = 0;
             }
         }
-        TitleCanvasGroupstage1.alpha = SetAlpha;
+        switch (NumSelect)
+        {
+            case 1:
+                TitleCanvasGroupstage1.alpha = SetAlpha;
+                TitleCanvasGroupstage2.alpha = 1;
+                TitleCanvasGroupstage3.alpha = 1;
+                TitleCanvasGroupstage4.alpha = 1;
+                break;
+            case 2:
+                TitleCanvasGroupstage1.alpha = 1;
+                TitleCanvasGroupstage2.alpha = SetAlpha;
+                TitleCanvasGroupstage3.alpha = 1;
+                TitleCanvasGroupstage4.alpha = 1;
+                break;
+            case 3:
+                TitleCanvasGroupstage1.alpha = 1;
+                TitleCanvasGroupstage2.alpha = 1;
+                TitleCanvasGroupstage3.alpha = SetAlpha;
+                TitleCanvasGroupstage4.alpha = 1;
+                break;
+            case 4:
+                TitleCanvasGroupstage1.alpha = 1;
+                TitleCanvasGroupstage2.alpha = 1;
+                TitleCanvasGroupstage3.alpha = 1;
+                TitleCanvasGroupstage4.alpha = SetAlpha;
+                break;
+        }
     }
+    void SettingScene()
+    {
+        TitleCanvas.SetActive(!TitleCanvas.activeSelf);
+        SettingCanvas.SetActive(!SettingCanvas.activeSelf);
+    }
+
+    void MenuMove()
+    {
+        //ボタン押してからスタートから下矢印押すとオプションに移動する
+        if (Input.GetKeyDown(KeyCode.DownArrow) && NumSelect == 1)
+        {
+            NumSelect = 2;
+        }
+
+        //オプションから右矢印を押すとクレジットに移動する
+        if (Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 2)
+        {
+            NumSelect = 3;
+        }
+
+        //オプションから左矢印でゲームを終わる
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 2)
+        {
+            NumSelect = 4;
+        }
+
+
+        //クレジットからオプションに移動
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 3)
+        {
+            NumSelect = 2;
+        }
+
+
+        //ゲームを終わるからオプションに移動
+        if (Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 4)
+        {
+            NumSelect = 2;
+        }
+
+        //ボタンを押してスタート以外のボタンから上矢印押したときボタンを押してスタートに移動する
+        if (NumSelect == 4 || NumSelect == 3 || NumSelect == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                NumSelect = 1;
+            }
+        }
+    }
+
 }

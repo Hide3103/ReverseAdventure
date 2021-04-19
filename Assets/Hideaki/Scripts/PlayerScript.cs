@@ -12,6 +12,9 @@ public class PlayerScript : MonoBehaviour
     //ダメージ後の無敵時間の秒数
     float m_DamageLimit = 1.0f;
 
+    //プレイヤーが死ぬ座標
+    public float m_PlayerDeathPosY = -6.0f;
+
     //被ダメージ時に透明にする用のコンポーネント
     SpriteRenderer spriteRenderer;
     // ダメージを受ける前の色
@@ -29,7 +32,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject GoalObject;
     Vector3 GoalPos;
 
-    public  bool m_TurnFlg = false;
+    public bool m_TurnFlg = false;
 
     public static bool m_IsPlay = false;
 
@@ -39,7 +42,7 @@ public class PlayerScript : MonoBehaviour
 
     //アーマーを装備しているか
     public static bool ArmorUsing = false;
-    
+
     //攻撃のクールタイム
     float attackSpan = 0.5f;
     //攻撃を行ってからの時間
@@ -77,7 +80,6 @@ public class PlayerScript : MonoBehaviour
         //ゴールなどプレイを中断させたい時のフラグ
         if (m_IsPlay)
         {
-            Debug.Log(m_IsPlay);
             // 移動
             if (m_DamagedFlg == false)
             {
@@ -153,6 +155,12 @@ public class PlayerScript : MonoBehaviour
                 }
 
                 m_DamageDelta += Time.deltaTime;
+            }
+            //穴に落ちた時の処理
+            if (this.transform.position.y <= m_PlayerDeathPosY)
+            {
+                SceneManager.LoadScene("GameOver");
+                Destroy(this.gameObject);
             }
         }
     }

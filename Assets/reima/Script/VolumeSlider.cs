@@ -14,23 +14,21 @@ public class VolumeSlider : MonoBehaviour
     public GameObject Obj_SEVolSlider;
     public static float NowBGMVol;
     public static float NowSEVol;
-    bool KeyInput = true;
     float ScroolSpeed = 5;
 
     public Text BGMVolumeTxt;
     public Text SEVolumeTxt;
 
-    int NumSelect = 1;
+   public int SettingNumSelect = 1;
     // Start is called before the first frame update
     void Start()
     {
-        BGMVolSlider = GetComponent<Slider>();
+
         BGMVolSlider.value = AudioListener.volume;
         BGMVolSlider.maxValue = 100;
         BGMVolSlider.minValue = 0;
         BGMVolSlider.value = 100;
 
-        SEVolSlider = GetComponent<Slider>();
         SEVolSlider.value = AudioListener.volume;
         SEVolSlider.maxValue = 100;
         SEVolSlider.minValue = 0;
@@ -39,76 +37,82 @@ public class VolumeSlider : MonoBehaviour
         float v2 = SEVolSlider.value;
     }
 
-    private void OnEnable()
-    {
-       BGMVolSlider.value = AudioListener.volume;
-       BGMVolSlider.onValueChanged.AddListener((sliderValue) => AudioListener.volume = sliderValue);
+    //private void OnEnable()//アクティブ時
+    //{
+    //   BGMVolSlider.value = AudioListener.volume;
+    //   BGMVolSlider.onValueChanged.AddListener((sliderValue) => AudioListener.volume = sliderValue);
 
-        SEVolSlider.value = AudioListener.volume;
-        SEVolSlider.onValueChanged.AddListener((sliderValue) => AudioListener.volume = sliderValue);
-    }
+    //    SEVolSlider.value = AudioListener.volume;
+    //    SEVolSlider.onValueChanged.AddListener((sliderValue) => AudioListener.volume = sliderValue);
+    //}
 
-    private void OnDisable()
-    {
-        SEVolSlider.onValueChanged.RemoveAllListeners();
-        BGMVolSlider.onValueChanged.RemoveAllListeners();
-    }
+    //private void OnDisable()//非アクティブ時
+    //{
+    //    SEVolSlider.onValueChanged.RemoveAllListeners();
+    //    BGMVolSlider.onValueChanged.RemoveAllListeners();
+    //}
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(NumSelect);
-        NowBGMVol = BGMVolSlider.value;
-        NowSEVol = SEVolSlider.value;
-        BGMVolumeTxt.text = "" + NowBGMVol;
-        SEVolumeTxt.text = "" + NowSEVol;
-        if (KeyInput)
+        if (SettingCanvas.activeSelf == true)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            Debug.Log(SettingNumSelect);
+            NowBGMVol = BGMVolSlider.value;
+            NowSEVol = SEVolSlider.value;
+            BGMVolumeTxt.text = "" + NowBGMVol;
+            SEVolumeTxt.text = "" + NowSEVol;
+            switch (SettingNumSelect)
             {
-                NowBGMVol -= ScroolSpeed;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                NowBGMVol += ScroolSpeed;
-            }
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                NowSEVol -= ScroolSpeed;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                NowSEVol += ScroolSpeed;
-            }
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow) && NumSelect < 3)
-        {
-            NumSelect++;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect > 1)
-        {
-            NumSelect--;
-        }
-
-        if (SettingCanvas.activeSelf==true)
-        {
-            switch(NumSelect)
-            {
                 case 1:
-                    Obj_BGMVolSlider.SetActive(true);
-                    Obj_SEVolSlider.SetActive(false);
+                    if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        NowBGMVol -= ScroolSpeed;
+                    }
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        NowBGMVol += ScroolSpeed;
+                    }
+                    if (Input.GetKeyDown(KeyCode.DownArrow) && SettingNumSelect == 1)
+                    {
+                        SettingNumSelect = 2;
+                    }
                     break;
                 case 2:
-                    Obj_BGMVolSlider.SetActive(false);
-                    Obj_SEVolSlider.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        NowSEVol -= ScroolSpeed;
+                    }
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        NowSEVol += ScroolSpeed;
+                    }
+                    if (Input.GetKeyDown(KeyCode.UpArrow) && SettingNumSelect == 2)
+                    {
+                        SettingNumSelect = 1;
+                    }
                     break;
+
             }
+
+            //if (SettingCanvas.activeSelf==true)
+            //{
+            //    switch(NumSelect)
+            //    {
+            //        case 1:
+            //            Obj_BGMVolSlider.SetActive(true);
+            //            Obj_SEVolSlider.SetActive(false);
+            //            break;
+            //        case 2:
+            //            Obj_BGMVolSlider.SetActive(false);
+            //            Obj_SEVolSlider.SetActive(true);
+            //            break;
+            //    }
+            //}
+            NowBGMVol = Mathf.Clamp(NowBGMVol, 0, 100);
+            BGMVolSlider.value = NowBGMVol;
+            SEVolSlider.value = NowSEVol;
         }
-        NowBGMVol = Mathf.Clamp(NowBGMVol, 0, 100);
-        BGMVolSlider.value = NowBGMVol;
-        SEVolSlider.value = NowSEVol;
     }
 }

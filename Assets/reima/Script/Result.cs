@@ -8,7 +8,6 @@ public class Result : MonoBehaviour
 {
     public Text GetJewel;
     public Text ClearTime;
-    float StayTime = 0;
     int NowSelect = 1;
 
     public CanvasGroup TitleCanvasGroupstage1;
@@ -22,12 +21,42 @@ public class Result : MonoBehaviour
     public float SetAlpha = 0.0f;
     public float SetAlpha2 = 0.0f;
     public float SetAlpha3 = 0.0f;
+
+    bool[] array;
+
+
     // Start is called before the first frame update
     void Start()
     {
         GetJewel.gameObject.SetActive(true);
         ClearTime.gameObject.SetActive(true);
         Time.timeScale = 1;
+
+        if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
+        {
+            GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        }
+
+        switch(GameSystem.WasPlayStage)
+        {
+            case 1:
+                array = GameSystem.Stage1JuwelGetted;
+                break;
+            case 2:
+                array = GameSystem.Stage2JuwelGetted;
+                break;
+            case 3:
+                array = GameSystem.Stage3JuwelGetted;
+                break;
+        }
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if(GameSystem.GetJuwelGetted(i) == true)
+            {
+                GameSystem.SetJuwelCollection(i);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -35,8 +64,9 @@ public class Result : MonoBehaviour
     {
         GetJewel.text = "獲得宝石数　:　" + GameSystem.NumJewel+"個";
         ClearTime.text = "クリアタイム　:　" + Mathf.CeilToInt(GameSystem.ClearTime)+"秒";
+        //GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        GameSystem.SetStageCleared(true, GameSystem.WasPlayStage);
 
-        StayTime += Time.deltaTime;
         SelectSystem();
     }
 
@@ -61,18 +91,18 @@ public class Result : MonoBehaviour
                 if (NowSelect == 1)
                 {
                     TitleCanvasGroupstage3.alpha = 1.0f;
-                    FlashTime += Time.deltaTime;
+                    FlashTime += Time.unscaledDeltaTime;
                     if (FlashTime< 1.5 && SetAlpha< 1)
                     {
                         if (SetAlpha< 1)
                         {
-                            SetAlpha += FlashSpeed * Time.deltaTime;
+                            SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
                         }
                     TitleCanvasGroupstage1.alpha = SetAlpha;
                     }
                     if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
-                        SetAlpha -= FlashSpeed * Time.deltaTime;
+                        SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
                         if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
@@ -91,18 +121,30 @@ public class Result : MonoBehaviour
                             break;
                         case 1:
                             SceneManager.LoadScene("Stage_2");
+                            //リセット内容を記載
+
+
                             GameSystem.WasPlayStage = 2;
                             break;
                         case 2:
                             SceneManager.LoadScene("Stage_3");
+                            //リセット内容を記載
+
+
                             GameSystem.WasPlayStage = 3;
                             break;
                         case 3:
                             SceneManager.LoadScene("Stage_4");
+                            //リセット内容を記載
+
+
                             GameSystem.WasPlayStage = 4;
                             break;
                         case 4:
                             SceneManager.LoadScene("Stage_5");
+                            //リセット内容を記載
+
+
                             GameSystem.WasPlayStage = 5;
                             break;
                     }
@@ -112,18 +154,18 @@ public class Result : MonoBehaviour
                 if (NowSelect == 2)
                 {
                     TitleCanvasGroupstage1.alpha = 1.0f;
-                    FlashTime += Time.deltaTime;
+                    FlashTime += Time.unscaledDeltaTime;
                     if (FlashTime< 1.5 && SetAlpha< 1)
                     {
                         if (SetAlpha< 1)
                         {
-                            SetAlpha += FlashSpeed * Time.deltaTime;
+                            SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
                         }
                         TitleCanvasGroupstage2.alpha = SetAlpha;
                     }
                     if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
-                        SetAlpha -= FlashSpeed * Time.deltaTime;
+                        SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
                         if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
@@ -142,16 +184,16 @@ public class Result : MonoBehaviour
                 if (NowSelect == 3)
                 {
                     TitleCanvasGroupstage2.alpha = 1.0f;
-                    FlashTime += Time.deltaTime;
+                    FlashTime += Time.unscaledDeltaTime;
                     if (FlashTime< 1.5 && SetAlpha< 1)
                     {
                         if (SetAlpha< 1)
-                            SetAlpha += FlashSpeed * Time.deltaTime;
+                            SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
                     }
                     TitleCanvasGroupstage3.alpha = SetAlpha;
                     if (FlashTime > 1.5 && SetAlpha > 0.4)
                     {
-                        SetAlpha -= FlashSpeed * Time.deltaTime;
+                        SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
                         if (SetAlpha< 0.4)
                         {
                             FlashTime = 0;
@@ -170,15 +212,25 @@ public class Result : MonoBehaviour
                             break;
                         case 1:
                             SceneManager.LoadScene("Stage_1");
+                            //リセット内容を記載
+
                             break;
                         case 2:
                             SceneManager.LoadScene("Stage_2");
+                            //リセット内容を記載
+
                             break;
                         case 3:
                             SceneManager.LoadScene("Stage_3");
+                            //リセット内容を記載
+
+
                             break;
                         case 4:
                             SceneManager.LoadScene("Stage_4");
+                            //リセット内容を記載
+
+
                             break;
                     }
                 }

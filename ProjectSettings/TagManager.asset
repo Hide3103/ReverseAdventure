@@ -9,6 +9,8 @@ TagManager:
   - Sword
   - Enemy
   - Stage
+  - ura
+  - BrokeFloor
   layers:
   - Default
   - TransparentFX

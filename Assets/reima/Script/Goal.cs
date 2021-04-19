@@ -13,6 +13,8 @@ public class Goal : MonoBehaviour
     public Sprite open;
     public Sprite close;
 
+    public GameObject Result;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class Goal : MonoBehaviour
             {
                 GoalCamera.SetActive(true);
                 MainCamera.SetActive(false);
-                SceneManager.LoadScene("Result");
+                Result.SetActive(true);
             }
         }
         else
