@@ -82,7 +82,7 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerScript.m_IsPlay)
+        if (PlayerScript.m_IsPlay&&GameSystem.IsGoal==false)
         {
             ClearTime += Time.deltaTime;
 
