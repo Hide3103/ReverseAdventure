@@ -6,12 +6,16 @@ public class BrokeFloor : MonoBehaviour
 {
     float BrokeTime = 0.0f;
     float SetBrokeTime = 3;
+    float SpornTime = 0;
+    bool ThisFall = false;
 
+    Vector3 StartPos;
     float PosX;
     // Start is called before the first frame update
     void Start()
     {
         PosX = this.gameObject.transform.position.x;
+        StartPos = this.transform.position;
     }
 
     // Update is called once per frame
@@ -20,7 +24,15 @@ public class BrokeFloor : MonoBehaviour
         Debug.Log(BrokeTime);
         if (BrokeTime > SetBrokeTime)
         {
-            this.gameObject.transform.position += new Vector3(0, -1 * Time.deltaTime, 0);
+            ThisFall = true;
+            this.gameObject.transform.position += new Vector3(0, -10 * Time.deltaTime, 0);
+            SpornTime += Time.deltaTime;
+        }
+        if(5<SpornTime)
+        {
+            this.gameObject.transform.position = StartPos;
+            BrokeTime = 0;
+            SpornTime = 0;
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -36,9 +48,12 @@ public class BrokeFloor : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Player")
+        if (ThisFall == false)
         {
-            BrokeTime = 0;
+            if (collision.gameObject.name == "Player")
+            {
+                    BrokeTime = 0;
+            }
         }
     }
 }
