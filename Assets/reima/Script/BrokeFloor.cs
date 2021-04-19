@@ -5,7 +5,7 @@ using UnityEngine;
 public class BrokeFloor : MonoBehaviour
 {
     float BrokeTime = 0.0f;
-    float SetBrokeTime = 0;
+    float SetBrokeTime = 3;
 
     float PosX;
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class BrokeFloor : MonoBehaviour
     void Update()
     {
         Debug.Log(BrokeTime);
-        if (BrokeTime > 5)
+        if (BrokeTime > SetBrokeTime)
         {
             this.gameObject.transform.position += new Vector3(0, -1 * Time.deltaTime, 0);
         }
@@ -32,6 +32,13 @@ public class BrokeFloor : MonoBehaviour
             {
                 this.transform.position = new Vector3(PosX + Mathf.PingPong(Time.time, 0.1f), this.transform.position.y, this.transform.position.z);
             }
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Player")
+        {
+            BrokeTime = 0;
         }
     }
 }
