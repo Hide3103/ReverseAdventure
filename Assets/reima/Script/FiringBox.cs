@@ -19,7 +19,7 @@ public class FiringBox : MonoBehaviour
         IntervalTime += Time.deltaTime;
         if (3 < IntervalTime)
         {
-            if (Go)
+            if (Go&ChangeWorld.StateFront)
             {
                 Instantiate(AroowPrehub, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z), Quaternion.identity);
                 IntervalTime = 0;
