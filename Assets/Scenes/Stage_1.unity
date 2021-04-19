@@ -1031,7 +1031,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (1)
+      value: HiddenDiamond_3b
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055492, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -1174,7 +1174,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (3)
+      value: Diamond_8
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -1360,7 +1360,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (1)
+      value: Diamond_2
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -1400,7 +1400,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -1422,6 +1422,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 471834156}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!4 &228146697 stripped
@@ -1452,7 +1457,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (3)
+      value: HiddenDiamond_7
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -1562,7 +1567,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (2)
+      value: Diamond_6b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -1624,6 +1629,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 1713717192}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &361394713
@@ -2342,7 +2352,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (5)
+      value: HiddenDiamond_10
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -2770,7 +2780,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (4)
+      value: HiddenDiamond_9
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -2850,7 +2860,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (2)
+      value: HiddenDiamond_6
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -8835,7 +8845,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (2)
+      value: Diamond_4
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -8897,6 +8907,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 1983629605}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &942557920 stripped
@@ -9067,7 +9082,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (5)
+      value: Diamond_9b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -9129,6 +9144,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 2853551}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &1001242227
@@ -10104,7 +10124,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond
+      value: Diamond_3
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -10144,7 +10164,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -10166,6 +10186,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 471834156}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!4 &1265267462 stripped
@@ -10629,7 +10654,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (4)
+      value: Diamond_8b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -10691,6 +10716,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 2853551}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &1346927882 stripped
@@ -10946,7 +10976,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond
+      value: Diamond_1b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -12204,7 +12234,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (3)
+      value: Diamond_7b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -12266,6 +12296,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 783113005}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &1690544170
@@ -12829,8 +12864,8 @@ Transform:
   - {fileID: 380581832}
   - {fileID: 3662348}
   - {fileID: 1619863892}
-  - {fileID: 1265267462}
   - {fileID: 228146697}
+  - {fileID: 1265267462}
   - {fileID: 805932057}
   - {fileID: 942557921}
   - {fileID: 1713717193}
@@ -13014,7 +13049,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond
+      value: HiddenDiamond_1
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -13497,7 +13532,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond
+      value: HiddenDiamond_2b
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055492, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -13749,7 +13784,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (2)
+      value: HiddenDiamond_4b
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055492, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -13818,7 +13853,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (1)
+      value: Diamond_5b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -13880,6 +13915,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 942557920}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &1983629605 stripped
@@ -18387,7 +18427,7 @@ PrefabInstance:
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
       propertyPath: m_Name
-      value: HiddenDiamond (1)
+      value: HiddenDiamond_5
       objectReference: {fileID: 0}
     - target: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
         type: 3}
@@ -18461,7 +18501,7 @@ PrefabInstance:
     - target: {fileID: 8425890476570315746, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: m_Name
-      value: Diamond (6)
+      value: Diamond_10b
       objectReference: {fileID: 0}
     - target: {fileID: 8425890476570315744, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
@@ -18523,6 +18563,11 @@ PrefabInstance:
       propertyPath: diamond
       value: 
       objectReference: {fileID: 2853551}
+    - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
+        type: 3}
+      propertyPath: DiamondNum
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fe73ff846d97b43ad5b989ab7cdd2d, type: 3}
 --- !u!1 &2144095192
