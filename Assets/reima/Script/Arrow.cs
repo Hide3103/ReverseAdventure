@@ -17,10 +17,6 @@ public class Arrow : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.position += new Vector3(-ArrowSpeed * Time.deltaTime, 0, 0);
-        if(ChangeWorld.StateFront==false)
-        {
-            Destroy(this.gameObject);
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
