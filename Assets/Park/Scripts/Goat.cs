@@ -286,7 +286,8 @@ public class Goat : MonoBehaviour
     {
         if (m_systemHp <= 0.0f)
         {
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            rigid2D.isKinematic = true;
         }
     }
 }

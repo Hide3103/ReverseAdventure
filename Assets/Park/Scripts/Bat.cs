@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : MonoBehaviour
+public class Bat : MonoBehaviour
 {
     GameObject player;
     GameObject enemy;
     public GameObject lookPlayer;
     public GameObject lostPlayer;
-    public GameObject sleep;
-
-    Vector2 firstScale;
 
     Rigidbody2D rigid2D;
+
+    Vector2 firstScale;
+    Vector2 firstPosition;
 
     SpriteRenderer spriteRenderer;
 
@@ -25,28 +25,27 @@ public class Snake : MonoBehaviour
     bool flg_danger;
     bool flg_damage;
     bool flg_blinking;
-    bool flg_chargeAttack;
-    bool flg_isSleeping;
+    bool flg_attackPlayer;
 
     float m_hp;
     float m_systemHp;
     float m_speed;
     float m_direction;
-    float m_changeDirectionTime;
     float m_moveToplayerTime;
     float m_lostPlayerTime;
     float m_damageDelta;
     float m_damageLimit;
-    float m_chargeTime;
+    float m_attackTime;
     // Start is called before the first frame update
     void Start()
     {
         this.player = GameObject.Find("Player");
         this.enemy = GameObject.FindGameObjectWithTag("Enemy");
 
-        this.firstScale = transform.localScale;
-
         this.rigid2D = GetComponent<Rigidbody2D>();
+
+        this.firstScale = transform.localScale;
+        this.firstPosition = transform.position;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
@@ -57,8 +56,6 @@ public class Snake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
-
         if (player)
         {
             if (m_systemHp > 0)
@@ -68,12 +65,8 @@ public class Snake : MonoBehaviour
             }
 
             Damage();
-            ChargeForAttack();
-            Sleep();
             Die();
             SystemDie();
-
-            Debug.Log(flg_isSleeping);
         }
 
         if (enemy)
@@ -90,10 +83,17 @@ public class Snake : MonoBehaviour
             if (flg_blinking == false)
             {
                 flg_damage = true;
-                m_systemHp--;
-
-                rigid2D.AddForce(new Vector3(transform.localScale.x * 500.0f, 50.0f, 0.0f));
+                m_systemHp -= 1.0f;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //flg_moveToPlayer = false;
+            flg_attackPlayer = true;
         }
     }
 
@@ -106,19 +106,17 @@ public class Snake : MonoBehaviour
         flg_danger = false;
         flg_damage = false;
         flg_blinking = false;
-        flg_chargeAttack = false;
-        flg_isSleeping = true;
+        flg_attackPlayer = false;
 
-        m_hp = 3.0f;
+        m_hp = 1.0f;
         m_systemHp = m_hp;
-        m_speed = 0.5f;
         m_direction = -1.0f;
-        m_changeDirectionTime = 0.0f;
+        m_speed = 0.5f;
         m_moveToplayerTime = 0.0f;
         m_lostPlayerTime = 0.0f;
         m_damageDelta = 0.0f;
         m_damageLimit = 1.0f;
-        m_chargeTime = 0.0f;
+        m_attackTime = 0.0f;
     }
 
     void Move()
@@ -127,33 +125,30 @@ public class Snake : MonoBehaviour
         Transform target = player.transform;
         Vector2 direction = (target.position - transform.position).normalized;
 
-        float accelaration = 2.5f; //速度
+        float accelaration = 2.0f; //速度
         float velocity = (accelaration * Time.deltaTime); //速度を秒速に変える
         float distance = Vector2.Distance(target.position, transform.position);
 
         if (flg_normal)
         {
-            m_changeDirectionTime += Time.deltaTime;
-
-            if (m_changeDirectionTime >= 4.0f)
-            {
-                m_direction *= -1.0f;
-                m_changeDirectionTime = 0.0f;
-            }
+            transform.localScale = new Vector3(firstScale.x, firstScale.y);
 
             Position.x += m_speed * m_direction * Time.deltaTime;
+
+            if (Position.y < firstPosition.y)
+            {
+                Position.y += m_speed * Time.deltaTime;
+            }
 
             transform.position = Position;
 
             lookPlayer.SetActive(false);
             lostPlayer.SetActive(false);
-
-            NormalDirection();
         }
 
         if (flg_lookPlayer)
         {
-            MoveToPlayerDirection();
+            Direction();
 
             lookPlayer.SetActive(true);
             lostPlayer.SetActive(false);
@@ -173,7 +168,7 @@ public class Snake : MonoBehaviour
         {
             if (player)
             {
-                MoveToPlayerDirection();
+                Direction();
 
                 this.transform.position = new Vector2(transform.position.x + (direction.x * velocity),
                                           transform.position.y + (direction.y * velocity)); //追いかける
@@ -199,17 +194,19 @@ public class Snake : MonoBehaviour
             }
         }
 
-        if (flg_chargeAttack)
+        if (flg_attackPlayer)
         {
-            m_chargeTime += Time.deltaTime;
+            m_attackTime += Time.deltaTime;
 
             flg_moveToPlayer = false;
 
-            if (m_chargeTime >= 1.0f)
+            if (m_attackTime >= 1.0f)
             {
-                rigid2D.AddForce(new Vector3(transform.localScale.x * -1200.0f, 100.0f, 0.0f));
+                flg_moveToPlayer = true;
+                flg_attackPlayer = false;
 
-                m_chargeTime = 0.0f;
+                m_attackTime = 0.0f;
+                //
             }
         }
     }
@@ -219,50 +216,22 @@ public class Snake : MonoBehaviour
         Transform target = player.transform;
         float distance = Vector2.Distance(target.position, transform.position);
 
-        if (flg_isSleeping == false)
+        if (distance <= 4.0f)
         {
-            if (distance <= 4.0f)
-            {
-                flg_normal = false;
-                flg_lookPlayer = true;
-                flg_lostPlayer = false;
-                flg_danger = true;
+            flg_normal = false;
+            flg_lookPlayer = true;
+            flg_lostPlayer = false;
+            flg_danger = true;
 
-                m_lostPlayerTime = 0.0f;
-            }
-            else if (distance > 4.0f && flg_danger)
-            {
-                flg_lookPlayer = false;
-                flg_moveToPlayer = false;
-                flg_lostPlayer = true;
+            m_lostPlayerTime = 0.0f;
+        }
+        else if (distance > 4.0f && flg_danger)
+        {
+            flg_lookPlayer = false;
+            flg_moveToPlayer = false;
+            flg_lostPlayer = true;
 
-                m_moveToplayerTime = 0.0f;
-            }
-        }
-    }
-
-    void NormalDirection()
-    {
-        if (m_direction == 1.0f)
-        {
-            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
-        }
-        else if (m_direction == -1.0f)
-        {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
-        }
-    }
-
-    void MoveToPlayerDirection()
-    {
-        Vector2 scale = transform.localScale;
-        if (player.transform.position.x < this.transform.position.x)
-        {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
-        }
-        else if (player.transform.position.x > this.transform.position.x)
-        {
-            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
+            m_moveToplayerTime = 0.0f;
         }
     }
 
@@ -278,8 +247,6 @@ public class Snake : MonoBehaviour
 
                 flg_blinking = true;
                 flg_moveToPlayer = false;
-                flg_chargeAttack = false;
-                m_chargeTime = 0.0f;
             }
             else
             {
@@ -290,52 +257,21 @@ public class Snake : MonoBehaviour
                 flg_blinking = false;
                 flg_damage = false;
                 flg_moveToPlayer = true;
-                flg_chargeAttack = true;
             }
 
         }
     }
 
-    void ChargeForAttack()
+    void Direction()
     {
-        Transform target = player.transform;
-        float distance = Vector2.Distance(target.position, transform.position);
-
-        if (flg_isSleeping == false)
+        Vector2 scale = transform.localScale;
+        if (player.transform.position.x < this.transform.position.x)
         {
-            if (distance <= 2.0f)
-            {
-                flg_chargeAttack = true;
-                flg_moveToPlayer = false;
-            }
-            else if (distance > 2.0f && distance <= 7.0f && flg_chargeAttack)
-            {
-                flg_chargeAttack = false;
-                flg_moveToPlayer = true;
-            }
+            transform.localScale = new Vector3(firstScale.x, firstScale.y);
         }
-    }
-
-    void Sleep()
-    {
-        Transform target = player.transform;
-        float distance = Vector2.Distance(target.position, transform.position);
-
-        if (flg_isSleeping)
+        else if (player.transform.position.x > this.transform.position.x)
         {
-            sleep.SetActive(true);
-
-            flg_normal = false;
-
-            if (distance <= 1.0f && ChangeWorld.StateFront == false)
-            {
-                m_moveToplayerTime = 0.5f;
-
-                flg_lookPlayer = true;
-                flg_isSleeping = false;
-
-                sleep.SetActive(false);
-            }
+            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
         }
     }
 
@@ -351,21 +287,16 @@ public class Snake : MonoBehaviour
 
     void SystemDie()
     {
+        Vector2 Position = transform.position;
+
         if (m_systemHp <= 0.0f)
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            rigid2D.isKinematic = true;
-        }
 
-        if (flg_isSleeping)
-        {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            rigid2D.isKinematic = true;
-        }
-        else
-        {
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
-            rigid2D.isKinematic = false;
+            Position.y -= (m_speed *= 1.1f) * Time.deltaTime;
+
+            transform.position = Position;
         }
     }
 }
+
