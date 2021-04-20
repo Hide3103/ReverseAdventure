@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wolf : MonoBehaviour
+public class BackGoat : MonoBehaviour
 {
-    GameObject player;
     GameObject enemy;
+    GameObject player;
     public GameObject lookPlayer;
     public GameObject lostPlayer;
 
-    Vector2 firstScale;
+    Transform enemyCollider;
+    Transform playerCollider;
+
+    public Sprite frontSprite;
+    public Sprite backSprite;
 
     Rigidbody2D rigid2D;
+
+    Vector2 firstScale;
 
     SpriteRenderer spriteRenderer;
 
@@ -24,27 +30,29 @@ public class Wolf : MonoBehaviour
     bool flg_danger;
     bool flg_damage;
     bool flg_blinking;
-    bool flg_chargeAttack;
+    bool flg_attackPlayer;
 
     float m_hp;
     float m_systemHp;
     float m_speed;
     float m_direction;
-    float m_changeDirectionTime;
     float m_moveToplayerTime;
     float m_lostPlayerTime;
     float m_damageDelta;
     float m_damageLimit;
-    float m_chargeTime;
+    float m_attackTime;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemy = GameObject.FindGameObjectWithTag("Enemy");
 
-        this.firstScale = transform.localScale;
+        enemyCollider = enemy.transform;
+        playerCollider = player.transform;
 
         this.rigid2D = GetComponent<Rigidbody2D>();
+
+        this.firstScale = transform.localScale;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
@@ -59,6 +67,8 @@ public class Wolf : MonoBehaviour
 
         if (player)
         {
+            Transform playerTrans = playerCollider as Transform;
+
             if (m_systemHp > 0)
             {
                 Move();
@@ -66,14 +76,18 @@ public class Wolf : MonoBehaviour
             }
 
             Damage();
-            ChargeForAttack();
             Die();
             SystemDie();
+            ChangeSprite();
+
+            Physics2D.IgnoreCollision(playerTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
         if (enemy)
         {
-            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Transform enemyTrans = enemyCollider as Transform;
+
+            Physics2D.IgnoreCollision(enemyTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
@@ -82,13 +96,23 @@ public class Wolf : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            if (flg_blinking == false)
+            if (flg_blinking == false && ChangeWorld.StateFront == false)
             {
                 flg_damage = true;
-                m_systemHp--;
 
                 rigid2D.AddForce(new Vector3(transform.localScale.x * 100.0f, 50.0f, 0.0f));
+
+                m_systemHp--;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //flg_moveToPlayer = false;
+            flg_attackPlayer = true;
         }
     }
 
@@ -101,18 +125,17 @@ public class Wolf : MonoBehaviour
         flg_danger = false;
         flg_damage = false;
         flg_blinking = false;
-        flg_chargeAttack = false;
+        flg_attackPlayer = false;
 
-        m_hp = 2.0f;
+        m_hp = 1.0f;
         m_systemHp = m_hp;
-        m_speed = 0.5f;
         m_direction = -1.0f;
-        m_changeDirectionTime = 0.0f;
+        m_speed = 0.5f;
         m_moveToplayerTime = 0.0f;
         m_lostPlayerTime = 0.0f;
         m_damageDelta = 0.0f;
         m_damageLimit = 1.0f;
-        m_chargeTime = 0.0f;
+        m_attackTime = 0.0f;
     }
 
     void Move()
@@ -121,19 +144,13 @@ public class Wolf : MonoBehaviour
         Transform target = player.transform;
         Vector2 direction = (target.position - transform.position).normalized;
 
-        float accelaration = 2.5f; //速度
+        float accelaration = 2.0f; //速度
         float velocity = (accelaration * Time.deltaTime); //速度を秒速に変える
         float distance = Vector2.Distance(target.position, transform.position);
 
         if (flg_normal)
         {
-            m_changeDirectionTime += Time.deltaTime;
-
-            if (m_changeDirectionTime >= 4.0f)
-            {
-                m_direction *= -1.0f;
-                m_changeDirectionTime = 0.0f;
-            }
+            transform.localScale = new Vector3(firstScale.x, firstScale.y);
 
             Position.x += m_speed * m_direction * Time.deltaTime;
 
@@ -141,13 +158,11 @@ public class Wolf : MonoBehaviour
 
             lookPlayer.SetActive(false);
             lostPlayer.SetActive(false);
-
-            NormalDirection();
         }
 
         if (flg_lookPlayer)
         {
-            MoveToPlayerDirection();
+            Direction();
 
             lookPlayer.SetActive(true);
             lostPlayer.SetActive(false);
@@ -167,7 +182,7 @@ public class Wolf : MonoBehaviour
         {
             if (player)
             {
-                MoveToPlayerDirection();
+                Direction();
 
                 this.transform.position = new Vector2(transform.position.x + (direction.x * velocity),
                                           transform.position.y + (direction.y * velocity)); //追いかける
@@ -193,17 +208,19 @@ public class Wolf : MonoBehaviour
             }
         }
 
-        if (flg_chargeAttack)
+        if (flg_attackPlayer)
         {
-            m_chargeTime += Time.deltaTime;
+            m_attackTime += Time.deltaTime;
 
             flg_moveToPlayer = false;
 
-            if (m_chargeTime >= 1.5f)
+            if (m_attackTime >= 1.0f)
             {
-                rigid2D.AddForce(new Vector3(transform.localScale.x * -250.0f, 100.0f, 0.0f));
+                flg_moveToPlayer = true;
+                flg_attackPlayer = false;
 
-                m_chargeTime = 0.0f;
+                m_attackTime = 0.0f;
+                //
             }
         }
     }
@@ -232,31 +249,6 @@ public class Wolf : MonoBehaviour
         }
     }
 
-    void NormalDirection()
-    {
-        if (m_direction == 1.0f)
-        {
-            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
-        }
-        else if (m_direction == -1.0f)
-        {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
-        }
-    }
-
-    void MoveToPlayerDirection()
-    {
-        Vector2 scale = transform.localScale;
-        if (player.transform.position.x < this.transform.position.x)
-        {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
-        }
-        else if (player.transform.position.x > this.transform.position.x)
-        {
-            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
-        }
-    }
-
     void Damage()
     {
         if (flg_damage)
@@ -269,8 +261,6 @@ public class Wolf : MonoBehaviour
 
                 flg_blinking = true;
                 flg_moveToPlayer = false;
-                flg_chargeAttack = false;
-                m_chargeTime = 0.0f;
             }
             else
             {
@@ -281,28 +271,22 @@ public class Wolf : MonoBehaviour
                 flg_blinking = false;
                 flg_damage = false;
                 flg_moveToPlayer = true;
-                flg_chargeAttack = true;
             }
 
         }
     }
 
-    void ChargeForAttack()
+    void Direction()
     {
-        Transform target = player.transform;
-        float distance = Vector2.Distance(target.position, transform.position);
-
-        if (distance <= 2.0f)
+        Vector2 scale = transform.localScale;
+        if (player.transform.position.x < this.transform.position.x)
         {
-            flg_chargeAttack = true;
-            flg_moveToPlayer = false;
+            transform.localScale = new Vector3(firstScale.x, firstScale.y);
         }
-        else if (distance > 2.0f && distance <= 7.0f && flg_chargeAttack)
+        else if (player.transform.position.x > this.transform.position.x)
         {
-            flg_chargeAttack = false;
-            flg_moveToPlayer = true;
+            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
         }
-        
     }
 
     void Die()
@@ -320,6 +304,18 @@ public class Wolf : MonoBehaviour
         if (m_systemHp <= 0.0f)
         {
             this.tag = "Untagged";
+        }
+    }
+
+    void ChangeSprite()
+    {
+        if (ChangeWorld.StateFront)
+        {
+            spriteRenderer.sprite = frontSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = backSprite;
         }
     }
 }

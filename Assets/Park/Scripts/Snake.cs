@@ -41,8 +41,8 @@ public class Snake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.player = GameObject.Find("Player");
-        this.enemy = GameObject.FindGameObjectWithTag("Enemy");
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
 
         this.firstScale = transform.localScale;
 
@@ -353,8 +353,7 @@ public class Snake : MonoBehaviour
     {
         if (m_systemHp <= 0.0f)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            rigid2D.isKinematic = true;
+            this.tag = "Untagged";
         }
 
         if (flg_isSleeping)

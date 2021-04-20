@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Goat : MonoBehaviour
 {
-    GameObject player;
     GameObject enemy;
+    GameObject player;
     public GameObject lookPlayer;
     public GameObject lostPlayer;
+
+    Transform enemyCollider;
+    Transform playerCollider;
+
+    public Sprite frontSprite;
+    public Sprite backSprite;
 
     Rigidbody2D rigid2D;
 
@@ -38,8 +44,11 @@ public class Goat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.player = GameObject.Find("Player");
-        this.enemy = GameObject.FindGameObjectWithTag("Enemy");
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+
+        enemyCollider = enemy.transform;
+        playerCollider = player.transform;
 
         this.rigid2D = GetComponent<Rigidbody2D>();
 
@@ -58,6 +67,8 @@ public class Goat : MonoBehaviour
 
         if (player)
         {
+            Transform playerTrans = playerCollider as Transform;
+            
             if (m_systemHp > 0)
             {
                 Move();
@@ -67,11 +78,16 @@ public class Goat : MonoBehaviour
             Damage();
             Die();
             SystemDie();
-        }
+            ChangeSprite();
 
+            Physics2D.IgnoreCollision(playerTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+        
         if (enemy)
         {
-            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Transform enemyTrans = enemyCollider as Transform;
+
+            Physics2D.IgnoreCollision(enemyTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
@@ -80,12 +96,13 @@ public class Goat : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            if (flg_blinking == false)
+            if (flg_blinking == false && ChangeWorld.StateFront)
             {
                 flg_damage = true;
-                m_systemHp--;
 
-                rigid2D.AddForce(new Vector3(transform.localScale.x * 500.0f, 50.0f, 0.0f));
+                rigid2D.AddForce(new Vector3(transform.localScale.x * 100.0f, 50.0f, 0.0f));
+
+                m_systemHp--;
             }
         }
     }
@@ -286,8 +303,19 @@ public class Goat : MonoBehaviour
     {
         if (m_systemHp <= 0.0f)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            rigid2D.isKinematic = true;
+            this.tag = "Untagged";
+        }
+    }
+
+    void ChangeSprite()
+    {
+        if (ChangeWorld.StateFront)
+        {
+            spriteRenderer.sprite = frontSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = backSprite;
         }
     }
 }
