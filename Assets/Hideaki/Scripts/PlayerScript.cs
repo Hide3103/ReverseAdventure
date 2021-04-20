@@ -41,7 +41,7 @@ public class PlayerScript : MonoBehaviour
     int playerMaxHP = 3;
 
     //アーマーを装備しているか
-    public static bool ArmorUsing = false;
+    public static bool ArmorUsing;
 
     //攻撃のクールタイム
     float attackSpan = 0.5f;
@@ -72,11 +72,22 @@ public class PlayerScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
 
+        ArmorUsing = GameSystem.GetArmorUsing();
+
         m_PlayerHp = playerMaxHP;
     }
 
     void Update()
     {
+        if(GameSystem.ArmorUsing == true)
+        {
+            Debug.Log("ArmorUsingはtrue");
+        }
+        else
+        {
+            Debug.Log("ArmorUsingはfalse");
+        }
+
         //ゴールなどプレイを中断させたい時のフラグ
         if (m_IsPlay)
         {
@@ -172,9 +183,9 @@ public class PlayerScript : MonoBehaviour
         {
             if (m_DamagedFlg == false)
             {
-                if (ArmorUsing == true)
+                if (GameSystem.ArmorUsing == true)
                 {
-                    ArmorUsing = false;
+                    GameSystem.ArmorUsing = false;
                 }
                 else
                 {

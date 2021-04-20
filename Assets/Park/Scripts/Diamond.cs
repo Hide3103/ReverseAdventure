@@ -5,16 +5,19 @@ using UnityEngine;
 public class Diamond : MonoBehaviour
 {
     public GameObject diamond;
+    SpriteRenderer diaSpriteRenderer;
 
     public int DiamondNum;
 
     // Start is called before the first frame update
     void Start()
     {
+        diaSpriteRenderer = diamond.GetComponent<SpriteRenderer>();
+
         if(GameSystem.GetJuwelCollection(DiamondNum) == true)
         {
             GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-            diamond.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            diaSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
         }
     }
 

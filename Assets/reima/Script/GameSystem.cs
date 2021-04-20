@@ -9,7 +9,7 @@ public class GameSystem : MonoBehaviour
     public static float ClearTime = 0;
 
     //ステージセレクト・ショップでの現在の宝石所持数
-    public static int HavingNumJuwel = 10;
+    public static int HavingNumJuwel = 100;
 
     //ステージ内での所持宝石数
     public static float NumJewel = 0;
@@ -44,7 +44,9 @@ public class GameSystem : MonoBehaviour
     public static float[] StageClearTimes = new float[] { 600.0f, 600.0f, 600.0f, 600.0f, 600.0f };
     // 各ステージのクリア状況
     public static bool[] StageCleared = new bool[] { true, false, false, false, false };
-
+    
+    // プレイヤーがアーマーを装備しているか
+    public static bool ArmorUsing = false;
 
     //前どこのステージが選ばれているか
     public static int WasPlayStage = 0;
@@ -194,5 +196,15 @@ public class GameSystem : MonoBehaviour
                 break;
         }
         return false;
+    }
+
+    // プレイヤーにアーマーを付与
+    public static void SetArmorUsing(bool armorUsing)
+    {
+        ArmorUsing = armorUsing;
+    }
+    public static bool GetArmorUsing()
+    {
+        return ArmorUsing;
     }
 }
