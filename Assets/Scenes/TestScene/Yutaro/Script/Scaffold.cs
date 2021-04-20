@@ -5,11 +5,11 @@ using UnityEngine;
 public class Scaffold : MonoBehaviour
 {
     public GameObject spriteObj;
-    public float vibrationWidth = 0.05f; //振動幅
+    public float vibrationWidth = 1.00f; //振動幅
     public float vibrationSpeed = 30.0f; //振動速度
     public float fallTime = 1.0f;　　　　//落ちるまでの時間
     public float fallSpeed = 10.0f;　　　//落ちる速度
-    public float returnTime = 5.0f;   //足場のリスポーン時間
+    public float returnTime = 3.0f;   //足場のリスポーン時間
 
     private bool isOn;
     private bool isFall;
@@ -110,7 +110,7 @@ public class Scaffold : MonoBehaviour
         if(playerHitFlg == true)
         {
             Debug.Log("playerHitFlg ＝ true");
-            Destroy(this.gameObject,3.0f);
+            Destroy(this.gameObject,1.0f);
             //一定時間経過後に元の位置に戻る
             if (fallingTimer > returnTime)
             {

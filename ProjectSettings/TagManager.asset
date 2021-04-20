@@ -11,6 +11,7 @@ TagManager:
   - Stage
   - ura
   - BrokeFloor
+  - MoveFloor
   layers:
   - Default
   - TransparentFX
