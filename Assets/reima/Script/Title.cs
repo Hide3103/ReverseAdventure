@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
+    public GameObject TitleLogImgPart1;
+    public GameObject TitleLogImgPart2;
+
     public GameObject TitleImgPart1;
     public GameObject TitleImgPart2;
 
     public GameObject TitleCanvas;
     public GameObject SettingCanvas;
 
-    int ImagePartRandom;
+    int LogImagePartRandom;
+    int TitleImagePartRandom;
 
 
     public CanvasGroup TitleCanvasGroupstage1;
@@ -35,7 +39,8 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ImagePartRandom = Random.Range(1, 3);
+        LogImagePartRandom = Random.Range(1, 3);
+        TitleImagePartRandom = Random.Range(1, 3);
     }
 
     // Update is called once per frame
@@ -74,7 +79,21 @@ public class Title : MonoBehaviour
                 break;
         }
 
-        switch (ImagePartRandom)
+        //タイトルロゴのランダム
+        switch (LogImagePartRandom)
+        {
+            case 1:
+                TitleLogImgPart1.SetActive(true);
+                TitleLogImgPart2.SetActive(false);
+                break;
+            case 2:
+                TitleLogImgPart1.SetActive(false);
+                TitleLogImgPart2.SetActive(true);
+                break;
+        }
+
+        //タイトル背景のランダム
+        switch (TitleImagePartRandom)
         {
             case 1:
                 TitleImgPart1.SetActive(true);
