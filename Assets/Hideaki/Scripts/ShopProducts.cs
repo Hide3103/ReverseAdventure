@@ -54,37 +54,15 @@ public class ShopProducts : MonoBehaviour
 
         if (ThisProductNum != (int)ProductNumber.ToStageSelect)
         {
-            ProductPriceText.text = "" + shopManagerScript.GetProductPrice(ThisProductNum);
+            if(0 <= ShopManager.productAmount[ThisProductNum])
+            {
+                ProductPriceText.text = "" + shopManagerScript.GetProductPrice(ThisProductNum);
+            }
+            else
+            {
+                ProductPriceText.text = "";
+            }
         }
 
     }
-
-    //public void OnClick()
-    //{
-    //    switch (ThisProductNum)
-    //    {
-    //        case (int)ProductNumber.ReverseTimeUp:
-    //            shopManagerScript.SelectingProductNum = (int)ProductNumber.ReverseTimeUp;
-    //            break;
-    //        case (int)ProductNumber.shield:
-    //            shopManagerScript.SelectingProductNum = (int)ProductNumber.shield;
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
-
-    //public void OnSelect()
-    //{
-    //    switch (shopManagerScript.SelectingProductNum)
-    //    {
-    //        case (int)ProductNumber.ReverseTimeUp:
-    //            shopManagerScript.productNameText.text = "リバース時間延長";
-    //            break;
-    //        case (int)ProductNumber.shield:
-    //            break;
-    //    }
-    //}
-
-
 }
