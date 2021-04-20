@@ -26,7 +26,7 @@ public class ChangeWorld : MonoBehaviour
         if (CoolDownTime <= 0)
         {
             CoolDownUI.SetActive(false);
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 //SetAfterSwitchingPlayerPos = Player.transform.position;
                 UraObj.SetActive(!UraObj.activeSelf);

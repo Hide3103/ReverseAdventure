@@ -104,7 +104,7 @@ public class PlayerScript : MonoBehaviour
             {
                 // ジャンプ
                 float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-                if (speedY <= 0.0f)
+                if (speedY <= 0.1f)
                 {
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
                     {
