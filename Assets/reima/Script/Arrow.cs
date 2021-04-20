@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
             {
                 PlayerScript.m_PlayerHp -= 1;
                 DamageOn = false;
-                Destroy(this.gameObject);
+                Destroy(this.gameObject,5);
             }
         }
     }
