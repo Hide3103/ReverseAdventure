@@ -81,11 +81,11 @@ public class PlayerScript : MonoBehaviour
     {
         if(GameSystem.ArmorUsing == true)
         {
-            Debug.Log("ArmorUsingはtrue");
+            //Debug.Log("ArmorUsingはtrue");
         }
         else
         {
-            Debug.Log("ArmorUsingはfalse");
+            //Debug.Log("ArmorUsingはfalse");
         }
 
         //ゴールなどプレイを中断させたい時のフラグ
