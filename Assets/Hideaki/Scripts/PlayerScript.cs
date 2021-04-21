@@ -176,6 +176,11 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void SetMoveSpeed(float moveSpeed)
+    {
+        m_MoveSpeed = moveSpeed;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
