@@ -20,7 +20,7 @@ public class ChangeWorld : MonoBehaviour
         Player = GameObject.Find("Player");
 
 
-        CoolDownTime = 10;
+        CoolDownTime = 0;
         UraActiveTime = 10;
         StateFront = true;
         UraActiveUI.SetActive(false);
@@ -34,14 +34,14 @@ public class ChangeWorld : MonoBehaviour
         Debug.Log(UraActiveTime + " : UraActiveTime");
 
         //クールダウンが10以上
-        if (CoolDownTime >= 10 && OmoteObj.activeSelf == true)
+        if (CoolDownTime <= 0 && OmoteObj.activeSelf == true)
         {
             //クールダウンUIをオフにする
             CoolDownUI.SetActive(false);
         }
-        if (CoolDownTime <= 10 && StateFront == true)
+        if (CoolDownTime >=0 && StateFront == true)
         {
-            CoolDownTime += Time.deltaTime;
+            CoolDownTime -= Time.deltaTime;
             UraActiveTime += Time.deltaTime;
         }
 
@@ -70,7 +70,7 @@ public class ChangeWorld : MonoBehaviour
 
 
         //0以上の間
-        if (CoolDownTime >= 0 && Input.GetKeyDown(KeyCode.C) && StateFront == true)
+        if (CoolDownTime <= 0 && Input.GetKeyDown(KeyCode.C) && StateFront == true)
         {
             //表オブジェを切り替える
             OmoteObj.SetActive(!OmoteObj.activeSelf);
@@ -79,7 +79,7 @@ public class ChangeWorld : MonoBehaviour
 
             //裏アクティブタイムUIをtrueにする
             UraActiveUI.SetActive(true);
-            CoolDownTime = 0;
+            CoolDownTime = 10;
             StateFront = false;
         }
 
