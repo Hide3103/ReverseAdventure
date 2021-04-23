@@ -12,8 +12,8 @@ public class RawImageScript : MonoBehaviour
 
     public bool changgingFlg = false;
 
-    float m_TurnSpeed = 20.0f;
-    float m_SizeChangeSpeed = 0.98f;
+    public float m_TurnSpeed = 45.0f;
+    public float m_SizeChangeSpeed = 0.97f;
 
     public int faseNum = 0;
 
