@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CoolDownUI : MonoBehaviour
 {
     RectTransform IsRectTf;
+    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,8 @@ public class CoolDownUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsRectTf.LookAt(Camera.main.transform);
+        //IsRectTf.LookAt(Camera.main.transform);
+        this.gameObject.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 0.7f, Player.transform.position.z);
 
         Image gaugeCtrl = GetComponent<Image>();
         if (this.gameObject.name == "CoolDownUI")
