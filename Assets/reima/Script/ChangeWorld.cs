@@ -8,11 +8,15 @@ public class ChangeWorld : MonoBehaviour
     public GameObject UraObj;
     public GameObject OmoteObj;
     public static float CoolDownTime = 10;
+    public bool CoolTimeOver = false;
     public static float UraActiveTime = 10;
     public GameObject CoolDownUI;
     public GameObject UraActiveUI;
     public static bool StateFront = true;
     private Vector3 SetAfterSwitchingPlayerPos;
+
+    public GameObject RawImage;
+    RawImageScript rawImageScript;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,8 @@ public class ChangeWorld : MonoBehaviour
         UraActiveTime = 10;
         StateFront = true;
         UraActiveUI.SetActive(false);
+
+        rawImageScript = RawImage.GetComponent<RawImageScript>();
     }
 
     // Update is called once per frame
@@ -42,7 +48,10 @@ public class ChangeWorld : MonoBehaviour
         if (CoolDownTime >=0 && StateFront == true)
         {
             CoolDownTime -= Time.deltaTime;
-            UraActiveTime += Time.deltaTime;
+            if(UraActiveTime <= 10)
+            {
+                UraActiveTime += Time.deltaTime;
+            }
         }
 
         //裏オブジェがtrueかつ表オブジェがfalseで
@@ -57,14 +66,8 @@ public class ChangeWorld : MonoBehaviour
             //裏アクティブタイムが0以上
             if (UraActiveTime < 0)
             {
-                //表オブジェを切り替える
-                OmoteObj.SetActive(!OmoteObj.activeSelf);
-                //裏オブジェを切り替える
-                UraObj.SetActive(!UraObj.activeSelf);
-                UraActiveUI.SetActive(false);
-                CoolDownUI.SetActive(true);
-                StateFront = true;
-
+                rawImageScript.changgingFlg = true;
+                CoolTimeOver = true;
             }
         }
 
@@ -72,31 +75,13 @@ public class ChangeWorld : MonoBehaviour
         //0以上の間
         if (CoolDownTime <= 0 && Input.GetKeyDown(KeyCode.C) && StateFront == true)
         {
-            //表オブジェを切り替える
-            OmoteObj.SetActive(!OmoteObj.activeSelf);
-            //裏オブジェを切り替える
-            UraObj.SetActive(!UraObj.activeSelf);
-
-            //裏アクティブタイムUIをtrueにする
-            UraActiveUI.SetActive(true);
-            CoolDownTime = 10;
-            StateFront = false;
+            rawImageScript.changgingFlg = true;
         }
 
         //裏アクティブタイムが10以下かつ裏オブジェがtrueの時かつCを押したとき
         if (UraActiveTime < 10 && StateFront == false && Input.GetKeyDown(KeyCode.C))
         {
-            //表オブジェを切り替える
-            OmoteObj.SetActive(!OmoteObj.activeSelf);
-            //裏オブジェを切り替える
-            UraObj.SetActive(!UraObj.activeSelf);
-
-            //クールダウンタイムをtrueにする
-            CoolDownUI.SetActive(true);
-            //裏アクティブタイムをfalseにする
-            UraActiveUI.SetActive(false);
-            UraActiveTime = 0;
-            StateFront = true;
+            rawImageScript.changgingFlg = true;
 
         }
 
@@ -174,5 +159,42 @@ public class ChangeWorld : MonoBehaviour
             UraObj.SetActive(false);
             OmoteObj.SetActive(true);
         }
+    }
+
+    public void SetBackStage()
+    {
+        //表オブジェを切り替える
+        OmoteObj.SetActive(!OmoteObj.activeSelf);
+        //裏オブジェを切り替える
+        UraObj.SetActive(!UraObj.activeSelf);
+
+        //裏アクティブタイムUIをtrueにする
+        UraActiveUI.SetActive(true);
+        CoolDownTime = 10;
+        StateFront = false;
+    }
+
+    public void SetFrontStage()
+    {
+        //表オブジェを切り替える
+        OmoteObj.SetActive(!OmoteObj.activeSelf);
+        //裏オブジェを切り替える
+        UraObj.SetActive(!UraObj.activeSelf);
+
+        //クールダウンタイムをtrueにする
+        CoolDownUI.SetActive(true);
+        //裏アクティブタイムをfalseにする
+        UraActiveUI.SetActive(false);
+        StateFront = true;
+    }
+
+    public static bool GetStateFront()
+    {
+        return StateFront;
+    }
+
+    public static void SetUraActiveTime(float uraActiveTime)
+    {
+        UraActiveTime = uraActiveTime;
     }
 }

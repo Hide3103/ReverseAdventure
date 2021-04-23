@@ -21,10 +21,15 @@ public class Pause : MonoBehaviour
     public float SetAlpha = 0.0f;
     public float SetAlpha2 = 0.0f;
     public float SetAlpha3 = 0.0f;
+
+    public GameObject RawImage;
+    RawImageScript rawImageScript;
     // Start is called before the first frame update
     void Start()
     {
         PauseUI.SetActive(false);
+
+        rawImageScript = RawImage.GetComponent<RawImageScript>();
     }
 
     // Update is called once per frame
@@ -42,7 +47,14 @@ public class Pause : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 1;
+                if (rawImageScript.changgingFlg == true)
+                {
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
             }
             //ポーズ画面がtrueの時
             if (PauseUI.activeSelf == true)
