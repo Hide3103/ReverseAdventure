@@ -12217,6 +12217,11 @@ PrefabInstance:
       propertyPath: PauseUI
       value: 
       objectReference: {fileID: 1053558186}
+    - target: {fileID: 224969751734164183, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
+        type: 3}
+      propertyPath: rawImage
+      value: 
+      objectReference: {fileID: 2075706272}
     - target: {fileID: 224969751734163753, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
         type: 3}
       propertyPath: m_SortingOrder

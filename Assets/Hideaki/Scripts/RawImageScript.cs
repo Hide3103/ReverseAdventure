@@ -46,6 +46,7 @@ public class RawImageScript : MonoBehaviour
             switch (faseNum)
             {
                 case 0:
+                    //PlayerScript.SetIsPlay(true);
                     rectTrans.sizeDelta = new Vector2(sizeDelta.x * m_SizeChangeSpeed, sizeDelta.y * m_SizeChangeSpeed);
                     if (sizeDelta.x < secondScale.x || sizeDelta.y < secondScale.y)
                     {
@@ -89,6 +90,7 @@ public class RawImageScript : MonoBehaviour
                     }
                     break;
                 case 4:
+                    //PlayerScript.SetIsPlay(false);
                     changgingFlg = false;
                     faseNum = 0;
                     break;
@@ -104,6 +106,11 @@ public class RawImageScript : MonoBehaviour
             //    rectTrans.sizeDelta = new Vector2(sizeDelta.x * m_SizeChangeSpeed, sizeDelta.y * m_SizeChangeSpeed);
             //}
         }
+    }
+
+    public bool GetChanggingFlg()
+    {
+        return changgingFlg;
     }
 
     public static float GetWidth(RectTransform self)

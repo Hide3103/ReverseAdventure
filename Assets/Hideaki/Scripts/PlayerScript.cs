@@ -54,6 +54,9 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject PauseUI;
 
+    public GameObject rawImage;
+    RawImageScript rawImageScript;
+
     //public GameObject gameManager;
     //GameManagerScript gameManagerScript;
 
@@ -75,6 +78,8 @@ public class PlayerScript : MonoBehaviour
         ArmorUsing = GameSystem.GetArmorUsing();
 
         m_PlayerHp = playerMaxHP;
+
+        rawImageScript = rawImage.GetComponent<RawImageScript>();
     }
 
     void Update()
@@ -89,7 +94,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         //ゴールなどプレイを中断させたい時のフラグ
-        if (m_IsPlay)
+        if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false)
         {
             // 移動
             if (m_DamagedFlg == false)
@@ -203,6 +208,11 @@ public class PlayerScript : MonoBehaviour
                 rigidbody2D.AddForce(new Vector3(-transform.localScale.x * 500.0f, 200.0f, 0.0f));
             }
         }
+    }
+
+    public static void SetIsPlay(bool isPlay)
+    {
+        m_IsPlay = isPlay;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
