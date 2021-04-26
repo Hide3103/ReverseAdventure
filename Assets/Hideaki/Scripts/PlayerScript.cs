@@ -191,22 +191,27 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            if (m_DamagedFlg == false)
+            Damage();
+        }
+    }
+
+    public void Damage()
+    {
+        if (m_DamagedFlg == false)
+        {
+            if (GameSystem.ArmorUsing == true)
             {
-                if (GameSystem.ArmorUsing == true)
-                {
-                    GameSystem.ArmorUsing = false;
-                }
-                else
-                {
-                    m_PlayerHp -= 1;
-                }
-                m_DamagedFlg = true;
-                var rigidbody2D = GetComponent<Rigidbody2D>();
-                //rigidbody.AddForce(-transform.forward * 5f, ForceMode.VelocityChange);
-                rigidbody2D.velocity = Vector3.zero;
-                rigidbody2D.AddForce(new Vector3(-transform.localScale.x * 500.0f, 200.0f, 0.0f));
+                GameSystem.ArmorUsing = false;
             }
+            else
+            {
+                m_PlayerHp -= 1;
+            }
+            m_DamagedFlg = true;
+            var rigidbody2D = GetComponent<Rigidbody2D>();
+            //rigidbody.AddForce(-transform.forward * 5f, ForceMode.VelocityChange);
+            rigidbody2D.velocity = Vector3.zero;
+            rigidbody2D.AddForce(new Vector3(-transform.localScale.x * 500.0f, 200.0f, 0.0f));
         }
     }
 
