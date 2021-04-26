@@ -49,27 +49,6 @@ public class Scaffold : MonoBehaviour
 
     void Update()
     {
-        ////プレイヤーが1回でも乗ったらフラグを立てる
-        //if (oc.playerStepOn)
-        //{
-        //    isOn = true;
-        //    oc.playerStepOn = false;
-        //}
-
-        ////プレイヤーが乗ってから落ちるまで
-        //if(isOn && isFall)
-        //{
-        //    //振動
-        //    spriteObj.transform.position = spriteDefaultPos + new Vector3(Mathf.Sin(timer * vibrationSpeed) * vibrationWidth, 0, 0); 
-            
-        //    //一定時間経過後に落ちる
-        //    if (timer > fallTime)
-        //    {
-        //        isFall = true;
-        //    }
-        //    timer += Time.deltaTime;
-        //}
-
         //一定時間経過後に明滅して戻る
         if (isReturn)
         {
@@ -129,30 +108,4 @@ public class Scaffold : MonoBehaviour
 
         }
     }
-
-    //private void FixedUpdate()
-    //{
-        ////落下中
-    //    if (isFall)
-    //    {
-    //        rb.velocity = fallVelocity;
-
-    //        //一定時間経過後に元の位置に戻る
-    //        if (fallingTimer > returnTime)
-    //        {
-    //            isReturn = true;
-    //            transform.position = floorDefaultPos;
-    //            rb.velocity = Vector2.zero;
-    //            isFall = false;
-    //            timer = 0.0f;
-    //            fallingTimer = 0.0f;
-    //        }
-    //        else
-    //        {
-    //            fallingTimer += Time.deltaTime;
-    //            isOn = false;
-    //        }
-    //    }
-    //}
-
 }
