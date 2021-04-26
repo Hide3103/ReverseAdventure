@@ -1624,7 +1624,7 @@ PrefabInstance:
         type: 3}
       propertyPath: diamond
       value: 
-      objectReference: {fileID: 471834156}
+      objectReference: {fileID: 1956716622}
     - target: {fileID: 8425890476570315758, guid: 12fe73ff846d97b43ad5b989ab7cdd2d,
         type: 3}
       propertyPath: DiamondNum
@@ -14553,6 +14553,12 @@ PrefabInstance:
 --- !u!4 &1956716621 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5060172840294055492, guid: fd6a91070848a794693c43e756d45947,
+    type: 3}
+  m_PrefabInstance: {fileID: 1956716620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1956716622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5060172840294055546, guid: fd6a91070848a794693c43e756d45947,
     type: 3}
   m_PrefabInstance: {fileID: 1956716620}
   m_PrefabAsset: {fileID: 0}
