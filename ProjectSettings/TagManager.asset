@@ -4,15 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor
-  - Goat
-  - Sword
-  - Enemy
-  - Stage
-  - ura
-  - BrokeFloor
-  - MoveFloor
   - Block
+  - Enemy
   layers:
   - Default
   - TransparentFX

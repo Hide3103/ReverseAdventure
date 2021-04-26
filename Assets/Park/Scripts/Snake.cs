@@ -13,6 +13,7 @@ public class Snake : MonoBehaviour
     Vector2 firstScale;
 
     Rigidbody2D rigid2D;
+    BoxCollider2D coll2D;
 
     SpriteRenderer spriteRenderer;
 
@@ -47,6 +48,7 @@ public class Snake : MonoBehaviour
         this.firstScale = transform.localScale;
 
         this.rigid2D = GetComponent<Rigidbody2D>();
+        this.coll2D = GetComponent<BoxCollider2D>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
@@ -58,7 +60,6 @@ public class Snake : MonoBehaviour
     void Update()
     {
         rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
-
         if (player)
         {
             if (m_systemHp > 0)
@@ -358,13 +359,17 @@ public class Snake : MonoBehaviour
 
         if (flg_isSleeping)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            rigid2D.isKinematic = true;
+            this.tag = "Untagged";
+
+            rigid2D.gravityScale = 0.0f;
+            coll2D.isTrigger = true;
         }
         else
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
-            rigid2D.isKinematic = false;
+            this.tag = "Enemy";
+
+            rigid2D.gravityScale = 1.0f;
+            coll2D.isTrigger = false;
         }
     }
 }

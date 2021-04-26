@@ -30,6 +30,7 @@ public class Bat : MonoBehaviour
     float m_hp;
     float m_systemHp;
     float m_speed;
+    float m_fallingSpeed;
     float m_direction;
     float m_moveToplayerTime;
     float m_lostPlayerTime;
@@ -112,6 +113,7 @@ public class Bat : MonoBehaviour
         m_systemHp = m_hp;
         m_direction = -1.0f;
         m_speed = 0.5f;
+        m_fallingSpeed = m_speed *= 4.0f;
         m_moveToplayerTime = 0.0f;
         m_lostPlayerTime = 0.0f;
         m_damageDelta = 0.0f;
@@ -205,8 +207,7 @@ public class Bat : MonoBehaviour
                 flg_moveToPlayer = true;
                 flg_attackPlayer = false;
 
-                m_attackTime = 0.0f;
-                //
+                m_attackTime = 0.0f;        
             }
         }
     }
@@ -291,11 +292,12 @@ public class Bat : MonoBehaviour
 
         if (m_systemHp <= 0.0f)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            this.tag = "Untagged";
 
-            Position.y -= (m_speed *= 1.1f) * Time.deltaTime;
+            rigid2D.gravityScale = 0.5f;
 
-            transform.position = Position;
+            rigid2D.constraints = RigidbodyConstraints2D.None;
+            rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }
