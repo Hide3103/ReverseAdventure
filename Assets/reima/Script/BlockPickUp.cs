@@ -8,6 +8,7 @@ public class BlockPickUp : MonoBehaviour
     private GameObject SetBlockPos;
     private bool have = false;
     private float BlockSetPos = 1.0f;
+    public int BlockHP = 1;
     bool Set;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class BlockPickUp : MonoBehaviour
         if (have)
         {
             rb.freezeRotation = true;
-                this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z);
+            this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z);
         }
         if(have&& (Input.GetKeyDown(KeyCode.V)))
         {

@@ -12,6 +12,7 @@ TagManager:
   - ura
   - BrokeFloor
   - MoveFloor
+  - Block
   layers:
   - Default
   - TransparentFX
