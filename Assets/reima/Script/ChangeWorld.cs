@@ -30,6 +30,8 @@ public class ChangeWorld : MonoBehaviour
         UraActiveUI.SetActive(false);
 
         rawImageScript = RawImage.GetComponent<RawImageScript>();
+
+        //public GameObject MainCamera
     }
 
     // Update is called once per frame
