@@ -10,6 +10,8 @@ public class MoveFloor : MonoBehaviour
     public GameObject Tape;
     Tape TapeScript;
 
+    public GameObject Movefloor;
+
     private Rigidbody2D rb;
     private int NowPoint = 0;
     private bool ReturnPoint = false;
@@ -27,6 +29,8 @@ public class MoveFloor : MonoBehaviour
         }
 
         TapeScript = Tape.GetComponent<Tape>();
+
+
     }
 
     public Vector2 GetVelocity()

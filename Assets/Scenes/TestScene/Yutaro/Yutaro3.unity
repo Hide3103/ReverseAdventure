@@ -135,12 +135,12 @@ PrefabInstance:
     - target: {fileID: 224969751734163754, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.88
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 224969751734163754, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.06
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 224969751734163754, guid: be1f0e6fc6f423a44a51cca9f51d8ee4,
         type: 3}
@@ -452,7 +452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044808036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: -1.15, z: -1.425749}
+  m_LocalPosition: {x: 0.35, y: -2.54, z: -1.425749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -474,7 +474,7 @@ PrefabInstance:
     - target: {fileID: 3553645658951708246, guid: f40e4f4c78f505e4b82a129f4e30a30d,
         type: 3}
       propertyPath: m_Name
-      value: Scaffold1
+      value: Movefloor
       objectReference: {fileID: 0}
     - target: {fileID: 3553645658951708246, guid: f40e4f4c78f505e4b82a129f4e30a30d,
         type: 3}
@@ -584,6 +584,7 @@ MonoBehaviour:
   speed: 3.5
   MoveFlg: 0
   Tape: {fileID: 1108122913}
+  Movefloor: {fileID: 0}
 --- !u!1 &1694064931
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +755,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171445202360181079, guid: 312216919fc963d4eb90bd4457e81122,
+        type: 3}
+      propertyPath: Tapeflag
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 312216919fc963d4eb90bd4457e81122, type: 3}
