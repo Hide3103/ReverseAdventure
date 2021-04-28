@@ -5,18 +5,21 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
 
-    private int ArrowSpeed = 3;
+    private float ArrowSpeed = 100.0f;
+
     private bool DamageOn = true;
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+         rb = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.position += new Vector3(-ArrowSpeed * Time.deltaTime, 0, 0);
+        this.rb.AddForce(transform.right * -ArrowSpeed);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,6 +34,10 @@ public class Arrow : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-
+        if(collision.transform.tag == "Ground")
+        {
+            Destroy(this.gameObject);
+        }
     }
+
 }
