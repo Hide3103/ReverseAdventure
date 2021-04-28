@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Block
   - Enemy
+  - ura
+  - Sword
+  - Ground
+  - Arrow
   layers:
   - Default
   - TransparentFX

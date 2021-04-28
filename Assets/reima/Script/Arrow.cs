@@ -28,8 +28,9 @@ public class Arrow : MonoBehaviour
                 playerScript = collision.gameObject.GetComponent<PlayerScript>();
                 playerScript.Damage();
                 DamageOn = false;
-                Destroy(this.gameObject,5);
+                Destroy(this.gameObject);
             }
         }
+
     }
 }
