@@ -15,10 +15,10 @@ public class PadScript : MonoBehaviour
     void Update()
     {
         // 接続されているコントローラの名前を調べる
-        var controllerNames = Input.GetJoystickNames();
+        var ControllerNames = Input.GetJoystickNames();
 
         // 一台もコントローラが接続されていなければエラー
-        if (controllerNames[0] == "")
+        if (ControllerNames[0] == "")
         {
             PadOn = true;
         }

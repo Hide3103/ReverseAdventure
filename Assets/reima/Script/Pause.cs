@@ -104,8 +104,8 @@ public class Pause : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    //ステージセレクトに戻る
-                    SceneManager.LoadScene("StageSelect");
+                    //ゲームに戻る
+                    PauseUI.SetActive(!PauseUI.activeSelf);
                 }
                     break;
 
@@ -135,8 +135,9 @@ public class Pause : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
 
-                    //リトライ機能
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    //ステージセレクトに戻る
+                    SceneManager.LoadScene("StageSelect");
+
                 }
                 break;
 
@@ -171,8 +172,7 @@ public class Pause : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    //ゲームに戻る
-                    PauseUI.SetActive(!PauseUI.activeSelf);
+                    Application.Quit();
                 }
                 break;
         }
