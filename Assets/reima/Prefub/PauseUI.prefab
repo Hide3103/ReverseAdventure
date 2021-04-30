@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 315918744504811276}
   - component: {fileID: 315918744504811277}
   m_Layer: 5
-  m_Name: retryUI
+  m_Name: BackStageSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6e15c9b3411928a4da6b20c00d3737fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2f4b55c1eaddf5439a39bead1617654, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 315918744875891737}
   - component: {fileID: 315918744875891738}
   m_Layer: 5
-  m_Name: selectUI
+  m_Name: BackGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b2f4b55c1eaddf5439a39bead1617654, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab0e1253e196ce944b71a0b78fcb0523, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 315918745713473159}
   - component: {fileID: 315918745713473176}
   m_Layer: 5
-  m_Name: gamebackUI
+  m_Name: Endgame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ab0e1253e196ce944b71a0b78fcb0523, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf193c66496ce484daf3269e7dd2d3e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
