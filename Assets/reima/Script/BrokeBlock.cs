@@ -8,7 +8,12 @@ public class BrokeBlock : MonoBehaviour
     private GameObject SetBlockPos;
     private bool have = false;
     private float BlockSetPos = 1.0f;
+    private int BrokeHp = 1;
     bool Set;
+
+    Tape TapeScript;
+    public GameObject TapeObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +43,10 @@ public class BrokeBlock : MonoBehaviour
             rb.AddForce(new Vector3(100, 0, 0));
             have = false;
             //this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z)
+        }
+        if(TapeScript.Tapeflag)
+        {
+            rb.isKinematic = true;
         }
     }
 

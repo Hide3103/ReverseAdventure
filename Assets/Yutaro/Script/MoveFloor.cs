@@ -10,6 +10,9 @@ public class MoveFloor : MonoBehaviour
 
     public GameObject Movefloor;
 
+    Tape TapeScript;
+    public GameObject TapeObj;
+
     private Rigidbody2D rb;
     private int NowPoint = 0;
     private bool ReturnPoint = false;
@@ -19,6 +22,8 @@ public class MoveFloor : MonoBehaviour
 
     void Start()
     {
+        TapeScript = TapeObj.GetComponent<Tape>();
+
         rb = GetComponent<Rigidbody2D>();
         if(MovePoint != null && MovePoint.Length > 0 && rb != null)
         {
@@ -36,7 +41,7 @@ public class MoveFloor : MonoBehaviour
 
     void Update()
     {
-        if (Tape.Tapeflag == true)
+        if (TapeScript.Tapeflag == true)
         {
             if (MovePoint != null && MovePoint.Length > 1 && rb != null)
             {
