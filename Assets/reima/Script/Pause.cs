@@ -99,8 +99,10 @@ public class Pause : MonoBehaviour
                 }
                 else
                 {
-                    SetAlpha = 1.0f;
-                    TitleCanvasGroupstage1.alpha = SetAlpha;
+                    SetAlpha3 = 1.0f;
+                    TitleCanvasGroupstage3.alpha = SetAlpha3;
+                    SetAlpha2 = 1.0f;
+                    TitleCanvasGroupstage2.alpha = SetAlpha2;
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
@@ -113,6 +115,7 @@ public class Pause : MonoBehaviour
                 if (NowNumSelect == 2)
                 {
                     TitleCanvasGroupstage1.alpha = 1.0f;
+                    TitleCanvasGroupstage3.alpha = 1.0f;
                     FlashTime += Time.unscaledDeltaTime;
                     if (FlashTime < 1.5 && SetAlpha2 < 1)
                     {
@@ -132,6 +135,13 @@ public class Pause : MonoBehaviour
                     }
                     TitleCanvasGroupstage2.alpha = SetAlpha2;
                 }
+                else
+                {
+                    SetAlpha3 = 1.0f;
+                    TitleCanvasGroupstage3.alpha = SetAlpha3;
+                    SetAlpha = 1.0f;
+                    TitleCanvasGroupstage1.alpha = SetAlpha;
+                }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
 
@@ -146,6 +156,7 @@ public class Pause : MonoBehaviour
                 if (NowNumSelect == 3)
                 {
                     TitleCanvasGroupstage2.alpha = 1.0f;
+                    TitleCanvasGroupstage1.alpha = 1.0f;
                     FlashTime += Time.unscaledDeltaTime;
                     if (FlashTime < 1.5 && SetAlpha3 < 1)
                     {
@@ -167,6 +178,8 @@ public class Pause : MonoBehaviour
                 }
                 else
                 {
+                    SetAlpha = 1.0f;
+                    TitleCanvasGroupstage1.alpha = SetAlpha;
                     SetAlpha3 = 1.0f;
                     TitleCanvasGroupstage3.alpha = SetAlpha3;
                 }

@@ -38,8 +38,6 @@ public class ChangeWorld : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(CoolDownTime + " : CoolDownTime");
-        Debug.Log(UraActiveTime + " : UraActiveTime");
 
         //クールダウンが10以上
         if (CoolDownTime <= 0 && OmoteObj.activeSelf == true)
