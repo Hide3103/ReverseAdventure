@@ -7,8 +7,6 @@ public class MoveFloor : MonoBehaviour
     [Header("移動経路")] public GameObject[] MovePoint;
     public float speed = 1.0f;
     public bool MoveFlg = false;
-    public GameObject Tape;
-    Tape TapeScript;
 
     public GameObject Movefloor;
 
@@ -28,8 +26,6 @@ public class MoveFloor : MonoBehaviour
             OldPos = rb.position;
         }
 
-        TapeScript = Tape.GetComponent<Tape>();
-
 
     }
 
@@ -40,7 +36,7 @@ public class MoveFloor : MonoBehaviour
 
     void Update()
     {
-        if (TapeScript.Tapeflag == true)
+        if (Tape.Tapeflag == true)
         {
             if (MovePoint != null && MovePoint.Length > 1 && rb != null)
             {

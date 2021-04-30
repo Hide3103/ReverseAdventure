@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockPickUp : MonoBehaviour
+public class BrokeBlock : MonoBehaviour
 {
     private GameObject Player;
     private GameObject SetBlockPos;
@@ -15,7 +15,7 @@ public class BlockPickUp : MonoBehaviour
         Player = GameObject.Find("Player");
         SetBlockPos = GameObject.Find("Player/BlockPos");
         var rb = this.transform.gameObject.GetComponent<Rigidbody2D>();
-        if(have ==false)
+        if (have == false)
         {
             rb.simulated = true;
             rb.isKinematic = true;
@@ -31,11 +31,11 @@ public class BlockPickUp : MonoBehaviour
             rb.freezeRotation = true;
             this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z);
         }
-        if(have&& (Input.GetKeyDown(KeyCode.V)))
+        if (have && (Input.GetKeyDown(KeyCode.V)))
         {
             rb.isKinematic = false;
             rb.velocity = new Vector2(0, 0);
-            rb.AddForce(new Vector3(100,0,0));
+            rb.AddForce(new Vector3(100, 0, 0));
             have = false;
             //this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z)
         }
@@ -45,7 +45,7 @@ public class BlockPickUp : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.B)&&have ==false)
+            if (Input.GetKeyDown(KeyCode.B) && have == false)
             {
                 have = true;
             }

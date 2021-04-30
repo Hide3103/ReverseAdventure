@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tape : MonoBehaviour
 {
-    public bool Tapeflag = false;
+    public static bool Tapeflag = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
