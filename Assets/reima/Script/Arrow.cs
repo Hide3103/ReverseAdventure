@@ -19,7 +19,10 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.rb.AddForce(transform.right * -ArrowSpeed);
+        if (ChangeWorld.StateFront)
+        {
+            this.rb.AddForce(transform.right * -ArrowSpeed);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
