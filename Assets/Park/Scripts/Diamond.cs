@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Diamond : MonoBehaviour
 {
-    public GameObject diamond;
+    public GameObject hiddenDiamond;
     SpriteRenderer diaSpriteRenderer;
 
     public int DiamondNum;
@@ -12,12 +12,18 @@ public class Diamond : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        diaSpriteRenderer = diamond.GetComponent<SpriteRenderer>();
-
+        if (hiddenDiamond)
+        {
+            diaSpriteRenderer = hiddenDiamond.GetComponent<SpriteRenderer>();
+        }
+        
         if(GameSystem.GetJuwelCollection(DiamondNum) == true)
         {
             GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-            diaSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            if(hiddenDiamond)
+            {
+                diaSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            }
         }
     }
 
@@ -38,8 +44,11 @@ public class Diamond : MonoBehaviour
             }
 
             //GameSystem.HavingNumJuwel += 1;
+            if (hiddenDiamond)
+            {
+                Destroy(hiddenDiamond);
+            }
             Destroy(gameObject);
-            Destroy(diamond);
         }
     }
 }
