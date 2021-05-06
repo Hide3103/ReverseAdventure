@@ -15,6 +15,8 @@ public class GameCameraScript : MonoBehaviour
     //public GameObject raderCamera;
     //Camera raderCam;
 
+    public float CamPosY = 0.75f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class GameCameraScript : MonoBehaviour
             {
                 CamPosX = playerPos.x;
             }
-            this.transform.position = new Vector3(CamPosX, playerPos.y - 0.75f, this.transform.position.z);
+            this.transform.position = new Vector3(CamPosX, playerPos.y + CamPosY, this.transform.position.z);
         }
     }
 }
