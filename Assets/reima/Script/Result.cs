@@ -24,6 +24,9 @@ public class Result : MonoBehaviour
 
     bool[] array;
 
+    float PadWaitTime = 0;
+    float SetWaitTime = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,13 +77,21 @@ public class Result : MonoBehaviour
     //セレクトするときのシステム
     void SelectSystem()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && NowSelect < 3)
+        float hori = Input.GetAxis("Horizontal");
+        if (PadWaitTime > 0)
+        {
+            PadWaitTime -= Time.unscaledDeltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) && NowSelect < 3 || (hori > 0 && WaitTime <= 0)&&NowSelect<3 && PadWaitTime <= 0)
         {
             NowSelect++;
+            PadWaitTime = SetWaitTime;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && NowSelect > 1)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && NowSelect > 1 || (hori < 0 && WaitTime <= 0)&&NowSelect>1 && PadWaitTime <= 0)
         {
             NowSelect--;
+            PadWaitTime = SetWaitTime;
         }
 
         //セレクトシステム
@@ -112,7 +123,7 @@ public class Result : MonoBehaviour
                     TitleCanvasGroupstage2.alpha = 1.0f;
                     TitleCanvasGroupstage3.alpha = 1.0f;
                 }
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     //次にどこのステージに行くか(ステージ追加時は必須)
                     switch (GameSystem.WasPlayStage)
@@ -175,7 +186,7 @@ public class Result : MonoBehaviour
                     TitleCanvasGroupstage1.alpha = 1.0f;
                     TitleCanvasGroupstage3.alpha = 1.0f;
                 }
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     SceneManager.LoadScene("StageSelect");
                 }
@@ -203,7 +214,7 @@ public class Result : MonoBehaviour
                         TitleCanvasGroupstage2.alpha = 1.0f;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     //もう一回同じステージを読み込む(ステージ追加時は必須)
                     switch (GameSystem.WasPlayStage)

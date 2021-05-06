@@ -32,6 +32,8 @@ public class Title : MonoBehaviour
     float FlashTime = 0;
     float FlashSpeed = 0.8f;
     float WaitTime = 0;
+    float PadWaitTime = 0;
+    float SetWaitTime = 1;
 
     public float SetAlpha = 0.0f;
 
@@ -51,28 +53,28 @@ public class Title : MonoBehaviour
         {
             case 1:
                 StartFlash();
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     SceneManager.LoadScene("StageSelect");
                 }
                 break;
             case 2:
                 StartFlash();
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     SettingScene();
                 }
                 break;
             case 3:
                 StartFlash();
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     SceneManager.LoadScene("CreditScene");
                 }
                 break;
             case 4:
                 StartFlash();
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Application.Quit();
                 }
@@ -189,44 +191,56 @@ public class Title : MonoBehaviour
 
     void MenuMove()
     {
+        float hori = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("Vertical");
+        if (PadWaitTime > 0)
+        {
+            PadWaitTime -= Time.unscaledDeltaTime;
+        }
         //ボタン押してからスタートから下矢印押すとオプションに移動する
-        if (Input.GetKeyDown(KeyCode.DownArrow) && NumSelect == 1)
+        if ((Input.GetKeyDown(KeyCode.DownArrow) && NumSelect == 1)||vert<0&&NumSelect==1 && PadWaitTime <= 0)
         {
             NumSelect = 2;
+            PadWaitTime = SetWaitTime;
         }
 
         //オプションから右矢印を押すとクレジットに移動する
-        if (Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 2)
+        if ((Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 2 )|| hori > 0 && NumSelect == 2 && PadWaitTime <= 0)
         {
             NumSelect = 3;
+            PadWaitTime = SetWaitTime;
         }
 
         //オプションから左矢印でゲームを終わる
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 2)
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 2)||hori<0&&NumSelect== 2 && PadWaitTime <= 0)
         {
             NumSelect = 4;
+            PadWaitTime = SetWaitTime;
         }
 
 
         //クレジットからオプションに移動
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 3)
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 3)||hori<0&&NumSelect== 3 && PadWaitTime <= 0)
         {
             NumSelect = 2;
+            PadWaitTime = SetWaitTime;
         }
 
 
         //ゲームを終わるからオプションに移動
-        if (Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 4)
+        if ((Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 4)||hori>0&&NumSelect== 4 && PadWaitTime <= 0)
         {
             NumSelect = 2;
+            PadWaitTime = SetWaitTime;
         }
 
         //ボタンを押してスタート以外のボタンから上矢印押したときボタンを押してスタートに移動する
         if (NumSelect == 4 || NumSelect == 3 || NumSelect == 2)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if ((Input.GetKeyDown(KeyCode.UpArrow))||vert> 0 && PadWaitTime <= 0)
             {
                 NumSelect = 1;
+                PadWaitTime = SetWaitTime;
             }
         }
     }

@@ -24,6 +24,8 @@ public class StageSelectCameraScript : MonoBehaviour
 
     public bool test;
 
+    public float WaitTime = 0;
+    float SetWaitTime = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,26 +37,33 @@ public class StageSelectCameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (WaitTime > 0)
+        {
+            WaitTime -= Time.unscaledDeltaTime;
+        }
+        float hori = Input.GetAxis("Horizontal");
         if (BackButtonSelecting == false)
         {
             if (SelectingStageNum < StageMaxNum)
             {
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if ((Input.GetKeyDown(KeyCode.RightArrow))||(hori>0 && WaitTime <= 0))
                 {
                     transform.position += new Vector3(5.0f, 0.0f, 0.0f);
                     SelectingStageNum += 1;
                     RightCursorScript.ButtonPressed = true;
                     RightCursorScript.flashDelta = 0.0f;
+                    WaitTime = SetWaitTime;
                 }
             }
             if (1 < SelectingStageNum)
             {
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                if ((Input.GetKeyDown(KeyCode.LeftArrow))||(hori<0 && WaitTime <= 0))
                 {
                     transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
                     SelectingStageNum -= 1;
                     LeftCursorScript.ButtonPressed = true;
                     LeftCursorScript.flashDelta = 0.0f;
+                    WaitTime = SetWaitTime;
                 }
             }
 
@@ -96,7 +105,7 @@ public class StageSelectCameraScript : MonoBehaviour
         }
         //Debug.Log(SelectingStageNum);
 
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown("joystick button 0"))
         {
             switch(SelectingStageNum)
             {

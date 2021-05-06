@@ -38,7 +38,6 @@ public class Pause : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(WaitTime);
         float vert = Input.GetAxis("Vertical");
         UseStick = true;
 
@@ -118,7 +117,7 @@ public class Pause : MonoBehaviour
                     SetAlpha2 = 1.0f;
                     TitleCanvasGroupstage2.alpha = SetAlpha2;
                 }
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown("joystick button 0")&&PauseUI.activeSelf==true)
                 {
                     //ゲームに戻る
                     PauseUI.SetActive(!PauseUI.activeSelf);
@@ -156,7 +155,7 @@ public class Pause : MonoBehaviour
                     SetAlpha = 1.0f;
                     TitleCanvasGroupstage1.alpha = SetAlpha;
                 }
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
 
                     //ステージセレクトに戻る
@@ -197,7 +196,7 @@ public class Pause : MonoBehaviour
                     SetAlpha3 = 1.0f;
                     TitleCanvasGroupstage3.alpha = SetAlpha3;
                 }
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Application.Quit();
                 }
