@@ -37,7 +37,7 @@ public class GameCameraScript : MonoBehaviour
             {
                 CamPosX = playerPos.x;
             }
-            this.transform.position = new Vector3(CamPosX, playerPos.y + 0.75f, this.transform.position.z);
+            this.transform.position = new Vector3(CamPosX, playerPos.y - 0.75f, this.transform.position.z);
         }
     }
 }

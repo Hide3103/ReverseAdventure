@@ -1,0 +1,272 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194737b46e04ff84a936435d5601662f, type: 3}
+  m_Name: dc_Player_Stand
+  m_EditorClassIdentifier: 
+  Version: 65537
+  TableCellMap:
+  - Name: Player_Stand
+    SizeOriginal: {x: 512, y: 512}
+    TableCell:
+    - Name: BigKnife
+      Rectangle:
+        serializedVersion: 2
+        x: 68
+        y: 4
+        width: 39
+        height: 104
+      Pivot: {x: 19.5, y: 52}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Bigpendant
+      Rectangle:
+        serializedVersion: 2
+        x: 110
+        y: 4
+        width: 34
+        height: 80
+      Pivot: {x: 17, y: 40}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: pendant
+      Rectangle:
+        serializedVersion: 2
+        x: 324
+        y: 32
+        width: 12
+        height: 29
+      Pivot: {x: 6, y: 14.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Rightarm_1
+      Rectangle:
+        serializedVersion: 2
+        x: 146
+        y: 4
+        width: 27
+        height: 52
+      Pivot: {x: 19, y: 13}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Rightarm_2
+      Rectangle:
+        serializedVersion: 2
+        x: 436
+        y: 4
+        width: 22
+        height: 26
+      Pivot: {x: 17, y: 3.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: knife
+      Rectangle:
+        serializedVersion: 2
+        x: 270
+        y: 4
+        width: 27
+        height: 38
+      Pivot: {x: 20, y: 8}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: sheath
+      Rectangle:
+        serializedVersion: 2
+        x: 412
+        y: 4
+        width: 22
+        height: 29
+      Pivot: {x: 11, y: 14.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Body
+      Rectangle:
+        serializedVersion: 2
+        x: 176
+        y: 4
+        width: 34
+        height: 38
+      Pivot: {x: 17, y: 2.0000002}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Rightboots
+      Rectangle:
+        serializedVersion: 2
+        x: 324
+        y: 4
+        width: 27
+        height: 25
+      Pivot: {x: 12, y: 6}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_2
+      Rectangle:
+        serializedVersion: 2
+        x: 300
+        y: 4
+        width: 22
+        height: 35
+      Pivot: {x: 10, y: 27}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_1
+      Rectangle:
+        serializedVersion: 2
+        x: 354
+        y: 4
+        width: 21
+        height: 31
+      Pivot: {x: 10, y: 3}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Waist
+      Rectangle:
+        serializedVersion: 2
+        x: 378
+        y: 28
+        width: 30
+        height: 14
+      Pivot: {x: 15, y: 7}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Leftboots
+      Rectangle:
+        serializedVersion: 2
+        x: 378
+        y: 4
+        width: 32
+        height: 22
+      Pivot: {x: 11, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_2
+      Rectangle:
+        serializedVersion: 2
+        x: 460
+        y: 4
+        width: 20
+        height: 27
+      Pivot: {x: 10, y: 1.9999996}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_1
+      Rectangle:
+        serializedVersion: 2
+        x: 482
+        y: 4
+        width: 20
+        height: 25
+      Pivot: {x: 10, y: 4}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Goal_left
+      Rectangle:
+        serializedVersion: 2
+        x: 492
+        y: 32
+        width: 10
+        height: 6
+      Pivot: {x: 5, y: 3}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Goal_right
+      Rectangle:
+        serializedVersion: 2
+        x: 458
+        y: 34
+        width: 10
+        height: 6
+      Pivot: {x: 5, y: 3}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Damage_right
+      Rectangle:
+        serializedVersion: 2
+        x: 338
+        y: 32
+        width: 7
+        height: 7
+      Pivot: {x: 3.5, y: 3.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Damage_left
+      Rectangle:
+        serializedVersion: 2
+        x: 482
+        y: 32
+        width: 7
+        height: 7
+      Pivot: {x: 3.5, y: 3.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Eye
+      Rectangle:
+        serializedVersion: 2
+        x: 436
+        y: 32
+        width: 20
+        height: 9
+      Pivot: {x: 10, y: 4.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: head
+      Rectangle:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 62
+        height: 72
+      Pivot: {x: 31, y: 36}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: leftarm_2
+      Rectangle:
+        serializedVersion: 2
+        x: 240
+        y: 4
+        width: 28
+        height: 43
+      Pivot: {x: 7, y: 11}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Leftarm_1
+      Rectangle:
+        serializedVersion: 2
+        x: 212
+        y: 4
+        width: 26
+        height: 48
+      Pivot: {x: 4.9999995, y: 4.0000005}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 

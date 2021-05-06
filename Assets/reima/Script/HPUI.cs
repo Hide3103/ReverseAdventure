@@ -16,19 +16,37 @@ public class HPUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerScript.m_PlayerHp==2)
+        //if(PlayerScript.m_PlayerHp==2)
+        //{
+        //    PlayerHP3.gameObject.SetActive(false);
+        //}
+        //if (PlayerScript.m_PlayerHp == 1)
+        //{
+        //    PlayerHP2.gameObject.SetActive(false);
+        //}
+        //if (PlayerScript.m_PlayerHp == 0)
+        //{
+        //    PlayerHP1.gameObject.SetActive(false);
+        //}
+        //if (PlayerScript.m_PlayerHp == 3)
+        //{
+        //    PlayerHP1.gameObject.SetActive(true);
+        //    PlayerHP2.gameObject.SetActive(true);
+        //    PlayerHP3.gameObject.SetActive(true);
+        //}
+        if (MotionPlayer.m_PlayerHp == 2)
         {
             PlayerHP3.gameObject.SetActive(false);
         }
-        if (PlayerScript.m_PlayerHp == 1)
+        if (MotionPlayer.m_PlayerHp == 1)
         {
             PlayerHP2.gameObject.SetActive(false);
         }
-        if (PlayerScript.m_PlayerHp == 0)
+        if (MotionPlayer.m_PlayerHp == 0)
         {
             PlayerHP1.gameObject.SetActive(false);
         }
-        if (PlayerScript.m_PlayerHp == 3)
+        if (MotionPlayer.m_PlayerHp == 3)
         {
             PlayerHP1.gameObject.SetActive(true);
             PlayerHP2.gameObject.SetActive(true);

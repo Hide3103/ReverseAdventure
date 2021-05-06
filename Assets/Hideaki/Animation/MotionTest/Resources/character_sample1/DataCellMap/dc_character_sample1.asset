@@ -1,0 +1,319 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194737b46e04ff84a936435d5601662f, type: 3}
+  m_Name: dc_character_sample1
+  m_EditorClassIdentifier: 
+  Version: 65537
+  TableCellMap:
+  - Name: character_2head
+    SizeOriginal: {x: 1024, y: 1024}
+    TableCell:
+    - Name: head
+      Rectangle:
+        serializedVersion: 2
+        x: 9
+        y: 20
+        width: 319
+        height: 331
+      Pivot: {x: 158, y: 209}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: body
+      Rectangle:
+        serializedVersion: 2
+        x: 17
+        y: 366
+        width: 334
+        height: 346
+      Pivot: {x: 165, y: 222}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: leg_l
+      Rectangle:
+        serializedVersion: 2
+        x: 354
+        y: 115
+        width: 156
+        height: 183
+      Pivot: {x: 98, y: 51}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: leg_r
+      Rectangle:
+        serializedVersion: 2
+        x: 545
+        y: 115
+        width: 158
+        height: 184
+      Pivot: {x: 53, y: 51}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: hair
+      Rectangle:
+        serializedVersion: 2
+        x: 716
+        y: 9
+        width: 299
+        height: 455
+      Pivot: {x: 141, y: 67.99999}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: arm_l
+      Rectangle:
+        serializedVersion: 2
+        x: 869
+        y: 556
+        width: 122
+        height: 211
+      Pivot: {x: 71, y: 37.000004}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: object1
+      Rectangle:
+        serializedVersion: 2
+        x: 553
+        y: 779
+        width: 438
+        height: 230
+      Pivot: {x: 333, y: 54}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: object2
+      Rectangle:
+        serializedVersion: 2
+        x: 369
+        y: 9
+        width: 318
+        height: 95
+      Pivot: {x: 192, y: 72}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: object3
+      Rectangle:
+        serializedVersion: 2
+        x: 553
+        y: 555
+        width: 174
+        height: 211
+      Pivot: {x: 87, y: 116}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: arm_r
+      Rectangle:
+        serializedVersion: 2
+        x: 737
+        y: 556
+        width: 122
+        height: 211
+      Pivot: {x: 72, y: 37.000004}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: shadow
+      Rectangle:
+        serializedVersion: 2
+        x: 365
+        y: 961
+        width: 178
+        height: 51
+      Pivot: {x: 94, y: 41}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: character_3head
+    SizeOriginal: {x: 1024, y: 1024}
+    TableCell:
+    - Name: head
+      Rectangle:
+        serializedVersion: 2
+        x: 9
+        y: 20
+        width: 319
+        height: 331
+      Pivot: {x: 166, y: 246}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: body
+      Rectangle:
+        serializedVersion: 2
+        x: 18
+        y: 366
+        width: 333
+        height: 325
+      Pivot: {x: 155, y: 220}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: hip
+      Rectangle:
+        serializedVersion: 2
+        x: 17
+        y: 705
+        width: 334
+        height: 307
+      Pivot: {x: 160, y: 105}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: thigh_r
+      Rectangle:
+        serializedVersion: 2
+        x: 353
+        y: 115
+        width: 158
+        height: 184
+      Pivot: {x: 99, y: 54}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: leg_r
+      Rectangle:
+        serializedVersion: 2
+        x: 366
+        y: 321
+        width: 164
+        height: 222
+      Pivot: {x: 98, y: 48.999996}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: leg_l
+      Rectangle:
+        serializedVersion: 2
+        x: 557
+        y: 321
+        width: 146
+        height: 222
+      Pivot: {x: 57, y: 52.000004}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: upperarm_l
+      Rectangle:
+        serializedVersion: 2
+        x: 366
+        y: 558
+        width: 177
+        height: 188
+      Pivot: {x: 55, y: 70}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: arm_r
+      Rectangle:
+        serializedVersion: 2
+        x: 737
+        y: 556
+        width: 122
+        height: 211
+      Pivot: {x: 59, y: 39}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: upperarm_r
+      Rectangle:
+        serializedVersion: 2
+        x: 366
+        y: 758
+        width: 177
+        height: 189
+      Pivot: {x: 53, y: 72}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: hair
+      Rectangle:
+        serializedVersion: 2
+        x: 716
+        y: 9
+        width: 299
+        height: 534
+      Pivot: {x: 146, y: 123}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: arm_l
+      Rectangle:
+        serializedVersion: 2
+        x: 869
+        y: 556
+        width: 122
+        height: 211
+      Pivot: {x: 57, y: 38}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: shadow
+      Rectangle:
+        serializedVersion: 2
+        x: 365
+        y: 961
+        width: 178
+        height: 51
+      Pivot: {x: 89, y: 25}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: thigh_l
+      Rectangle:
+        serializedVersion: 2
+        x: 545
+        y: 115
+        width: 158
+        height: 184
+      Pivot: {x: 54, y: 54}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: object1
+      Rectangle:
+        serializedVersion: 2
+        x: 553
+        y: 780
+        width: 438
+        height: 230
+      Pivot: {x: 343, y: 53}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: object2
+      Rectangle:
+        serializedVersion: 2
+        x: 369
+        y: 9
+        width: 318
+        height: 96
+      Pivot: {x: 192, y: 71}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: object3
+      Rectangle:
+        serializedVersion: 2
+        x: 553
+        y: 556
+        width: 174
+        height: 211
+      Pivot: {x: 87, y: 115}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 

@@ -26,21 +26,36 @@ public class Arrow : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.name == "Player")
+        if (collision.transform.tag == "Player")
         {
             if (DamageOn)
             {
-                PlayerScript playerScript;
-                playerScript = collision.gameObject.GetComponent<PlayerScript>();
+                MotionPlayer playerScript;
+                playerScript = collision.gameObject.GetComponent<MotionPlayer>();
                 playerScript.Damage();
                 DamageOn = false;
                 Destroy(this.gameObject);
             }
         }
-        if(collision.transform.tag == "Ground")
+        if (collision.transform.tag == "Ground")
         {
             Destroy(this.gameObject);
         }
     }
 
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.transform.tag == "Player")
+    //    {
+    //        if (DamageOn)
+    //        {
+    //            CharacterControl2 playerScript;
+    //            playerScript = collision.gameObject.GetComponent<CharacterControl2>();
+    //            playerScript.Damage();
+    //            DamageOn = false;
+    //            Destroy(this.gameObject);
+    //        }
+    //    }
+
+    //}
 }
