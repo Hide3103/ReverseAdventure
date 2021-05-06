@@ -24,6 +24,8 @@ public class Pause : MonoBehaviour
 
     public GameObject RawImage;
     RawImageScript rawImageScript;
+
+    bool UseStick = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +37,14 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(WaitTime);
+        float vert = Input.GetAxis("Vertical");
+        UseStick = true;
+
         if (GameSystem.IsGoal == false)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown("joystick button 7"))
             {
                 PauseUI.SetActive(!PauseUI.activeSelf);
             }
@@ -56,16 +63,23 @@ public class Pause : MonoBehaviour
                     Time.timeScale = 1;
                 }
             }
+
             //ポーズ画面がtrueの時
             if (PauseUI.activeSelf == true)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow) && NowNumSelect > 1)
+                if (WaitTime > 0)
                 {
-                    NowNumSelect--;
+                    WaitTime -= Time.unscaledDeltaTime;
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow) && NowNumSelect < 3)
+                if (((Input.GetKeyDown(KeyCode.UpArrow) && NowNumSelect > 1) || (vert>0 && NowNumSelect > 1&&WaitTime<=0)))
                 {
-                    NowNumSelect++;
+                        NowNumSelect--;
+                        WaitTime = 2;
+                }
+                if (((Input.GetKeyDown(KeyCode.DownArrow) && NowNumSelect < 3) || (vert < 0 && NowNumSelect < 3 && WaitTime <= 0)))
+                {
+                        NowNumSelect++;
+                        WaitTime = 2;
                 }
             }
         }

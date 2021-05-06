@@ -73,13 +73,13 @@ public class ChangeWorld : MonoBehaviour
 
 
         //0以上の間
-        if (CoolDownTime <= 0 && Input.GetKeyDown(KeyCode.C) && StateFront == true)
+        if (CoolDownTime <= 0 && Input.GetKeyDown(KeyCode.C) && StateFront == true|| Input.GetKeyDown("joystick button 3")&&CoolDownTime <= 0 && StateFront == true)
         {
             rawImageScript.changgingFlg = true;
         }
 
         //裏アクティブタイムが10以下かつ裏オブジェがtrueの時かつCを押したとき
-        if (UraActiveTime < 10 && StateFront == false && Input.GetKeyDown(KeyCode.C))
+        if (UraActiveTime < 10 && StateFront == false && Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown("joystick button 3")&& UraActiveTime < 10 && StateFront == false)
         {
             rawImageScript.changgingFlg = true;
 

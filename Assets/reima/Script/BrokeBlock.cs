@@ -54,7 +54,7 @@ public class BrokeBlock : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.B) && have == false)
+            if (Input.GetKeyDown(KeyCode.B)|| Input.GetKeyDown("joystick button 3") && have == false)
             {
                 have = true;
             }

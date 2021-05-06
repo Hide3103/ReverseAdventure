@@ -31,7 +31,7 @@ public class BlockPickUp : MonoBehaviour
             rb.freezeRotation = true;
             this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z);
         }
-        if(have&& (Input.GetKeyDown(KeyCode.V)))
+        if(have&& (Input.GetKeyDown(KeyCode.V))|| Input.GetKeyDown("joystick button 2"))//X
         {
             rb.isKinematic = false;
             rb.velocity = new Vector2(0, 0);

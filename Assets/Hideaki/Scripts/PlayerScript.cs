@@ -93,13 +93,15 @@ public class PlayerScript : MonoBehaviour
             //Debug.Log("ArmorUsingはfalse");
         }
 
+        float hori = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("Vertical");
         //ゴールなどプレイを中断させたい時のフラグ
         if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false)
-        {
+            {
             // 移動
             if (m_DamagedFlg == false)
             {
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.RightArrow)||hori>0)
                 {
                     if (this.transform.position.x < GoalPos.x)
                     {
@@ -108,7 +110,7 @@ public class PlayerScript : MonoBehaviour
                         transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                     }
                 }
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKey(KeyCode.LeftArrow) || hori < 0)
                 {
                     //m_LookKey = -1;
                     transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
@@ -122,7 +124,7 @@ public class PlayerScript : MonoBehaviour
                 float speedY = Mathf.Abs(this.rigid2D.velocity.y);
                 if (speedY <= 0.1f)
                 {
-                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
                     {
                         this.rigid2D.AddForce(transform.up * m_JumpForce);
                     }
@@ -141,7 +143,7 @@ public class PlayerScript : MonoBehaviour
             //攻撃
             if (attackSpan < attackDelta)
             {
-                if (Input.GetKeyDown(KeyCode.X))
+                if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 1"))
                 {
                     AttackLange.SetActive(true);
                     attackSpan = 0.0f;
