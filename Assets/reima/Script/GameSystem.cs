@@ -51,6 +51,14 @@ public class GameSystem : MonoBehaviour
     //前どこのステージが選ばれているか
     public static int WasPlayStage = 0;
 
+    //UIのゲームオブジェクト
+    public GameObject Timer;
+    public GameObject NumJewelText;
+    public GameObject PlayerHP;
+    public GameObject CoolDownCountTxt;
+    public GameObject CoolDownUI;
+    public GameObject MaterUI;
+    public GameObject PlayerPosTri;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +117,7 @@ public class GameSystem : MonoBehaviour
         {
             NumMaxGetJewelStage5 = NumNowMaxGetJewelStage5;
         }
+        GoalAfterDeleteUI();
     }
     //クリアタイムの代入・取得
     public static void SetClearTime(float setClearTime)
@@ -206,5 +215,29 @@ public class GameSystem : MonoBehaviour
     public static bool GetArmorUsing()
     {
         return ArmorUsing;
+    }
+
+    public void GoalAfterDeleteUI()
+    {
+        if(IsGoal==true)
+        {
+            PlayerHP.SetActive(false);
+            NumJewelText.SetActive(false);
+            Timer.SetActive(false);
+            CoolDownCountTxt.SetActive(false);
+            CoolDownUI.SetActive(false);
+            MaterUI.SetActive(false);
+            PlayerPosTri.SetActive(false);
+        }
+        if (IsGoal == false)
+        {
+            PlayerHP.SetActive(true);
+            NumJewelText.SetActive(true);
+            Timer.SetActive(true);
+            CoolDownCountTxt.SetActive(true);
+            CoolDownUI.SetActive(true);
+            MaterUI.SetActive(true);
+            PlayerPosTri.SetActive(true);
+        }
     }
 }
