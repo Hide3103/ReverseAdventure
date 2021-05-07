@@ -63,7 +63,7 @@ public class Spider : MonoBehaviour
     {
         rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
 
-        if (player)
+        if (player && GameSystem.IsGoal == false)
         {
             Transform playerTrans = playerCollider as Transform;
 

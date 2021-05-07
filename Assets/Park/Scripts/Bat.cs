@@ -57,7 +57,7 @@ public class Bat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player)
+        if (player && GameSystem.IsGoal == false)
         {
             if (m_systemHp > 0)
             {
