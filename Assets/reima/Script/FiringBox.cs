@@ -6,6 +6,7 @@ public class FiringBox : MonoBehaviour
 { 
     public GameObject AroowPrehub;
     float IntervalTime = 0;
+    float FiringArrowTime = 1;
     bool Go = true;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,7 @@ public class FiringBox : MonoBehaviour
     void Update()
     {
         IntervalTime += Time.deltaTime;
-        if (3 < IntervalTime)
+        if (FiringArrowTime < IntervalTime)
         {
             if (Go&ChangeWorld.StateFront)
             {
@@ -27,7 +28,7 @@ public class FiringBox : MonoBehaviour
             }
             if(Go==false)
             {
-                if(IntervalTime>3)
+                if(IntervalTime>FiringArrowTime)
                 {
                     Go = true;
                 }
