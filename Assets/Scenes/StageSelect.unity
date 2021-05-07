@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 59442489}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1756271202}
   m_RootOrder: 2
@@ -376,6 +376,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1756271202}
     m_Modifications:
+    - target: {fileID: 9075483031570562288, guid: ee3698223f9b24c4b942a4016fde2c23,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftCursor
+      objectReference: {fileID: 0}
     - target: {fileID: 9075483031570562290, guid: ee3698223f9b24c4b942a4016fde2c23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -440,11 +445,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075483031570562288, guid: ee3698223f9b24c4b942a4016fde2c23,
-        type: 3}
-      propertyPath: m_Name
-      value: LeftCursor
       objectReference: {fileID: 0}
     - target: {fileID: 9075483031570562291, guid: ee3698223f9b24c4b942a4016fde2c23,
         type: 3}
@@ -841,7 +841,7 @@ Transform:
   m_GameObject: {fileID: 630033377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1756271202}
   m_RootOrder: 3
@@ -914,6 +914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonPressed: 0
   flashDelta: 0
+  ThisCursorIsLeft: 1
 --- !u!4 &867907639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9075483031570562290, guid: ee3698223f9b24c4b942a4016fde2c23,
@@ -1005,7 +1006,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 96ef7443b6d82c34ea04f0bbd0520670, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10907ba4b5b5a4d4386072f20efc37ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1138,7 +1139,7 @@ Transform:
   m_GameObject: {fileID: 1231322870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1756271202}
   m_RootOrder: 4
@@ -1207,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1570586979
 Transform:
   m_ObjectHideFlags: 0
@@ -1217,7 +1218,7 @@ Transform:
   m_GameObject: {fileID: 1570586978}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1756271202}
   m_RootOrder: 0
@@ -1320,6 +1321,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1756271202}
     m_Modifications:
+    - target: {fileID: 9075483031570562288, guid: ee3698223f9b24c4b942a4016fde2c23,
+        type: 3}
+      propertyPath: m_Name
+      value: RightCursor
+      objectReference: {fileID: 0}
     - target: {fileID: 9075483031570562290, guid: ee3698223f9b24c4b942a4016fde2c23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1384,11 +1390,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075483031570562288, guid: ee3698223f9b24c4b942a4016fde2c23,
-        type: 3}
-      propertyPath: m_Name
-      value: RightCursor
       objectReference: {fileID: 0}
     - target: {fileID: 9075483031570562291, guid: ee3698223f9b24c4b942a4016fde2c23,
         type: 3}
@@ -1644,6 +1645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonPressed: 0
   flashDelta: 0
+  ThisCursorIsLeft: 0
 --- !u!4 &1804299507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9075483031570562290, guid: ee3698223f9b24c4b942a4016fde2c23,
@@ -1803,7 +1805,7 @@ Transform:
   m_GameObject: {fileID: 1932446349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1756271202}
   m_RootOrder: 1
