@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class VolumeSlider : MonoBehaviour
 {
-
+    
     public GameObject SettingCanvas;
     public Slider BGMVolSlider;
     public Slider SEVolSlider;
@@ -20,37 +21,23 @@ public class VolumeSlider : MonoBehaviour
     public Text SEVolumeTxt;
 
    public int SettingNumSelect = 1;
+    public AudioMixer AudioMixer;
+
     // Start is called before the first frame update
     void Start()
     {
-
         BGMVolSlider.value = AudioListener.volume;
-        BGMVolSlider.maxValue = 100;
-        BGMVolSlider.minValue = 0;
+        BGMVolSlider.maxValue = 20;
+        BGMVolSlider.minValue = -80;
         BGMVolSlider.value = 100;
 
         SEVolSlider.value = AudioListener.volume;
-        SEVolSlider.maxValue = 100;
-        SEVolSlider.minValue = 0;
+        SEVolSlider.maxValue = 20;
+        SEVolSlider.minValue = -80;
         SEVolSlider.value = 100;
         float v = BGMVolSlider.value;
         float v2 = SEVolSlider.value;
     }
-
-    //private void OnEnable()//アクティブ時
-    //{
-    //   BGMVolSlider.value = AudioListener.volume;
-    //   BGMVolSlider.onValueChanged.AddListener((sliderValue) => AudioListener.volume = sliderValue);
-
-    //    SEVolSlider.value = AudioListener.volume;
-    //    SEVolSlider.onValueChanged.AddListener((sliderValue) => AudioListener.volume = sliderValue);
-    //}
-
-    //private void OnDisable()//非アクティブ時
-    //{
-    //    SEVolSlider.onValueChanged.RemoveAllListeners();
-    //    BGMVolSlider.onValueChanged.RemoveAllListeners();
-    //}
 
     // Update is called once per frame
     void Update()
@@ -110,9 +97,19 @@ public class VolumeSlider : MonoBehaviour
             //            break;
             //    }
             //}
-            NowBGMVol = Mathf.Clamp(NowBGMVol, 0, 100);
+            NowBGMVol = Mathf.Clamp(NowBGMVol, -80, 20);
+            NowSEVol = Mathf.Clamp(NowSEVol, -80, 20);
             BGMVolSlider.value = NowBGMVol;
             SEVolSlider.value = NowSEVol;
+            
         }
+    }
+    public void SetBGM(float BGMVol)
+    {
+        AudioMixer.SetFloat("BGMVol", BGMVol);
+    }
+    public void SetSE(float SEVol)
+    {
+        AudioMixer.SetFloat("BGMVol", SEVol);
     }
 }
