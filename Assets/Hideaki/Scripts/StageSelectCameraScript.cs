@@ -7,7 +7,7 @@ public class StageSelectCameraScript : MonoBehaviour
 {
     [SerializeField]
     public static int SelectingStageNum = 1;
-    int StageMaxNum = 5;
+    public static int StageMaxNum = 5;
     int StageMinNum = -1;
     static bool BackButtonSelecting = false;
     int beforeStageNum = 1;
@@ -37,10 +37,13 @@ public class StageSelectCameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("SelectingStageNum : " + SelectingStageNum);
+
         if (WaitTime > 0)
         {
             WaitTime -= Time.unscaledDeltaTime;
         }
+        float ver = Input.GetAxis("Vertical");
         float hori = Input.GetAxis("Horizontal");
         if (BackButtonSelecting == false)
         {
@@ -67,11 +70,12 @@ public class StageSelectCameraScript : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow) || (ver < 0 && WaitTime <= 0))
             {
                 beforeStageNum = SelectingStageNum;
                 SelectingStageNum = 0;
                 BackButtonSelecting = true;
+                WaitTime = SetWaitTime;
             }
         }
         else
@@ -92,10 +96,11 @@ public class StageSelectCameraScript : MonoBehaviour
             //        LeftCursorScript.ButtonPressed = true;
             //    }
             //}
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || (ver > 0 && WaitTime <= 0))
             {
                 SelectingStageNum = beforeStageNum;
                 BackButtonSelecting = false;
+                WaitTime = SetWaitTime;
             }
         }
 
@@ -110,7 +115,7 @@ public class StageSelectCameraScript : MonoBehaviour
             switch(SelectingStageNum)
             {
                 case 0:
-                    SceneManager.LoadScene("Shop_2");
+                    SceneManager.LoadScene("Title");
                     break;
                 case 1:
                 case 2:
