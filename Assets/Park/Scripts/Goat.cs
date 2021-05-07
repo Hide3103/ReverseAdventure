@@ -15,6 +15,8 @@ public class Goat : MonoBehaviour
     public Sprite frontSprite;
     public Sprite backSprite;
 
+    public AudioClip attack;
+
     Rigidbody2D rigid2D;
 
     Vector2 firstScale;
@@ -22,6 +24,8 @@ public class Goat : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     Color32 beforeColor;
+
+    AudioSource audioSource;
 
     bool flg_normal;
     bool flg_lookPlayer;
@@ -31,6 +35,7 @@ public class Goat : MonoBehaviour
     bool flg_damage;
     bool flg_blinking;
     bool flg_attackPlayer;
+    bool flg_attackSound;
 
     float m_hp;
     float m_systemHp;
@@ -57,6 +62,8 @@ public class Goat : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
 
+        audioSource = GetComponent<AudioSource>();
+
         Initialize();
     }
 
@@ -65,7 +72,7 @@ public class Goat : MonoBehaviour
     {
         rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
 
-        if (player)
+        if (player && GameSystem.IsGoal == false)
         {
             Transform playerTrans = playerCollider as Transform;
             
@@ -126,6 +133,7 @@ public class Goat : MonoBehaviour
         flg_damage = false;
         flg_blinking = false;
         flg_attackPlayer = false;
+        flg_attackSound = false;
 
         m_hp = 1.0f;
         m_systemHp = m_hp;
@@ -171,6 +179,15 @@ public class Goat : MonoBehaviour
 
             if (m_moveToplayerTime >= 1.0f)
             {
+                if (flg_attackSound == false)
+                {
+                    audioSource.PlayOneShot(attack);
+
+                    flg_attackSound = true;
+                }
+
+                flg_attackSound = false;
+
                 m_moveToplayerTime = 0.0f;
 
                 flg_moveToPlayer = true;
@@ -230,7 +247,7 @@ public class Goat : MonoBehaviour
         Transform target = player.transform;
         float distance = Vector2.Distance(target.position, transform.position);
 
-        if (distance <= 4.0f)
+        if (distance <= 4.0f && flg_moveToPlayer == false)
         {
             flg_normal = false;
             flg_lookPlayer = true;

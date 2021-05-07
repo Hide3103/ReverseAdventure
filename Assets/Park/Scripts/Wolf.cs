@@ -9,6 +9,8 @@ public class Wolf : MonoBehaviour
     public GameObject lookPlayer;
     public GameObject lostPlayer;
 
+    public AudioClip attack;
+
     Vector2 firstScale;
 
     Rigidbody2D rigid2D;
@@ -16,6 +18,8 @@ public class Wolf : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     Color32 beforeColor;
+
+    AudioSource audioSource;
 
     bool flg_normal;
     bool flg_lookPlayer;
@@ -25,6 +29,7 @@ public class Wolf : MonoBehaviour
     bool flg_damage;
     bool flg_blinking;
     bool flg_chargeAttack;
+    bool flg_attackSound;
 
     float m_hp;
     float m_systemHp;
@@ -49,6 +54,8 @@ public class Wolf : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         beforeColor = spriteRenderer.color;
 
+        audioSource = GetComponent<AudioSource>();
+
         Initialize();
     }
 
@@ -57,7 +64,7 @@ public class Wolf : MonoBehaviour
     {
         rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
 
-        if (player)
+        if (player && GameSystem.IsGoal == false)
         {
             if (m_systemHp > 0)
             {
@@ -102,6 +109,7 @@ public class Wolf : MonoBehaviour
         flg_damage = false;
         flg_blinking = false;
         flg_chargeAttack = false;
+        flg_attackSound = false;
 
         m_hp = 2.0f;
         m_systemHp = m_hp;
@@ -201,9 +209,18 @@ public class Wolf : MonoBehaviour
 
             if (m_chargeTime >= 1.5f)
             {
+                if (flg_attackSound == false)
+                {
+                    audioSource.PlayOneShot(attack);
+
+                    flg_attackSound = true;
+                }
+
                 rigid2D.AddForce(new Vector3(transform.localScale.x * -250.0f, 100.0f, 0.0f));
 
                 m_chargeTime = 0.0f;
+
+                flg_attackSound = false;
             }
         }
     }

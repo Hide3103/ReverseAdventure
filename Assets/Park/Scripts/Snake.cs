@@ -60,7 +60,7 @@ public class Snake : MonoBehaviour
     void Update()
     {
         rigid2D.constraints = RigidbodyConstraints2D.FreezeRotation; //ローテーション固定
-        if (player)
+        if (player && GameSystem.IsGoal == false)
         {
             if (m_systemHp > 0)
             {
