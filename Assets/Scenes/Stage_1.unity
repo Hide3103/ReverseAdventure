@@ -558,6 +558,41 @@ PrefabInstance:
       propertyPath: changeWorld
       value: 
       objectReference: {fileID: 381304810}
+    - target: {fileID: 7406290983983559052, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: GoalObject
+      value: 
+      objectReference: {fileID: 1305181729}
+    - target: {fileID: 4959202402984451298, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959202402984451298, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939888130569378874, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939888130569378874, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.207
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185288386599603810, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136107684476456997, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: Reference_Obj
+      value: 
+      objectReference: {fileID: 1311692641}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4636ad015506243ac214d277a48bec, type: 3}
 --- !u!1 &91828239
@@ -689,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6962f207096a642807e179604f700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1849113497}
+  Player: {fileID: 1054787240}
 --- !u!114 &103158782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3031,7 +3066,7 @@ PrefabInstance:
     - target: {fileID: 6670685524124979575, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6670685524124979571, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
@@ -9430,7 +9465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6962f207096a642807e179604f700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1849113497}
+  Player: {fileID: 1054787240}
 --- !u!114 &868429698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9577,6 +9612,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Goat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191264300360483538, guid: 1284b135908366f47ad3334e38fa0488,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9191264300360483545, guid: 1284b135908366f47ad3334e38fa0488,
         type: 3}
