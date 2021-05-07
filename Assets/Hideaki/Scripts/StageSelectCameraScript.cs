@@ -121,6 +121,7 @@ public class StageSelectCameraScript : MonoBehaviour
                     {
                         GameSystem.WasPlayStage = SelectingStageNum;
                         PlayerScript.m_IsPlay = true;
+                        MotionPlayer.m_IsPlay = true;
                         SceneManager.LoadScene(GetStageName(SelectingStageNum));
                     }
                     break;

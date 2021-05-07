@@ -22,17 +22,17 @@ public class SwordScript : MonoBehaviour
     {
         if(this.gameObject.activeSelf == true)
         {
-            //if(attackDelta < limmitDelta)
-            //{
-            //    attackDelta += Time.deltaTime;
-            //    testFlg = false;
-            //}
-            //else
-            //{
-            //    gameObject.SetActive(false);
-            //    attackDelta = 0.0f;
-            //    testFlg = true;
-            //}
+            if (attackDelta < limmitDelta)
+            {
+                attackDelta += Time.deltaTime;
+                testFlg = false;
+            }
+            else
+            {
+                gameObject.SetActive(false);
+                attackDelta = 0.0f;
+                testFlg = true;
+            }
 
         }
     }

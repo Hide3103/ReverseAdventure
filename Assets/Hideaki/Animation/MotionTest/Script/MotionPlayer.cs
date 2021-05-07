@@ -88,7 +88,7 @@ public class MotionPlayer : MonoBehaviour
     Vector3 GoalPos;
 
     // プレイヤーの行動許可
-    public static bool m_IsPlay = true;
+    public static bool m_IsPlay = false;
     // 移動しているかのフラグ
     bool m_Moving = false;
 
@@ -114,10 +114,17 @@ public class MotionPlayer : MonoBehaviour
     //リバースに使用する画像
     public GameObject rawImage;
     RawImageScript rawImageScript;
+    // リバース発動までの時間
+    public float m_ReverseCoolTime = 0.4f;
+    // 現在のリバース発動経過時間
+    float m_ReverseDeltaTime = 0.0f;
 
     // 当たり判定用のオブジェクト
     public GameObject CollisionObj;
     CollisionScript collisionScript;
+    // ChangeWorld
+    public GameObject changeWorld;
+    ChangeWorld changeWorldScript;
 
     // Use this for initialization
     void Start()
@@ -134,6 +141,8 @@ public class MotionPlayer : MonoBehaviour
         rawImageScript = rawImage.GetComponent<RawImageScript>();
 
         collisionScript = CollisionObj.GetComponent<CollisionScript>();
+
+        changeWorldScript = changeWorld.GetComponent<ChangeWorld>();
 
         // キャラクターパラメータ関連を設定 
 
@@ -161,6 +170,8 @@ public class MotionPlayer : MonoBehaviour
     void AnimationBehaviour()
     {
 
+        float hori = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("Vertical");
         //ゴールなどプレイを中断させたい時のフラグ
         if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false)
         {
@@ -193,9 +204,9 @@ public class MotionPlayer : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.Z) == true)        // 攻撃 
                         {
-                            // 攻撃に変更 
-                            AnimationChange(AnimationPattern.Attack);
-                            m_Step = Step.Attack;
+                            //// 攻撃に変更 
+                            //AnimationChange(AnimationPattern.Attack);
+                            //m_Step = Step.Attack;
                         }
                         else if (m_Moving == true)
                         {
@@ -203,7 +214,8 @@ public class MotionPlayer : MonoBehaviour
                             AnimationChange(AnimationPattern.Walk);
                             m_Step = Step.Walk;
                         }
-                    }
+
+                    }   
                     break;
                 // 移動 
                 case Step.Walk:
@@ -223,7 +235,6 @@ public class MotionPlayer : MonoBehaviour
                     break;
                 // ジャンプ
                 case Step.Jump:
-
                     // ジャンプ終了
                     if (m_Flying == false)
                     {
@@ -231,7 +242,6 @@ public class MotionPlayer : MonoBehaviour
                         m_Step = Step.Wait;
                     }
                     break;
-
                 // 攻撃中 
                 case Step.Attack:
                     Debug.Log("Step:アタック");
@@ -253,6 +263,22 @@ public class MotionPlayer : MonoBehaviour
                     break;
                 case Step.Damage:
 
+                    break;
+                case Step.Goal:
+                    break;
+                case Step.Reverse:
+                    if (m_ReverseCoolTime < m_ReverseDeltaTime)
+                    {
+                        rawImageScript.changgingFlg = true;
+                        m_ReverseDeltaTime = 0.0f;
+                        AnimationChange(AnimationPattern.Wait);
+                        m_Step = Step.Wait;
+                        
+                    }
+                    else
+                    {
+                        m_ReverseDeltaTime += Time.deltaTime;
+                    }
                     break;
                 default:
                     break;
@@ -283,19 +309,34 @@ public class MotionPlayer : MonoBehaviour
             else
             {
                 // 移動
-                if (Input.GetKey(KeyCode.LeftArrow) == true)   // 左移動 
+                if (Input.GetKey(KeyCode.LeftArrow) == true || hori < -0.3f)   // 左移動 
                 {
                     //m_LookKey = -1;
                     transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
                     transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                     m_Moving = true;
                 }
-                else if (Input.GetKey(KeyCode.RightArrow) == true)  // 右移動 
+                else if (Input.GetKey(KeyCode.RightArrow) == true || hori > 0.3f)  // 右移動 
                 {
                     //m_LookKey = 1;
                     transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
                     transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                     m_Moving = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.C) == true || Input.GetKeyDown("joystick button 3"))
+                {
+                    if(ChangeWorld.CoolDownTime <= 0 && ChangeWorld.StateFront == true)
+                    {
+                        m_ReverseDeltaTime = 0.0f;
+                        AnimationChange(AnimationPattern.Reverse);
+                        m_Step = Step.Reverse;
+                    }
+                    else if(ChangeWorld.UraActiveTime < 10 && ChangeWorld.StateFront == false)
+                    {
+                        m_ReverseDeltaTime = 0.0f;
+                        AnimationChange(AnimationPattern.Reverse);
+                        m_Step = Step.Reverse;
+                    }
                 }
                 else
                 {
@@ -325,7 +366,7 @@ public class MotionPlayer : MonoBehaviour
             }
 
             // ジャンプ処理
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
             {
                 if (m_Flying == false && collisionScript.LadderFlg == false)
                 {
@@ -348,11 +389,11 @@ public class MotionPlayer : MonoBehaviour
             {
                 rigid2D.gravityScale = 0;
                 rigid2D.velocity = new Vector2(0.0f, 0.0f);
-                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || vert > 0)
                 {
                     this.transform.position += new Vector3(0.0f, 2.0f * Time.deltaTime, 0.0f);
                 }
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
                 {
                     this.transform.position += new Vector3(0.0f, -2.0f * Time.deltaTime, 0.0f);
                 }
@@ -363,13 +404,20 @@ public class MotionPlayer : MonoBehaviour
             }
 
             // 攻撃処理
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 1"))
             {
                 if (m_Step != Step.Attack)
                 {
                     AnimationChange(AnimationPattern.Attack);
                     m_Step = Step.Attack;
                 }
+            }
+
+            // ゴールに触れていたら
+            if(GameSystem.IsGoal == true)
+            {
+                AnimationChange(AnimationPattern.Goal);
+                m_Step = Step.Goal;
             }
         }
     }

@@ -101,7 +101,7 @@ public class PlayerScript : MonoBehaviour
             // 移動
             if (m_DamagedFlg == false)
             {
-                if (Input.GetKey(KeyCode.RightArrow)||hori>0)
+                if (Input.GetKey(KeyCode.RightArrow) || hori > 0.3f)
                 {
                     if (this.transform.position.x < GoalPos.x)
                     {
@@ -110,7 +110,7 @@ public class PlayerScript : MonoBehaviour
                         transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
                     }
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) || hori < 0)
+                if (Input.GetKey(KeyCode.LeftArrow) || hori < -0.3f)
                 {
                     //m_LookKey = -1;
                     transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
