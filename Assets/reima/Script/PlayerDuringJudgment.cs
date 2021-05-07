@@ -38,7 +38,8 @@ public class PlayerDuringJudgment : MonoBehaviour
 
         if (collision.gameObject.name == "Judgment_Obj")
         {
-            SetAfterSwitchingPlayerPos = Player.transform.position;
+            Vector3 playerPos = Player.transform.position;
+            SetAfterSwitchingPlayerPos = new Vector3(playerPos.x, playerPos.y + 1.3f, playerPos.z);
         }
     }
 }
