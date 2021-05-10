@@ -1464,7 +1464,7 @@ PrefabInstance:
     - target: {fileID: 6670685524124979575, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6670685524124979571, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
@@ -3053,7 +3053,7 @@ PrefabInstance:
     - target: {fileID: 315918746041625341, guid: b18df8149a59579418635f17d963873c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 315918746041625337, guid: b18df8149a59579418635f17d963873c,
         type: 3}
@@ -10193,7 +10193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1334230804
 Grid:
   m_ObjectHideFlags: 0
@@ -11961,7 +11961,7 @@ GameObject:
   - component: {fileID: 1707617571}
   - component: {fileID: 1707617573}
   m_Layer: 0
-  m_Name: Front_Tilemap
+  m_Name: OmoteTilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18167,6 +18167,11 @@ PrefabInstance:
       propertyPath: Reference_Obj
       value: 
       objectReference: {fileID: 715322054}
+    - target: {fileID: 2766815785956577212, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4636ad015506243ac214d277a48bec, type: 3}
 --- !u!1001 &1837263344
@@ -18522,7 +18527,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0039558, y: 6.496798}
+  m_Offset: {x: -1.0007324, y: 6.4599085}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18533,7 +18538,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0012436, y: 1.9929247}
+  m_Size: {x: 0.95612335, y: 1.9191456}
   m_EdgeRadius: 0
 --- !u!61 &1895195616
 BoxCollider2D:
@@ -18625,7 +18630,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: -6.4986095, y: 0.49946856}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
