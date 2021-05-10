@@ -23,6 +23,16 @@ public class VolumeSlider : MonoBehaviour
    public int SettingNumSelect = 1;
     public AudioMixer AudioMixer;
 
+    private float BGMTextVal = 100;
+    private float SETextVal = 100;
+
+    private float PadWaitTime = 0;
+    private float SetPadWaittime = 1;
+
+    public GameObject Icon;
+    public GameObject Icon2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,48 +47,72 @@ public class VolumeSlider : MonoBehaviour
         SEVolSlider.value = 100;
         float v = BGMVolSlider.value;
         float v2 = SEVolSlider.value;
+        SettingNumSelect = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        float hori = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("Vertical");
+
+        if (PadWaitTime > 0)
+        {
+            PadWaitTime -= Time.deltaTime;
+        }
+
         if (SettingCanvas.activeSelf == true)
         {
             Debug.Log(SettingNumSelect);
             NowBGMVol = BGMVolSlider.value;
             NowSEVol = SEVolSlider.value;
-            BGMVolumeTxt.text = "" + NowBGMVol;
-            SEVolumeTxt.text = "" + NowSEVol;
+            BGMVolumeTxt.text = "" + BGMTextVal;
+            SEVolumeTxt.text = "" + SETextVal;
             switch (SettingNumSelect)
             {
 
                 case 1:
-                    if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    Icon.gameObject.SetActive(true);
+                    Icon2.gameObject.SetActive(false);
+                    if (Input.GetKeyDown(KeyCode.LeftArrow)&&BGMTextVal>0 || hori < 0 && BGMTextVal > 0&&PadWaitTime<=0)
                     {
                         NowBGMVol -= ScroolSpeed;
+                        BGMTextVal -= ScroolSpeed;
+                        PadWaitTime += SetPadWaittime;
                     }
-                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    if (Input.GetKeyDown(KeyCode.RightArrow) && BGMTextVal < 100 || hori > 0 && BGMTextVal < 100 && PadWaitTime <= 0)
                     {
                         NowBGMVol += ScroolSpeed;
+                        BGMTextVal += ScroolSpeed;
+                        PadWaitTime += SetPadWaittime;
                     }
-                    if (Input.GetKeyDown(KeyCode.DownArrow) && SettingNumSelect == 1)
+                    if (Input.GetKeyDown(KeyCode.DownArrow) && SettingNumSelect == 1||vert<0 && SettingNumSelect == 1)
                     {
                         SettingNumSelect = 2;
                     }
+
                     break;
                 case 2:
-                    if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    Icon.gameObject.SetActive(false);
+                    Icon2.gameObject.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.LeftArrow) && SETextVal > 0 || hori < 0 && SETextVal > 0 && PadWaitTime <= 0)
                     {
                         NowSEVol -= ScroolSpeed;
+                        SETextVal -= ScroolSpeed;
+                        PadWaitTime += SetPadWaittime;
                     }
-                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    if (Input.GetKeyDown(KeyCode.RightArrow) && SETextVal < 100 || hori > 0 && SETextVal < 100 && PadWaitTime <= 0)
                     {
                         NowSEVol += ScroolSpeed;
+                        SETextVal += ScroolSpeed;
+                        PadWaitTime += SetPadWaittime;
                     }
-                    if (Input.GetKeyDown(KeyCode.UpArrow) && SettingNumSelect == 2)
+                    if (Input.GetKeyDown(KeyCode.UpArrow) && SettingNumSelect == 2 || vert > 0 && SettingNumSelect == 2)
                     {
                         SettingNumSelect = 1;
                     }
+
                     break;
 
             }
