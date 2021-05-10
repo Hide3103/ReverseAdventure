@@ -17,6 +17,11 @@ public class StageSelectCameraScript : MonoBehaviour
     CursorScript RightCursorScript;
     CursorScript LeftCursorScript;
 
+    AudioSource stageSelectAudio;
+    public AudioClip SE_Enter;
+    public AudioClip SE_ItemChange;
+    public AudioClip SE_Cancel;
+
     [SerializeField]
     bool MovingFlg = false;
 
@@ -25,13 +30,14 @@ public class StageSelectCameraScript : MonoBehaviour
     public bool test;
 
     public float WaitTime = 0;
-    float SetWaitTime = 1;
+    float SetWaitTime = 0.25f;
     // Start is called before the first frame update
     void Start()
     {
         RightCursorScript = RightCursor.GetComponent<CursorScript>();
         LeftCursorScript = LeftCursor.GetComponent<CursorScript>();
 
+        stageSelectAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,6 +59,7 @@ public class StageSelectCameraScript : MonoBehaviour
                 {
                     transform.position += new Vector3(5.0f, 0.0f, 0.0f);
                     SelectingStageNum += 1;
+                    stageSelectAudio.PlayOneShot(SE_ItemChange);
                     RightCursorScript.ButtonPressed = true;
                     RightCursorScript.flashDelta = 0.0f;
                     WaitTime = SetWaitTime;
@@ -64,6 +71,7 @@ public class StageSelectCameraScript : MonoBehaviour
                 {
                     transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
                     SelectingStageNum -= 1;
+                    stageSelectAudio.PlayOneShot(SE_ItemChange);
                     LeftCursorScript.ButtonPressed = true;
                     LeftCursorScript.flashDelta = 0.0f;
                     WaitTime = SetWaitTime;
@@ -72,6 +80,7 @@ public class StageSelectCameraScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.DownArrow) || (ver < 0 && WaitTime <= 0))
             {
+                stageSelectAudio.PlayOneShot(SE_ItemChange);
                 beforeStageNum = SelectingStageNum;
                 SelectingStageNum = 0;
                 BackButtonSelecting = true;
@@ -98,6 +107,7 @@ public class StageSelectCameraScript : MonoBehaviour
             //}
             if (Input.GetKeyDown(KeyCode.UpArrow) || (ver > 0 && WaitTime <= 0))
             {
+                stageSelectAudio.PlayOneShot(SE_ItemChange);
                 SelectingStageNum = beforeStageNum;
                 BackButtonSelecting = false;
                 WaitTime = SetWaitTime;
@@ -116,6 +126,7 @@ public class StageSelectCameraScript : MonoBehaviour
             {
                 case 0:
                     SceneManager.LoadScene("Title");
+                    stageSelectAudio.PlayOneShot(SE_Cancel);
                     break;
                 case 1:
                 case 2:
@@ -124,6 +135,7 @@ public class StageSelectCameraScript : MonoBehaviour
                 case 5:
                     if (test == true)
                     {
+                        stageSelectAudio.PlayOneShot(SE_Enter);
                         GameSystem.WasPlayStage = SelectingStageNum;
                         PlayerScript.m_IsPlay = true;
                         MotionPlayer.m_IsPlay = true;

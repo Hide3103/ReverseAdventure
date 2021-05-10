@@ -12,11 +12,17 @@ public class GameOver : MonoBehaviour
     public CanvasGroup TitleCanvasGroupstage2;
 
     float WaitTime = 0;
-    float SetWaitTime = 1;
+    float SetWaitTime = 0.25f;
+
+    AudioSource gameOverAudio;
+    public AudioClip SE_Enter;
+    public AudioClip SE_Select;
+    public AudioClip SE_Cancel;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        gameOverAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,13 +38,15 @@ public class GameOver : MonoBehaviour
 
         if (NumSelect==1&&Input.GetKeyDown(KeyCode.RightArrow) || (hori < 0 && NumSelect > 1 && WaitTime <= 0))
         {
+            gameOverAudio.PlayOneShot(SE_Select);
             NumSelect--;
-            WaitTime = SetWaitTime = 1; ;
+            WaitTime = SetWaitTime; ;
         }
         if(NumSelect==2&&Input.GetKeyDown(KeyCode.LeftArrow) || (hori > 0 && NumSelect < 2 && WaitTime <= 0))
         {
+            gameOverAudio.PlayOneShot(SE_Select);
             NumSelect++;
-            WaitTime = SetWaitTime = 1; ;
+            WaitTime = SetWaitTime; ;
 
         }
 
@@ -47,6 +55,7 @@ public class GameOver : MonoBehaviour
             case 1:
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    gameOverAudio.PlayOneShot(SE_Enter);
                     switch (GameSystem.WasPlayStage)
                     {
                         case 1:
@@ -64,6 +73,7 @@ public class GameOver : MonoBehaviour
             case 2:
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    gameOverAudio.PlayOneShot(SE_Enter);
                     SceneManager.LoadScene("StageSelect");
                 }
                 break;

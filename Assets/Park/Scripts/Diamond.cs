@@ -9,6 +9,9 @@ public class Diamond : MonoBehaviour
 
     public int DiamondNum;
 
+    AudioSource juwelAudio;
+    public AudioClip SE_GetJuwel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,8 @@ public class Diamond : MonoBehaviour
                 diaSpriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
             }
         }
+
+        juwelAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,6 +42,7 @@ public class Diamond : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            juwelAudio.PlayOneShot(SE_GetJuwel);
             GameSystem.NumJewel += 1;
             if(GameSystem.GetJuwelCollection(DiamondNum) == false)
             {

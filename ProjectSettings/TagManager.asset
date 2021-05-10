@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Arrow
   - Ladder
+  - Juwel
   layers:
   - Default
   - TransparentFX

@@ -27,6 +27,10 @@ public class Result : MonoBehaviour
     float PadWaitTime = 0;
     float SetWaitTime = 1;
 
+    AudioSource resultAudio;
+    public AudioClip SE_Enter;
+    public AudioClip SE_Select;
+    public AudioClip SE_Cancel;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +64,8 @@ public class Result : MonoBehaviour
                 GameSystem.SetJuwelCollection(i);
             }
         }
+
+        resultAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -85,11 +91,13 @@ public class Result : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && NowSelect < 3 || (hori > 0 && WaitTime <= 0)&&NowSelect<3 && PadWaitTime <= 0)
         {
+            resultAudio.PlayOneShot(SE_Select);
             NowSelect++;
             PadWaitTime = SetWaitTime;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && NowSelect > 1 || (hori < 0 && WaitTime <= 0)&&NowSelect>1 && PadWaitTime <= 0)
         {
+            resultAudio.PlayOneShot(SE_Select);
             NowSelect--;
             PadWaitTime = SetWaitTime;
         }
@@ -125,6 +133,7 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    resultAudio.PlayOneShot(SE_Enter);
                     //次にどこのステージに行くか(ステージ追加時は必須)
                     switch (GameSystem.WasPlayStage)
                     {
@@ -188,6 +197,7 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    resultAudio.PlayOneShot(SE_Enter);
                     SceneManager.LoadScene("StageSelect");
                 }
                 break;
@@ -216,6 +226,7 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    resultAudio.PlayOneShot(SE_Enter);
                     //もう一回同じステージを読み込む(ステージ追加時は必須)
                     switch (GameSystem.WasPlayStage)
                     {
@@ -240,8 +251,6 @@ public class Result : MonoBehaviour
                         case 4:
                             SceneManager.LoadScene("Stage_4");
                             //リセット内容を記載
-
-
                             break;
                     }
                 }

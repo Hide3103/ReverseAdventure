@@ -126,6 +126,14 @@ public class MotionPlayer : MonoBehaviour
     public GameObject changeWorld;
     ChangeWorld changeWorldScript;
 
+    // SE用のコンポーネント
+    AudioSource playerAudio;
+    public AudioClip SE_Attack;
+    public AudioClip SE_Jump;
+    public AudioClip SE_Reverse;
+    public AudioClip SE_Damage;
+    public AudioClip SE_GetJuwel;
+
     // Use this for initialization
     void Start()
     {
@@ -135,6 +143,8 @@ public class MotionPlayer : MonoBehaviour
         m_FirstScale = transform.localScale;
 
         ArmorUsing = GameSystem.GetArmorUsing();
+
+        playerAudio = GetComponent<AudioSource>();
 
         m_PlayerHp = playerMaxHP;
 
@@ -328,6 +338,7 @@ public class MotionPlayer : MonoBehaviour
                     if(ChangeWorld.CoolDownTime <= 0 && ChangeWorld.StateFront == true)
                     {
                         m_ReverseDeltaTime = 0.0f;
+                        playerAudio.PlayOneShot(SE_Reverse);
                         AnimationChange(AnimationPattern.Reverse);
                         m_Step = Step.Reverse;
                     }
@@ -372,6 +383,7 @@ public class MotionPlayer : MonoBehaviour
                 {
                     Debug.Log("押された");
                     this.rigid2D.AddForce(transform.up * 240.0f);
+                    playerAudio.PlayOneShot(SE_Jump);
                     AnimationChange(AnimationPattern.Jump);
                     m_Step = Step.Jump;
                     m_Flying = true;
@@ -408,6 +420,7 @@ public class MotionPlayer : MonoBehaviour
             {
                 if (m_Step != Step.Attack)
                 {
+                    playerAudio.PlayOneShot(SE_Attack);
                     AnimationChange(AnimationPattern.Attack);
                     m_Step = Step.Attack;
                 }
@@ -584,6 +597,7 @@ public class MotionPlayer : MonoBehaviour
             {
                 m_PlayerHp -= 1;
             }
+            playerAudio.PlayOneShot(SE_Damage);
             AnimationChange(AnimationPattern.Damage);
             m_Step = Step.Damage;
             m_DamagedFlg = true;
@@ -601,6 +615,11 @@ public class MotionPlayer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "Juwel")
+        {
+            Debug.Log("ぶつかった");
+            playerAudio.PlayOneShot(SE_GetJuwel);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -37,12 +37,18 @@ public class Title : MonoBehaviour
 
     public float SetAlpha = 0.0f;
 
+    AudioSource titleAudio;
+    public AudioClip SE_Enter;
+    public AudioClip SE_ItemChange;
+    public AudioClip SE_Cancel;
 
     // Start is called before the first frame update
     void Start()
     {
         LogImagePartRandom = Random.Range(1, 3);
         TitleImagePartRandom = Random.Range(1, 3);
+
+        titleAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +61,7 @@ public class Title : MonoBehaviour
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    titleAudio.PlayOneShot(SE_Enter);
                     SceneManager.LoadScene("StageSelect");
                 }
                 break;
@@ -62,6 +69,7 @@ public class Title : MonoBehaviour
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    titleAudio.PlayOneShot(SE_Enter);
                     SettingScene();
                 }
                 break;
@@ -69,6 +77,7 @@ public class Title : MonoBehaviour
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    titleAudio.PlayOneShot(SE_Enter);
                     SceneManager.LoadScene("CreditScene");
                 }
                 break;
@@ -76,6 +85,7 @@ public class Title : MonoBehaviour
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    titleAudio.PlayOneShot(SE_Enter);
                     Application.Quit();
                 }
                 break;
@@ -200,6 +210,7 @@ public class Title : MonoBehaviour
         //ボタン押してからスタートから下矢印押すとオプションに移動する
         if ((Input.GetKeyDown(KeyCode.DownArrow) && NumSelect == 1)||vert<0&&NumSelect==1 && PadWaitTime <= 0)
         {
+            titleAudio.PlayOneShot(SE_ItemChange);
             NumSelect = 2;
             PadWaitTime = SetWaitTime;
         }
@@ -207,6 +218,7 @@ public class Title : MonoBehaviour
         //オプションから右矢印を押すとクレジットに移動する
         if ((Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 2 )|| hori > 0 && NumSelect == 2 && PadWaitTime <= 0)
         {
+            titleAudio.PlayOneShot(SE_ItemChange);
             NumSelect = 3;
             PadWaitTime = SetWaitTime;
         }
@@ -214,6 +226,7 @@ public class Title : MonoBehaviour
         //オプションから左矢印でゲームを終わる
         if ((Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 2)||hori<0&&NumSelect== 2 && PadWaitTime <= 0)
         {
+            titleAudio.PlayOneShot(SE_ItemChange);
             NumSelect = 4;
             PadWaitTime = SetWaitTime;
         }
@@ -222,6 +235,7 @@ public class Title : MonoBehaviour
         //クレジットからオプションに移動
         if ((Input.GetKeyDown(KeyCode.LeftArrow) && NumSelect == 3)||hori<0&&NumSelect== 3 && PadWaitTime <= 0)
         {
+            titleAudio.PlayOneShot(SE_ItemChange);
             NumSelect = 2;
             PadWaitTime = SetWaitTime;
         }
@@ -230,6 +244,7 @@ public class Title : MonoBehaviour
         //ゲームを終わるからオプションに移動
         if ((Input.GetKeyDown(KeyCode.RightArrow) && NumSelect == 4)||hori>0&&NumSelect== 4 && PadWaitTime <= 0)
         {
+            titleAudio.PlayOneShot(SE_ItemChange);
             NumSelect = 2;
             PadWaitTime = SetWaitTime;
         }
@@ -239,6 +254,7 @@ public class Title : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.UpArrow))||vert> 0 && PadWaitTime <= 0)
             {
+                titleAudio.PlayOneShot(SE_ItemChange);
                 NumSelect = 1;
                 PadWaitTime = SetWaitTime;
             }
