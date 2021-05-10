@@ -3555,8 +3555,8 @@ Transform:
   - {fileID: 1455371708}
   - {fileID: 220587977}
   - {fileID: 1721587706}
-  - {fileID: 1637169570}
   - {fileID: 1710581802}
+  - {fileID: 1637169570}
   - {fileID: 1995579451}
   m_Father: {fileID: 1334230805}
   m_RootOrder: 2
@@ -17355,7 +17355,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 872209956}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1710581803
 SpriteRenderer:
@@ -18519,7 +18519,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.0039558, y: 6.496798}
@@ -18545,7 +18545,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 6.968567, y: 0}
@@ -18649,7 +18649,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 4.5012856, y: 0.4964261}
