@@ -29,7 +29,7 @@ public class Goat : MonoBehaviour
 
     bool flg_normal;
     bool flg_lookPlayer;
-    bool flg_moveToPlayer;
+    public static bool flg_moveToPlayer;
     bool flg_lostPlayer;
     bool flg_danger;
     bool flg_damage;
@@ -40,7 +40,7 @@ public class Goat : MonoBehaviour
     float m_hp;
     float m_systemHp;
     float m_speed;
-    float m_direction;
+    public static float m_direction;
     float m_moveToplayerTime;
     float m_lostPlayerTime;
     float m_damageDelta;
@@ -164,6 +164,8 @@ public class Goat : MonoBehaviour
 
             transform.position = Position;
 
+            NormalDirection();
+
             lookPlayer.SetActive(false);
             lostPlayer.SetActive(false);
         }
@@ -239,6 +241,18 @@ public class Goat : MonoBehaviour
                 m_attackTime = 0.0f;
                 //
             }
+        }
+    }
+
+    void NormalDirection()
+    {
+        if (m_direction == 1.0f)
+        {
+            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
+        }
+        else if (m_direction == -1.0f)
+        {
+            transform.localScale = new Vector3(firstScale.x, firstScale.y);
         }
     }
 
@@ -334,5 +348,10 @@ public class Goat : MonoBehaviour
         {
             spriteRenderer.sprite = backSprite;
         }
+    }
+
+    public static void SetDirection(float dir)
+    {
+        m_direction *= dir;
     }
 }
