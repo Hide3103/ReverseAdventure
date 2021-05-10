@@ -2005,13 +2005,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72df319b34b77240bf8a6be655c374e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: {fileID: 0}
-  NumJewelText: {fileID: 0}
-  PlayerHP: {fileID: 0}
-  CoolDownCountTxt: {fileID: 0}
-  CoolDownUI: {fileID: 0}
-  MaterUI: {fileID: 0}
-  PlayerPosTri: {fileID: 0}
+  Timer: {fileID: 1322691941}
+  NumJewelText: {fileID: 1592969004}
+  PlayerHP: {fileID: 861939758}
+  CoolDownCountTxt: {fileID: 523965615}
+  CoolDownUI: {fileID: 1698404298}
+  MaterUI: {fileID: 1491207547}
+  PlayerPosTri: {fileID: 1649267530}
 --- !u!1 &398271791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,7 +3087,7 @@ PrefabInstance:
     - target: {fileID: 6670685524124979571, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 6670685524124979571, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
