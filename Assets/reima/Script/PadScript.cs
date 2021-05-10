@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PadScript : MonoBehaviour
 {
     public GameObject PadUI;
+    public GameObject KeyBoardUI;
     public static bool PadOn = false;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,13 @@ public class PadScript : MonoBehaviour
         CheckInput();
         if(PadOn ==true)
         {
+            KeyBoardUI.SetActive(false);
             PadUI.SetActive(true);
+        }
+        if(PadOn==false)
+        {
+            KeyBoardUI.SetActive(true);
+            PadUI.SetActive(false);
         }
     }
 
@@ -31,6 +38,10 @@ public class PadScript : MonoBehaviour
         var ControllerNames = Input.GetJoystickNames();
 
         if (ControllerNames[0] == "")
+        {
+            PadOn = false;
+        }
+        else
         {
             PadOn = true;
         }
