@@ -2574,6 +2574,7 @@ Transform:
   - {fileID: 622567212}
   - {fileID: 13284158}
   - {fileID: 441726829}
+  - {fileID: 833039443}
   - {fileID: 1983629607}
   - {fileID: 1720427392}
   - {fileID: 265515858}
@@ -2582,7 +2583,6 @@ Transform:
   - {fileID: 1094716995}
   - {fileID: 419852952}
   - {fileID: 67285562}
-  - {fileID: 833039443}
   m_Father: {fileID: 1195762567}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8733,7 +8733,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 661739521}
-  m_RootOrder: 18
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &833039444
 SpriteRenderer:
@@ -10847,11 +10847,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1322691941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c237306a457d8bd4f96835d92164ea4f, type: 3}
+  m_Script: {fileID: 11500000, guid: bee68dca1acbab1448737be7c977c175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeText: {fileID: 1528334974}
-  Obj_TimeText: {fileID: 1322691941}
+  timerText: {fileID: 1528334974}
 --- !u!114 &1322691943
 MonoBehaviour:
   m_ObjectHideFlags: 0

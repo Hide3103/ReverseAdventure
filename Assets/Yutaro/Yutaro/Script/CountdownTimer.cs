@@ -8,7 +8,7 @@ public class CountdownTimer : MonoBehaviour
 {
     public Text timerText;
 
-    public float totalTime;
+    private float totalTime = 300;
     int seconds;
 
     // Start is called before the first frame update
