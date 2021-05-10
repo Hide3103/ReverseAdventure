@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
@@ -219,7 +220,7 @@ public class GameSystem : MonoBehaviour
 
     public void GoalAfterDeleteUI()
     {
-        if(IsGoal==true)
+        if(IsGoal==true && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(false);
             NumJewelText.SetActive(false);
@@ -229,7 +230,7 @@ public class GameSystem : MonoBehaviour
             MaterUI.SetActive(false);
             PlayerPosTri.SetActive(false);
         }
-        if (IsGoal == false)
+        if (IsGoal == false&&SceneManager.GetActiveScene().name !="StageSelect")
         {
             PlayerHP.SetActive(true);
             NumJewelText.SetActive(true);
