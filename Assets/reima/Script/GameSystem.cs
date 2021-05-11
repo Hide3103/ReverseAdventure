@@ -62,6 +62,7 @@ public class GameSystem : MonoBehaviour
     public GameObject CoolDownUI;
     public GameObject MaterUI;
     public GameObject PlayerPosTri;
+    public GameObject PlayUI;
     // Start is called before the first frame update
     void Start()
     {
