@@ -38,6 +38,11 @@ public class StageSelectCameraScript : MonoBehaviour
         LeftCursorScript = LeftCursor.GetComponent<CursorScript>();
 
         stageSelectAudio = GetComponent<AudioSource>();
+
+        if(1 <= GameSystem.WasPlayStage && GameSystem.WasPlayStage <= 5)
+        {
+            SelectingStageNum = GameSystem.WasPlayStage;
+        }
     }
 
     // Update is called once per frame
@@ -133,13 +138,18 @@ public class StageSelectCameraScript : MonoBehaviour
                 case 3:
                 case 4:
                 case 5:
-                    if (test == true)
+                    if (GameSystem.GetStageCleared(SelectingStageNum) == true && 
+                        GameSystem.ClearJuwel[SelectingStageNum] <= GameSystem.GetAllStageJuwelNum())
                     {
                         stageSelectAudio.PlayOneShot(SE_Enter);
                         GameSystem.WasPlayStage = SelectingStageNum;
                         PlayerScript.m_IsPlay = true;
                         MotionPlayer.m_IsPlay = true;
                         SceneManager.LoadScene(GetStageName(SelectingStageNum));
+                    }
+                    else
+                    {
+                        stageSelectAudio.PlayOneShot(SE_Cancel);
                     }
                     break;
                 default:
