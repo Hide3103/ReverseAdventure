@@ -64,7 +64,6 @@ public class VolumeSlider : MonoBehaviour
 
         if (SettingCanvas.activeSelf == true)
         {
-            Debug.Log(SettingNumSelect);
             NowBGMVol = BGMVolSlider.value;
             NowSEVol = SEVolSlider.value;
             BGMVolumeTxt.text = "" + BGMTextVal;
@@ -75,7 +74,7 @@ public class VolumeSlider : MonoBehaviour
                 case 1:
                     Icon.gameObject.SetActive(true);
                     Icon2.gameObject.SetActive(false);
-                    if (Input.GetKeyDown(KeyCode.LeftArrow)&&BGMTextVal>0 || hori < 0 && BGMTextVal > 0&&PadWaitTime<=0)
+                    if (Input.GetKeyDown(KeyCode.LeftArrow) && BGMTextVal > 0 || hori < 0 && BGMTextVal > 0 && PadWaitTime <= 0)
                     {
                         NowBGMVol -= ScroolSpeed;
                         BGMTextVal -= ScroolSpeed;
@@ -87,7 +86,7 @@ public class VolumeSlider : MonoBehaviour
                         BGMTextVal += ScroolSpeed;
                         PadWaitTime += SetPadWaittime;
                     }
-                    if (Input.GetKeyDown(KeyCode.DownArrow) && SettingNumSelect == 1||vert<0 && SettingNumSelect == 1)
+                    if (Input.GetKeyDown(KeyCode.DownArrow) && SettingNumSelect == 1 || vert < 0 && SettingNumSelect == 1)
                     {
                         SettingNumSelect = 2;
                     }
@@ -135,7 +134,9 @@ public class VolumeSlider : MonoBehaviour
             NowSEVol = Mathf.Clamp(NowSEVol, -80, 20);
             BGMVolSlider.value = NowBGMVol;
             SEVolSlider.value = NowSEVol;
+
             
+
         }
     }
     public void SetBGM(float BGMVol)
@@ -144,6 +145,6 @@ public class VolumeSlider : MonoBehaviour
     }
     public void SetSE(float SEVol)
     {
-        AudioMixer.SetFloat("BGMVol", SEVol);
+        AudioMixer.SetFloat("SEVol", SEVol);
     }
 }

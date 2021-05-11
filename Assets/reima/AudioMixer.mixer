@@ -51,6 +51,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 6a7979f7c6b1c1645acea5799ea91f29
     name: BGMVol
+  - guid: 804faab5b18ff2c46a45302c387e035c
+    name: MasterVol
   - guid: cf074d5d90b596742b296b6eb256822c
     name: SEVol
   m_AudioMixerGroupViews:
@@ -71,8 +73,8 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: facf067088229e3459fabdc1306d9279
   m_Children:
-  - {fileID: 1824363978337196461}
   - {fileID: -6367820310980226123}
+  - {fileID: 1824363978337196461}
   m_Volume: 804faab5b18ff2c46a45302c387e035c
   m_Pitch: f4b101d4c76ad5b4abb4a1d692686363
   m_Send: 00000000000000000000000000000000

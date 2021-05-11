@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 40485310}
   - component: {fileID: 40485309}
   - component: {fileID: 40485313}
-  - component: {fileID: 40485314}
   m_Layer: 5
   m_Name: SettingCanvas
   m_TagString: Untagged
@@ -252,14 +251,6 @@ MonoBehaviour:
   AudioMixer: {fileID: 24100000, guid: b074b88462d9ed2438bc5d582234e167, type: 2}
   Icon: {fileID: 1135951430}
   Icon2: {fileID: 1957008591}
---- !u!81 &40485314
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40485308}
-  m_Enabled: 1
 --- !u!1 &96237684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 803703660}
   - component: {fileID: 803703659}
+  - component: {fileID: 803703661}
   m_Layer: 0
   m_Name: BGMSystem
   m_TagString: Untagged
@@ -1318,6 +1310,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &803703661
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803703658}
+  m_Enabled: 1
 --- !u!1 &831739240
 GameObject:
   m_ObjectHideFlags: 0
