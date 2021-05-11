@@ -7,7 +7,7 @@ public class BlockPickUp : MonoBehaviour
     private GameObject Player;
     private GameObject SetBlockPos;
     private bool Have = false;
-    private float BlockSetPos = 0.2f;
+    private float BlockSetPos = 0.5f;
     bool Set;
     bool Flg_Throw;
     float WaitTime = 0;
