@@ -27,7 +27,7 @@ public class GetMaxJewelUI : MonoBehaviour
                             GettedJuwel += 1;
                         }
                     }
-                    MaxJewelUI.text = "宝石 : "+ GettedJuwel + "/"+ GameSystem.Stage1JuwelCollection.Length;
+                    MaxJewelUI.text = "宝石 : "+ GettedJuwel + " / "+ GameSystem.Stage1JuwelCollection.Length;
                     break;
                 }
             case 2:

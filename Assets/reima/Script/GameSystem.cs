@@ -45,7 +45,9 @@ public class GameSystem : MonoBehaviour
     public static float[] StageClearTimes = new float[] { 600.0f, 600.0f, 600.0f, 600.0f, 600.0f };
     // 各ステージのクリア状況
     public static bool[] StageCleared = new bool[] { true, false, false, false, false };
-    
+    // ステージ開放に必要な宝石の数
+    public static int[] ClearJuwel = new int[] {3, 6, 9, 12, 15 };
+
     // プレイヤーがアーマーを装備しているか
     public static bool ArmorUsing = false;
 
@@ -66,6 +68,7 @@ public class GameSystem : MonoBehaviour
         Time.timeScale = 1;
         ClearTime = 0.0f;
         IsGoal = false;
+        NumJewel = 0;
 
         switch (WasPlayStage)
         {
@@ -206,6 +209,42 @@ public class GameSystem : MonoBehaviour
                 break;
         }
         return false;
+    }
+    public static bool GetJuwelCollection(int juwelNum, int StageNum)
+    {
+        switch (StageNum)
+        {
+            case 1:
+                return Stage1JuwelCollection[juwelNum];
+            case 2:
+                return Stage2JuwelCollection[juwelNum];
+            case 3:
+                return Stage3JuwelCollection[juwelNum];
+            default:
+                break;
+        }
+        return false;
+    }
+    // クリアしたステージの宝石を記録する
+    public static int GetClearJuwelNum(int stageNum)
+    {
+        return ClearJuwel[stageNum];
+    }
+
+    public static int GetAllStageJuwelNum()
+    {
+        int AllJuwelNum = 0;
+        for(int stageNum = 1; stageNum <= 5; stageNum++)
+        {
+            for(int juwelNum = 0; juwelNum < 5; juwelNum++)
+            {
+                if(GetJuwelCollection(juwelNum, stageNum) == true)
+                {
+                    AllJuwelNum += 1;
+                }
+            }
+        }
+        return AllJuwelNum;
     }
 
     // プレイヤーにアーマーを付与
