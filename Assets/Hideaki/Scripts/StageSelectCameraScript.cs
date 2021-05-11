@@ -134,12 +134,25 @@ public class StageSelectCameraScript : MonoBehaviour
                     stageSelectAudio.PlayOneShot(SE_Cancel);
                     break;
                 case 1:
+                    if (GameSystem.GetStageCleared(SelectingStageNum) == true)
+                    {
+                        stageSelectAudio.PlayOneShot(SE_Enter);
+                        GameSystem.WasPlayStage = SelectingStageNum;
+                        PlayerScript.m_IsPlay = true;
+                        MotionPlayer.m_IsPlay = true;
+                        SceneManager.LoadScene(GetStageName(SelectingStageNum));
+                    }
+                    else
+                    {
+                        stageSelectAudio.PlayOneShot(SE_Cancel);
+                    }
+                    break;
                 case 2:
                 case 3:
                 case 4:
                 case 5:
                     if (GameSystem.GetStageCleared(SelectingStageNum) == true && 
-                        GameSystem.ClearJuwel[SelectingStageNum] <= GameSystem.GetAllStageJuwelNum())
+                        GameSystem.ClearJuwel[SelectingStageNum - 1] <= GameSystem.GetAllStageJuwelNum())
                     {
                         stageSelectAudio.PlayOneShot(SE_Enter);
                         GameSystem.WasPlayStage = SelectingStageNum;
