@@ -10,7 +10,7 @@ public class Credit : MonoBehaviour
     [SerializeField]
     private float TextScrollSpeed = 30;
     //　エンドロールが終了したかどうか
-    private bool StopEndRoll;
+    public static  bool StopEndRoll;
 
     GameObject SceneManage;
 
@@ -20,6 +20,7 @@ public class Credit : MonoBehaviour
     public float UpPoint;
 
     public float SetAlpha = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,8 @@ public class Credit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1"))
+
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1"))
         {
             SceneManager.LoadScene("Title");
         }
@@ -40,7 +42,7 @@ public class Credit : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + TextScrollSpeed * Time.deltaTime);
         }
-        else
+        if(transform.position.y >= UpPoint)
         {
             StopEndRoll = true;
         }
@@ -48,9 +50,14 @@ public class Credit : MonoBehaviour
 
         text.text =
 
-            "                  使用したサイト                     \n" +
+            "使用したサイト\n" +
+            "                                      \n " +
+            "魔王魂\n" +
+            "                                      \n " +
+            "ニコニコモンズ\n" +
             "                                       \n" +
-            "                                       \n" +
+
+            "                                       \n";
 
 
                                 //"                                       \n" +
@@ -66,6 +73,5 @@ public class Credit : MonoBehaviour
                                 //"                                      \n " +
                                 //"                                      \n " +
                                 //"                                      \n " +
-                                "ESCで戻る\n";
     }
 }

@@ -23,6 +23,8 @@ public class Title : MonoBehaviour
     public CanvasGroup TitleCanvasGroupstage3;
     public CanvasGroup TitleCanvasGroupstage4;
 
+    public CanvasGroup DarkeningImg;
+
 
     int NumSelect = 1;
     //1=ボタンを押してスタート
@@ -36,12 +38,16 @@ public class Title : MonoBehaviour
     float SetWaitTime = 1;
 
     public float SetAlpha = 0.0f;
+    public float DarkeningAlpha = 0.0f;
 
     AudioSource titleAudio;
     public AudioClip SE_Enter;
     public AudioClip SE_ItemChange;
     public AudioClip SE_Cancel;
 
+    public static bool DarkeningOn;
+
+    bool Push = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +55,7 @@ public class Title : MonoBehaviour
         TitleImagePartRandom = Random.Range(1, 3);
 
         titleAudio = GetComponent<AudioSource>();
+        DarkeningAlpha = 0.0f;
     }
 
     // Update is called once per frame
@@ -61,24 +68,36 @@ public class Title : MonoBehaviour
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    Push = true;
                     titleAudio.PlayOneShot(SE_Enter);
-                    SceneManager.LoadScene("StageSelect");
+                }
+                if(Push)
+                {
+                    Darkening();
                 }
                 break;
             case 2:
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    Push = true;
                     titleAudio.PlayOneShot(SE_Enter);
-                    SettingScene();
+                }
+                if (Push)
+                {
+                    Darkening();
                 }
                 break;
             case 3:
                 StartFlash();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    Push = true;
                     titleAudio.PlayOneShot(SE_Enter);
-                    SceneManager.LoadScene("CreditScene");
+                }
+                if (Push)
+                {
+                    Darkening();
                 }
                 break;
             case 4:
@@ -261,4 +280,35 @@ public class Title : MonoBehaviour
         }
     }
 
+    void Darkening()
+    {
+        WaitTime += Time.deltaTime;
+
+        if (DarkeningAlpha < 1 )
+        {
+            DarkeningAlpha += 0.4f * Time.deltaTime;
+        }
+
+        if(SetAlpha > 1  )
+        {
+            switch (NumSelect)
+            {
+                case 1:
+                    SceneManager.LoadScene("StageSelect");
+                    Push = false;
+                    break;
+                case 2:
+                    SettingScene();
+                    Push = false;
+                    DarkeningAlpha = 0.0f;
+                    break;
+                case 3:
+                    SceneManager.LoadScene("CreditScene");
+                    break;
+                case 4:
+                    break;
+            }
+        }
+        DarkeningImg.alpha = DarkeningAlpha;
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PadScript : MonoBehaviour
 {
@@ -19,12 +20,22 @@ public class PadScript : MonoBehaviour
     {
 
         CheckInput();
-        if(PadOn ==true)
+        if(PadOn ==true && SceneManager.GetActiveScene().name != "CreditScene")
         {
             KeyBoardUI.SetActive(false);
             PadUI.SetActive(true);
         }
-        if(PadOn==false)
+        if(PadOn==false&&SceneManager.GetActiveScene().name!="CreditScene")
+        {
+            KeyBoardUI.SetActive(true);
+            PadUI.SetActive(false);
+        }
+        if (PadOn == true && SceneManager.GetActiveScene().name == "CreditScene"&&Credit.StopEndRoll)
+        {
+            KeyBoardUI.SetActive(false);
+            PadUI.SetActive(true);
+        }
+        if (PadOn == false && SceneManager.GetActiveScene().name == "CreditScene"&&Credit.StopEndRoll)
         {
             KeyBoardUI.SetActive(true);
             PadUI.SetActive(false);
