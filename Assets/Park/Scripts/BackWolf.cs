@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wolf : MonoBehaviour
+public class BackWolf : MonoBehaviour
 {
     GameObject player;
     GameObject enemy;
@@ -93,7 +93,7 @@ public class Wolf : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            if (flg_blinking == false && ChangeWorld.StateFront)
+            if (flg_blinking == false && ChangeWorld.StateFront == false)
             {
                 flg_damage = true;
                 m_systemHp--;
@@ -323,7 +323,7 @@ public class Wolf : MonoBehaviour
             flg_chargeAttack = false;
             flg_moveToPlayer = true;
         }
-        
+
     }
 
     void Die()
