@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class Result : MonoBehaviour
 {
     public Text GetJewel;
-    public Text ClearTime;
     int NowSelect = 1;
 
     public CanvasGroup TitleCanvasGroupstage1;
@@ -36,7 +35,6 @@ public class Result : MonoBehaviour
     void Start()
     {
         GetJewel.gameObject.SetActive(true);
-        ClearTime.gameObject.SetActive(true);
         Time.timeScale = 1;
 
         if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
@@ -72,7 +70,6 @@ public class Result : MonoBehaviour
     void Update()
     {
         GetJewel.text = "獲得宝石数　:　" + GameSystem.NumJewel+"個";
-        ClearTime.text = "クリアタイム　:　" + Mathf.CeilToInt(GameSystem.ClearTime)+"秒";
         //GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
         GameSystem.SetStageCleared(true, GameSystem.WasPlayStage);
 
