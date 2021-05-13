@@ -2700,7 +2700,8 @@ AudioSource:
   m_GameObject: {fileID: 426291239}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1824363978337196461, guid: b074b88462d9ed2438bc5d582234e167,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 2f06966be7ba0c74e8a036d1f180b38d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -12382,7 +12383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677692447
 GameObject:
@@ -16511,7 +16512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &994330318
 PrefabInstance:
@@ -42017,7 +42018,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1819805110
 GameObject:
@@ -42296,6 +42297,7 @@ MonoBehaviour:
   CoolDownUI: {fileID: 0}
   MaterUI: {fileID: 0}
   PlayerPosTri: {fileID: 0}
+  PlayUI: {fileID: 0}
 --- !u!114 &1841546893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42349,7 +42351,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865768756
 GameObject:

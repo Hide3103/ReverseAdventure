@@ -1923,6 +1923,7 @@ MonoBehaviour:
   CoolDownUI: {fileID: 0}
   MaterUI: {fileID: 0}
   PlayerPosTri: {fileID: 0}
+  PlayUI: {fileID: 0}
 --- !u!4 &1582396039
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,7 +2403,8 @@ AudioSource:
   m_GameObject: {fileID: 1865111011}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1824363978337196461, guid: b074b88462d9ed2438bc5d582234e167,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 384f67fcb00697340b8049770f6b5f63, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
