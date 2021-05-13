@@ -96,8 +96,8 @@ public class PlayerScript : MonoBehaviour
         float hori = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
         //ゴールなどプレイを中断させたい時のフラグ
-        if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false)
-            {
+        if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false&&GameSystem.IsGoal==false)
+        { 
             // 移動
             if (m_DamagedFlg == false)
             {
