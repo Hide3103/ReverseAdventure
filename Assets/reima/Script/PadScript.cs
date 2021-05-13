@@ -24,21 +24,31 @@ public class PadScript : MonoBehaviour
         {
             KeyBoardUI.SetActive(false);
             PadUI.SetActive(true);
+            Debug.Log("a");
         }
         if(PadOn==false&&SceneManager.GetActiveScene().name!="CreditScene")
         {
             KeyBoardUI.SetActive(true);
             PadUI.SetActive(false);
+            Debug.Log("a");
         }
-        if (PadOn == true && SceneManager.GetActiveScene().name == "CreditScene"&&Credit.StopEndRoll)
+        if (GameSystem.IsGoal)
         {
             KeyBoardUI.SetActive(false);
-            PadUI.SetActive(true);
-        }
-        if (PadOn == false && SceneManager.GetActiveScene().name == "CreditScene"&&Credit.StopEndRoll)
-        {
-            KeyBoardUI.SetActive(true);
             PadUI.SetActive(false);
+        }
+        if (SceneManager.GetActiveScene().name == "CreditScene")
+        {
+            if (PadOn == true  && Credit.StopEndRoll)
+            {
+                KeyBoardUI.SetActive(false);
+                PadUI.SetActive(true);
+            }
+            if (PadOn == false  && Credit.StopEndRoll)
+            {
+                KeyBoardUI.SetActive(true);
+                PadUI.SetActive(false);
+            }
         }
     }
 
