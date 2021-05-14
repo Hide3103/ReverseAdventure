@@ -6,11 +6,13 @@ public class Credit : MonoBehaviour
 {
 
     public Text text;
+    public Text Url;
+    public Text Url2;
     GameObject itemmanage;
     [SerializeField]
     private float TextScrollSpeed = 30;
     //　エンドロールが終了したかどうか
-    public static  bool StopEndRoll;
+    public static bool StopEndRoll;
 
     GameObject SceneManage;
 
@@ -36,42 +38,45 @@ public class Credit : MonoBehaviour
             SceneManager.LoadScene("Title");
         }
 
-        WaitTime += Time.deltaTime;
-        //　エンドロール用テキストがリミットを越えるまで動かす
-        if (transform.position.y <= UpPoint)
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y + TextScrollSpeed * Time.deltaTime);
-        }
-        if(transform.position.y >= UpPoint)
-        {
-            StopEndRoll = true;
-        }
+        //    WaitTime += Time.deltaTime;
+        //    //　エンドロール用テキストがリミットを越えるまで動かす
+        //    if (transform.position.y <= UpPoint)
+        //    {
+        //        transform.position = new Vector2(transform.position.x, transform.position.y + TextScrollSpeed * Time.deltaTime);
+        //    }
+        //    if(transform.position.y >= UpPoint)
+        //    {
+        //        StopEndRoll = true;
+        //    }
 
 
-        text.text =
+        //    text.text =
 
-            "使用したサイト\n" +
-            "                                      \n " +
-            "魔王魂\n" +
-            "                                      \n " +
-            "ニコニコモンズ\n" +
-            "                                       \n" +
+        //        "使用したサイト\n" +
+        //        "                                      \n " +
+        //        "魔王魂\n" +
+        //                    Url.text +
+        //        "                                      \n " +
+        //        "ニコニコモンズ\n" +
+        //                                Url2.text +
+        //        "                                       \n" +
 
-            "                                       \n";
+        //        "                                       \n";
 
 
-                                //"                                       \n" +
-                                //"リーダー　：　(名前入力)\n" +
-                                //"                                      \n " +
-                                //"副リーダー　：　(名前入力)\n" +
-                                //"                                      \n " +
-                                //"プランナー　：　(名前入力)\n" +
-                                //"                                      \n " +
-                                //"プログラマー　：　(名前入力)\n" +
-                                //"                                      \n " +
-                                //"グラフィッカー　：　(名前入力)\n" +
-                                //"                                      \n " +
-                                //"                                      \n " +
-                                //"                                      \n " +
+        //                            //"                                       \n" +
+        //                            //"リーダー　：　(名前入力)\n" +
+        //                            //"                                      \n " +
+        //                            //"副リーダー　：　(名前入力)\n" +
+        //                            //"                                      \n " +
+        //                            //"プランナー　：　(名前入力)\n" +
+        //                            //"                                      \n " +
+        //                            //"プログラマー　：　(名前入力)\n" +
+        //                            //"                                      \n " +
+        //                            //"グラフィッカー　：　(名前入力)\n" +
+        //                            //"                                      \n " +
+        //                            //"                                      \n " +
+        //                            //"                                      \n " +
+        //}
     }
 }
