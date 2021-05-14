@@ -5,7 +5,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
 
-    private float ArrowSpeed = 50.0f;
+    private float ArrowSpeed = 650.0f;
 
     private bool DamageOn = true;
     Rigidbody2D rb;
@@ -14,15 +14,16 @@ public class Arrow : MonoBehaviour
     void Start()
     {
          rb = this.gameObject.GetComponent<Rigidbody2D>();
+        if (ChangeWorld.StateFront)
+        {
+            this.rb.AddForce(transform.right * -ArrowSpeed);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ChangeWorld.StateFront)
-        {
-            this.rb.AddForce(transform.right * -ArrowSpeed);
-        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
