@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour
 {
     public GameObject TitleLogImgPart1;
-    public GameObject TitleLogImgPart2;
 
     public GameObject TitleImgPart1;
-    public GameObject TitleImgPart2;
 
     public GameObject TitleCanvas;
     public GameObject SettingCanvas;
@@ -48,11 +46,11 @@ public class Title : MonoBehaviour
     public static bool DarkeningOn;
 
     bool Push = false;
+
+    float SetTitlePosY = 250;
     // Start is called before the first frame update
     void Start()
     {
-        LogImagePartRandom = Random.Range(1, 3);
-        TitleImagePartRandom = Random.Range(1, 3);
 
         titleAudio = GetComponent<AudioSource>();
         DarkeningAlpha = 0.0f;
@@ -110,31 +108,6 @@ public class Title : MonoBehaviour
                 break;
         }
 
-        //タイトルロゴのランダム
-        switch (LogImagePartRandom)
-        {
-            case 1:
-                TitleLogImgPart1.SetActive(true);
-                TitleLogImgPart2.SetActive(false);
-                break;
-            case 2:
-                TitleLogImgPart1.SetActive(false);
-                TitleLogImgPart2.SetActive(true);
-                break;
-        }
-
-        //タイトル背景のランダム
-        switch (TitleImagePartRandom)
-        {
-            case 1:
-                TitleImgPart1.SetActive(true);
-                TitleImgPart2.SetActive(false);
-                break;
-            case 2:
-                TitleImgPart1.SetActive(false);
-                TitleImgPart2.SetActive(true);
-                break;
-        }
 
 
     }
