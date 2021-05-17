@@ -24,7 +24,7 @@ public class Result : MonoBehaviour
     bool[] array;
 
     float PadWaitTime = 0;
-    float SetWaitTime = 0.5f;
+    float SetWaitTime = GameSystem.SetWaitTime;
 
     AudioSource resultAudio;
     public AudioClip SE_Enter;

@@ -65,6 +65,9 @@ public class GameSystem : MonoBehaviour
     public GameObject MaterUI;
     public GameObject PlayerPosTri;
     public GameObject PlayUI;
+
+    //Padを制御するための時間
+    public static float SetWaitTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {

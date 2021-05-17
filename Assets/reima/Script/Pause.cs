@@ -27,7 +27,7 @@ public class Pause : MonoBehaviour
 
     bool UseStick = false;
 
-    float SetWaitTime = 0.5f;
+    float SetWaitTime = GameSystem.SetWaitTime;
     // Start is called before the first frame update
     void Start()
     {

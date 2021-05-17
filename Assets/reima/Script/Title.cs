@@ -33,7 +33,7 @@ public class Title : MonoBehaviour
     float FlashSpeed = 0.8f;
     float WaitTime = 0;
     float PadWaitTime = 0;
-    float SetWaitTime = 0.5f;
+    float SetWaitTime = GameSystem.SetWaitTime;
 
     public float SetAlpha = 0.0f;
     public float DarkeningAlpha = 0.0f;
