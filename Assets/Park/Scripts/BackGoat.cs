@@ -108,7 +108,7 @@ public class BackGoat : MonoBehaviour
             {
                 flg_damage = true;
 
-                rigid2D.AddForce(new Vector3(transform.localScale.x * 100.0f, 50.0f, 0.0f));
+                rigid2D.AddForce(new Vector3(transform.localScale.x * 50.0f, 50.0f, 0.0f));
 
                 m_systemHp--;
             }
