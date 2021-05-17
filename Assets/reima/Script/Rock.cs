@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rock : MonoBehaviour
 {
     bool DamageOn = true;
-    float DestroyPosY = 6.0f;
+    float DestroyPosY = -10.0f;
     // Start is called before the first frame update
     void Start()
     {
