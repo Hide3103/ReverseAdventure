@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
@@ -34,19 +32,23 @@ public class GameSystem : MonoBehaviour
     public static int NumStage5MaxJewel = 50;
 
     //1ステージ目のダイヤの数
-    public static bool[] Stage1JuwelGetted = new bool[] { false, false, false, false, false, false, false, false, false, false, };
-    public static bool[] Stage1JuwelCollection = new bool[] { false, false, false, false, false, false, false, false, false, false, };
-    public static bool[] Stage2JuwelGetted = new bool[] { false, false, false, false, false, false, false, false, false, false, };
-    public static bool[] Stage2JuwelCollection = new bool[] { false, false, false, false, false, false, false, false, false, false, };
-    public static bool[] Stage3JuwelGetted = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
-    public static bool[] Stage3JuwelCollection = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+    public static bool[] Stage1JuwelGetted = new bool[] { false, false, false, false, false };
+    public static bool[] Stage1JuwelCollection = new bool[] { false, false, false, false, false };
+    public static bool[] Stage2JuwelGetted = new bool[] { false, false, false, false, false };
+    public static bool[] Stage2JuwelCollection = new bool[] { false, false, false, false, false };
+    public static bool[] Stage3JuwelGetted = new bool[] { false, false, false, false, false };
+    public static bool[] Stage3JuwelCollection = new bool[] { false, false, false, false, false };
+    public static bool[] Stage4JuwelGetted = new bool[] { false, false, false, false, false };
+    public static bool[] Stage4JuwelCollection = new bool[] { false, false, false, false, false };
+    public static bool[] Stage5JuwelGetted = new bool[] { false, false, false, false, false };
+    public static bool[] Stage5JuwelCollection = new bool[] { false, false, false, false, false };
 
     //各ステージのクリアタイム
     public static float[] StageClearTimes = new float[] { 600.0f, 600.0f, 600.0f, 600.0f, 600.0f };
     // 各ステージのクリア状況
     public static bool[] StageCleared = new bool[] { true, false, false, false, false };
     // ステージ開放に必要な宝石の数
-    public static int[] ClearJuwel = new int[] {3, 6, 9, 12, 15 };
+    public static int[] ClearJuwel = new int[] {0, 3, 6, 9, 12};
 
     // プレイヤーがアーマーを装備しているか
     public static bool ArmorUsing = false;
@@ -87,6 +89,18 @@ public class GameSystem : MonoBehaviour
                 break;
             case 3:
                 for (int i = 0; i < GameSystem.Stage3JuwelGetted.Length; i++)
+                {
+                    SetJuwelGetted(i, false);
+                }
+                break;
+            case 4:
+                for (int i = 0; i < GameSystem.Stage4JuwelGetted.Length; i++)
+                {
+                    SetJuwelGetted(i, false);
+                }
+                break;
+            case 5:
+                for (int i = 0; i < GameSystem.Stage5JuwelGetted.Length; i++)
                 {
                     SetJuwelGetted(i, false);
                 }
@@ -158,6 +172,12 @@ public class GameSystem : MonoBehaviour
             case 3:
                 Stage3JuwelGetted[juwelNum] = flg;
                 break;
+            case 4:
+                Stage4JuwelGetted[juwelNum] = flg;
+                break;
+            case 5:
+                Stage5JuwelGetted[juwelNum] = flg;
+                break;
             default:
                 break;
         }
@@ -172,6 +192,10 @@ public class GameSystem : MonoBehaviour
                 return Stage2JuwelGetted[juwelNum];
             case 3:
                 return Stage3JuwelGetted[juwelNum];
+            case 4:
+                return Stage4JuwelGetted[juwelNum];
+            case 5:
+                return Stage5JuwelGetted[juwelNum];
             default:
                 break;
         }
@@ -192,6 +216,35 @@ public class GameSystem : MonoBehaviour
             case 3:
                 Stage3JuwelCollection[juwelNum] = Stage3JuwelGetted[juwelNum];
                 break;
+            case 4:
+                Stage2JuwelCollection[juwelNum] = Stage4JuwelGetted[juwelNum];
+                break;
+            case 5:
+                Stage3JuwelCollection[juwelNum] = Stage5JuwelGetted[juwelNum];
+                break;
+            default:
+                break;
+        }
+    }
+    public static void SetJuwelCollection(int juwelNum, int stageNum, bool juwelGetted)
+    {
+        switch (stageNum)
+        {
+            case 1:
+                Stage1JuwelCollection[juwelNum] = juwelGetted;
+                break;
+            case 2:
+                Stage2JuwelCollection[juwelNum] = juwelGetted;
+                break;
+            case 3:
+                Stage3JuwelCollection[juwelNum] = juwelGetted;
+                break;
+            case 4:
+                Stage4JuwelCollection[juwelNum] = juwelGetted;
+                break;
+            case 5:
+                Stage5JuwelCollection[juwelNum] = juwelGetted;
+                break;
             default:
                 break;
         }
@@ -206,6 +259,10 @@ public class GameSystem : MonoBehaviour
                 return Stage2JuwelCollection[juwelNum];
             case 3:
                 return Stage3JuwelCollection[juwelNum];
+            case 4:
+                return Stage4JuwelCollection[juwelNum];
+            case 5:
+                return Stage5JuwelCollection[juwelNum];
             default:
                 break;
         }
@@ -221,6 +278,10 @@ public class GameSystem : MonoBehaviour
                 return Stage2JuwelCollection[juwelNum];
             case 3:
                 return Stage3JuwelCollection[juwelNum];
+            case 4:
+                return Stage4JuwelCollection[juwelNum];
+            case 5:
+                return Stage5JuwelCollection[juwelNum];
             default:
                 break;
         }

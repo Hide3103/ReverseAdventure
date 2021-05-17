@@ -5,25 +5,41 @@ using UnityEngine.UI;
 
 public class GettedJuwel_UI : MonoBehaviour
 {
-    public GameObject camera;
-    StageSelectCameraScript CameraScript;
+    //public GameObject SelectCamera;
+    //StageSelectCameraScript CameraScript;
 
-    public Image Diamond_1;
-    public Image Diamond_2;
-    public Image Diamond_3;
-    public Image Diamond_4;
-    public Image Diamond_5;
+    public GameObject Diamond_1;
+    Image DiaImage_1;
+    public GameObject Diamond_2;
+    Image DiaImage_2;
+    public GameObject Diamond_3;
+    Image DiaImage_3;
+    public GameObject Diamond_4;
+    Image DiaImage_4;
+    public GameObject Diamond_5;
+    Image DiaImage_5;
+
+    public GameObject GettedJuwelNum;
+    Text GettedJuwelNum_Text;
+
+    public static int HavingJuwelNum = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        CameraScript = camera.GetComponent<StageSelectCameraScript>();
+        DiaImage_1 = Diamond_1.GetComponent<Image>();
+        DiaImage_2 = Diamond_2.GetComponent<Image>();
+        DiaImage_3 = Diamond_3.GetComponent<Image>();
+        DiaImage_4 = Diamond_4.GetComponent<Image>();
+        DiaImage_5 = Diamond_5.GetComponent<Image>();
+
+        GettedJuwelNum_Text = GettedJuwelNum.GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; 0 < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             int selectingStageNum = StageSelectCameraScript.SelectingStageNum;
             if (selectingStageNum != 0)
@@ -38,6 +54,8 @@ public class GettedJuwel_UI : MonoBehaviour
                 }
             }
         }
+
+        GettedJuwelNum_Text.text = "× " + GameSystem.GetAllStageJuwelNum();
     }
 
     void SetJuwelGettedUI(int juwelNum, bool gettedTrue)
@@ -56,19 +74,19 @@ public class GettedJuwel_UI : MonoBehaviour
         switch (juwelNum)
         {
             case 0:
-                Diamond_1.color = color;
+                DiaImage_1.color = color;
                 break;
             case 1:
-                Diamond_2.color = color;
+                DiaImage_2.color = color;
                 break;
             case 2:
-                Diamond_3.color = color;
+                DiaImage_3.color = color;
                 break;
             case 3:
-                Diamond_4.color = color;
+                DiaImage_4.color = color;
                 break;
             case 4:
-                Diamond_5.color = color;
+                DiaImage_5.color = color;
                 break;
             default:
                 break;

@@ -39,10 +39,10 @@ public class StageSelectCameraScript : MonoBehaviour
 
         stageSelectAudio = GetComponent<AudioSource>();
 
-        if(1 <= GameSystem.WasPlayStage && GameSystem.WasPlayStage <= 5)
-        {
-            SelectingStageNum = GameSystem.WasPlayStage;
-        }
+        //if(1 <= GameSystem.WasPlayStage && GameSystem.WasPlayStage <= 5)
+        //{
+        //    SelectingStageNum = GameSystem.WasPlayStage;
+        //}
     }
 
     // Update is called once per frame
@@ -60,7 +60,7 @@ public class StageSelectCameraScript : MonoBehaviour
         {
             if (SelectingStageNum < StageMaxNum)
             {
-                if ((Input.GetKeyDown(KeyCode.RightArrow))||(hori>0 && WaitTime <= 0))
+                if ((Input.GetKeyDown(KeyCode.RightArrow))||(hori>0.3f && WaitTime <= 0))
                 {
                     transform.position += new Vector3(5.0f, 0.0f, 0.0f);
                     SelectingStageNum += 1;
@@ -72,7 +72,7 @@ public class StageSelectCameraScript : MonoBehaviour
             }
             if (1 < SelectingStageNum)
             {
-                if ((Input.GetKeyDown(KeyCode.LeftArrow))||(hori<0 && WaitTime <= 0))
+                if ((Input.GetKeyDown(KeyCode.LeftArrow))||(hori<-0.3f && WaitTime <= 0))
                 {
                     transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
                     SelectingStageNum -= 1;
@@ -94,22 +94,6 @@ public class StageSelectCameraScript : MonoBehaviour
         }
         else
         {
-            //if (StageMinNum < SelectingStageNum)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.RightArrow))
-            //    {
-            //        SelectingStageNum += 1;
-            //        RightCursorScript.ButtonPressed = true;
-            //    }
-            //}
-            //if (SelectingStageNum < 0)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.LeftArrow))
-            //    {
-            //        SelectingStageNum -= 1;
-            //        LeftCursorScript.ButtonPressed = true;
-            //    }
-            //}
             if (Input.GetKeyDown(KeyCode.UpArrow) || (ver > 0 && WaitTime <= 0))
             {
                 stageSelectAudio.PlayOneShot(SE_ItemChange);
@@ -123,7 +107,25 @@ public class StageSelectCameraScript : MonoBehaviour
         {
             test = GameSystem.GetStageCleared(SelectingStageNum);
         }
-        //Debug.Log(SelectingStageNum);
+
+        //Debug.Log("選択しているステージの必要宝石数" + GameSystem.ClearJuwel[SelectingStageNum - 1]);
+        //Debug.Log("獲得済みの合計宝石数" + GameSystem.GetAllStageJuwelNum());
+        //if (GameSystem.GetStageCleared(SelectingStageNum) == true)
+        //{
+        //    Debug.Log("GameSystem.GetStageCleared(SelectingStageNum) = true");
+        //}
+        //else
+        //{
+        //    Debug.Log("GameSystem.GetStageCleared(SelectingStageNum) = false");
+        //}
+        //if (GameSystem.ClearJuwel[SelectingStageNum] <= GameSystem.GetAllStageJuwelNum())
+        //{
+        //    Debug.Log("GameSystem.ClearJuwel[SelectingStageNum] <= GameSystem.GetAllStageJuwelNum() == true");
+        //}
+        //else
+        //{
+        //    Debug.Log("GameSystem.ClearJuwel[SelectingStageNum] <= GameSystem.GetAllStageJuwelNum() == false");
+        //}
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown("joystick button 0"))
         {
@@ -134,25 +136,12 @@ public class StageSelectCameraScript : MonoBehaviour
                     stageSelectAudio.PlayOneShot(SE_Cancel);
                     break;
                 case 1:
-                    if (GameSystem.GetStageCleared(SelectingStageNum) == true)
-                    {
-                        stageSelectAudio.PlayOneShot(SE_Enter);
-                        GameSystem.WasPlayStage = SelectingStageNum;
-                        PlayerScript.m_IsPlay = true;
-                        MotionPlayer.m_IsPlay = true;
-                        SceneManager.LoadScene(GetStageName(SelectingStageNum));
-                    }
-                    else
-                    {
-                        stageSelectAudio.PlayOneShot(SE_Cancel);
-                    }
-                    break;
                 case 2:
                 case 3:
                 case 4:
                 case 5:
-                    if (GameSystem.GetStageCleared(SelectingStageNum) == true && 
-                        GameSystem.ClearJuwel[SelectingStageNum - 1] <= GameSystem.GetAllStageJuwelNum())
+                    if (GameSystem.GetStageCleared(SelectingStageNum) == true 
+                        && GameSystem.ClearJuwel[SelectingStageNum - 1] <= GameSystem.GetAllStageJuwelNum())
                     {
                         stageSelectAudio.PlayOneShot(SE_Enter);
                         GameSystem.WasPlayStage = SelectingStageNum;
@@ -167,6 +156,18 @@ public class StageSelectCameraScript : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            for(int stageNum = 0; stageNum < 5; stageNum++)
+            {
+                for(int juwelNum = 0; juwelNum < 5; juwelNum++)
+                {
+                    GameSystem.SetJuwelCollection(stageNum, juwelNum, true);
+                }
+                GameSystem.SetStageCleared(true, stageNum);
             }
         }
     }
@@ -195,5 +196,11 @@ public class StageSelectCameraScript : MonoBehaviour
         }
 
         return stageName;
+    }
+
+    // 選択中のステージボタンの番号を取得
+    public static int GetSelectingStageNum()
+    {
+        return SelectingStageNum;
     }
 }
