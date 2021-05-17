@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rock : MonoBehaviour
 {
     bool DamageOn = true;
+    float DestroyPosY = 6.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,12 @@ public class Rock : MonoBehaviour
     {
         this.transform.position += new Vector3( -1 * Time.deltaTime,0, 0);
         this.transform.Rotate(new Vector3(0, 0, +5));
+
+        if (this.transform.position.y <= DestroyPosY)
+        {
+            Destroy(this.gameObject);
+            RockSpone.RockAlive = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
