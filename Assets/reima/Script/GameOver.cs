@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour
     public CanvasGroup TitleCanvasGroupstage2;
 
     float WaitTime = 0;
-    float SetWaitTime = 0.25f;
+    float SetWaitTime = 0.5f;
 
     AudioSource gameOverAudio;
     public AudioClip SE_Enter;

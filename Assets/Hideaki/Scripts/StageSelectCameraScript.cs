@@ -30,7 +30,7 @@ public class StageSelectCameraScript : MonoBehaviour
     public bool test;
 
     public float WaitTime = 0;
-    float SetWaitTime = 0.25f;
+    float SetWaitTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {

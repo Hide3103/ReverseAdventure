@@ -25,7 +25,9 @@ public class Pause : MonoBehaviour
     public GameObject RawImage;
     RawImageScript rawImageScript;
 
-    bool UseStick = false; 
+    bool UseStick = false;
+
+    float SetWaitTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,12 +75,12 @@ public class Pause : MonoBehaviour
                 if (((Input.GetKeyDown(KeyCode.UpArrow) && NowNumSelect > 1) || (vert>0 && NowNumSelect > 1&&WaitTime<=0)))
                 {
                         NowNumSelect--;
-                        WaitTime = 2;
+                        WaitTime = SetWaitTime;
                 }
                 if (((Input.GetKeyDown(KeyCode.DownArrow) && NowNumSelect < 3) || (vert < 0 && NowNumSelect < 3 && WaitTime <= 0)))
                 {
                         NowNumSelect++;
-                        WaitTime = 2;
+                        WaitTime = SetWaitTime;
                 }
             }
         }
