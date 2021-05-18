@@ -19,6 +19,11 @@ public class GameOver : MonoBehaviour
     public AudioClip SE_Select;
     public AudioClip SE_Cancel;
 
+    public GameObject RetryImg;
+    public GameObject StageselectImg;
+
+    public GameObject Open_RetryImg;
+    public GameObject Open_StageselectImg;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,12 +44,25 @@ public class GameOver : MonoBehaviour
         if (NumSelect==1&&Input.GetKeyDown(KeyCode.RightArrow) || (hori < 0 && NumSelect > 1 && WaitTime <= 0))
         {
             gameOverAudio.PlayOneShot(SE_Select);
+
+            RetryImg.SetActive(false);
+            Open_RetryImg.SetActive(true);
+
+            Open_StageselectImg.SetActive(false);
+            StageselectImg.SetActive(true);
             NumSelect--;
             WaitTime = SetWaitTime; ;
         }
         if(NumSelect==2&&Input.GetKeyDown(KeyCode.LeftArrow) || (hori > 0 && NumSelect < 2 && WaitTime <= 0))
         {
             gameOverAudio.PlayOneShot(SE_Select);
+
+            RetryImg.SetActive(true);
+            Open_RetryImg.SetActive(false);
+
+            Open_StageselectImg.SetActive(true);
+            StageselectImg.SetActive(false);
+
             NumSelect++;
             WaitTime = SetWaitTime; ;
 

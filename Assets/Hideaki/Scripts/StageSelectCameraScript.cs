@@ -31,6 +31,9 @@ public class StageSelectCameraScript : MonoBehaviour
 
     public float WaitTime = 0;
     float SetWaitTime = GameSystem.SetWaitTime;
+
+    public GameObject TitleBackImg;
+    public GameObject Open_TitleBackImg;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,8 @@ public class StageSelectCameraScript : MonoBehaviour
                     RightCursorScript.ButtonPressed = true;
                     RightCursorScript.flashDelta = 0.0f;
                     WaitTime = SetWaitTime;
+                    TitleBackImg.SetActive(true);
+                    Open_TitleBackImg.SetActive(false);
                 }
             }
             if (1 < SelectingStageNum)
@@ -80,6 +85,8 @@ public class StageSelectCameraScript : MonoBehaviour
                     LeftCursorScript.ButtonPressed = true;
                     LeftCursorScript.flashDelta = 0.0f;
                     WaitTime = SetWaitTime;
+                    TitleBackImg.SetActive(true);
+                    Open_TitleBackImg.SetActive(false);
                 }
             }
 
@@ -90,6 +97,8 @@ public class StageSelectCameraScript : MonoBehaviour
                 SelectingStageNum = 0;
                 BackButtonSelecting = true;
                 WaitTime = SetWaitTime;
+                TitleBackImg.SetActive(false);
+                Open_TitleBackImg.SetActive(true);
             }
         }
         else
@@ -100,6 +109,8 @@ public class StageSelectCameraScript : MonoBehaviour
                 SelectingStageNum = beforeStageNum;
                 BackButtonSelecting = false;
                 WaitTime = SetWaitTime;
+                TitleBackImg.SetActive(true);
+                Open_TitleBackImg.SetActive(false);
             }
         }
 

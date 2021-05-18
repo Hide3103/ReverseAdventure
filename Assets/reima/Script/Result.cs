@@ -31,6 +31,14 @@ public class Result : MonoBehaviour
     public AudioClip SE_Select;
     public AudioClip SE_Cancel;
 
+    public GameObject NextStageImg;
+    public GameObject StageSelectImg;
+    public GameObject Retry;
+
+    public GameObject Open_NextStageImg;
+    public GameObject Open_StageSelectImg;
+    public GameObject Open_Retry;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,27 +114,36 @@ public class Result : MonoBehaviour
             case 1:
                 if (NowSelect == 1)
                 {
-                    TitleCanvasGroupstage3.alpha = 1.0f;
-                    FlashTime += Time.unscaledDeltaTime;
-                    if (FlashTime< 1.5 && SetAlpha< 1)
-                    {
-                        if (SetAlpha< 1)
-                        {
-                            SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
-                        }
-                    TitleCanvasGroupstage1.alpha = SetAlpha;
-                    }
-                    if (FlashTime > 1.5 && SetAlpha > 0.4)
-                    {
-                        SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
-                        if (SetAlpha< 0.4)
-                        {
-                            FlashTime = 0;
-                        }
-                    }
-                    TitleCanvasGroupstage1.alpha = SetAlpha;
-                    TitleCanvasGroupstage2.alpha = 1.0f;
-                    TitleCanvasGroupstage3.alpha = 1.0f;
+                    NextStageImg.SetActive(false);
+                    Open_NextStageImg.SetActive(true);
+
+                    Open_Retry.SetActive(false);
+                    Open_StageSelectImg.SetActive(false);
+
+                    Retry.SetActive(true);
+                    StageSelectImg.SetActive(true);
+                    //仕様変更につき取り消し
+                    //TitleCanvasGroupstage3.alpha = 1.0f;
+                    //FlashTime += Time.unscaledDeltaTime;
+                    //if (FlashTime< 1.5 && SetAlpha< 1)
+                    //{
+                    //    if (SetAlpha< 1)
+                    //    {
+                    //        SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
+                    //    }
+                    //TitleCanvasGroupstage1.alpha = SetAlpha;
+                    //}
+                    //if (FlashTime > 1.5 && SetAlpha > 0.4)
+                    //{
+                    //    SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
+                    //    if (SetAlpha< 0.4)
+                    //    {
+                    //        FlashTime = 0;
+                    //    }
+                    //}
+                    //TitleCanvasGroupstage1.alpha = SetAlpha;
+                    //TitleCanvasGroupstage2.alpha = 1.0f;
+                    //TitleCanvasGroupstage3.alpha = 1.0f;
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
@@ -170,27 +187,36 @@ public class Result : MonoBehaviour
             case 2:
                 if (NowSelect == 2)
                 {
-                    TitleCanvasGroupstage1.alpha = 1.0f;
-                    FlashTime += Time.unscaledDeltaTime;
-                    if (FlashTime< 1.5 && SetAlpha< 1)
-                    {
-                        if (SetAlpha< 1)
-                        {
-                            SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
-                        }
-                        TitleCanvasGroupstage2.alpha = SetAlpha;
-                    }
-                    if (FlashTime > 1.5 && SetAlpha > 0.4)
-                    {
-                        SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
-                        if (SetAlpha< 0.4)
-                        {
-                            FlashTime = 0;
-                        }
-                    }
-                    TitleCanvasGroupstage2.alpha = SetAlpha;
-                    TitleCanvasGroupstage1.alpha = 1.0f;
-                    TitleCanvasGroupstage3.alpha = 1.0f;
+
+                    StageSelectImg.SetActive(false);
+                    Open_StageSelectImg.SetActive(true);
+
+                    Open_Retry.SetActive(false);
+                    Open_NextStageImg.SetActive(false);
+
+                    Retry.SetActive(true);
+                    NextStageImg.SetActive(true);
+                    //TitleCanvasGroupstage1.alpha = 1.0f;
+                    //FlashTime += Time.unscaledDeltaTime;
+                    //if (FlashTime< 1.5 && SetAlpha< 1)
+                    //{
+                    //    if (SetAlpha< 1)
+                    //    {
+                    //        SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
+                    //    }
+                    //    TitleCanvasGroupstage2.alpha = SetAlpha;
+                    //}
+                    //if (FlashTime > 1.5 && SetAlpha > 0.4)
+                    //{
+                    //    SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
+                    //    if (SetAlpha< 0.4)
+                    //    {
+                    //        FlashTime = 0;
+                    //    }
+                    //}
+                    //TitleCanvasGroupstage2.alpha = SetAlpha;
+                    //TitleCanvasGroupstage1.alpha = 1.0f;
+                    //TitleCanvasGroupstage3.alpha = 1.0f;
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
@@ -201,25 +227,33 @@ public class Result : MonoBehaviour
             case 3:
                 if (NowSelect == 3)
                 {
-                    TitleCanvasGroupstage2.alpha = 1.0f;
-                    FlashTime += Time.unscaledDeltaTime;
-                    if (FlashTime< 1.5 && SetAlpha< 1)
-                    {
-                        if (SetAlpha< 1)
-                            SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
-                    }
-                    TitleCanvasGroupstage3.alpha = SetAlpha;
-                    if (FlashTime > 1.5 && SetAlpha > 0.4)
-                    {
-                        SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
-                        if (SetAlpha< 0.4)
-                        {
-                            FlashTime = 0;
-                        }
-                        TitleCanvasGroupstage3.alpha = SetAlpha;
-                        TitleCanvasGroupstage1.alpha = 1.0f;
-                        TitleCanvasGroupstage2.alpha = 1.0f;
-                    }
+                    Retry.SetActive(false);
+                    Open_Retry.SetActive(true);
+
+                    Open_StageSelectImg.SetActive(false);
+                    Open_NextStageImg.SetActive(false);
+
+                    StageSelectImg.SetActive(true);
+                    NextStageImg.SetActive(true);
+                    //TitleCanvasGroupstage2.alpha = 1.0f;
+                    //FlashTime += Time.unscaledDeltaTime;
+                    //if (FlashTime< 1.5 && SetAlpha< 1)
+                    //{
+                    //    if (SetAlpha< 1)
+                    //        SetAlpha += FlashSpeed * Time.unscaledDeltaTime;
+                    //}
+                    //TitleCanvasGroupstage3.alpha = SetAlpha;
+                    //if (FlashTime > 1.5 && SetAlpha > 0.4)
+                    //{
+                    //    SetAlpha -= FlashSpeed * Time.unscaledDeltaTime;
+                    //    if (SetAlpha< 0.4)
+                    //    {
+                    //        FlashTime = 0;
+                    //    }
+                    //    TitleCanvasGroupstage3.alpha = SetAlpha;
+                    //    TitleCanvasGroupstage1.alpha = 1.0f;
+                    //    TitleCanvasGroupstage2.alpha = 1.0f;
+                    //}
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
