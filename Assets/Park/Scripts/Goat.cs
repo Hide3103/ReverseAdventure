@@ -12,8 +12,8 @@ public class Goat : MonoBehaviour
     Transform enemyCollider;
     Transform playerCollider;
 
-    public Sprite frontSprite;
-    public Sprite backSprite;
+    //public Sprite frontSprite;
+    //public Sprite backSprite;
 
     public AudioClip attack;
 
@@ -85,7 +85,7 @@ public class Goat : MonoBehaviour
             Damage();
             Die();
             SystemDie();
-            ChangeSprite();
+            //ChangeSprite();
 
             Physics2D.IgnoreCollision(playerTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
@@ -338,17 +338,17 @@ public class Goat : MonoBehaviour
         }
     }
 
-    void ChangeSprite()
-    {
-        if (ChangeWorld.StateFront)
-        {
-            spriteRenderer.sprite = frontSprite;
-        }
-        else
-        {
-            spriteRenderer.sprite = backSprite;
-        }
-    }
+    //void ChangeSprite()
+    //{
+    //    if (ChangeWorld.StateFront)
+    //    {
+    //        spriteRenderer.sprite = frontSprite;
+    //    }
+    //    else
+    //    {
+    //        spriteRenderer.sprite = backSprite;
+    //    }
+    //}
 
     public static void SetDirection(float dir)
     {
