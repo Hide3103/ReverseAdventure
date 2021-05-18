@@ -5,12 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public GameObject TitleLogImgPart1;
-
-    public GameObject TitleImgPart1;
 
     public GameObject TitleCanvas;
     public GameObject SettingCanvas;
+    public GameObject CloudCanvas;
 
     int LogImagePartRandom;
     int TitleImagePartRandom;
@@ -189,6 +187,8 @@ public class Title : MonoBehaviour
     {
         TitleCanvas.SetActive(!TitleCanvas.activeSelf);
         SettingCanvas.SetActive(!SettingCanvas.activeSelf);
+        CloudCanvas.SetActive(!CloudCanvas.activeSelf);
+
     }
 
     void MenuMove()

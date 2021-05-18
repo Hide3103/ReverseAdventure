@@ -804,7 +804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &180070201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,10 +1102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684cc534b08a77a479a6c395da5eb2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleLogImgPart1: {fileID: 0}
-  TitleImgPart1: {fileID: 2032547222}
   TitleCanvas: {fileID: 260049927}
   SettingCanvas: {fileID: 40485308}
+  CloudCanvas: {fileID: 418498341}
   TitleCanvasGroupstage1: {fileID: 1701537296}
   TitleCanvasGroupstage2: {fileID: 710097986}
   TitleCanvasGroupstage3: {fileID: 97118293}
@@ -1693,7 +1692,6 @@ GameObject:
   m_Component:
   - component: {fileID: 803703660}
   - component: {fileID: 803703659}
-  - component: {fileID: 803703661}
   m_Layer: 0
   m_Name: BGMSystem
   m_TagString: Untagged
@@ -1812,14 +1810,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &803703661
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803703658}
-  m_Enabled: 1
 --- !u!1 &831739240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleCanvas: {fileID: 260049927}
   SettingCanvas: {fileID: 40485308}
+  CloudCanvas: {fileID: 418498341}
 --- !u!4 &1416314000
 Transform:
   m_ObjectHideFlags: 0
@@ -2467,7 +2458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1568307739
 RectTransform:
   m_ObjectHideFlags: 0

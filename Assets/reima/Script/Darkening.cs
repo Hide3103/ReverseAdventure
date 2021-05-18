@@ -20,7 +20,6 @@ public class Darkening : MonoBehaviour
     {
 
             WaitTime += Time.deltaTime;
-            Debug.Log(WaitTime);
 
             if (SetAlpha <1&&DarkeningOn)
             {

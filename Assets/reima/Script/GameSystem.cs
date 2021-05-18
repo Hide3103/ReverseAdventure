@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
+
     public static bool IsGoal = false;
     //クリアタイム
     public static float ClearTime = 0;
@@ -333,6 +334,7 @@ public class GameSystem : MonoBehaviour
             CoolDownUI.SetActive(false);
             MaterUI.SetActive(false);
             PlayerPosTri.SetActive(false);
+
         }
         if (IsGoal == false&&SceneManager.GetActiveScene().name !="StageSelect")
         {
