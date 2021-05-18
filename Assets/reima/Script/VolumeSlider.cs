@@ -37,12 +37,12 @@ public class VolumeSlider : MonoBehaviour
     void Start()
     {
         BGMVolSlider.value = AudioListener.volume;
-        BGMVolSlider.maxValue = 20;
+        BGMVolSlider.maxValue = 0;
         BGMVolSlider.minValue = -80;
         BGMVolSlider.value = 0;
 
         SEVolSlider.value = AudioListener.volume;
-        SEVolSlider.maxValue = 20;
+        SEVolSlider.maxValue = 0;
         SEVolSlider.minValue = -80;
         SEVolSlider.value = 0;
         float v = BGMVolSlider.value;

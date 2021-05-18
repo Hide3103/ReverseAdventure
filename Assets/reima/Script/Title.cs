@@ -5,26 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public GameObject TitleLogImgPart1;
-
-    public GameObject TitleImgPart1;
 
     public GameObject TitleCanvas;
     public GameObject SettingCanvas;
-
-    int LogImagePartRandom;
-    int TitleImagePartRandom;
+    public GameObject CloudCanvas;
 
 
-    public CanvasGroup TitleCanvasGroupstage1;
-    public CanvasGroup TitleCanvasGroupstage2;
-    public CanvasGroup TitleCanvasGroupstage3;
-    public CanvasGroup TitleCanvasGroupstage4;
+    //仕様変更
+    //public CanvasGroup TitleCanvasGroupstage1;
+   // public CanvasGroup TitleCanvasGroupstage2;
+   // public CanvasGroup TitleCanvasGroupstage3;
+    //public CanvasGroup TitleCanvasGroupstage4;
 
     public CanvasGroup DarkeningImg;
 
 
-    int NumSelect = 1;
+    public int NumSelect = 1;
     //1=ボタンを押してスタート
     //2=オプション
     //3=クレジット
@@ -45,6 +41,16 @@ public class Title : MonoBehaviour
 
     public static bool DarkeningOn;
 
+    public GameObject PushStartImg;
+    public GameObject OptionImg;
+    public GameObject CreditImg;
+    public GameObject GameEndImg;
+
+    public GameObject Open_PushStartImg;
+    public GameObject Open_OptionImg;
+    public GameObject Open_CreditImg;
+    public GameObject Open_GameEndImg;
+
     bool Push = false;
 
     float SetTitlePosY = 250;
@@ -54,6 +60,7 @@ public class Title : MonoBehaviour
 
         titleAudio = GetComponent<AudioSource>();
         DarkeningAlpha = 0.0f;
+        NumSelect = 1;
     }
 
     // Update is called once per frame
@@ -63,7 +70,8 @@ public class Title : MonoBehaviour
         switch (NumSelect)
         {
             case 1:
-                StartFlash();
+                //  StartFlash();
+                SelectUiChange();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Push = true;
@@ -75,7 +83,8 @@ public class Title : MonoBehaviour
                 }
                 break;
             case 2:
-                StartFlash();
+                // StartFlash();
+                SelectUiChange();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Push = true;
@@ -87,7 +96,8 @@ public class Title : MonoBehaviour
                 }
                 break;
             case 3:
-                StartFlash();
+                // StartFlash();
+                SelectUiChange();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Push = true;
@@ -99,7 +109,8 @@ public class Title : MonoBehaviour
                 }
                 break;
             case 4:
-                StartFlash();
+                //StartFlash();
+                SelectUiChange();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     titleAudio.PlayOneShot(SE_Enter);
@@ -112,76 +123,144 @@ public class Title : MonoBehaviour
 
     }
 
-    void StartFlash()
+    //void StartFlash()
+    //{
+    //    FlashTime += Time.deltaTime;
+    //    if (FlashTime < 1.5 && SetAlpha < 1)
+    //    {
+    //        if (SetAlpha < 1)
+    //        {
+    //            SetAlpha += FlashSpeed * Time.deltaTime;
+    //        }
+    //    }
+    //    switch (NumSelect)
+    //    {
+    //        case 1:
+    //            TitleCanvasGroupstage1.alpha = SetAlpha;
+    //            TitleCanvasGroupstage2.alpha = 1;
+    //            TitleCanvasGroupstage3.alpha = 1;
+    //            TitleCanvasGroupstage4.alpha = 1;
+    //            break;
+    //        case 2:
+    //            TitleCanvasGroupstage1.alpha = 1;
+    //            TitleCanvasGroupstage2.alpha = SetAlpha;
+    //            TitleCanvasGroupstage3.alpha = 1;
+    //            TitleCanvasGroupstage4.alpha = 1;
+    //            break;
+    //        case 3:
+    //            TitleCanvasGroupstage1.alpha = 1;
+    //            TitleCanvasGroupstage2.alpha = 1;
+    //            TitleCanvasGroupstage3.alpha = SetAlpha;
+    //            TitleCanvasGroupstage4.alpha = 1;
+    //            break;
+    //        case 4:
+    //            TitleCanvasGroupstage1.alpha = 1;
+    //            TitleCanvasGroupstage2.alpha = 1;
+    //            TitleCanvasGroupstage3.alpha = 1;
+    //            TitleCanvasGroupstage4.alpha = SetAlpha;
+    //            break;
+    //    }
+    //    仕様変更によりalphaを戻す必要なし
+    //    if (FlashTime > 1.5 && SetAlpha > 0)
+    //    {
+    //        SetAlpha -= FlashSpeed * Time.deltaTime;
+    //        if (SetAlpha < 0)
+    //        {
+    //            FlashTime = 0;
+    //        }
+    //    }
+    //    switch (NumSelect)
+    //    {
+    //        case 1:
+    //            TitleCanvasGroupstage1.alpha = SetAlpha;
+    //            TitleCanvasGroupstage2.alpha = 1;
+    //            TitleCanvasGroupstage3.alpha = 1;
+    //            TitleCanvasGroupstage4.alpha = 1;
+    //            break;
+    //        case 2:
+    //            TitleCanvasGroupstage1.alpha = 1;
+    //            TitleCanvasGroupstage2.alpha = SetAlpha;
+    //            TitleCanvasGroupstage3.alpha = 1;
+    //            TitleCanvasGroupstage4.alpha = 1;
+    //            break;
+    //        case 3:
+    //            TitleCanvasGroupstage1.alpha = 1;
+    //            TitleCanvasGroupstage2.alpha = 1;
+    //            TitleCanvasGroupstage3.alpha = SetAlpha;
+    //            TitleCanvasGroupstage4.alpha = 1;
+    //            break;
+    //        case 4:
+    //            TitleCanvasGroupstage1.alpha = 1;
+    //            TitleCanvasGroupstage2.alpha = 1;
+    //            TitleCanvasGroupstage3.alpha = 1;
+    //            TitleCanvasGroupstage4.alpha = SetAlpha;
+    //            break;
+    //    }
+    //}
+
+    void SelectUiChange()
     {
-        FlashTime += Time.deltaTime;
-        if (FlashTime < 1.5 && SetAlpha < 1)
-        {
-            if (SetAlpha < 1)
-            {
-                SetAlpha += FlashSpeed * Time.deltaTime;
-            }
-        }
-        switch (NumSelect)
+        switch(NumSelect)
         {
             case 1:
-                TitleCanvasGroupstage1.alpha = SetAlpha;
-                TitleCanvasGroupstage2.alpha = 1;
-                TitleCanvasGroupstage3.alpha = 1;
-                TitleCanvasGroupstage4.alpha = 1;
+                PushStartImg.SetActive(false);
+                Open_PushStartImg.SetActive(true);
+
+                //選択中側
+                Open_OptionImg.SetActive(false);
+                Open_CreditImg.SetActive(false);
+                Open_GameEndImg.SetActive(false);
+
+                //選択されてない側
+                OptionImg.SetActive(true);
+                CreditImg.SetActive(true);
+                GameEndImg.SetActive(true);
+
                 break;
+
             case 2:
-                TitleCanvasGroupstage1.alpha = 1;
-                TitleCanvasGroupstage2.alpha = SetAlpha;
-                TitleCanvasGroupstage3.alpha = 1;
-                TitleCanvasGroupstage4.alpha = 1;
+                OptionImg.SetActive(false);
+                Open_OptionImg.SetActive(true);
+
+                //選択中側
+                Open_PushStartImg.SetActive(false);
+                Open_CreditImg.SetActive(false);
+                Open_GameEndImg.SetActive(false);
+
+                //選択されてない側
+                PushStartImg.SetActive(true);
+                CreditImg.SetActive(true);
+                GameEndImg.SetActive(true);
                 break;
+
             case 3:
-                TitleCanvasGroupstage1.alpha = 1;
-                TitleCanvasGroupstage2.alpha = 1;
-                TitleCanvasGroupstage3.alpha = SetAlpha;
-                TitleCanvasGroupstage4.alpha = 1;
+                CreditImg.SetActive(false);
+                Open_CreditImg.SetActive(true);
+
+                //選択中側
+                Open_PushStartImg.SetActive(false);
+                Open_OptionImg.SetActive(false);
+                Open_GameEndImg.SetActive(false);
+
+                //選択されてない側
+                OptionImg.SetActive(true);
+                PushStartImg.SetActive(true);
+                GameEndImg.SetActive(true);
                 break;
+
             case 4:
-                TitleCanvasGroupstage1.alpha = 1;
-                TitleCanvasGroupstage2.alpha = 1;
-                TitleCanvasGroupstage3.alpha = 1;
-                TitleCanvasGroupstage4.alpha = SetAlpha;
-                break;
-        }
-        if (FlashTime > 1.5 && SetAlpha > 0)
-        {
-            SetAlpha -= FlashSpeed * Time.deltaTime;
-            if (SetAlpha < 0)
-            {
-                FlashTime = 0;
-            }
-        }
-        switch (NumSelect)
-        {
-            case 1:
-                TitleCanvasGroupstage1.alpha = SetAlpha;
-                TitleCanvasGroupstage2.alpha = 1;
-                TitleCanvasGroupstage3.alpha = 1;
-                TitleCanvasGroupstage4.alpha = 1;
-                break;
-            case 2:
-                TitleCanvasGroupstage1.alpha = 1;
-                TitleCanvasGroupstage2.alpha = SetAlpha;
-                TitleCanvasGroupstage3.alpha = 1;
-                TitleCanvasGroupstage4.alpha = 1;
-                break;
-            case 3:
-                TitleCanvasGroupstage1.alpha = 1;
-                TitleCanvasGroupstage2.alpha = 1;
-                TitleCanvasGroupstage3.alpha = SetAlpha;
-                TitleCanvasGroupstage4.alpha = 1;
-                break;
-            case 4:
-                TitleCanvasGroupstage1.alpha = 1;
-                TitleCanvasGroupstage2.alpha = 1;
-                TitleCanvasGroupstage3.alpha = 1;
-                TitleCanvasGroupstage4.alpha = SetAlpha;
+                GameEndImg.SetActive(false);
+                Open_GameEndImg.SetActive(true);
+
+                //選択中側
+                Open_PushStartImg.SetActive(false);
+                Open_OptionImg.SetActive(false);
+                Open_CreditImg.SetActive(false);
+
+                //選択されてない側
+                OptionImg.SetActive(true);
+                CreditImg.SetActive(true);
+                PushStartImg.SetActive(true);
                 break;
         }
     }
@@ -189,6 +268,8 @@ public class Title : MonoBehaviour
     {
         TitleCanvas.SetActive(!TitleCanvas.activeSelf);
         SettingCanvas.SetActive(!SettingCanvas.activeSelf);
+        CloudCanvas.SetActive(!CloudCanvas.activeSelf);
+
     }
 
     void MenuMove()
@@ -262,7 +343,7 @@ public class Title : MonoBehaviour
             DarkeningAlpha += 0.4f * Time.deltaTime;
         }
 
-        if(SetAlpha > 1  )
+        if(DarkeningAlpha >= 1  )
         {
             switch (NumSelect)
             {
