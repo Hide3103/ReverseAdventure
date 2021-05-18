@@ -24,9 +24,12 @@ public class MotionPlayer : MonoBehaviour
         Damage = 1,     // ダメージ
         Goal = 2,       // ゴール
         Jump = 3,       // ジャンプ
-        Reverse = 4,    // リバース
-        Wait = 5,       // 待機
-        Walk = 6,       // 歩き
+        Lift = 4,
+        Reverse = 5,    // リバース
+        Throw = 6,
+        Wait = 7,       // 待機
+        Walk = 8,       // 歩き
+        Walk_Lift = 9,
         Count
     }
 
@@ -133,6 +136,8 @@ public class MotionPlayer : MonoBehaviour
     public AudioClip SE_Reverse;
     public AudioClip SE_Damage;
     public AudioClip SE_GetJuwel;
+    public AudioClip SE_SwordSwing;
+    public AudioClip SE_Cancel;
 
     // Use this for initialization
     void Start()
@@ -335,18 +340,25 @@ public class MotionPlayer : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.C) == true || Input.GetKeyDown("joystick button 3"))
                 {
-                    if(ChangeWorld.CoolDownTime <= 0 && ChangeWorld.StateFront == true)
+                    if(m_Step != Step.Reverse)
                     {
-                        m_ReverseDeltaTime = 0.0f;
-                        playerAudio.PlayOneShot(SE_Reverse);
-                        AnimationChange(AnimationPattern.Reverse);
-                        m_Step = Step.Reverse;
-                    }
-                    else if(ChangeWorld.UraActiveTime < 10 && ChangeWorld.StateFront == false)
-                    {
-                        m_ReverseDeltaTime = 0.0f;
-                        AnimationChange(AnimationPattern.Reverse);
-                        m_Step = Step.Reverse;
+                        if(ChangeWorld.CoolDownTime <= 0 && ChangeWorld.StateFront == true)
+                        {
+                            m_ReverseDeltaTime = 0.0f;
+                            playerAudio.PlayOneShot(SE_Reverse);
+                            AnimationChange(AnimationPattern.Reverse);
+                            m_Step = Step.Reverse;
+                        }
+                        else if(ChangeWorld.UraActiveTime < 10 && ChangeWorld.StateFront == false)
+                        {
+                            m_ReverseDeltaTime = 0.0f;
+                            AnimationChange(AnimationPattern.Reverse);
+                            m_Step = Step.Reverse;
+                        }
+                        else
+                        {
+                            playerAudio.PlayOneShot(SE_Cancel);
+                        }
                     }
                 }
                 else
@@ -364,16 +376,13 @@ public class MotionPlayer : MonoBehaviour
 
             // 空中にいるかの判定
             float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-            Debug.Log("SpeedY : " + speedY);
             if (speedY <= 0.01f)
             {
                 m_Flying = false;
-                Debug.Log("m_Flying : false");
             }
             else
             {
                 m_Flying = true;
-                Debug.Log("m_Flying : true");
             }
 
             // ジャンプ処理
@@ -381,7 +390,6 @@ public class MotionPlayer : MonoBehaviour
             {
                 if (m_Flying == false && collisionScript.LadderFlg == false)
                 {
-                    Debug.Log("押された");
                     this.rigid2D.AddForce(transform.up * 240.0f);
                     playerAudio.PlayOneShot(SE_Jump);
                     AnimationChange(AnimationPattern.Jump);
@@ -420,7 +428,7 @@ public class MotionPlayer : MonoBehaviour
             {
                 if (m_Step != Step.Attack)
                 {
-                    playerAudio.PlayOneShot(SE_Attack);
+                    playerAudio.PlayOneShot(SE_SwordSwing);
                     AnimationChange(AnimationPattern.Attack);
                     m_Step = Step.Attack;
                 }
@@ -602,7 +610,6 @@ public class MotionPlayer : MonoBehaviour
             m_Step = Step.Damage;
             m_DamagedFlg = true;
             var rigidbody2D = GetComponent<Rigidbody2D>();
-            //rigidbody.AddForce(-transform.forward * 5f, ForceMode.VelocityChange);
             rigidbody2D.velocity = Vector3.zero;
             rigidbody2D.AddForce(new Vector3(-transform.localScale.x * 120.0f, 200.0f, 0.0f));
         }

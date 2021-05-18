@@ -6,6 +6,8 @@ public class PlayerDuringJudgment : MonoBehaviour
 {
     public static bool DuringWall = false;
     public GameObject Player;
+    MotionPlayer motionPlayerScript;
+
     public GameObject Reference_Obj;
     private GameObject TileMap;
     private Vector3 SetAfterSwitchingPlayerPos;
@@ -13,6 +15,8 @@ public class PlayerDuringJudgment : MonoBehaviour
     void Start()
     {
         TileMap = Reference_Obj.transform.Find("Grid_Back/Tilemap").gameObject;
+
+        motionPlayerScript = Player.GetComponent<MotionPlayer>();
     }
 
     // Update is called once per frame
@@ -21,6 +25,7 @@ public class PlayerDuringJudgment : MonoBehaviour
         if(DuringWall==true)
         {
             Player.transform.position = SetAfterSwitchingPlayerPos;
+            motionPlayerScript.Damage();
             DuringWall = false;
         }
     }

@@ -48,15 +48,22 @@ public class MotionBridge : MonoBehaviour
     float MotionLimit = 1.0f;
     float MotionDelta = 0.0f;
 
+    public bool MotionFlg = false;
+
+    BoxCollider2D boxCollider2D;
 
     // Use this for initialization
     void Start()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+
+        GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
         // キャラクターパラメータ関連を設定 
 
         // 座標設定 
-        m_vecCharacterPos.x = 0.0f;
-        m_vecCharacterPos.y = 0.0f;
+        m_vecCharacterPos.x = 1.3f;
+        m_vecCharacterPos.y = 1.3f;
         m_vecCharacterPos.z = 0.0f;
 
         // スケール設定 
@@ -79,12 +86,23 @@ public class MotionBridge : MonoBehaviour
                 break;
             // 待機
             case Step.Round:
-                if (Input.GetKeyDown(KeyCode.Z) == true)        // 攻撃 
+                if (MotionFlg == true)        // 攻撃 
                 {
                     // 攻撃に変更 
                     AnimationChange(AnimationPattern.Motion1_front);
-                    m_Step = Step.Round;
+                    m_Step = Step.Motion;
                     Debug.Log("Z押された"); 
+                }
+                else
+                {
+                    if(ChangeWorld.StateFront == true)
+                    {
+                        AnimationChange(AnimationPattern.Round_front);
+                    }
+                    else
+                    {
+                        AnimationChange(AnimationPattern.Round_back);
+                    }
                 }
                 break;
             // 移動 
@@ -104,6 +122,48 @@ public class MotionBridge : MonoBehaviour
                 break;
             default:
                 break;
+        }
+
+        ColliderChange();
+    }
+
+    void ColliderChange()
+    {
+        switch (m_Step)
+        {
+            case Step.Round:
+                Debug.Log("コリジョン変化前");
+                boxCollider2D.offset = new Vector2(0, 0);
+                boxCollider2D.size = new Vector2(0.6f, 0.6f);
+                break;
+            case Step.Motion:
+                Debug.Log("コリジョン変化中");
+                float deltaOffsetX = 1.23f * Time.deltaTime;
+                float deltaSizeX = (2.55f - 0.6f) * Time.deltaTime;
+                boxCollider2D.offset = new Vector2(boxCollider2D.offset.x + deltaOffsetX, -0.255f);
+                boxCollider2D.size = new Vector2(boxCollider2D.size.x + deltaSizeX, 0.1f);
+
+                break;
+            case Step.Extend:
+                Debug.Log("コリジョン変化後");
+                boxCollider2D.offset = new Vector2(1.23f, -0.255f);
+                boxCollider2D.size = new Vector2(2.55f, 0.1f);
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Sword")
+        {
+            if(ChangeWorld.StateFront == false)
+            {
+                MotionFlg = true;
+            }
         }
     }
 
