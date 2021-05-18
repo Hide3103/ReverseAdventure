@@ -58,7 +58,7 @@ MonoBehaviour:
   - Name: root
     ID: 0
     IDParent: -1
-    TableIDChild: 01000000020000000300000004000000
+    TableIDChild: 010000000200000003000000
     Feature: 0
     CountMesh: 0
     Mesh:
@@ -77,7 +77,7 @@ MonoBehaviour:
     SizeCollisionZ: 0
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
-  - Name: bridge
+  - Name: tape
     ID: 1
     IDParent: 0
     TableIDChild: 
@@ -99,7 +99,7 @@ MonoBehaviour:
     SizeCollisionZ: 0
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
-  - Name: tape
+  - Name: tape_1
     ID: 2
     IDParent: 0
     TableIDChild: 
@@ -121,32 +121,10 @@ MonoBehaviour:
     SizeCollisionZ: 0
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
-  - Name: tape_1
+  - Name: joint_1
     ID: 3
     IDParent: 0
-    TableIDChild: 
-    Feature: 2
-    CountMesh: 4
-    Mesh:
-      CountVertex: 0
-      TableVertex: []
-      TableRateUV: []
-      TableIndexVertex: 
-      CountVertexDeform: 0
-    LabelColor:
-      Form: 0
-      Color:
-        serializedVersion: 2
-        rgba: 0
-    OperationBlendTarget: 0
-    ShapeCollision: 0
-    SizeCollisionZ: 0
-    PrefabUnderControl: {fileID: 0}
-    NameAnimationUnderControl: 
-  - Name: joint_1
-    ID: 4
-    IDParent: 0
-    TableIDChild: 050000000e000000
+    TableIDChild: 040000000d000000
     Feature: 6
     CountMesh: 0
     Mesh:
@@ -166,9 +144,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_1
-    ID: 5
-    IDParent: 4
-    TableIDChild: 06000000
+    ID: 4
+    IDParent: 3
+    TableIDChild: 05000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -188,9 +166,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_2
-    ID: 6
-    IDParent: 5
-    TableIDChild: 07000000
+    ID: 5
+    IDParent: 4
+    TableIDChild: 06000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -210,9 +188,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_3
-    ID: 7
-    IDParent: 6
-    TableIDChild: 08000000
+    ID: 6
+    IDParent: 5
+    TableIDChild: 07000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -232,9 +210,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_4
-    ID: 8
-    IDParent: 7
-    TableIDChild: 09000000
+    ID: 7
+    IDParent: 6
+    TableIDChild: 08000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -254,9 +232,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_5
-    ID: 9
-    IDParent: 8
-    TableIDChild: 0a000000
+    ID: 8
+    IDParent: 7
+    TableIDChild: 09000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -276,9 +254,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_6
-    ID: 10
-    IDParent: 9
-    TableIDChild: 0b000000
+    ID: 9
+    IDParent: 8
+    TableIDChild: 0a000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -298,9 +276,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_7
-    ID: 11
-    IDParent: 10
-    TableIDChild: 0c000000
+    ID: 10
+    IDParent: 9
+    TableIDChild: 0b000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -320,9 +298,9 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_8
-    ID: 12
-    IDParent: 11
-    TableIDChild: 0d000000
+    ID: 11
+    IDParent: 10
+    TableIDChild: 0c000000
     Feature: 7
     CountMesh: 0
     Mesh:
@@ -342,8 +320,8 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bone_9
-    ID: 13
-    IDParent: 12
+    ID: 12
+    IDParent: 11
     TableIDChild: 
     Feature: 7
     CountMesh: 0
@@ -364,8 +342,8 @@ MonoBehaviour:
     PrefabUnderControl: {fileID: 0}
     NameAnimationUnderControl: 
   - Name: bridge_1
-    ID: 14
-    IDParent: 4
+    ID: 13
+    IDParent: 3
     TableIDChild: 
     Feature: 11
     CountMesh: 1147
@@ -5691,16 +5669,16 @@ MonoBehaviour:
     NameAnimationUnderControl: 
   CatalogParts:
     TableIDPartsNULL: 
-    TableIDPartsNormal: 010000000200000003000000
+    TableIDPartsNormal: 0100000002000000
     TableIDPartsInstance: 
     TableIDPartsEffect: 
     TableIDPartsMask: 
-    TableIDPartsJoint: 04000000
-    TableIDPartsBone: 05000000060000000700000008000000090000000a0000000b0000000c0000000d000000
+    TableIDPartsJoint: 03000000
+    TableIDPartsBone: 0400000005000000060000000700000008000000090000000a0000000b0000000c000000
     TableIDPartsMoveNode: 
     TableIDPartsConstraint: 
     TableIDPartsBonePoint: 
-    TableIDPartsMesh: 0e000000
+    TableIDPartsMesh: 0d000000
   TableAnimation:
   - Name: Extend_back
     FramePerSecond: 30
@@ -5720,7 +5698,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514958
+        - Flags: 1090514957
       Cell:
         TypePack: 1
         TableCodeValue: []
@@ -5755,106 +5733,6 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue: []
         TableValue: 
-      PartsColor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      VertexCorrection:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      OffsetPivot:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionAnchor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      SizeForce:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RotationTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RadiusCollision:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      UserData:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Instance:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Effect:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Deform:
-        TypePack: 3
-        TableCodeValue:
-        - TableCode: 
-        TableValue: []
-        CountVertexMesh: 0
-        TableIndexVertex: 
-    - StatusParts: 1077673984
-      Status:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - Flags: 1090519039
-      Cell:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - IndexCellMap: 0
-          IndexCell: 0
-      Position:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: -20, z: 0}
-      Rotation:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: 0, z: 0}
-      Scaling:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingLocal:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RateOpacity:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - 1
-      Priority:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -7047,7 +6925,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514945
+        - Flags: 1090519039
       Cell:
         TypePack: 1
         TableCodeValue:
@@ -7158,7 +7036,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514958
+        - Flags: 1090514957
       Cell:
         TypePack: 1
         TableCodeValue: []
@@ -7193,106 +7071,6 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue: []
         TableValue: 
-      PartsColor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      VertexCorrection:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      OffsetPivot:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionAnchor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      SizeForce:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RotationTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RadiusCollision:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      UserData:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Instance:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Effect:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Deform:
-        TypePack: 3
-        TableCodeValue:
-        - TableCode: 
-        TableValue: []
-        CountVertexMesh: 0
-        TableIndexVertex: 
-    - StatusParts: 1077673984
-      Status:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - Flags: 1090519039
-      Cell:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - IndexCellMap: 0
-          IndexCell: 0
-      Position:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: -20, z: 0}
-      Rotation:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: 0, z: 0}
-      Scaling:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingLocal:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RateOpacity:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - 1
-      Priority:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -8485,7 +8263,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514945
+        - Flags: 1090519039
       Cell:
         TypePack: 1
         TableCodeValue:
@@ -8596,7 +8374,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514958
+        - Flags: 1090514957
       Cell:
         TypePack: 1
         TableCodeValue: []
@@ -8631,106 +8409,6 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue: []
         TableValue: 
-      PartsColor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      VertexCorrection:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      OffsetPivot:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionAnchor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      SizeForce:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RotationTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RadiusCollision:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      UserData:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Instance:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Effect:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Deform:
-        TypePack: 3
-        TableCodeValue:
-        - TableCode: 
-        TableValue: []
-        CountVertexMesh: 0
-        TableIndexVertex: 
-    - StatusParts: 1077673984
-      Status:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - Flags: 1090514946
-      Cell:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - IndexCellMap: 0
-          IndexCell: 0
-      Position:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: -20, z: 0}
-      Rotation:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: 0, z: 0}
-      Scaling:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingLocal:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RateOpacity:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - 1
-      Priority:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -10209,7 +9887,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514958
+        - Flags: 1090514957
       Cell:
         TypePack: 1
         TableCodeValue: []
@@ -10244,106 +9922,6 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue: []
         TableValue: 
-      PartsColor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      VertexCorrection:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      OffsetPivot:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionAnchor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      SizeForce:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RotationTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RadiusCollision:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      UserData:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Instance:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Effect:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Deform:
-        TypePack: 3
-        TableCodeValue:
-        - TableCode: 
-        TableValue: []
-        CountVertexMesh: 0
-        TableIndexVertex: 
-    - StatusParts: 1077673984
-      Status:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - Flags: 1090519039
-      Cell:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - IndexCellMap: 0
-          IndexCell: 0
-      Position:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: -20, z: 0}
-      Rotation:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: 0, z: 0}
-      Scaling:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingLocal:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RateOpacity:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - 1
-      Priority:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -11707,7 +11285,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514945
+        - Flags: 1090519039
       Cell:
         TypePack: 1
         TableCodeValue:
@@ -11818,7 +11396,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514958
+        - Flags: 1090514957
       Cell:
         TypePack: 1
         TableCodeValue: []
@@ -11853,106 +11431,6 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue: []
         TableValue: 
-      PartsColor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      VertexCorrection:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      OffsetPivot:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionAnchor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      SizeForce:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RotationTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RadiusCollision:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      UserData:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Instance:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Effect:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Deform:
-        TypePack: 3
-        TableCodeValue:
-        - TableCode: 
-        TableValue: []
-        CountVertexMesh: 0
-        TableIndexVertex: 
-    - StatusParts: 1077673984
-      Status:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - Flags: 1090514947
-      Cell:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - IndexCellMap: 0
-          IndexCell: 0
-      Position:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: -20, z: 0}
-      Rotation:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: 0, z: 0}
-      Scaling:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingLocal:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RateOpacity:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - 1
-      Priority:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -13155,7 +12633,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514945
+        - Flags: 1090514946
       Cell:
         TypePack: 1
         TableCodeValue:
@@ -13266,7 +12744,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514958
+        - Flags: 1090514957
       Cell:
         TypePack: 1
         TableCodeValue: []
@@ -13301,106 +12779,6 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue: []
         TableValue: 
-      PartsColor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      VertexCorrection:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      OffsetPivot:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionAnchor:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      SizeForce:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      PositionTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RotationTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingTexture:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RadiusCollision:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      UserData:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Instance:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Effect:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      Deform:
-        TypePack: 3
-        TableCodeValue:
-        - TableCode: 
-        TableValue: []
-        CountVertexMesh: 0
-        TableIndexVertex: 
-    - StatusParts: 1077673984
-      Status:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - Flags: 1090519039
-      Cell:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - IndexCellMap: 0
-          IndexCell: 0
-      Position:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: -20, z: 0}
-      Rotation:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - {x: 0, y: 0, z: 0}
-      Scaling:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      ScalingLocal:
-        TypePack: 1
-        TableCodeValue: []
-        TableValue: []
-      RateOpacity:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue:
-        - 1
-      Priority:
-        TypePack: 1
-        TableCodeValue:
-        - TableCode: 00000000
-        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -14597,7 +13975,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - Flags: 1090514945
+        - Flags: 1090519039
       Cell:
         TypePack: 1
         TableCodeValue:
@@ -14691,17 +14069,6 @@ MonoBehaviour:
         CountVertexMesh: 0
         TableIndexVertex: 
   TableAnimationPartsSetup:
-  - UserData:
-      Flags: 0
-      NumberInt: 0
-      Rectangle:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      Coordinate: {x: 0, y: 0}
-      Text: 
   - UserData:
       Flags: 0
       NumberInt: 0

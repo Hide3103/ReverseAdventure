@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bat : MonoBehaviour
 {
+    //
     GameObject player;
     GameObject enemy;
     public GameObject lookPlayer;
