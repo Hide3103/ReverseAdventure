@@ -5,28 +5,28 @@ using UnityEngine.SceneManagement;
 public class Credit : MonoBehaviour
 {
 
-    public Text text;
-    public Text Url;
-    public Text Url2;
-    GameObject itemmanage;
-    [SerializeField]
-    private float TextScrollSpeed = 30;
-    //　エンドロールが終了したかどうか
-    public static bool StopEndRoll;
+    //public Text text;
+    //public Text Url;
+    //public Text Url2;
+    //GameObject itemmanage;
+    //[SerializeField]
+    //private float TextScrollSpeed = 30;
+    ////　エンドロールが終了したかどうか
+    //public static bool StopEndRoll;
 
-    GameObject SceneManage;
+    //GameObject SceneManage;
 
 
-    public float WaitTime = 0;
-    //　テキストの制限位置
-    public float UpPoint;
+    //public float WaitTime = 0;
+    ////　テキストの制限位置
+    //public float UpPoint;
 
-    public float SetAlpha = 0;
+    //public float SetAlpha = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        UpPoint = 1080 / 2;
+       // UpPoint = 1080 / 2;
     }
 
     // Update is called once per frame

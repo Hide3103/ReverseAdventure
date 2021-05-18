@@ -9,10 +9,12 @@ public class Setting : MonoBehaviour
     public GameObject SettingCanvas;
     public GameObject CloudCanvas;
 
+
+    Title TitleSC;
     //Start is called before the first frame update
     void Start()
     {
-
+        TitleSC = TitleCanvas.GetComponent<Title>();
     }
 
 
@@ -23,6 +25,7 @@ public class Setting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown("joystick button 1"))
         {
             SettingScene();
+            TitleSC.NumSelect = 1;
         }
     }
     void SettingScene()
