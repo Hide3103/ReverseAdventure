@@ -14,6 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Version: 65537
   TableCellMap:
+  - Name: Body_1
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Body_1
+      Rectangle:
+        serializedVersion: 2
+        x: 54
+        y: 24
+        width: 26
+        height: 31
+      Pivot: {x: 13, y: 27}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Body_2
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Body_2
+      Rectangle:
+        serializedVersion: 2
+        x: 26
+        y: 15
+        width: 34
+        height: 40
+      Pivot: {x: 17, y: 36}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
   - Name: Goat
     SizeOriginal: {x: 512, y: 512}
     TableCell:
@@ -102,6 +130,48 @@ MonoBehaviour:
         width: 16
         height: 20
       Pivot: {x: 3, y: 1.9999999}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Tape
+      Rectangle:
+        serializedVersion: 2
+        x: 28
+        y: 22
+        width: 49
+        height: 32
+      Pivot: {x: 24.5, y: 16}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape_1
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Tape_1
+      Rectangle:
+        serializedVersion: 2
+        x: 27
+        y: 25
+        width: 29
+        height: 27
+      Pivot: {x: 14.5, y: 13.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape_2
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Tape_2
+      Rectangle:
+        serializedVersion: 2
+        x: 47
+        y: 26
+        width: 31
+        height: 24
+      Pivot: {x: 15.5, y: 12}
       Mesh:
         TableCoordinate: []
         TableIndexVertex: 

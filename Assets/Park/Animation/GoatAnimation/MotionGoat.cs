@@ -57,10 +57,11 @@ public class MotionGoat : MonoBehaviour
         Chase_Front = 1,
         Damage_Back = 2,
         Damage_Front = 3,
-        Discovery_Back = 4,
-        Discovery_Front = 5,
-        Walk_Back = 6,
-        Walk_Front = 7,
+        Die = 4,
+        Discovery_Back = 5,
+        Discovery_Front = 6,
+        Walk_Back = 7,
+        Walk_Front = 8,
         Count
     }
 
@@ -78,10 +79,11 @@ public class MotionGoat : MonoBehaviour
         Chase_Front = 2,
         Damage_Back = 3,
         Damage_Front = 4,
-        Discovery_Back = 5,
-        Discovery_Front = 6,
-        Walk_Back = 7,
-        Walk_Front = 8,
+        Die = 5,
+        Discovery_Back = 6,
+        Discovery_Front = 7,
+        Walk_Back = 8,
+        Walk_Front = 9,
         End
     }
 
@@ -110,6 +112,8 @@ public class MotionGoat : MonoBehaviour
         //beforeColor = spriteRenderer.color;
 
         audioSource = GetComponent<AudioSource>();
+
+        GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         Initialize();
 
@@ -141,9 +145,9 @@ public class MotionGoat : MonoBehaviour
                 MoveToPlayer();
             }
 
-            //Damage();
-           // Die();
-            //SystemDie();
+            Damage();
+            Die();
+            SystemDie();
             //ChangeSprite();
 
             Physics2D.IgnoreCollision(playerTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -155,18 +159,102 @@ public class MotionGoat : MonoBehaviour
 
             Physics2D.IgnoreCollision(enemyTrans.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+
         switch (m_Step)
         {
             // 初期化
             case Step.Init:
-                m_Count = 0;
-                m_SW = true;
-                m_Step = Step.Walk_Front;
-                AnimationStart();
+                
+                 m_Count = 0;
+                 m_SW = true;
+                 m_Step = Step.Walk_Front;
+                 AnimationStart();
+                
                 break;
             // タイトル
             case Step.Walk_Front:
+                 if (flg_lookPlayer)
+                 {
+                     m_Step = Step.Discovery_Front;
+                     AnimationChange(AnimationPattern.Discovery_Front);
+                 }
+                 if (flg_damage)
+                 {
+                     m_Step = Step.Damage_Front;
+                     AnimationChange(AnimationPattern.Damage_Front);
+                 }
+                 if (flg_lostPlayer)
+                 {
+                     m_Step = Step.Init;
+                     AnimationChange(AnimationPattern.Walk_Front);
+                 }
+                 if (m_systemHp <= 0.0f)
+                 {
+                     m_Step = Step.Die;
+                     AnimationChange(AnimationPattern.Die);
+                 }                              
                 break;
+            case Step.Discovery_Front:
+                if (flg_damage)
+                {
+                    m_Step = Step.Damage_Front;
+                    AnimationChange(AnimationPattern.Damage_Front);
+                }
+                 if (flg_moveToPlayer)
+                 {
+                     m_Step = Step.Chase_Front;
+                     AnimationChange(AnimationPattern.Chase_Front);
+                 }
+                 if (flg_lostPlayer)
+                 {
+                     m_Step = Step.Init;
+                     AnimationChange(AnimationPattern.Walk_Front);
+
+                 }
+                 if (m_systemHp <= 0.0f)
+                 {
+                     m_Step = Step.Die;
+                     AnimationChange(AnimationPattern.Die);
+                 }                                                   
+                break;
+            case Step.Damage_Front:                
+                 if (m_systemHp <= 0.0f)
+                 {
+                     m_Step = Step.Die;
+                     AnimationChange(AnimationPattern.Die);
+                 }
+                 else
+                 {
+                     m_Step = Step.Chase_Front;
+                     AnimationChange(AnimationPattern.Chase_Front);
+                 }                                
+                break;
+            case Step.Chase_Front:               
+                 if (flg_damage)
+                 {
+                     m_Step = Step.Damage_Front;
+                     AnimationChange(AnimationPattern.Damage_Front);
+                 }
+                 if (flg_lostPlayer)
+                 {
+                     m_Step = Step.Init;
+                     AnimationChange(AnimationPattern.Walk_Front);
+                 }
+                 if (m_systemHp <= 0.0f)
+                 {
+                     m_Step = Step.Die;
+                     AnimationChange(AnimationPattern.Die);
+                 }                
+                break;
+            //case Step.Chase_Front:
+            //    AnimationChange(AnimationPattern.Chase_Front);
+            //    break;
+            //case Step.Damage_Front:
+            //    AnimationChange(AnimationPattern.Damage_Front);
+            //    break;
+            //case Step.Discovery_Front:
+            //    AnimationChange(AnimationPattern.Discovery_Front);
+            //    break;
             //// 待機
             //case Step.Wait:
             //    if (Input.GetKeyDown(KeyCode.Z) == true)        // 攻撃 
@@ -328,6 +416,9 @@ public class MotionGoat : MonoBehaviour
                 case AnimationPattern.Damage_Front:
                     iTimesPlaey = 1;    // 1回だけ再生 
                     break;
+                case AnimationPattern.Die:
+                    iTimesPlaey = 1;
+                    break;
                 case AnimationPattern.Discovery_Back:
                     iTimesPlaey = 1;    // ループ再生 
                     break;
@@ -369,30 +460,30 @@ public class MotionGoat : MonoBehaviour
         return ret;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    //"Sword"に当たった時にフラグ切り替え＆ノックバック
-    //    if (collision.gameObject.tag == "Sword")
-    //    {
-    //        if (flg_blinking == false && ChangeWorld.StateFront)
-    //        {
-    //            flg_damage = true;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //"Sword"に当たった時にフラグ切り替え＆ノックバック
+        if (collision.gameObject.tag == "Sword")
+        {
+            if (flg_blinking == false)
+            {
+                flg_damage = true;
 
-    //            rigid2D.AddForce(new Vector3(transform.localScale.x * 50.0f, 50.0f, 0.0f));
+                rigid2D.AddForce(new Vector3(transform.localScale.x * 100.0f, 100.0f, 0.0f));
 
-    //            m_systemHp--;
-    //        }
-    //    }
-    //}
+                m_systemHp--;
+            }
+        }
+    }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        //flg_moveToPlayer = false;
-    //        flg_attackPlayer = true;
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //flg_moveToPlayer = false;
+            flg_attackPlayer = true;
+        }
+    }
 
     void Initialize()
     {
@@ -429,7 +520,7 @@ public class MotionGoat : MonoBehaviour
 
         if (flg_normal)
         {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
+            transform.localScale = new Vector3(firstScale.x, firstScale.y, 1.0f);
 
             Position.x += m_speed * m_direction * Time.deltaTime;
 
@@ -519,11 +610,11 @@ public class MotionGoat : MonoBehaviour
     {
         if (m_direction == 1.0f)
         {
-            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
+            transform.localScale = new Vector3(-firstScale.x, firstScale.y, 1.0f);
         }
         else if (m_direction == -1.0f)
         {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
+            transform.localScale = new Vector3(firstScale.x, firstScale.y, 1.0f);
         }
     }
 
@@ -551,63 +642,63 @@ public class MotionGoat : MonoBehaviour
         }
     }
 
-    //void Damage()
-    //{
-    //    if (flg_damage)
-    //    {
-    //        if (m_damageDelta < m_damageLimit)
-    //        {
-    //            float level = Mathf.Abs(Mathf.Sin(Time.time * 20));
-    //            //gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, level);
-    //            m_damageDelta += Time.deltaTime;
-
-    //            flg_blinking = true;
-    //            flg_moveToPlayer = false;
-    //        }
-    //        else
-    //        {
-    //            m_hp--;
-    //            //spriteRenderer.color = beforeColor;
-    //            m_damageDelta = 0.0f;
-
-    //            flg_blinking = false;
-    //            flg_damage = false;
-    //            flg_moveToPlayer = true;
-    //        }
-
-    //    }
-    //}
-
-    void Direction()
+    void Damage()
     {
-        Vector2 scale = transform.localScale;
-        if (player.transform.position.x < this.transform.position.x)
+        if (flg_damage)
         {
-            transform.localScale = new Vector3(firstScale.x, firstScale.y);
-        }
-        else if (player.transform.position.x > this.transform.position.x)
-        {
-            transform.localScale = new Vector3(-firstScale.x, firstScale.y);
+            if (m_damageDelta < m_damageLimit)
+            {
+                float level = Mathf.Abs(Mathf.Sin(Time.time * 20));
+                //gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, level);
+                m_damageDelta += Time.deltaTime;
+
+                flg_blinking = true;
+                flg_moveToPlayer = false;
+            }
+            else
+            {
+                m_hp--;
+                //spriteRenderer.color = beforeColor;
+                m_damageDelta = 0.0f;
+
+                flg_blinking = false;
+                flg_damage = false;
+                flg_moveToPlayer = true;
+            }
+
         }
     }
 
-    //void Die()
-    //{
-    //    if (m_hp <= 0.0f)
-    //    {
-    //        m_hp = 0.0f;
+    void Direction()
+    {
+        Vector3 scale = transform.localScale;
+        if (player.transform.position.x < this.transform.position.x)
+        {
+            transform.localScale = new Vector3(firstScale.x, firstScale.y, 1.0f);
+        }
+        else if (player.transform.position.x > this.transform.position.x)
+        {
+            transform.localScale = new Vector3(-firstScale.x, firstScale.y, 1.0f);
+        }
+    }
 
-    //        Destroy(gameObject);
-    //    }
-    //}
+    void Die()
+    {
+        if (m_hp <= 0.0f)
+        {
+            m_hp = 0.0f;
 
-    //void SystemDie()
-    //{
-    //    if (m_systemHp <= 0.0f)
-    //    {
-    //        this.tag = "Untagged";
-    //    }
-    //}
+            Destroy(gameObject);
+        }
+    }
+
+    void SystemDie()
+    {
+        if (m_systemHp <= 0.0f)
+        {
+            this.tag = "Untagged";
+        }
+    }
 
     ////void ChangeSprite()
     ////{
@@ -621,8 +712,8 @@ public class MotionGoat : MonoBehaviour
     ////    }
     ////}
 
-    //public static void SetDirection(float dir)
-    //{
-    //    m_direction *= dir;
-    //}
+    public static void SetDirection(float dir)
+    {
+        m_direction *= dir;
+    }
 }
