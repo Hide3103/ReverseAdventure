@@ -14,6 +14,7 @@ public class Diamond : MonoBehaviour
 
     bool GettedFlg = false;
 
+
     float DestroyDelta = 0.0f;
     float DestroyLimit = 1.0f;
 
@@ -80,14 +81,12 @@ public class Diamond : MonoBehaviour
     // 変更前
     void Update()
     {
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            juwelAudio.PlayOneShot(SE_GetJuwel);
             GameSystem.NumJewel += 1;
             if (GameSystem.GetJuwelCollection(DiamondNum) == false)
             {
@@ -97,9 +96,11 @@ public class Diamond : MonoBehaviour
             //GameSystem.HavingNumJuwel += 1;
             if (hiddenDiamond)
             {
-                Destroy(hiddenDiamond);
+                Destroy(hiddenDiamond.gameObject);
             }
-            Destroy(gameObject);
+            Destroy(gameObject.gameObject);
+            DiaSound.SoundOn = true;
         }
     }
+
 }
