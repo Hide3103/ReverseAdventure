@@ -28,6 +28,8 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         gameOverAudio = GetComponent<AudioSource>();
+        Open_StageselectImg.SetActive(false);
+        StageselectImg.SetActive(true);
     }
 
     // Update is called once per frame
@@ -41,7 +43,7 @@ public class GameOver : MonoBehaviour
             WaitTime -= Time.unscaledDeltaTime;
         }
 
-        if (NumSelect==1&&Input.GetKeyDown(KeyCode.RightArrow) || (hori < 0 && NumSelect > 1 && WaitTime <= 0))
+        if (NumSelect==1&&Input.GetKeyDown(KeyCode.LeftArrow) || (hori < 0 && NumSelect > 1 && WaitTime <= 0))
         {
             gameOverAudio.PlayOneShot(SE_Select);
 
@@ -53,7 +55,7 @@ public class GameOver : MonoBehaviour
             NumSelect--;
             WaitTime = SetWaitTime; ;
         }
-        if(NumSelect==2&&Input.GetKeyDown(KeyCode.LeftArrow) || (hori > 0 && NumSelect < 2 && WaitTime <= 0))
+        if(NumSelect==2&&Input.GetKeyDown(KeyCode.RightArrow) || (hori > 0 && NumSelect < 2 && WaitTime <= 0))
         {
             gameOverAudio.PlayOneShot(SE_Select);
 
