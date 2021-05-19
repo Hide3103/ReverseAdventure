@@ -62,6 +62,12 @@ public class MotionPlayer : MonoBehaviour
     float m_DamageDelta = 0.0f;
     //ダメージ後の無敵時間の秒数
     float m_DamageLimit = 1.0f;
+    // ダメージを受けてから移動可能になるまでの時間
+    float CantMoveRecoveryDeltaLimit = 0.7f;
+    // ダメージを受けてから移動できるようになったか
+    bool CantMoveRecoveryed = true;
+    //ブロックを所持しているか
+    public bool HavingBlock = false;
 
     // 梯子に接触しているかのフラグ
     bool m_LadderFlg = false;
@@ -217,7 +223,7 @@ public class MotionPlayer : MonoBehaviour
                 // 待機
                 case Step.Wait:
                     // ダメージを受けていないとき
-                    if (m_DamagedFlg == false)
+                    if (CantMoveRecoveryed == true)
                     {
                         if (Input.GetKeyDown(KeyCode.Z) == true)        // 攻撃 
                         {
@@ -238,7 +244,7 @@ public class MotionPlayer : MonoBehaviour
                 case Step.Walk:
 
                     // 移動
-                    if (m_DamagedFlg == false)
+                    if (CantMoveRecoveryed == true)
                     {
                         if (m_Moving == false)
                         {
@@ -302,28 +308,7 @@ public class MotionPlayer : MonoBehaviour
             }
 
             // ダメージを受けている時の処理・ダメージを受けていない時の処理(移動)
-            if (m_DamagedFlg == true)
-            {
-                if (m_DamageLimit < m_DamageDelta)
-                {
-                    m_DamagedFlg = false;
-                    m_DamageDelta = 0.0f;
-                    // 待機に変更 
-                    AnimationChange(AnimationPattern.Wait);
-                    m_Step = Step.Wait;
-
-                    if (m_PlayerHp <= 0.0f)
-                    {
-                        SceneManager.LoadScene("GameOver");
-                        Destroy(this.gameObject);
-                    }
-                }
-                else
-                {
-                    m_DamageDelta += Time.deltaTime;
-                }
-            }
-            else
+            if (CantMoveRecoveryed == true)
             {
                 // 移動
                 if (Input.GetKey(KeyCode.LeftArrow) == true || hori < -0.3f)   // 左移動 
@@ -367,6 +352,81 @@ public class MotionPlayer : MonoBehaviour
                 {
                     m_Moving = false;
                 }
+
+                // ジャンプ処理
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
+                {
+                    if (m_Flying == false && collisionScript.LadderFlg == false)
+                    {
+                        this.rigid2D.AddForce(transform.up * 240.0f);
+                        playerAudio.PlayOneShot(SE_Jump);
+                        AnimationChange(AnimationPattern.Jump);
+                        m_Step = Step.Jump;
+                        m_Flying = true;
+                    }
+                    // 梯子に触れている時に捕まる
+                    else if (collisionScript.LadderFlg == true)
+                    {
+                        m_LadderFlg = true;
+                        rigid2D.gravityScale = 0;
+                    }
+                }
+
+                //梯子を上り下りする
+                if (collisionScript.LadderFlg == true)
+                {
+                    rigid2D.gravityScale = 0;
+                    rigid2D.velocity = new Vector2(0.0f, 0.0f);
+                    if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || vert > 0)
+                    {
+                        this.transform.position += new Vector3(0.0f, 2.0f * Time.deltaTime, 0.0f);
+                    }
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
+                    {
+                        this.transform.position += new Vector3(0.0f, -2.0f * Time.deltaTime, 0.0f);
+                    }
+                }
+                else
+                {
+                    rigid2D.gravityScale = 1;
+                }
+
+                // 攻撃処理
+                if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 1"))
+                {
+                    if (m_Step != Step.Attack)
+                    {
+                        playerAudio.PlayOneShot(SE_SwordSwing);
+                        AnimationChange(AnimationPattern.Attack);
+                        m_Step = Step.Attack;
+                    }
+                }
+            }
+            
+            if(m_DamagedFlg == true)
+            {
+                if (m_DamageLimit < m_DamageDelta)
+                {
+                    m_DamagedFlg = false;
+                    m_DamageDelta = 0.0f;
+                    // 待機に変更 
+                    AnimationChange(AnimationPattern.Wait);
+                    m_Step = Step.Wait;
+
+                    if (m_PlayerHp <= 0.0f)
+                    {
+                        SceneManager.LoadScene("GameOver");
+                        Destroy(this.gameObject);
+                    }
+                }
+                else
+                {
+                    m_DamageDelta += Time.deltaTime;
+                    if (CantMoveRecoveryDeltaLimit < m_DamageDelta)
+                    {
+                        CantMoveRecoveryed = true;
+                    }
+                }
             }
 
             //穴に落ちた時の処理
@@ -387,54 +447,6 @@ public class MotionPlayer : MonoBehaviour
                 m_Flying = true;
             }
 
-            // ジャンプ処理
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
-            {
-                if (m_Flying == false && collisionScript.LadderFlg == false)
-                {
-                    this.rigid2D.AddForce(transform.up * 240.0f);
-                    playerAudio.PlayOneShot(SE_Jump);
-                    AnimationChange(AnimationPattern.Jump);
-                    m_Step = Step.Jump;
-                    m_Flying = true;
-                }
-                // 梯子に触れている時に捕まる
-                else if(collisionScript.LadderFlg == true)
-                {
-                    m_LadderFlg = true;
-                    rigid2D.gravityScale = 0;
-                }
-            }
-
-            //梯子を上り下りする
-            if (collisionScript.LadderFlg == true)
-            {
-                rigid2D.gravityScale = 0;
-                rigid2D.velocity = new Vector2(0.0f, 0.0f);
-                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || vert > 0)
-                {
-                    this.transform.position += new Vector3(0.0f, 2.0f * Time.deltaTime, 0.0f);
-                }
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
-                {
-                    this.transform.position += new Vector3(0.0f, -2.0f * Time.deltaTime, 0.0f);
-                }
-            }
-            else
-            {
-                rigid2D.gravityScale = 1;
-            }
-
-            // 攻撃処理
-            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 1"))
-            {
-                if (m_Step != Step.Attack)
-                {
-                    playerAudio.PlayOneShot(SE_SwordSwing);
-                    AnimationChange(AnimationPattern.Attack);
-                    m_Step = Step.Attack;
-                }
-            }
 
             // ゴールに触れていたら
             if(GameSystem.IsGoal == true)
@@ -442,28 +454,6 @@ public class MotionPlayer : MonoBehaviour
                 AnimationChange(AnimationPattern.Goal);
                 m_Step = Step.Goal;
             }
-        }
-    }
-
-    private void OnGUI()
-    {
-        // GUI変更
-        GUIStyle guiStyle = new GUIStyle();
-        GUIStyleState styleState = new GUIStyleState();
-
-        switch (m_Step)
-        {
-            // タイトル
-            case Step.Title:
-                if (m_SW == true)
-                {
-                    styleState.textColor = Color.black; // 文字色 黒 
-                    guiStyle.normal = styleState;       // スタイルの設定。
-                    GUI.Label(new Rect(420, 180, 100, 50), "PRESS SPACE", guiStyle);
-                }
-                break;
-            default:
-                break;
         }
     }
 
@@ -611,6 +601,7 @@ public class MotionPlayer : MonoBehaviour
             AnimationChange(AnimationPattern.Damage);
             m_Step = Step.Damage;
             m_DamagedFlg = true;
+            CantMoveRecoveryed = false;
             var rigidbody2D = GetComponent<Rigidbody2D>();
             rigidbody2D.velocity = Vector3.zero;
             rigidbody2D.AddForce(new Vector3(-transform.localScale.x * 120.0f, 200.0f, 0.0f));

@@ -12,6 +12,12 @@ public class Diamond : MonoBehaviour
     AudioSource juwelAudio;
     public AudioClip SE_GetJuwel;
 
+    bool GettedFlg = false;
+
+    float DestroyDelta = 0.0f;
+    float DestroyLimit = 1.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +38,49 @@ public class Diamond : MonoBehaviour
         juwelAudio = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
+    //変更後
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if(GettedFlg == true)
+    //    {
+    //        if(DestroyDelta < DestroyLimit)
+    //        {
+    //            DestroyDelta += Time.deltaTime;
+    //        }
+    //        else
+    //        {
+    //            if (hiddenDiamond)
+    //            {
+    //                Destroy(hiddenDiamond);
+    //            }
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //}
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        if(GettedFlg == false)
+    //        {
+    //            juwelAudio.PlayOneShot(SE_GetJuwel);
+    //            Debug.Log("宝石獲得");
+    //            GameSystem.NumJewel += 1;
+    //            if(GameSystem.GetJuwelCollection(DiamondNum) == false)
+    //            {
+    //                GameSystem.SetJuwelGetted(DiamondNum, true);
+    //            }
+    //            GettedFlg = true;
+    //        }
+    //    }
+    //}
+
+    // 変更前
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +89,7 @@ public class Diamond : MonoBehaviour
         {
             juwelAudio.PlayOneShot(SE_GetJuwel);
             GameSystem.NumJewel += 1;
-            if(GameSystem.GetJuwelCollection(DiamondNum) == false)
+            if (GameSystem.GetJuwelCollection(DiamondNum) == false)
             {
                 GameSystem.SetJuwelGetted(DiamondNum, true);
             }

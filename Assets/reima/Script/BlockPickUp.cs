@@ -5,9 +5,10 @@ using UnityEngine;
 public class BlockPickUp : MonoBehaviour
 {
     private GameObject Player;
+    MotionPlayer MotionPlayerScript;
     private GameObject SetBlockPos;
     private bool Have = false;
-    private float BlockSetPos = 0.5f;
+    private float BlockSetPos = 1.0f;
     bool Set;
     bool Flg_Throw;
     float WaitTime = 0;
@@ -17,6 +18,7 @@ public class BlockPickUp : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("MotionPlayer");
+        MotionPlayerScript = Player.GetComponent<MotionPlayer>();
         SetBlockPos = GameObject.Find("Player/BlockPos");
         var rb = this.transform.gameObject.GetComponent<Rigidbody2D>();
         if (Have == false)
@@ -54,6 +56,7 @@ public class BlockPickUp : MonoBehaviour
                     rb.AddForce(new Vector3(-ThrowPowwer, 0, 0));
                 }
 
+                MotionPlayerScript.HavingBlock = false;
                 //this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z)
             }
         }
@@ -67,6 +70,7 @@ public class BlockPickUp : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.V) && Have == false || Input.GetKeyDown("joystick button 2") && Have == false)
             {
                 Have = true;
+                MotionPlayerScript.HavingBlock = true;
                 rb.freezeRotation = true;
                 WaitTime += SetWaitTime;
             }

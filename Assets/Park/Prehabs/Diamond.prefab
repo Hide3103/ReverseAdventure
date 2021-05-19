@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hiddenDiamond: {fileID: 0}
   DiamondNum: 0
-  SE_GetJuwel: {fileID: 8300000, guid: 0bf311da5f8202f428a21b461d95a306, type: 3}
+  SE_GetJuwel: {fileID: 8300000, guid: 75cce68f8d1b14a4395ca832130b2bcf, type: 3}
 --- !u!61 &8425890476570315759
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -6367820310980226123, guid: b074b88462d9ed2438bc5d582234e167,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

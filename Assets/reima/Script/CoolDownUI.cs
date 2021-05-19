@@ -19,7 +19,7 @@ public class CoolDownUI : MonoBehaviour
     void Update()
     {
         //IsRectTf.LookAt(Camera.main.transform);
-        this.gameObject.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + -0.07f , Player.transform.position.z);
+        this.gameObject.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 0.7f , Player.transform.position.z);
 
         Image gaugeCtrl = GetComponent<Image>();
         if (this.gameObject.name == "CoolDownUI")
