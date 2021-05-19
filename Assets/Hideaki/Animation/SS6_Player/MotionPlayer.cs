@@ -159,11 +159,13 @@ public class MotionPlayer : MonoBehaviour
 
         changeWorldScript = changeWorld.GetComponent<ChangeWorld>();
 
+        GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
         // キャラクターパラメータ関連を設定 
 
         // 座標設定 
         m_vecCharacterPos.x = 0.0f;
-        m_vecCharacterPos.y = 0.0f;
+        m_vecCharacterPos.y = 1.0f;
         m_vecCharacterPos.z = 0.0f;
 
         // スケール設定 
