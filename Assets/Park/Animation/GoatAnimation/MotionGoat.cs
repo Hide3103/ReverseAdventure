@@ -75,15 +75,11 @@ public class MotionGoat : MonoBehaviour
     private enum Step : int
     {
         Init = 0,   // 初期化 
-        Chase_Back = 1,
-        Chase_Front = 2,
-        Damage_Back = 3,
-        Damage_Front = 4,
-        Die = 5,
-        Discovery_Back = 6,
-        Discovery_Front = 7,
-        Walk_Back = 8,
-        Walk_Front = 9,
+        Chase = 1,
+        Damage = 2,
+        Die = 3,
+        Discovery = 4,
+        Walk = 5,
         End
     }
 
@@ -94,6 +90,19 @@ public class MotionGoat : MonoBehaviour
     // いろいろ使いまわす用変数
     private int m_Count = 0;
     private bool m_SW = true;
+
+    bool m_MotionChanged = true;
+    int NowMotionPatternNum = 0;
+    int NowStepNum = 0;
+
+    void MotionPatternChange(AnimationPattern pattern)
+    {
+        if(NowMotionPatternNum != (int)pattern)
+        {
+            NowMotionPatternNum = (int)pattern;
+            AnimationChange(pattern);
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -167,84 +176,194 @@ public class MotionGoat : MonoBehaviour
                 
                  m_Count = 0;
                  m_SW = true;
-                 m_Step = Step.Walk_Front;
+                 m_Step = Step.Walk;
                  AnimationStart();
                 
                 break;
             // タイトル
-            case Step.Walk_Front:
-                 if (flg_lookPlayer)
-                 {
-                     m_Step = Step.Discovery_Front;
-                     AnimationChange(AnimationPattern.Discovery_Front);
-                 }
-                 if (flg_damage)
-                 {
-                     m_Step = Step.Damage_Front;
-                     AnimationChange(AnimationPattern.Damage_Front);
-                 }
-                 if (flg_lostPlayer)
-                 {
-                     m_Step = Step.Init;
-                     AnimationChange(AnimationPattern.Walk_Front);
-                 }
-                 if (m_systemHp <= 0.0f)
-                 {
-                     m_Step = Step.Die;
-                     AnimationChange(AnimationPattern.Die);
-                 }                              
-                break;
-            case Step.Discovery_Front:
-                if (flg_damage)
+            case Step.Walk:
+                if (ChangeWorld.StateFront == true)
                 {
-                    m_Step = Step.Damage_Front;
-                    AnimationChange(AnimationPattern.Damage_Front);
+                    AnimationChange(AnimationPattern.Walk_Front);
                 }
-                 if (flg_moveToPlayer)
-                 {
-                     m_Step = Step.Chase_Front;
-                     AnimationChange(AnimationPattern.Chase_Front);
-                 }
-                 if (flg_lostPlayer)
-                 {
-                     m_Step = Step.Init;
-                     AnimationChange(AnimationPattern.Walk_Front);
-
-                 }
-                 if (m_systemHp <= 0.0f)
-                 {
-                     m_Step = Step.Die;
-                     AnimationChange(AnimationPattern.Die);
-                 }                                                   
+                else
+                {
+                    MotionPatternChange(AnimationPattern.Walk_Back);
+                }
+                if (ChangeWorld.StateFront == true)
+                {
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Front);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.Init;
+                        AnimationChange(AnimationPattern.Walk_Front);
+                    }
+                }
+                else
+                {
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Back);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.Init;
+                        AnimationChange(AnimationPattern.Walk_Back);
+                    }
+                }
+                if (m_systemHp <= 0.0f)
+                {
+                    m_Step = Step.Die;
+                    AnimationChange(AnimationPattern.Die);
+                }
                 break;
-            case Step.Damage_Front:                
-                 if (m_systemHp <= 0.0f)
-                 {
-                     m_Step = Step.Die;
-                     AnimationChange(AnimationPattern.Die);
-                 }
-                 else
-                 {
-                     m_Step = Step.Chase_Front;
-                     AnimationChange(AnimationPattern.Chase_Front);
-                 }                                
+            case Step.Discovery:
+                if (ChangeWorld.StateFront == true)
+                {
+                    MotionPatternChange(AnimationPattern.Discovery_Front);
+                }
+                else
+                {
+                    MotionPatternChange(AnimationPattern.Discovery_Back);
+                }
+                if (ChangeWorld.StateFront == true)
+                {
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Chase_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.Init;
+                        AnimationChange(AnimationPattern.Walk_Front);
+                    }
+                }
+                else
+                {
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Chase_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.Init;
+                        AnimationChange(AnimationPattern.Walk_Back);
+                    }
+                }
+                if (m_systemHp <= 0.0f)
+                {
+                    m_Step = Step.Die;
+                    AnimationChange(AnimationPattern.Die);
+                }                                                   
                 break;
-            case Step.Chase_Front:               
-                 if (flg_damage)
-                 {
-                     m_Step = Step.Damage_Front;
-                     AnimationChange(AnimationPattern.Damage_Front);
-                 }
-                 if (flg_lostPlayer)
-                 {
-                     m_Step = Step.Init;
-                     AnimationChange(AnimationPattern.Walk_Front);
-                 }
-                 if (m_systemHp <= 0.0f)
-                 {
-                     m_Step = Step.Die;
-                     AnimationChange(AnimationPattern.Die);
-                 }                
+            case Step.Damage:
+                if (ChangeWorld.StateFront == true)
+                {
+                    MotionPatternChange(AnimationPattern.Damage_Front);
+                }
+                else
+                {
+                    MotionPatternChange(AnimationPattern.Damage_Back);
+                }
+                if (ChangeWorld.StateFront == true)
+                {
+                    if (m_systemHp <= 0.0f)
+                    {
+                        m_Step = Step.Die;
+                        AnimationChange(AnimationPattern.Die);
+                    }
+                    else
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Chase_Front);
+                    }
+                }
+                else
+                {
+                    if (m_systemHp <= 0.0f)
+                    {
+                        m_Step = Step.Die;
+                        AnimationChange(AnimationPattern.Die);
+                    }
+                    else
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Chase_Back);
+                    }
+                }
+                break;
+            case Step.Chase:
+                if (ChangeWorld.StateFront == true)
+                {
+                    MotionPatternChange(AnimationPattern.Chase_Front);
+                }
+                else
+                {
+                    MotionPatternChange(AnimationPattern.Chase_Back);
+                }
+                if (ChangeWorld.StateFront == true)
+                {
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.Init;
+                        AnimationChange(AnimationPattern.Walk_Front);
+                    }
+                    if (m_systemHp <= 0.0f)
+                    {
+                        m_Step = Step.Die;
+                        AnimationChange(AnimationPattern.Die);
+                    }
+                }
+                else
+                {
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.Init;
+                        AnimationChange(AnimationPattern.Walk_Back);
+                    }
+                    if (m_systemHp <= 0.0f)
+                    {
+                        m_Step = Step.Die;
+                        AnimationChange(AnimationPattern.Die);
+                    }
+                }       
                 break;
             //case Step.Chase_Front:
             //    AnimationChange(AnimationPattern.Chase_Front);
