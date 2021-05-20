@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3311856326634546797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101066111815391671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb9f21778d9746449b60bc1e324dc9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Diamond_1: {fileID: 101066111428316446}
+  Diamond_2: {fileID: 101066110705255795}
+  Diamond_3: {fileID: 101066112315422781}
+  Diamond_4: {fileID: 101066112004368701}
+  Diamond_5: {fileID: 101066110901463521}
 --- !u!1 &416295134717557836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1120,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdfcabfc2fd387443902e9424a2e8a8e, type: 3}
+--- !u!1 &101066111815391671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017770588053529212, guid: bdfcabfc2fd387443902e9424a2e8a8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118803708044082123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &101066111428316446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017770588407117525, guid: bdfcabfc2fd387443902e9424a2e8a8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118803708044082123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &101066110705255795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017770587024637624, guid: bdfcabfc2fd387443902e9424a2e8a8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118803708044082123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &101066112315422781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017770588635694070, guid: bdfcabfc2fd387443902e9424a2e8a8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118803708044082123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &101066112004368701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017770588913193718, guid: bdfcabfc2fd387443902e9424a2e8a8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118803708044082123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &101066110901463521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017770587893781034, guid: bdfcabfc2fd387443902e9424a2e8a8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118803708044082123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &101066111815391670 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2017770588053529213, guid: bdfcabfc2fd387443902e9424a2e8a8e,
