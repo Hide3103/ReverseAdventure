@@ -33,7 +33,10 @@ public class GettedJuwel_UI : MonoBehaviour
         DiaImage_4 = Diamond_4.GetComponent<Image>();
         DiaImage_5 = Diamond_5.GetComponent<Image>();
 
-        GettedJuwelNum_Text = GettedJuwelNum.GetComponent<Text>();
+        if(GettedJuwelNum)
+        {
+            GettedJuwelNum_Text = GettedJuwelNum.GetComponent<Text>();
+        }
     }
 
     // Update is called once per frame
@@ -55,7 +58,10 @@ public class GettedJuwel_UI : MonoBehaviour
             }
         }
 
-        GettedJuwelNum_Text.text = "× " + GameSystem.GetAllStageJuwelNum();
+        if (GettedJuwelNum)
+        {
+            GettedJuwelNum_Text.text = "× " + GameSystem.GetAllStageJuwelNum();
+        }
     }
 
     void SetJuwelGettedUI(int juwelNum, bool gettedTrue)

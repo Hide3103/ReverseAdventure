@@ -20,6 +20,7 @@ public class MotionGoat : MonoBehaviour
     Rigidbody2D rigid2D;
 
     Vector2 firstScale;
+    Vector2 LostPlayerFirstScale;
 
     //SpriteRenderer spriteRenderer;
 
@@ -95,6 +96,9 @@ public class MotionGoat : MonoBehaviour
     int NowMotionPatternNum = 0;
     int NowStepNum = 0;
 
+    //テープがどちらの面にあるか(true:前面、false:裏面)
+    public bool m_TapeOnFrontSide = true;
+
     void MotionPatternChange(AnimationPattern pattern)
     {
         if(NowMotionPatternNum != (int)pattern)
@@ -116,6 +120,7 @@ public class MotionGoat : MonoBehaviour
         this.rigid2D = GetComponent<Rigidbody2D>();
 
         this.firstScale = transform.localScale;
+        LostPlayerFirstScale = lostPlayer.GetComponent<Transform>().localScale;
 
         //spriteRenderer = GetComponent<SpriteRenderer>();
         //beforeColor = spriteRenderer.color;
@@ -182,15 +187,15 @@ public class MotionGoat : MonoBehaviour
                 break;
             // タイトル
             case Step.Walk:
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    AnimationChange(AnimationPattern.Walk_Front);
+                    MotionPatternChange(AnimationPattern.Walk_Front);
                 }
                 else
                 {
                     MotionPatternChange(AnimationPattern.Walk_Back);
                 }
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     if (flg_lookPlayer)
                     {
@@ -233,7 +238,7 @@ public class MotionGoat : MonoBehaviour
                 }
                 break;
             case Step.Discovery:
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     MotionPatternChange(AnimationPattern.Discovery_Front);
                 }
@@ -241,7 +246,7 @@ public class MotionGoat : MonoBehaviour
                 {
                     MotionPatternChange(AnimationPattern.Discovery_Back);
                 }
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     if (flg_damage)
                     {
@@ -284,7 +289,7 @@ public class MotionGoat : MonoBehaviour
                 }                                                   
                 break;
             case Step.Damage:
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     MotionPatternChange(AnimationPattern.Damage_Front);
                 }
@@ -292,7 +297,7 @@ public class MotionGoat : MonoBehaviour
                 {
                     MotionPatternChange(AnimationPattern.Damage_Back);
                 }
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     if (m_systemHp <= 0.0f)
                     {
@@ -320,7 +325,7 @@ public class MotionGoat : MonoBehaviour
                 }
                 break;
             case Step.Chase:
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     MotionPatternChange(AnimationPattern.Chase_Front);
                 }
@@ -328,7 +333,7 @@ public class MotionGoat : MonoBehaviour
                 {
                     MotionPatternChange(AnimationPattern.Chase_Back);
                 }
-                if (ChangeWorld.StateFront == true)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
                     if (flg_damage)
                     {
@@ -501,8 +506,14 @@ public class MotionGoat : MonoBehaviour
                         m_goCharPos.transform.localScale = m_vecCharacterScale;
 
                         //アニメーション再生
-                        AnimationChange(AnimationPattern.Walk_Front);
-                        Debug.Log("AnimationChange(AnimationPattern.Walk_Front);");
+                        if(ChangeWorld.StateFront != m_TapeOnFrontSide)
+                        {
+                            MotionPatternChange(AnimationPattern.Walk_Front);
+                        }
+                        else
+                        {
+                            MotionPatternChange(AnimationPattern.Walk_Back);
+                        }
                     }
                 }
             }
@@ -584,7 +595,7 @@ public class MotionGoat : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            if (flg_blinking == false)
+            if (flg_blinking == false && (ChangeWorld.StateFront != m_TapeOnFrontSide))
             {
                 flg_damage = true;
 
@@ -794,10 +805,12 @@ public class MotionGoat : MonoBehaviour
         if (player.transform.position.x < this.transform.position.x)
         {
             transform.localScale = new Vector3(firstScale.x, firstScale.y, 1.0f);
+            lostPlayer.transform.localScale = new Vector3(LostPlayerFirstScale.x, LostPlayerFirstScale.y, 1.0f);
         }
         else if (player.transform.position.x > this.transform.position.x)
         {
             transform.localScale = new Vector3(-firstScale.x, firstScale.y, 1.0f);
+            lostPlayer.transform.localScale = new Vector3(-LostPlayerFirstScale.x, LostPlayerFirstScale.y, 1.0f);
         }
     }
 
