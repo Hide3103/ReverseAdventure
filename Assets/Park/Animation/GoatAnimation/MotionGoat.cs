@@ -595,7 +595,7 @@ public class MotionGoat : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            if (flg_blinking == false && (ChangeWorld.StateFront != m_TapeOnFrontSide))
+            if (flg_blinking == false && (ChangeWorld.StateFront == m_TapeOnFrontSide))
             {
                 flg_damage = true;
 
