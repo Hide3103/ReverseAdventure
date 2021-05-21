@@ -9,6 +9,7 @@ public class Darkening : MonoBehaviour
     public float SetAlpha = 0.0f;
     float WaitTime = 0;
     public static bool DarkeningOn;
+    float FeedTimne = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class Darkening : MonoBehaviour
 
             if (SetAlpha <1&&DarkeningOn)
             {
-                SetAlpha += 0.7f * Time.deltaTime;
+                SetAlpha += FeedTimne * Time.deltaTime;
             }
             if(SetAlpha<=1)
             {
