@@ -350,6 +350,7 @@ public class Title : MonoBehaviour
                 case 1:
                     SceneManager.LoadScene("StageSelect");
                     Push = false;
+                    FeedEffect.FlgEffect = true;
                     break;
                 case 2:
                     SettingScene();

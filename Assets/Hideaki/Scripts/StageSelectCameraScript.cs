@@ -34,6 +34,16 @@ public class StageSelectCameraScript : MonoBehaviour
 
     public GameObject TitleBackImg;
     public GameObject Open_TitleBackImg;
+
+
+    public GameObject Stage2OpenInfo;
+    public GameObject Stage3OpenInfo;
+    public GameObject Stage4OpenInfo;
+    public GameObject Stage5OpenInfo;
+    public GameObject Stage6OpenInfo;
+
+    bool InfoMenu = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +63,85 @@ public class StageSelectCameraScript : MonoBehaviour
     {
         Debug.Log("SelectingStageNum : " + SelectingStageNum);
 
+
+        Debug.Log(InfoMenu);
+        if (Input.GetKeyDown("joystick button 3") && InfoMenu == false)
+        {
+            InfoMenu = true;
+            switch (SelectingStageNum)
+            {
+                case 1:
+                    break;
+                case 2:
+                    Stage2OpenInfo.SetActive(true);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(false);
+
+
+                    break;
+                case 3:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(true);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(false);
+
+
+                    break;
+                case 4:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(true);
+                    Stage5OpenInfo.SetActive(false);
+
+
+                    break;
+                case 5:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(true);
+
+                    break;
+            }
+        }
+        if (Input.GetKeyDown("joystick button 0") && InfoMenu)
+        {
+            InfoMenu = false;
+            switch (SelectingStageNum)
+            {
+                case 1:
+                    break;
+                case 2:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(false);
+
+                    break;
+                case 3:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(false);
+
+                    break;
+                case 4:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(false);
+                    break;
+                case 5:
+                    Stage2OpenInfo.SetActive(false);
+                    Stage3OpenInfo.SetActive(false);
+                    Stage4OpenInfo.SetActive(false);
+                    Stage5OpenInfo.SetActive(false);
+                    break;
+            }
+        }
+
+
         if (WaitTime > 0)
         {
             WaitTime -= Time.unscaledDeltaTime;
@@ -63,7 +152,7 @@ public class StageSelectCameraScript : MonoBehaviour
         {
             if (SelectingStageNum < StageMaxNum)
             {
-                if ((Input.GetKeyDown(KeyCode.RightArrow))||(hori>0.3f && WaitTime <= 0))
+                if ((Input.GetKeyDown(KeyCode.RightArrow)) || (hori > 0.3f && WaitTime <= 0))
                 {
                     transform.position += new Vector3(5.0f, 0.0f, 0.0f);
                     SelectingStageNum += 1;
@@ -77,7 +166,7 @@ public class StageSelectCameraScript : MonoBehaviour
             }
             if (1 < SelectingStageNum)
             {
-                if ((Input.GetKeyDown(KeyCode.LeftArrow))||(hori<-0.3f && WaitTime <= 0))
+                if ((Input.GetKeyDown(KeyCode.LeftArrow)) || (hori < -0.3f && WaitTime <= 0))
                 {
                     transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
                     SelectingStageNum -= 1;
@@ -137,10 +226,17 @@ public class StageSelectCameraScript : MonoBehaviour
         //{
         //    Debug.Log("GameSystem.ClearJuwel[SelectingStageNum] <= GameSystem.GetAllStageJuwelNum() == false");
         //}
-
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown("joystick button 0"))
+        if (FeedEffect.GoScene)
         {
-            switch(SelectingStageNum)
+            SceneManager.LoadScene(GetStageName(SelectingStageNum));
+            FeedEffect.DarkeningOn = false;
+            FeedEffect.FlgEffect = true;
+            FeedEffect.GoScene = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+        {
+            switch (SelectingStageNum)
             {
                 case 0:
                     SceneManager.LoadScene("Title");
@@ -151,14 +247,15 @@ public class StageSelectCameraScript : MonoBehaviour
                 case 3:
                 case 4:
                 case 5:
-                    if (GameSystem.GetStageCleared(SelectingStageNum) == true 
+                    if (GameSystem.GetStageCleared(SelectingStageNum) == true
                         && GameSystem.ClearJuwel[SelectingStageNum - 1] <= GameSystem.GetAllStageJuwelNum())
                     {
                         stageSelectAudio.PlayOneShot(SE_Enter);
                         GameSystem.WasPlayStage = SelectingStageNum;
                         PlayerScript.m_IsPlay = true;
                         MotionPlayer.m_IsPlay = true;
-                        SceneManager.LoadScene(GetStageName(SelectingStageNum));
+                        FeedEffect.DarkeningOn = true;
+                        FeedEffect.FlgEffect = true;
                     }
                     else
                     {
@@ -170,11 +267,11 @@ public class StageSelectCameraScript : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            for(int stageNum = 0; stageNum < 5; stageNum++)
+            for (int stageNum = 0; stageNum < 5; stageNum++)
             {
-                for(int juwelNum = 0; juwelNum < 5; juwelNum++)
+                for (int juwelNum = 0; juwelNum < 5; juwelNum++)
                 {
                     GameSystem.SetJuwelCollection(stageNum, juwelNum, true);
                 }
@@ -214,4 +311,5 @@ public class StageSelectCameraScript : MonoBehaviour
     {
         return SelectingStageNum;
     }
+
 }

@@ -80,12 +80,13 @@ public class GameOver : MonoBehaviour
                     {
                         case 1:
                             SceneManager.LoadScene("Stage_1");
+                            FeedEffect.DarkeningOn = false;
+                            FeedEffect.FlgEffect = true;
                             break;
                         case 2:
                             SceneManager.LoadScene("Stage_2");
-                            break;
-                        case 3:
-                            SceneManager.LoadScene("Stage_3");
+                            FeedEffect.DarkeningOn = false;
+                            FeedEffect.FlgEffect = true;
                             break;
                     }
                 }
@@ -94,6 +95,8 @@ public class GameOver : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     gameOverAudio.PlayOneShot(SE_Enter);
+                    FeedEffect.DarkeningOn = false;
+                    FeedEffect.FlgEffect = true;
                     SceneManager.LoadScene("StageSelect");
                 }
                 break;
