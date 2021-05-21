@@ -20,15 +20,10 @@ public class DirectionController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if (BackGoat.flg_moveToPlayer == false)
+            if (MotionGoat.flg_moveToPlayer == false)
             {
-                BackGoat.SetDirection(-1.0f);
-            }
-
-            if (Goat.flg_moveToPlayer == false)
-            {
-                Goat.SetDirection(-1.0f);
-            }
+                MotionGoat.SetDirection(-1.0f);
+            }            
         }
     }
 }
