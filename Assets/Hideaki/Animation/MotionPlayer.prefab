@@ -80,7 +80,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1570785824582914623
 Transform:
   m_ObjectHideFlags: 0
@@ -337,7 +337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationList:
   - {fileID: 6228275438500022625, guid: d4f5c60ff3e72d648afa87bea3fd11fe, type: 3}
+  - {fileID: 8148582308499959891, guid: 1d5156ee50f3e6742b36317b3fd4dd52, type: 3}
   m_DamagedFlg: 0
+  HavingBlock: 0
   m_PlayerDeathPosY: -6
   GoalObject: {fileID: 0}
   m_LookKey: 1

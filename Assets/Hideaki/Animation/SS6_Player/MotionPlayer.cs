@@ -30,6 +30,8 @@ public class MotionPlayer : MonoBehaviour
         Wait = 7,       // 待機
         Walk = 8,       // 歩き
         Walk_Lift = 9,
+
+        Climb = 10,
         Count
     }
 
@@ -45,6 +47,7 @@ public class MotionPlayer : MonoBehaviour
         Damage,     // ダメージ
         Goal,       // ゴール
         Reverse,    // リバース
+        Climb,      // 梯子を登る
         End
     }
 
@@ -184,10 +187,7 @@ public class MotionPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("PlayerHp : " + m_PlayerHp);
-
         AnimationBehaviour();
-
     }
 
     void AnimationBehaviour()
@@ -204,8 +204,15 @@ public class MotionPlayer : MonoBehaviour
                 case Step.Init:
                     m_Count = 0;
                     m_SW = true;
-                    m_Step = Step.Wait;
-                    AnimationStart();   // アニメーション開始処理(設定)
+                    //if (collisionScript.LadderFlg == true)
+                    //{
+                    //    AnimationStartClimb();
+                    //    Debug.Log("AnimationStartClimb()");
+                    //}
+                    //else
+                    //{
+                        AnimationStartDefault();   // アニメーション開始処理(設定)
+                    //}
                     break;
                 // タイトル
                 case Step.Title:
@@ -216,7 +223,7 @@ public class MotionPlayer : MonoBehaviour
                     }
                     if (Input.GetKeyDown(KeyCode.Space) == true)
                     {
-                        AnimationStart();   // アニメーション開始処理(設定)
+                        AnimationStartDefault();   // アニメーション開始処理(設定)
                         m_Step = Step.Wait;
                     }
                     break;
@@ -253,7 +260,15 @@ public class MotionPlayer : MonoBehaviour
                             m_Step = Step.Wait;
                         }
 
-                        m_goCharPos.transform.localPosition = m_vecCharacterPos;    // 座標反映 
+                        //if(collisionScript.LadderFlg == true)
+                        //{
+                        //    m_goCharPos.transform.localPosition = m_vecCharacterPos;    // 座標反映 
+                        //}
+                        //else
+                        //{
+                        //    m_goCharPos.transform.localPosition = m_vecCharacterPos;    // 座標反映 
+
+                        //}
                     }
                     break;
                 // ジャンプ
@@ -267,11 +282,9 @@ public class MotionPlayer : MonoBehaviour
                     break;
                 // 攻撃中 
                 case Step.Attack:
-                    Debug.Log("Step:アタック");
                     //攻撃
                     if (attackSpan < attackDelta)
                     {
-                        Debug.Log("アタック終了");
                         // 待機に変更 
                         AnimationChange(AnimationPattern.Wait);
                         m_Step = Step.Wait;
@@ -302,6 +315,9 @@ public class MotionPlayer : MonoBehaviour
                     {
                         m_ReverseDeltaTime += Time.deltaTime;
                     }
+                    break;
+                case Step.Climb:
+
                     break;
                 default:
                     break;
@@ -352,6 +368,17 @@ public class MotionPlayer : MonoBehaviour
                 {
                     m_Moving = false;
                 }
+                
+                // 空中にいるかの判定
+                float speedY = Mathf.Abs(this.rigid2D.velocity.y);
+                if (speedY <= 0.01f)
+                {
+                    m_Flying = false;
+                }
+                else
+                {
+                    m_Flying = true;
+                }
 
                 // ジャンプ処理
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
@@ -360,15 +387,14 @@ public class MotionPlayer : MonoBehaviour
                     {
                         this.rigid2D.AddForce(transform.up * 240.0f);
                         playerAudio.PlayOneShot(SE_Jump);
-                        AnimationChange(AnimationPattern.Jump);
                         m_Step = Step.Jump;
+                        AnimationChange(AnimationPattern.Jump);
                         m_Flying = true;
                     }
                     // 梯子に触れている時に捕まる
                     else if (collisionScript.LadderFlg == true)
                     {
                         m_LadderFlg = true;
-                        rigid2D.gravityScale = 0;
                     }
                 }
 
@@ -381,10 +407,16 @@ public class MotionPlayer : MonoBehaviour
                     {
                         this.transform.position += new Vector3(0.0f, 2.0f * Time.deltaTime, 0.0f);
                     }
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
+                    else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
                     {
                         this.transform.position += new Vector3(0.0f, -2.0f * Time.deltaTime, 0.0f);
                     }
+                    //else
+                    //{
+                    m_Step = Step.Wait;
+                    AnimationChange(AnimationPattern.Count);
+                    //    //AnimationStartClimb();
+                    //}
                 }
                 else
                 {
@@ -436,17 +468,6 @@ public class MotionPlayer : MonoBehaviour
                 Destroy(this.gameObject);
             }
 
-            // 空中にいるかの判定
-            float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-            if (speedY <= 0.01f)
-            {
-                m_Flying = false;
-            }
-            else
-            {
-                m_Flying = true;
-            }
-
 
             // ゴールに触れていたら
             if(GameSystem.IsGoal == true)
@@ -458,13 +479,13 @@ public class MotionPlayer : MonoBehaviour
     }
 
     // アニメーション開始 
-    private void AnimationStart()
+    private void AnimationStartDefault()
     {
         Script_SpriteStudio6_Root scriptRoot = null;    // SpriteStudio Anime を操作するためのクラス
         int listLength = AnimationList.Length;
 
         // すでにアニメーション生成済 or リソース設定無い場合はreturn
-        if (m_goCharacter != null || listLength < 1)
+        if (m_goCharacter != null || listLength < 2)
             return;
 
         // 再生するリソース名をリストから取得して再生する
@@ -489,7 +510,7 @@ public class MotionPlayer : MonoBehaviour
                     else
                     {
                         // Object名変更 
-                        m_goCharPos.name = "Comipo";
+                        m_goCharPos.name = "DefaultPlayer";
 
                         // 座標設定 
                         m_goCharacter.transform.parent = m_goCharPos.transform;
@@ -501,7 +522,60 @@ public class MotionPlayer : MonoBehaviour
                         m_goCharPos.transform.localScale = m_vecCharacterScale;
 
                         //アニメーション再生
+                        m_Step = Step.Wait;
                         AnimationChange(AnimationPattern.Wait);
+                    }
+                }
+            }
+        }
+    }
+
+    // アニメーション開始 
+    private void AnimationStartClimb()
+    {
+        Script_SpriteStudio6_Root scriptRoot = null;    // SpriteStudio Anime を操作するためのクラス
+        int listLength = AnimationList.Length;
+
+        // すでにアニメーション生成済 or リソース設定無い場合はreturn
+        if (m_goCharacter != null || listLength < 2)
+            return;
+
+        // 再生するリソース名をリストから取得して再生する
+        Object resourceObject = AnimationList[1];
+        if (resourceObject != null)
+        {
+            // アニメーションを実体化
+            m_goCharacter = Instantiate(resourceObject, Vector3.zero, Quaternion.identity) as GameObject;
+            if (m_goCharacter != null)
+            {
+                scriptRoot = Script_SpriteStudio6_Root.Parts.RootGet(m_goCharacter);
+                if (scriptRoot != null)
+                {
+                    // 座標設定するためのGameObject作成
+                    m_goCharPos = new GameObject();
+                    if (m_goCharPos == null)
+                    {
+                        // 作成できないケース対応 
+                        Destroy(m_goCharacter);
+                        m_goCharacter = null;
+                    }
+                    else
+                    {
+                        // Object名変更 
+                        m_goCharPos.name = "ClimbPlayer";
+
+                        // 座標設定 
+                        m_goCharacter.transform.parent = m_goCharPos.transform;
+
+                        // 自分の子に移動して座標を設定
+                        m_goCharPos.transform.parent = this.transform;
+                        m_goCharPos.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                        m_goCharPos.transform.localRotation = Quaternion.identity;
+                        m_goCharPos.transform.localScale = m_vecCharacterScale;
+
+                        //アニメーション再生
+                        m_Step = Step.Climb;
+                        AnimationChange(AnimationPattern.Climb);
                     }
                 }
             }
@@ -518,36 +592,64 @@ public class MotionPlayer : MonoBehaviour
             return;
 
         scriptRoot = Script_SpriteStudio6_Root.Parts.RootGet(m_goCharacter);
-        if (scriptRoot != null)
+        if(collisionScript.LadderFlg == false)
         {
-            switch (pattern)
+            if (scriptRoot != null)
             {
-                case AnimationPattern.Wait:
-                    iTimesPlaey = 0;    // ループ再生 
-                    break;
-                case AnimationPattern.Attack:
-                    iTimesPlaey = 1;    // 1回だけ再生 
-                    break;
-                case AnimationPattern.Damage:
-                    iTimesPlaey = 1;
-                    break;
-                case AnimationPattern.Goal:
-                    iTimesPlaey = 0;
-                    break;
-                case AnimationPattern.Jump:
-                    iTimesPlaey = 1;    // ループ再生 
-                    break;
-                case AnimationPattern.Reverse:
-                    iTimesPlaey = 1;
-                    break;
-                case AnimationPattern.Walk:
-                    iTimesPlaey = 0;    // ループ再生 
-                    break;
-                default:
-                    break;
+                switch (pattern)
+                {
+                    case AnimationPattern.Attack:
+                        iTimesPlaey = 1;    // 1回だけ再生 
+                        break;
+                    case AnimationPattern.Damage:
+                        iTimesPlaey = 1;
+                        break;
+                    case AnimationPattern.Goal:
+                        iTimesPlaey = 0;
+                        break;
+                    case AnimationPattern.Jump:
+                        iTimesPlaey = 1;    // ループ再生 
+                        break;
+                    case AnimationPattern.Lift:
+                        iTimesPlaey = 1;
+                        break;
+                    case AnimationPattern.Reverse:
+                        iTimesPlaey = 1;
+                        break;
+                    case AnimationPattern.Throw:
+                        iTimesPlaey = 1;
+                        break;
+                    case AnimationPattern.Wait:
+                        iTimesPlaey = 0;    // ループ再生 
+                        break;
+                    case AnimationPattern.Walk:
+                        iTimesPlaey = 0;    // ループ再生 
+                        break;
+                    case AnimationPattern.Walk_Lift:
+                        iTimesPlaey = 0;    // ループ再生 
+                        break;
+                    default:
+                        break;
+                }
+                scriptRoot.AnimationPlay(-1, (int)pattern, iTimesPlaey);
             }
-            scriptRoot.AnimationPlay(-1, (int)pattern, iTimesPlaey);
         }
+        //else
+        //{
+        //    if (scriptRoot != null)
+        //    {
+        //        switch (pattern)
+        //        {
+        //            case AnimationPattern.Climb:
+        //                iTimesPlaey = 0;
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //        scriptRoot.AnimationPlay(-1, 0, iTimesPlaey);
+        //    }
+
+        //}
     }
 
     // アニメーションが再生中か停止中(エラー含)か取得します

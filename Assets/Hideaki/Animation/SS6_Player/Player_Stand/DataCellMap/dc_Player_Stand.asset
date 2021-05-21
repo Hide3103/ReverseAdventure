@@ -14,6 +14,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Version: 65537
   TableCellMap:
+  - Name: Climb
+    SizeOriginal: {x: 512, y: 512}
+    TableCell:
+    - Name: Head_c
+      Rectangle:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 64
+        height: 72
+      Pivot: {x: 32, y: 36}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Body_c
+      Rectangle:
+        serializedVersion: 2
+        x: 70
+        y: 4
+        width: 35
+        height: 51
+      Pivot: {x: 17.5, y: 25.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftArm_c1
+      Rectangle:
+        serializedVersion: 2
+        x: 178
+        y: 4
+        width: 24
+        height: 27
+      Pivot: {x: 19, y: 5.0000005}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftArm_c2
+      Rectangle:
+        serializedVersion: 2
+        x: 154
+        y: 4
+        width: 21
+        height: 32
+      Pivot: {x: 13, y: 28}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightArm_c1
+      Rectangle:
+        serializedVersion: 2
+        x: 204
+        y: 4
+        width: 24
+        height: 25
+      Pivot: {x: 3.9999998, y: 3.0000002}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightArm_c2
+      Rectangle:
+        serializedVersion: 2
+        x: 230
+        y: 4
+        width: 18
+        height: 30
+      Pivot: {x: 2.9999998, y: 25}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_c
+      Rectangle:
+        serializedVersion: 2
+        x: 132
+        y: 4
+        width: 20
+        height: 42
+      Pivot: {x: 10, y: 1.9999999}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_c
+      Rectangle:
+        serializedVersion: 2
+        x: 108
+        y: 4
+        width: 22
+        height: 47
+      Pivot: {x: 10, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
   - Name: Player_Stand
     SizeOriginal: {x: 512, y: 512}
     TableCell:
@@ -267,6 +358,20 @@ MonoBehaviour:
         width: 26
         height: 48
       Pivot: {x: 4.9999995, y: 4.0000005}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: sword
+    SizeOriginal: {x: 128, y: 128}
+    TableCell:
+    - Name: sword
+      Rectangle:
+        serializedVersion: 2
+        x: 92
+        y: 22
+        width: 36
+        height: 98
+      Pivot: {x: 18, y: 72}
       Mesh:
         TableCoordinate: []
         TableIndexVertex: 

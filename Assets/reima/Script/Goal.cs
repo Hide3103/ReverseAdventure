@@ -33,8 +33,8 @@ public class Goal : MonoBehaviour
             StayTime += Time.unscaledDeltaTime;
             if (StayTime > 3)
             {
-                GoalCamera.SetActive(true);
-                MainCamera.SetActive(false);
+                //GoalCamera.SetActive(true);
+                //MainCamera.SetActive(false);
                 Result.SetActive(true);
             }
         }

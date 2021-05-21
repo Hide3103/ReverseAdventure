@@ -221,7 +221,7 @@ public class MotionBridge : MonoBehaviour
                     else
                     {
                         // Object名変更 
-                        m_goCharPos.name = "Comipo";
+                        m_goCharPos.name = "Bridge";
 
                         // 座標設定 
                         m_goCharacter.transform.parent = m_goCharPos.transform;
