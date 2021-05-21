@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194737b46e04ff84a936435d5601662f, type: 3}
+  m_Name: dc_Wolf
+  m_EditorClassIdentifier: 
+  Version: 65537
+  TableCellMap:
+  - Name: Body_1
+    SizeOriginal: {x: 128, y: 64}
+    TableCell:
+    - Name: Body_1
+      Rectangle:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 42
+        height: 35
+      Pivot: {x: 20, y: 30}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Body_2
+    SizeOriginal: {x: 128, y: 64}
+    TableCell:
+    - Name: Body_2
+      Rectangle:
+        serializedVersion: 2
+        x: 59
+        y: 21
+        width: 38
+        height: 31
+      Pivot: {x: 19, y: 27}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape_1
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Tape_1
+      Rectangle:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 57
+        height: 28
+      Pivot: {x: 28.5, y: 14}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape_2
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Tape_2
+      Rectangle:
+        serializedVersion: 2
+        x: 30
+        y: 26
+        width: 24
+        height: 26
+      Pivot: {x: 12, y: 22}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape_3
+    SizeOriginal: {x: 96, y: 64}
+    TableCell:
+    - Name: Tape_3
+      Rectangle:
+        serializedVersion: 2
+        x: 50
+        y: 24
+        width: 26
+        height: 28
+      Pivot: {x: 13, y: 14}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Wolf
+    SizeOriginal: {x: 512, y: 512}
+    TableCell:
+    - Name: Head
+      Rectangle:
+        serializedVersion: 2
+        x: 78
+        y: 4
+        width: 36
+        height: 31
+      Pivot: {x: 32, y: 26}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_2_3
+      Rectangle:
+        serializedVersion: 2
+        x: 294
+        y: 4
+        width: 13
+        height: 7
+      Pivot: {x: 11, y: 2}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_2_2
+      Rectangle:
+        serializedVersion: 2
+        x: 266
+        y: 4
+        width: 11
+        height: 15
+      Pivot: {x: 5, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_2_1
+      Rectangle:
+        serializedVersion: 2
+        x: 154
+        y: 4
+        width: 21
+        height: 24
+      Pivot: {x: 10, y: 3.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_1_3
+      Rectangle:
+        serializedVersion: 2
+        x: 326
+        y: 4
+        width: 10
+        height: 6
+      Pivot: {x: 8, y: 2}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_1_2
+      Rectangle:
+        serializedVersion: 2
+        x: 234
+        y: 4
+        width: 13
+        height: 14
+      Pivot: {x: 11, y: 1.9999999}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: LeftLeg_1_1
+      Rectangle:
+        serializedVersion: 2
+        x: 202
+        y: 4
+        width: 14
+        height: 18
+      Pivot: {x: 2.9999998, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Body
+      Rectangle:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 72
+        height: 31
+      Pivot: {x: 36, y: 15.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_2_3
+      Rectangle:
+        serializedVersion: 2
+        x: 310
+        y: 4
+        width: 13
+        height: 7
+      Pivot: {x: 10, y: 3}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_2_2
+      Rectangle:
+        serializedVersion: 2
+        x: 280
+        y: 4
+        width: 11
+        height: 15
+      Pivot: {x: 4, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_2_1
+      Rectangle:
+        serializedVersion: 2
+        x: 178
+        y: 4
+        width: 21
+        height: 24
+      Pivot: {x: 11, y: 5.0000005}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_1_3
+      Rectangle:
+        serializedVersion: 2
+        x: 338
+        y: 4
+        width: 10
+        height: 6
+      Pivot: {x: 8, y: 3}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_1_2
+      Rectangle:
+        serializedVersion: 2
+        x: 250
+        y: 4
+        width: 13
+        height: 14
+      Pivot: {x: 10, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: RightLeg_1_1
+      Rectangle:
+        serializedVersion: 2
+        x: 218
+        y: 4
+        width: 14
+        height: 18
+      Pivot: {x: 1.9999999, y: 2.9999998}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: Tail
+      Rectangle:
+        serializedVersion: 2
+        x: 116
+        y: 4
+        width: 36
+        height: 16
+      Pivot: {x: 3.0000005, y: 3}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: tape
+    SizeOriginal: {x: 128, y: 64}
+    TableCell:
+    - Name: tape
+      Rectangle:
+        serializedVersion: 2
+        x: 37
+        y: 18
+        width: 48
+        height: 32
+      Pivot: {x: 24, y: 16}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
