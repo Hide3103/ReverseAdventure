@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Darkening : MonoBehaviour
+public class brightlyEffect : MonoBehaviour
 {
     public CanvasGroup TitleCanvasGroup1;
     public float SetAlpha = 0.0f;
     float WaitTime = 0;
-    public static bool DarkeningOn;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +17,14 @@ public class Darkening : MonoBehaviour
     void Update()
     {
 
-            WaitTime += Time.deltaTime;
+        WaitTime += Time.deltaTime;
 
-            if (SetAlpha <1&&DarkeningOn)
-            {
-                SetAlpha += 0.7f * Time.deltaTime;
-            }
-            if(SetAlpha<=1)
-            {
-            DarkeningOn = false;
-            }
+        if (SetAlpha >= 0 && Darkening.DarkeningOn==false)
+        {
+            SetAlpha -= 0.7f * Time.deltaTime;
+        }
         TitleCanvasGroup1.alpha = SetAlpha;
+
+
     }
 }

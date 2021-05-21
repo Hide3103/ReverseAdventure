@@ -983,6 +983,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4476994817954911178, guid: 8a2dcb039c4861445858a219a5df198b,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476994817610295482, guid: 8a2dcb039c4861445858a219a5df198b,
+        type: 3}
+      propertyPath: SetAlpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2dcb039c4861445858a219a5df198b, type: 3}
 --- !u!1 &260049927
@@ -1110,6 +1120,7 @@ MonoBehaviour:
   SettingCanvas: {fileID: 40485308}
   CloudCanvas: {fileID: 418498341}
   DarkeningImg: {fileID: 2116403224}
+  NumSelect: 1
   SetAlpha: 1
   DarkeningAlpha: 0
   SE_Enter: {fileID: 8300000, guid: fe0c27868b1c3d54985b0e0325b9cbe4, type: 3}
