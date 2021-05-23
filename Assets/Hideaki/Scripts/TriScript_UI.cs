@@ -49,11 +49,13 @@ public class TriScript_UI : MonoBehaviour
             Vector3 UI_StageDistance = UI_GoalPos - UI_StartPos;
 
             float PosX = StageDistace.x - toGoalDistance.x; // スタートからの距離
-            float UI_PosX = StageBar.transform.position.x - 2.25f + playerStartDistance * 4 / goalStartDistance;
+            float UI_PosX = StageBar.transform.position.x - 2.13f + playerStartDistance * 4 / goalStartDistance;
 
             uiPosx = UI_PosX;
-
-            this.transform.position = new Vector3(UI_PosX, this.transform.position.y, this.transform.position.z);
+            if(startPos.x < playerPos.x)
+            {
+                this.transform.position = new Vector3(UI_PosX, this.transform.position.y, this.transform.position.z);
+            }
         }
     }
 }
