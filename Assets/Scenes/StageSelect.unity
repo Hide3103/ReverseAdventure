@@ -407,7 +407,7 @@ MonoBehaviour:
   CameraObject: {fileID: 1756271198}
   TapeObject: {fileID: 2047308568}
   LockImage: {fileID: 21300000, guid: cefad2a0f4c9f3b4083e3bdaee4b7f94, type: 3}
-  OpenImage: {fileID: 21300000, guid: 6611bc3013da8a9499e7d1b6479cfc10, type: 3}
+  OpenImage: {fileID: 21300000, guid: 8dd45b55d16d1fe4fa9f5027aa66c69b, type: 3}
   m_canvas: {fileID: 2038735124}
   StageText: {fileID: 1697250952}
 --- !u!212 &75814884
