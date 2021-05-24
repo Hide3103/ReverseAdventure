@@ -340,7 +340,7 @@ public class Title : MonoBehaviour
 
         if (DarkeningAlpha < 1 )
         {
-            DarkeningAlpha += 0.4f * Time.deltaTime;
+            DarkeningAlpha += 0.8f * Time.deltaTime;
         }
 
         if(DarkeningAlpha >= 1  )
