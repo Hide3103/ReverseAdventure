@@ -7,7 +7,7 @@ public class StageSelectCameraScript : MonoBehaviour
 {
     [SerializeField]
     public static int SelectingStageNum = 1;
-    public static int StageMaxNum = 5;
+    public static int StageMaxNum = 10;
     int StageMinNum = -1;
     static bool BackButtonSelecting = false;
     int beforeStageNum = 1;
@@ -247,6 +247,11 @@ public class StageSelectCameraScript : MonoBehaviour
                 case 3:
                 case 4:
                 case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
                     if (GameSystem.GetStageCleared(SelectingStageNum) == true
                         && GameSystem.ClearJuwel[SelectingStageNum - 1] <= GameSystem.GetAllStageJuwelNum())
                     {
@@ -269,11 +274,11 @@ public class StageSelectCameraScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            for (int stageNum = 0; stageNum < 5; stageNum++)
+            for (int stageNum = 0; stageNum < 10; stageNum++)
             {
                 for (int juwelNum = 0; juwelNum < 5; juwelNum++)
                 {
-                    GameSystem.SetJuwelCollection(stageNum, juwelNum, true);
+                    GameSystem.SetJuwelCollection(juwelNum, stageNum, true);
                 }
                 GameSystem.SetStageCleared(true, stageNum);
             }
@@ -293,12 +298,27 @@ public class StageSelectCameraScript : MonoBehaviour
             case 3:
                 stageName = "Stage_3";
                 break;
-            //case 4:
-            //    stageName = "Stage_4";
-            //    break;
-            //case 5:
-            //    stageName = "Stage_5";
-            //    break;
+            case 4:
+                stageName = "Stage_4";
+                break;
+            case 5:
+                stageName = "Stage_5";
+                break;
+            case 6:
+                stageName = "Stage_6";
+                break;
+            case 7:
+                stageName = "Stage_7";
+                break;
+            case 8:
+                stageName = "Stage_8";
+                break;
+            case 9:
+                stageName = "Stage_9";
+                break;
+            case 10:
+                stageName = "Stage_10";
+                break;
             default:
                 break;
         }
