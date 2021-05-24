@@ -1106,6 +1106,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 416295134717557836, guid: eb13b7739e588cf45b197ef9e3df1936,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 416295135947455844, guid: eb13b7739e588cf45b197ef9e3df1936,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1262,11 +1267,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 91
-      objectReference: {fileID: 0}
-    - target: {fileID: 416295134717557836, guid: eb13b7739e588cf45b197ef9e3df1936,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 416295134882646585, guid: eb13b7739e588cf45b197ef9e3df1936,
         type: 3}
@@ -3142,6 +3142,7 @@ GameObject:
   - component: {fileID: 698511218}
   - component: {fileID: 698511217}
   - component: {fileID: 698511216}
+  - component: {fileID: 698511219}
   m_Layer: 5
   m_Name: 'Text '
   m_TagString: Untagged
@@ -3162,7 +3163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3170,7 +3171,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 66d3f65c09122aa488194b271df3cd03, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 1
@@ -3210,6 +3211,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -11}
   m_SizeDelta: {x: 175.73, y: 135.63}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &698511219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698511215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &710228932
 GameObject:
   m_ObjectHideFlags: 0
@@ -11525,6 +11541,7 @@ GameObject:
   - component: {fileID: 1507306052}
   - component: {fileID: 1507306054}
   - component: {fileID: 1507306053}
+  - component: {fileID: 1507306055}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -11564,7 +11581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11572,7 +11589,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 66d3f65c09122aa488194b271df3cd03, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 1
@@ -11593,6 +11610,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507306051}
   m_CullTransparentMesh: 0
+--- !u!114 &1507306055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507306051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1528334972
 GameObject:
   m_ObjectHideFlags: 0
@@ -11976,7 +12008,7 @@ PrefabInstance:
     - target: {fileID: 2694416332547527014, guid: a8e53228ee89b9144b3697ab13e0eccc,
         type: 3}
       propertyPath: m_TapeOnFrontSide
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2694416332547527014, guid: a8e53228ee89b9144b3697ab13e0eccc,
         type: 3}
@@ -18805,7 +18837,7 @@ PrefabInstance:
     - target: {fileID: 2694416332547527014, guid: a8e53228ee89b9144b3697ab13e0eccc,
         type: 3}
       propertyPath: m_TapeOnFrontSide
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e53228ee89b9144b3697ab13e0eccc, type: 3}
