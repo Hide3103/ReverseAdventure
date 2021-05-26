@@ -22,16 +22,17 @@ public class MotionPlayer : MonoBehaviour
     {
         Attack = 0,     // 攻撃 
         Damage = 1,     // ダメージ
-        Goal = 2,       // ゴール
-        Jump = 3,       // ジャンプ
-        Lift = 4,
-        Reverse = 5,    // リバース
-        Throw = 6,
-        Wait = 7,       // 待機
-        Walk = 8,       // 歩き
-        Walk_Lift = 9,
+        Die = 2,
+        Goal = 3,       // ゴール
+        Jump = 4,       // ジャンプ
+        Lift = 5,
+        Reverse = 6,    // リバース
+        Throw = 7,
+        Wait = 8,       // 待機
+        Walk = 9,       // 歩き
+        Walk_Lift = 10,
 
-        Climb = 10,
+        Climb = 11,
         Count
     }
 
@@ -45,6 +46,7 @@ public class MotionPlayer : MonoBehaviour
         Jump,       // ジャンプ
         Attack,     // 攻撃
         Damage,     // ダメージ
+        Die,
         Goal,       // ゴール
         Reverse,    // リバース
         Climb,      // 梯子を登る
@@ -100,7 +102,7 @@ public class MotionPlayer : MonoBehaviour
     Vector3 GoalPos;
 
     // プレイヤーの行動許可
-    public static bool m_IsPlay = false;
+    public static bool m_IsPlay = true;
     // 移動しているかのフラグ
     bool m_Moving = false;
 
@@ -298,7 +300,14 @@ public class MotionPlayer : MonoBehaviour
                     }
                     break;
                 case Step.Damage:
-
+                    break;
+                case Step.Die:
+                    Debug.Log("Step.Die");
+                    if (IsAnimationPlay() == false)
+                    {
+                        SceneManager.LoadScene("GameOver");
+                        Destroy(this.gameObject);
+                    }
                     break;
                 case Step.Goal:
                     break;
@@ -447,8 +456,8 @@ public class MotionPlayer : MonoBehaviour
 
                     if (m_PlayerHp <= 0.0f)
                     {
-                        SceneManager.LoadScene("GameOver");
-                        Destroy(this.gameObject);
+                        m_Step = Step.Die;
+                        AnimationChange(AnimationPattern.Die);
                     }
                 }
                 else
@@ -604,6 +613,9 @@ public class MotionPlayer : MonoBehaviour
                     case AnimationPattern.Damage:
                         iTimesPlaey = 1;
                         break;
+                    case AnimationPattern.Die:
+                        iTimesPlaey = 1;
+                        break;
                     case AnimationPattern.Goal:
                         iTimesPlaey = 0;
                         break;
@@ -683,7 +695,10 @@ public class MotionPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Damage();
+            if(0 < m_PlayerHp)
+            {
+                Damage();
+            }
         }
     }
 
