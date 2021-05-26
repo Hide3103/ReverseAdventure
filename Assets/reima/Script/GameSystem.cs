@@ -77,7 +77,7 @@ public class GameSystem : MonoBehaviour
     // 各ステージのクリア状況
     public static bool[] StageCleared = new bool[] { true, false, false, false, false, false, false, false, false, false };
     // ステージ開放に必要な宝石の数
-    public static int[] ClearJuwel = new int[] {0, 3, 6, 9, 12, 15, 18, 21, 24, 27};
+    public static int[] ClearJuwel = new int[] { 0, 3, 6, 9, 12, 15, 18, 21, 24, 27 };
 
     // プレイヤーがアーマーを装備しているか
     public static bool ArmorUsing = false;
@@ -104,7 +104,7 @@ public class GameSystem : MonoBehaviour
         ClearTime = 0.0f;
         IsGoal = false;
         NumJewel = 0;
-
+        PlayerScript.PlayerAlive = true;
         switch (WasPlayStage)
         {
             case 1:
@@ -175,7 +175,8 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerScript.m_IsPlay&&GameSystem.IsGoal==false)
+        Debug.Log(PlayerScript.PlayerAlive);
+        if (PlayerScript.m_IsPlay && GameSystem.IsGoal == false)
         {
             ClearTime += Time.deltaTime;
 
@@ -221,6 +222,8 @@ public class GameSystem : MonoBehaviour
             NumMaxGetJewelStage10 = NumNowMaxGetJewelStage10;
         }
         GoalAfterDeleteUI();
+
+
     }
     //クリアタイムの代入・取得
     public static void SetClearTime(float setClearTime)
@@ -455,11 +458,11 @@ public class GameSystem : MonoBehaviour
     public static int GetAllStageJuwelNum()
     {
         int AllJuwelNum = 0;
-        for(int stageNum = 1; stageNum <= 10; stageNum++)
+        for (int stageNum = 1; stageNum <= 10; stageNum++)
         {
-            for(int juwelNum = 0; juwelNum < 5; juwelNum++)
+            for (int juwelNum = 0; juwelNum < 5; juwelNum++)
             {
-                if(GetJuwelCollection(juwelNum, stageNum) == true)
+                if (GetJuwelCollection(juwelNum, stageNum) == true)
                 {
                     AllJuwelNum += 1;
                 }
@@ -480,7 +483,7 @@ public class GameSystem : MonoBehaviour
 
     public void GoalAfterDeleteUI()
     {
-        if(IsGoal==true && SceneManager.GetActiveScene().name != "StageSelect")
+        if (IsGoal == true && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(false);
             NumJewelText.SetActive(false);
@@ -491,7 +494,7 @@ public class GameSystem : MonoBehaviour
             PlayerPosTri.SetActive(false);
 
         }
-        if (IsGoal == false&&SceneManager.GetActiveScene().name !="StageSelect")
+        if (IsGoal == false && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(true);
             NumJewelText.SetActive(true);

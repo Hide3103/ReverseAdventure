@@ -60,6 +60,8 @@ public class PlayerScript : MonoBehaviour
     //public GameObject gameManager;
     //GameManagerScript gameManagerScript;
 
+    public static bool PlayerAlive = true;
+
     void Start()
     {
 
@@ -167,7 +169,7 @@ public class PlayerScript : MonoBehaviour
 
                     if (m_PlayerHp <= 0.0f)
                     {
-                        SceneManager.LoadScene("GameOver");
+                        PlayerAlive = false;
                         Destroy(this.gameObject);
                     }
                 }
@@ -177,7 +179,7 @@ public class PlayerScript : MonoBehaviour
             //穴に落ちた時の処理
             if (this.transform.position.y <= m_PlayerDeathPosY)
             {
-                SceneManager.LoadScene("GameOver");
+                PlayerAlive = false;
                 Destroy(this.gameObject);
             }
         }

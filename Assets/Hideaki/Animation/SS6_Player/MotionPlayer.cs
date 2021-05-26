@@ -305,7 +305,8 @@ public class MotionPlayer : MonoBehaviour
                     Debug.Log("Step.Die");
                     if (IsAnimationPlay() == false)
                     {
-                        SceneManager.LoadScene("GameOver");
+                        PlayerScript.PlayerAlive = false;
+                        //SceneManager.LoadScene("GameOver");
                         Destroy(this.gameObject);
                     }
                     break;
