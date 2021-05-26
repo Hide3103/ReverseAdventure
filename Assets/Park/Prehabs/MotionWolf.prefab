@@ -52,8 +52,10 @@ MonoBehaviour:
   lookPlayer: {fileID: 4971714005317751328}
   lostPlayer: {fileID: 4971714005573951031}
   attack: {fileID: 8300000, guid: c5b41dbc8b40c7b4ea58b4c0812227b0, type: 3}
+  damage: {fileID: 8300000, guid: f3bc904c23501014ca7a9ee365f53a8f, type: 3}
   AnimationList:
   - {fileID: 4356529835091951221, guid: 3a99cabbfce153448b6cd9fdbab59887, type: 3}
+  m_TapeOnFrontSide: 1
 --- !u!61 &4971714003963531199
 BoxCollider2D:
   m_ObjectHideFlags: 0
