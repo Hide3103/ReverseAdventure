@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
+    //SaveData用変数
+    public static int ToSaveNumData = 1;//ステージ1がクリアされているから1
+
 
     public static bool IsGoal = false;
     //クリアタイム
