@@ -15,9 +15,6 @@ public class MotionGoat : MonoBehaviour
     //public Sprite frontSprite;
     //public Sprite backSprite;
 
-    public AudioClip attack;
-    public AudioClip damage;
-
     Rigidbody2D rigid2D;
 
     Vector2 firstScale;
@@ -28,6 +25,9 @@ public class MotionGoat : MonoBehaviour
     //Color32 beforeColor;
 
     AudioSource audioSource;
+
+    public AudioClip attack;
+    public AudioClip damage;
 
     bool flg_normal;
     bool flg_lookPlayer;

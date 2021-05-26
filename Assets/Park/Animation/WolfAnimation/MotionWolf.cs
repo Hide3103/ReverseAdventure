@@ -8,9 +8,7 @@ public class MotionWolf : MonoBehaviour
     GameObject enemy;
     public GameObject lookPlayer;
     public GameObject lostPlayer;
-
-    public AudioClip attack;
-
+    
     Vector2 firstScale;
 
     Rigidbody2D rigid2D;
@@ -20,6 +18,9 @@ public class MotionWolf : MonoBehaviour
     Color32 beforeColor;
 
     AudioSource audioSource;
+
+    public AudioClip attack;
+    public AudioClip damage;
 
     bool flg_normal;
     bool flg_lookPlayer;
@@ -50,6 +51,8 @@ public class MotionWolf : MonoBehaviour
     {
         Attack_Back,
         Attack_Front,
+        Chase_back,
+        Chase_front,
         Damage_Back,
         Damage_Front,
         Die,
@@ -89,6 +92,22 @@ public class MotionWolf : MonoBehaviour
     // いろいろ使いまわす用変数
     private int m_Count = 0;
     private bool m_SW = true;
+
+    bool m_MotionChanged = true;
+    int NowMotionPatternNum = 0;
+    int NowStepNum = 0;
+
+    //テープがどちらの面にあるか(true:前面、false:裏面)
+    public bool m_TapeOnFrontSide = true;
+
+    void MotionPatternChange(AnimationPattern pattern)
+    {
+        if (NowMotionPatternNum != (int)pattern)
+        {
+            NowMotionPatternNum = (int)pattern;
+            AnimationChange(pattern);
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -156,20 +175,49 @@ public class MotionWolf : MonoBehaviour
                 AnimationStart();
                 break;
             case Step.Walk:
-                if (flg_lookPlayer)
+                if(ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Discovery;
-                    AnimationChange(AnimationPattern.Discovery_Front);
+                    MotionPatternChange(AnimationPattern.Walk_Front);
                 }
-                if (flg_damage)
+                else
                 {
-                    m_Step = Step.Damage;
-                    AnimationChange(AnimationPattern.Damage_Front);
+                    MotionPatternChange(AnimationPattern.Walk_Back);
                 }
-                if (flg_lostPlayer)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.LoseSight;
-                    AnimationChange(AnimationPattern.LoseSight_Front);
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Front);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Front);
+                    }
+                }
+                else
+                {
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Back);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Back);
+                    }
                 }
                 if (m_systemHp <= 0.0f)
                 {
@@ -178,20 +226,49 @@ public class MotionWolf : MonoBehaviour
                 }
                 break;
             case Step.Discovery:
-                if (flg_moveToPlayer)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Chase;
-                    AnimationChange(AnimationPattern.Walk_Front);
+                    MotionPatternChange(AnimationPattern.Discovery_Front);
                 }
-                if (flg_lostPlayer)
+                else
                 {
-                    m_Step = Step.LoseSight;
-                    AnimationChange(AnimationPattern.LoseSight_Front);
+                    MotionPatternChange(AnimationPattern.Discovery_Back);
                 }
-                if (flg_damage)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Damage;
-                    AnimationChange(AnimationPattern.Damage_Front);
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Chase_front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Front);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                }
+                else
+                {
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Chase_back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Back);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
                 }
                 if (m_systemHp <= 0.0f)
                 {
@@ -200,20 +277,49 @@ public class MotionWolf : MonoBehaviour
                 }
                 break;
             case Step.Chase:
-                if (m_chargeTime >= 1.0f)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Attack;
-                    AnimationChange(AnimationPattern.Attack_Front);
+                    MotionPatternChange(AnimationPattern.Chase_front);
                 }
-                if (flg_lostPlayer)
+                else
                 {
-                    m_Step = Step.LoseSight;
-                    AnimationChange(AnimationPattern.LoseSight_Front);
+                    MotionPatternChange(AnimationPattern.Chase_back);
                 }
-                if (flg_damage)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Damage;
-                    AnimationChange(AnimationPattern.Damage_Front);
+                    if (m_chargeTime >= 1.0f)
+                    {
+                        m_Step = Step.Attack;
+                        AnimationChange(AnimationPattern.Attack_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Front);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                }
+                else
+                {
+                    if (m_chargeTime >= 1.0f)
+                    {
+                        m_Step = Step.Attack;
+                        AnimationChange(AnimationPattern.Attack_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Back);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
                 }
                 if (m_systemHp <= 0.0f)
                 {
@@ -222,20 +328,49 @@ public class MotionWolf : MonoBehaviour
                 }
                 break;
             case Step.LoseSight:
-                if (flg_lookPlayer)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Discovery;
-                    AnimationChange(AnimationPattern.Discovery_Front);
+                    MotionPatternChange(AnimationPattern.LoseSight_Front);
                 }
-                if (flg_normal)
+                else
                 {
-                    m_Step = Step.Walk;
-                    AnimationChange(AnimationPattern.Walk_Front);
+                    MotionPatternChange(AnimationPattern.LoseSight_Back);
                 }
-                if (flg_damage)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    m_Step = Step.Damage;
-                    AnimationChange(AnimationPattern.Damage_Front);
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Front);
+                    }
+                    if (flg_normal)
+                    {
+                        m_Step = Step.Walk;
+                        AnimationChange(AnimationPattern.Walk_Front);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                }
+                else
+                {
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Back);
+                    }
+                    if (flg_normal)
+                    {
+                        m_Step = Step.Walk;
+                        AnimationChange(AnimationPattern.Walk_Back);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
                 }
                 if (m_systemHp <= 0.0f)
                 {
@@ -244,117 +379,116 @@ public class MotionWolf : MonoBehaviour
                 }
                 break;
             case Step.Attack:
-                if (m_chargeTime >= 1.0f)
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
                 {
-                    AnimationChange(AnimationPattern.Attack_Front);
+                    MotionPatternChange(AnimationPattern.Attack_Front);
                 }
-                if (flg_damage)
+                else
                 {
-                    m_Step = Step.Damage;
-                    AnimationChange(AnimationPattern.Damage_Front);
+                    MotionPatternChange(AnimationPattern.Attack_Back);
+                }
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
+                {
+                    if (m_chargeTime >= 1.0f)
+                    {
+                        AnimationChange(AnimationPattern.Attack_Front);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Front);
+                    }
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Walk_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Front);
+                    }
+                }
+                else
+                {
+                    if (m_chargeTime >= 1.0f)
+                    {
+                        AnimationChange(AnimationPattern.Attack_Back);
+                    }
+                    if (flg_damage)
+                    {
+                        m_Step = Step.Damage;
+                        AnimationChange(AnimationPattern.Damage_Back);
+                    }
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Walk_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Back);
+                    }
+                }
+
+                if (m_systemHp <= 0.0f)
+                {
+                    m_Step = Step.Die;
+                    AnimationChange(AnimationPattern.Die);
+                }
+                break;
+            case Step.Damage:
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
+                {
+                    MotionPatternChange(AnimationPattern.Damage_Front);
+                }
+                else
+                {
+                    MotionPatternChange(AnimationPattern.Damage_Back);
+                }
+                if (ChangeWorld.StateFront != m_TapeOnFrontSide)
+                {
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Front);
+                    }
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Walk_Front);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Front);
+                    }
+                }
+                else
+                {
+                    if (flg_lookPlayer)
+                    {
+                        m_Step = Step.Discovery;
+                        AnimationChange(AnimationPattern.Discovery_Back);
+                    }
+                    if (flg_moveToPlayer)
+                    {
+                        m_Step = Step.Chase;
+                        AnimationChange(AnimationPattern.Walk_Back);
+                    }
+                    if (flg_lostPlayer)
+                    {
+                        m_Step = Step.LoseSight;
+                        AnimationChange(AnimationPattern.LoseSight_Back);
+                    }
                 }
                 if (m_systemHp <= 0.0f)
                 {
                     m_Step = Step.Die;
                     AnimationChange(AnimationPattern.Die);
                 }
-                if (flg_lostPlayer)
-                {
-                    m_Step = Step.LoseSight;
-                    AnimationChange(AnimationPattern.LoseSight_Front);
-                }
                 break;
-            case Step.Damage:
-                //if (flg_lookPlayer)
-                //{
-                //    m_Step = Step.Discovery;
-                //    AnimationChange(AnimationPattern.Discovery_Front);
-                //}
-                //if (flg_moveToPlayer)
-                //{
-                //    m_Step = Step.Chase;
-                //    AnimationChange(AnimationPattern.Walk_Front);
-                //}
-                //if (flg_lostPlayer)
-                //{
-                //    m_Step = Step.LoseSight;
-                //    AnimationChange(AnimationPattern.LoseSight_Front);
-                //}
-                //if (m_systemHp <= 0.0f)
-                //{
-                //    m_Step = Step.Die;
-                //    AnimationChange(AnimationPattern.Die);
-                //}
-                break;
-            //// タイトル
-            //case Step.Walk:
-            //    if (++m_Count > 15)
-            //    {
-            //        m_SW = !m_SW;
-            //        m_Count = 0;
-            //    }
-            //    if (Input.GetKeyDown(KeyCode.Space) == true)
-            //    {
-            //        AnimationStart();   // アニメーション開始処理(設定)
-            //        m_Step = Step.Wait;
-            //    }
-            //    break;
-            //// 待機
-            //case Step.Wait:
-            //    if (Input.GetKeyDown(KeyCode.Z) == true)        // 攻撃 
-            //    {
-            //        // 攻撃に変更 
-            //        AnimationChange(AnimationPattern.Attack);
-            //        m_Step = Step.Attack;
-            //    }
-            //    else if (Input.GetKeyDown(KeyCode.LeftArrow) == true)   // 左移動 
-            //    {
-            //        if (m_vecCharacterScale.x < 0)
-            //            m_vecCharacterScale.x *= -1;    // 左向きにします
-            //        m_goCharPos.transform.localScale = m_vecCharacterScale; // 向き設定 
-            //        // 走りに変更 
-            //        AnimationChange(AnimationPattern.Run);
-            //        m_Step = Step.Move;
-            //    }
-            //    else if (Input.GetKeyDown(KeyCode.RightArrow) == true)  // 右移動 
-            //    {
-            //        if (m_vecCharacterScale.x > 0)
-            //            m_vecCharacterScale.x *= -1;    // 右向きにします
-            //        m_goCharPos.transform.localScale = m_vecCharacterScale; // 向き設定 
-            //        // 走りに変更 
-            //        AnimationChange(AnimationPattern.Run);
-            //        m_Step = Step.Move;
-            //    }
-            //    break;
-            //// 移動 
-            //case Step.Move:
-            //    if (Input.GetKey(KeyCode.LeftArrow) == true)   // 左移動 
-            //    {
-            //        if (m_vecCharacterPos.x > -560.0f)
-            //            m_vecCharacterPos.x -= 10.0f;
-            //    }
-            //    else if (Input.GetKey(KeyCode.RightArrow) == true)  // 右移動 
-            //    {
-            //        if (m_vecCharacterPos.x < 560.0f)
-            //            m_vecCharacterPos.x += 10.0f;
-            //    }
-            //    else
-            //    {
-            //        // 待機に変更 
-            //        AnimationChange(AnimationPattern.Wait);
-            //        m_Step = Step.Wait;
-            //    }
-            //    m_goCharPos.transform.localPosition = m_vecCharacterPos;    // 座標反映 
-            //    break;
-            //// 攻撃中 
-            //case Step.Attack:
-            //    if (IsAnimationPlay() == false)
-            //    {
-            //        // 待機に変更 
-            //        AnimationChange(AnimationPattern.Wait);
-            //        m_Step = Step.Wait;
-            //    }
-            //    break;
             default:
                 break;
         }
@@ -416,7 +550,7 @@ public class MotionWolf : MonoBehaviour
                     else
                     {
                         // Object名変更 
-                        m_goCharPos.name = "Comipo";
+                        m_goCharPos.name = "Wolf";
 
                         // 座標設定 
                         m_goCharacter.transform.parent = m_goCharPos.transform;
@@ -516,12 +650,16 @@ public class MotionWolf : MonoBehaviour
         //"Sword"に当たった時にフラグ切り替え＆ノックバック
         if (collision.gameObject.tag == "Sword")
         {
-            if (flg_blinking == false && ChangeWorld.StateFront)
+            if (ChangeWorld.StateFront == m_TapeOnFrontSide)
             {
-                flg_damage = true;
-                m_systemHp--;
+                if (flg_blinking == false)
+                {
+                    flg_damage = true;
+                    audioSource.PlayOneShot(damage);
+                    m_systemHp--;
 
-                rigid2D.AddForce(new Vector3(transform.localScale.x * 100.0f, 100.0f, 0.0f));
+                    rigid2D.AddForce(new Vector3(transform.localScale.x * 100.0f, 100.0f, 0.0f));
+                }
             }
         }
     }
