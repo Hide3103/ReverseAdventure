@@ -302,12 +302,12 @@ public class MotionPlayer : MonoBehaviour
                 case Step.Damage:
                     break;
                 case Step.Die:
-                    Debug.Log("Step.Die");
                     if (IsAnimationPlay() == false)
                     {
                         PlayerScript.PlayerAlive = false;
+                        Time.timeScale = 0;
                         //SceneManager.LoadScene("GameOver");
-                        Destroy(this.gameObject);
+                        //Destroy(this.gameObject);
                     }
                     break;
                 case Step.Goal:
@@ -452,21 +452,28 @@ public class MotionPlayer : MonoBehaviour
                     m_DamagedFlg = false;
                     m_DamageDelta = 0.0f;
                     // 待機に変更 
-                    AnimationChange(AnimationPattern.Wait);
-                    m_Step = Step.Wait;
-
-                    if (m_PlayerHp <= 0.0f)
+                    if(0 < m_PlayerHp)
                     {
-                        m_Step = Step.Die;
-                        AnimationChange(AnimationPattern.Die);
+                        AnimationChange(AnimationPattern.Wait);
+                        m_Step = Step.Wait;
                     }
+
                 }
                 else
                 {
                     m_DamageDelta += Time.deltaTime;
                     if (CantMoveRecoveryDeltaLimit < m_DamageDelta)
                     {
-                        CantMoveRecoveryed = true;
+                        if (m_PlayerHp <= 0.0f)
+                        {
+                            m_Step = Step.Die;
+                            AnimationChange(AnimationPattern.Die);
+                            Debug.Log("AnimationChange(AnimationPattern.Die)");
+                        }
+                        else
+                        {
+                            CantMoveRecoveryed = true;
+                        }
                     }
                 }
             }
@@ -700,6 +707,18 @@ public class MotionPlayer : MonoBehaviour
             {
                 Damage();
             }
+        }
+    }
+
+    public static bool GetPlayerArriving()
+    {
+        if(0 < m_PlayerHp)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

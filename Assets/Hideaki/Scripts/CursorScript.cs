@@ -37,7 +37,7 @@ public class CursorScript : MonoBehaviour
         }
         else
         {
-            if(StageSelectCameraScript.SelectingStageNum == StageSelectCameraScript.StageMaxNum)
+            if(StageSelectCameraScript.SelectingStageNum == StageSelectCameraScript.StageMaxNum || StageSelectCameraScript.SelectingStageNum == 0)
             {
                 spriteRenderer.color = invisibleColor;
             }

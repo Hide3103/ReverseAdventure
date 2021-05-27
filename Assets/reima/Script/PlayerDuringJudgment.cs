@@ -9,12 +9,12 @@ public class PlayerDuringJudgment : MonoBehaviour
     MotionPlayer motionPlayerScript;
 
     public GameObject Reference_Obj;
-    private GameObject TileMap;
+    //private GameObject TileMap;
     private Vector3 SetAfterSwitchingPlayerPos;
     // Start is called before the first frame update
     void Start()
     {
-        TileMap = Reference_Obj.transform.Find("Grid_Back/Tilemap").gameObject;
+        //TileMap = Reference_Obj.transform.Find("Grid_Back/Tilemap").gameObject;
 
         motionPlayerScript = Player.GetComponent<MotionPlayer>();
     }

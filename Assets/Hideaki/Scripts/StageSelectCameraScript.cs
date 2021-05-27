@@ -52,16 +52,16 @@ public class StageSelectCameraScript : MonoBehaviour
 
         stageSelectAudio = GetComponent<AudioSource>();
 
-        //if(1 <= GameSystem.WasPlayStage && GameSystem.WasPlayStage <= 5)
-        //{
-        //    SelectingStageNum = GameSystem.WasPlayStage;
-        //}
+        if (1 <= GameSystem.WasPlayStage)
+        {
+            this.transform.position = new Vector3((GameSystem.WasPlayStage - 1) * 5, transform.position.y, -10);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("SelectingStageNum : " + SelectingStageNum);
+        //Debug.Log("SelectingStageNum : " + SelectingStageNum);
 
 
         Debug.Log(InfoMenu);
