@@ -8,6 +8,7 @@ public class Setting : MonoBehaviour
     public GameObject TitleCanvas;
     public GameObject SettingCanvas;
     public GameObject CloudCanvas;
+    public GameObject CreditCanvas;
 
 
     Title TitleSC;
@@ -22,16 +23,19 @@ public class Setting : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown("joystick button 1"))
+        if (Input.GetKeyDown(KeyCode.Escape) && Title.TitleOther || Input.GetKeyDown("joystick button 1")&&Title.TitleOther)
         {
-            SettingScene();
+            BackTitle();
             TitleSC.NumSelect = 1;
         }
     }
-    void SettingScene()
+    void BackTitle()
     {
-        TitleCanvas.SetActive(!TitleCanvas.activeSelf);
-        SettingCanvas.SetActive(!SettingCanvas.activeSelf);
-        CloudCanvas.SetActive(!CloudCanvas.activeSelf);
+        TitleCanvas.SetActive(true);
+        SettingCanvas.SetActive(false);
+        CreditCanvas.SetActive(false);
+        CloudCanvas.SetActive(true);
+        Title.TitleOther = false;
+
     }
 }
