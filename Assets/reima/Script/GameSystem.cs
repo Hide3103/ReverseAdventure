@@ -175,7 +175,7 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerScript.PlayerAlive);
+        GoalAfterDeleteUI();
         if (PlayerScript.m_IsPlay && GameSystem.IsGoal == false)
         {
             ClearTime += Time.deltaTime;
@@ -221,8 +221,6 @@ public class GameSystem : MonoBehaviour
         {
             NumMaxGetJewelStage10 = NumNowMaxGetJewelStage10;
         }
-        GoalAfterDeleteUI();
-
 
     }
     //クリアタイムの代入・取得
@@ -483,7 +481,7 @@ public class GameSystem : MonoBehaviour
 
     public void GoalAfterDeleteUI()
     {
-        if (IsGoal == true && SceneManager.GetActiveScene().name != "StageSelect")
+        if (IsGoal == true && SceneManager.GetActiveScene().name != "StageSelect"||MotionPlayer.m_PlayerHp==0&& SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(false);
             NumJewelText.SetActive(false);
@@ -494,7 +492,7 @@ public class GameSystem : MonoBehaviour
             PlayerPosTri.SetActive(false);
 
         }
-        if (IsGoal == false && SceneManager.GetActiveScene().name != "StageSelect")
+        if (IsGoal == false && SceneManager.GetActiveScene().name != "StageSelect" || MotionPlayer.m_PlayerHp != 0 && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(true);
             NumJewelText.SetActive(true);
