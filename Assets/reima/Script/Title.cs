@@ -10,6 +10,8 @@ public class Title : MonoBehaviour
     public GameObject SettingCanvas;
     public GameObject CloudCanvas;
 
+    public GameObject CreditCanvas;
+
 
     //仕様変更
     //public CanvasGroup TitleCanvasGroupstage1;
@@ -30,6 +32,8 @@ public class Title : MonoBehaviour
     float WaitTime = 0;
     float PadWaitTime = 0;
     float SetWaitTime = GameSystem.SetWaitTime;
+
+    public static bool TitleOther = false;
 
     public float SetAlpha = 0.0f;
     public float DarkeningAlpha = 0.0f;
@@ -52,8 +56,10 @@ public class Title : MonoBehaviour
     public GameObject Open_GameEndImg;
 
     bool Push = false;
-
+    
     float SetTitlePosY = 250;
+
+    bool GoSceneCredit = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -266,10 +272,19 @@ public class Title : MonoBehaviour
     }
     void SettingScene()
     {
-        TitleCanvas.SetActive(!TitleCanvas.activeSelf);
-        SettingCanvas.SetActive(!SettingCanvas.activeSelf);
-        CloudCanvas.SetActive(!CloudCanvas.activeSelf);
+        TitleCanvas.SetActive(false);
+        SettingCanvas.SetActive(true);
+        CreditCanvas.SetActive(false);
+        CloudCanvas.SetActive(false);
 
+    }
+
+    void CreditScene()
+    {
+        TitleCanvas.SetActive(false);
+        SettingCanvas.SetActive(false);
+        CloudCanvas.SetActive(false);
+        CreditCanvas.SetActive(true);
     }
 
     void MenuMove()
@@ -354,11 +369,15 @@ public class Title : MonoBehaviour
                     break;
                 case 2:
                     SettingScene();
+                    TitleOther = true;
                     Push = false;
                     DarkeningAlpha = 0.0f;
                     break;
                 case 3:
-                    SceneManager.LoadScene("CreditScene");
+                    CreditScene();
+                    TitleOther = true;
+                    Push = false;
+                    DarkeningAlpha = 0.0f;
                     break;
                 case 4:
                     break;

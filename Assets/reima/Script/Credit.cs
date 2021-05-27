@@ -5,6 +5,42 @@ using UnityEngine.SceneManagement;
 public class Credit : MonoBehaviour
 {
 
+
+
+    public GameObject TitleCanvas;
+    public GameObject SettingCanvas;
+    public GameObject CloudCanvas;
+    public GameObject CreditCanvas;
+
+
+    Title TitleSC;
+    //Start is called before the first frame update
+    void Start()
+    {
+        TitleSC = TitleCanvas.GetComponent<Title>();
+    }
+
+
+    //Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Escape) && Title.TitleOther || Input.GetKeyDown("joystick button 1") && Title.TitleOther)
+        {
+            BackTitle();
+            TitleSC.NumSelect = 1;
+        }
+    }
+    void BackTitle()
+    {
+        TitleCanvas.SetActive(true);
+        SettingCanvas.SetActive(false);
+        CreditCanvas.SetActive(false);
+        CloudCanvas.SetActive(true);
+        Title.TitleOther = false;
+
+    }
+}
     //public Text text;
     //public Text Url;
     //public Text Url2;
@@ -24,19 +60,19 @@ public class Credit : MonoBehaviour
     //public float SetAlpha = 0;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    //void Start()
+   // {
        // UpPoint = 1080 / 2;
-    }
+   // }
 
     // Update is called once per frame
-    void Update()
-    {
+   // void Update()
+   // {
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1"))
-        {
-            SceneManager.LoadScene("Title");
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 1"))
+        //{
+        //    SceneManager.LoadScene("Title");
+        //}
 
         //    WaitTime += Time.deltaTime;
         //    //　エンドロール用テキストがリミットを越えるまで動かす
@@ -78,5 +114,5 @@ public class Credit : MonoBehaviour
         //                            //"                                      \n " +
         //                            //"                                      \n " +
         //}
-    }
-}
+   // }
+//}
