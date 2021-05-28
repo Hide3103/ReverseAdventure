@@ -95,7 +95,6 @@ public class MotionGoat : MonoBehaviour
 
     bool m_MotionChanged = true;
     int NowMotionPatternNum = 0;
-    int NowStepNum = 0;
 
     //テープがどちらの面にあるか(true:前面、false:裏面)
     public bool m_TapeOnFrontSide = true;

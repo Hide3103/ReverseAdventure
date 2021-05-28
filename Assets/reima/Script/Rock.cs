@@ -31,7 +31,7 @@ public class Rock : MonoBehaviour
         {
             if (DamageOn)
             {
-                PlayerScript.m_PlayerHp -= 1;
+                MotionPlayer.m_PlayerHp -= 1;
                 DamageOn = false;
             }
         }

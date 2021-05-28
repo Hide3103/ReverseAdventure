@@ -8,7 +8,7 @@ public class BlockPickUp : MonoBehaviour
     MotionPlayer MotionPlayerScript;
     private GameObject SetBlockPos;
     private bool Have = false;
-    private float BlockSetPos = 1.0f;
+    private float BlockSetPos = 0.97f;
     bool Set;
     bool Flg_Throw;
     float WaitTime = 0;
@@ -39,7 +39,8 @@ public class BlockPickUp : MonoBehaviour
         if (Have)
         {
             this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z);
-            if ((Input.GetKeyDown(KeyCode.V)) && Have &&WaitTime<=0|| Input.GetKeyDown("joystick button 2") && Have == true && WaitTime <= 0)//X
+
+            if ((Input.GetKeyDown(KeyCode.V)) && Have &&WaitTime <= 0 || Input.GetKeyDown("joystick button 2") && Have == true && WaitTime <= 0)//X
             {
 
                 rb.isKinematic = false;
@@ -56,7 +57,8 @@ public class BlockPickUp : MonoBehaviour
                     rb.AddForce(new Vector3(-ThrowPowwer, 0, 0));
                 }
 
-                MotionPlayerScript.HavingBlock = false;
+                MotionPlayerScript.m_HavingBlock = false;
+                MotionPlayerScript.ThrowBlock();
                 //this.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + BlockSetPos, Player.transform.position.z)
             }
         }
@@ -67,12 +69,15 @@ public class BlockPickUp : MonoBehaviour
         var rb = this.transform.gameObject.GetComponent<Rigidbody2D>();
         if (collision.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.V) && Have == false || Input.GetKeyDown("joystick button 2") && Have == false)
+            if(MotionPlayerScript.GetThrowing() == false)
             {
-                Have = true;
-                MotionPlayerScript.HavingBlock = true;
-                rb.freezeRotation = true;
-                WaitTime += SetWaitTime;
+                if (Input.GetKeyDown(KeyCode.V) && Have == false || Input.GetKeyDown("joystick button 2") && Have == false)
+                {
+                    Have = true;
+                    MotionPlayerScript.m_HavingBlock = true;
+                    rb.freezeRotation = true;
+                    WaitTime += SetWaitTime;
+                }
             }
         }
     }
