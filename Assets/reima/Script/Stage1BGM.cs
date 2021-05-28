@@ -13,7 +13,7 @@ public class Stage1BGM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameSystem.IsGoal)
+        if(GameSystem.IsGoal||MotionPlayer.m_PlayerHp==0)
         {
             Destroy(this.gameObject);
         }
