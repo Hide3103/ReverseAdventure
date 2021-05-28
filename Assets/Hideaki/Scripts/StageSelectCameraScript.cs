@@ -160,8 +160,8 @@ public class StageSelectCameraScript : MonoBehaviour
                     RightCursorScript.ButtonPressed = true;
                     RightCursorScript.flashDelta = 0.0f;
                     WaitTime = SetWaitTime;
-                    TitleBackImg.SetActive(true);
-                    Open_TitleBackImg.SetActive(false);
+                    TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                    //Open_TitleBackImg.SetActive(false);
                 }
             }
             if (1 < SelectingStageNum)
@@ -174,8 +174,8 @@ public class StageSelectCameraScript : MonoBehaviour
                     LeftCursorScript.ButtonPressed = true;
                     LeftCursorScript.flashDelta = 0.0f;
                     WaitTime = SetWaitTime;
-                    TitleBackImg.SetActive(true);
-                    Open_TitleBackImg.SetActive(false);
+                    TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                    //Open_TitleBackImg.SetActive(false);
                 }
             }
 
@@ -186,8 +186,8 @@ public class StageSelectCameraScript : MonoBehaviour
                 SelectingStageNum = 0;
                 BackButtonSelecting = true;
                 WaitTime = SetWaitTime;
-                TitleBackImg.SetActive(false);
-                Open_TitleBackImg.SetActive(true);
+                TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+                //Open_TitleBackImg.SetActive(true);
             }
         }
         else
@@ -198,8 +198,8 @@ public class StageSelectCameraScript : MonoBehaviour
                 SelectingStageNum = beforeStageNum;
                 BackButtonSelecting = false;
                 WaitTime = SetWaitTime;
-                TitleBackImg.SetActive(true);
-                Open_TitleBackImg.SetActive(false);
+                TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                //Open_TitleBackImg.SetActive(false);
             }
         }
 

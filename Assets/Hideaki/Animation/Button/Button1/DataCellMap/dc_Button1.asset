@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194737b46e04ff84a936435d5601662f, type: 3}
+  m_Name: dc_Button1
+  m_EditorClassIdentifier: 
+  Version: 65537
+  TableCellMap:
+  - Name: Button1
+    SizeOriginal: {x: 512, y: 512}
+    TableCell:
+    - Name: parts2
+      Rectangle:
+        serializedVersion: 2
+        x: 450
+        y: 4
+        width: 47
+        height: 43
+      Pivot: {x: 23.5, y: 21.5}
+      Mesh:
+        TableCoordinate:
+        - {x: -1.2368413, y: 4.986841}
+        - {x: 21.657896, y: 22.092106}
+        - {x: 44.157898, y: 41.56579}
+        - {x: 22.842106, y: 1.0394729}
+        - {x: 29.026318, y: 13.013158}
+        - {x: 46.13158, y: 21.302631}
+        - {x: 48.105267, y: 42.223686}
+        - {x: 48.894737, y: -0.67105347}
+        - {x: -1.2368413, y: -0.8026324}
+        TableIndexVertex: 000000000100000002000000010000000000000003000000010000000300000004000000050000000100000004000000020000000100000005000000020000000500000006000000060000000500000007000000050000000400000007000000040000000300000007000000030000000800000007000000000000000800000003000000
+    - Name: parts1
+      Rectangle:
+        serializedVersion: 2
+        x: 450
+        y: 50
+        width: 46
+        height: 39
+      Pivot: {x: 23, y: 20}
+      Mesh:
+        TableCoordinate:
+        - {x: -0.5526312, y: 39.171055}
+        - {x: -0.947368, y: -2.6710532}
+        - {x: 0.63157934, y: 13.25}
+        - {x: 0.63157934, y: 34.30263}
+        - {x: 22.342106, y: 33.907894}
+        - {x: 46.157898, y: 39.039474}
+        - {x: 32.605263, y: 25.881578}
+        - {x: 17.736843, y: 14.828947}
+        - {x: 11.552632, y: 22.723684}
+        - {x: 8.526317, y: 6.013158}
+        - {x: 46.157898, y: 34.43421}
+        TableIndexVertex: 0000000001000000020000000300000000000000020000000000000003000000040000000000000004000000050000000400000006000000050000000400000007000000060000000800000007000000040000000800000009000000070000000200000009000000080000000200000001000000090000000a0000000900000001000000090000000a00000006000000090000000600000007000000060000000a00000005000000030000000200000008000000030000000800000004000000
+    - Name: base
+      Rectangle:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 443
+        height: 89
+      Pivot: {x: 221.5, y: 44.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: ClearScene_Next
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: ClearScene_Next
+      Rectangle:
+        serializedVersion: 2
+        x: 61
+        y: 33
+        width: 391
+        height: 71
+      Pivot: {x: 195.5, y: 35.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: GameStart
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: GameStart
+      Rectangle:
+        serializedVersion: 2
+        x: 59
+        y: 36
+        width: 388
+        height: 63
+      Pivot: {x: 194, y: 31.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Result_Retry
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Result_Retry
+      Rectangle:
+        serializedVersion: 2
+        x: 143
+        y: 37
+        width: 227
+        height: 65
+      Pivot: {x: 113.5, y: 32.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Result_StageSelect
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Result_StageSelect
+      Rectangle:
+        serializedVersion: 2
+        x: 55
+        y: 37
+        width: 409
+        height: 60
+      Pivot: {x: 204.5, y: 30}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Select_Back
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Select_Back
+      Rectangle:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 405
+        height: 62
+      Pivot: {x: 202.5, y: 31}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Tape_Button
+    SizeOriginal: {x: 128, y: 64}
+    TableCell:
+    - Name: Tape_Button
+      Rectangle:
+        serializedVersion: 2
+        x: 12
+        y: 15
+        width: 103
+        height: 36
+      Pivot: {x: 51.5, y: 18}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Title_Credit
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Title_Credit
+      Rectangle:
+        serializedVersion: 2
+        x: 116
+        y: 34
+        width: 281
+        height: 70
+      Pivot: {x: 140.5, y: 35}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Title_End
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Title_End
+      Rectangle:
+        serializedVersion: 2
+        x: 62
+        y: 33
+        width: 395
+        height: 66
+      Pivot: {x: 197.5, y: 33}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: Title_Option
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Title_Option
+      Rectangle:
+        serializedVersion: 2
+        x: 101
+        y: 31
+        width: 300
+        height: 73
+      Pivot: {x: 150, y: 36.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 

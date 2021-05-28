@@ -77,7 +77,7 @@ public class Title : MonoBehaviour
         {
             case 1:
                 //  StartFlash();
-                SelectUiChange();
+                SelectUiChange2();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Push = true;
@@ -90,7 +90,7 @@ public class Title : MonoBehaviour
                 break;
             case 2:
                 // StartFlash();
-                SelectUiChange();
+                SelectUiChange2();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Push = true;
@@ -103,7 +103,7 @@ public class Title : MonoBehaviour
                 break;
             case 3:
                 // StartFlash();
-                SelectUiChange();
+                SelectUiChange2();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     Push = true;
@@ -116,7 +116,7 @@ public class Title : MonoBehaviour
                 break;
             case 4:
                 //StartFlash();
-                SelectUiChange();
+                SelectUiChange2();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
                     titleAudio.PlayOneShot(SE_Enter);
@@ -208,68 +208,110 @@ public class Title : MonoBehaviour
     {
         switch(NumSelect)
         {
-            case 1:
-                PushStartImg.SetActive(false);
-                Open_PushStartImg.SetActive(true);
+            //case 1:
+            //    PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+            //    //Open_PushStartImg.SetActive(true);
 
-                //選択中側
-                Open_OptionImg.SetActive(false);
-                Open_CreditImg.SetActive(false);
-                Open_GameEndImg.SetActive(false);
+            //    //選択中側
+            //    Open_OptionImg.SetActive(false);
+            //    Open_CreditImg.SetActive(false);
+            //    Open_GameEndImg.SetActive(false);
 
-                //選択されてない側
-                OptionImg.SetActive(true);
-                CreditImg.SetActive(true);
-                GameEndImg.SetActive(true);
+            //    //選択されてない側
+            //    OptionImg.SetActive(true);
+            //    CreditImg.SetActive(true);
+            //    GameEndImg.SetActive(true);
 
-                break;
+            //    break;
 
-            case 2:
-                OptionImg.SetActive(false);
-                Open_OptionImg.SetActive(true);
+            //case 2:
+            //    OptionImg.SetActive(false);
+            //    Open_OptionImg.SetActive(true);
 
-                //選択中側
-                Open_PushStartImg.SetActive(false);
-                Open_CreditImg.SetActive(false);
-                Open_GameEndImg.SetActive(false);
+            //    //選択中側
+            //    PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = false ;
+            //    //Open_PushStartImg.SetActive(false);
+            //    Open_CreditImg.SetActive(false);
+            //    Open_GameEndImg.SetActive(false);
 
-                //選択されてない側
-                PushStartImg.SetActive(true);
-                CreditImg.SetActive(true);
-                GameEndImg.SetActive(true);
-                break;
+            //    //選択されてない側
+            //    //PushStartImg.SetActive(true);
+            //    CreditImg.SetActive(true);
+            //    GameEndImg.SetActive(true);
+            //    break;
 
-            case 3:
-                CreditImg.SetActive(false);
-                Open_CreditImg.SetActive(true);
+            //case 3:
+            //    CreditImg.SetActive(false);
+            //    Open_CreditImg.SetActive(true);
 
-                //選択中側
-                Open_PushStartImg.SetActive(false);
-                Open_OptionImg.SetActive(false);
-                Open_GameEndImg.SetActive(false);
+            //    //選択中側
+            //    PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+            //    //Open_PushStartImg.SetActive(false);
+            //    Open_OptionImg.SetActive(false);
+            //    Open_GameEndImg.SetActive(false);
 
-                //選択されてない側
-                OptionImg.SetActive(true);
-                PushStartImg.SetActive(true);
-                GameEndImg.SetActive(true);
-                break;
+            //    //選択されてない側
+            //    OptionImg.SetActive(true);
+            //    //PushStartImg.SetActive(true);
+            //    GameEndImg.SetActive(true);
+            //    break;
 
-            case 4:
-                GameEndImg.SetActive(false);
-                Open_GameEndImg.SetActive(true);
+            //case 4:
+            //    GameEndImg.SetActive(false);
+            //    Open_GameEndImg.SetActive(true);
 
-                //選択中側
-                Open_PushStartImg.SetActive(false);
-                Open_OptionImg.SetActive(false);
-                Open_CreditImg.SetActive(false);
+            //    //選択中側
+            //    PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+            //    //Open_PushStartImg.SetActive(false);
+            //    Open_OptionImg.SetActive(false);
+            //    Open_CreditImg.SetActive(false);
 
-                //選択されてない側
-                OptionImg.SetActive(true);
-                CreditImg.SetActive(true);
-                PushStartImg.SetActive(true);
+            //    //選択されてない側
+            //    OptionImg.SetActive(true);
+            //    CreditImg.SetActive(true);
+            //    //PushStartImg.SetActive(true);
+            //    break;
+            default:
                 break;
         }
     }
+
+    void SelectUiChange2()
+    {
+        switch (NumSelect)
+        {
+            case 1:
+                PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+                OptionImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                CreditImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                GameEndImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                break;
+
+            case 2:
+                PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                OptionImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+                CreditImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                GameEndImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                break;
+
+            case 3:
+                PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                OptionImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                CreditImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+                GameEndImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                break;
+
+            case 4:
+                PushStartImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                OptionImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                CreditImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                GameEndImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+                break;
+            default:
+                break;
+        }
+    }
+
     void SettingScene()
     {
         TitleCanvas.SetActive(false);
