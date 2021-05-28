@@ -30,7 +30,7 @@ public class PadScript : MonoBehaviour
             KeyBoardUI.SetActive(true);
             PadUI.SetActive(false);
         }
-        if (GameSystem.IsGoal)
+        if (GameSystem.IsGoal|| MotionPlayer.m_PlayerHp == 0)
         {
             KeyBoardUI.SetActive(false);
             PadUI.SetActive(false);

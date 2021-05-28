@@ -61,7 +61,7 @@ public class Pause : MonoBehaviour
                 }
                 else
                 {
-                    if(MotionPlayer.GetPlayerArriving() == true)
+                    if (MotionPlayer.GetPlayerArriving() == true)
                     {
                         Time.timeScale = 1;
                     }

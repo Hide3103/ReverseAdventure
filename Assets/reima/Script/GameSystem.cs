@@ -176,6 +176,7 @@ public class GameSystem : MonoBehaviour
     void Update()
     {
         GoalAfterDeleteUI();
+        Debug.Log(MotionPlayer.m_PlayerHp);
         if (PlayerScript.m_IsPlay && GameSystem.IsGoal == false)
         {
             ClearTime += Time.deltaTime;
@@ -481,7 +482,7 @@ public class GameSystem : MonoBehaviour
 
     public void GoalAfterDeleteUI()
     {
-        if (IsGoal == true && SceneManager.GetActiveScene().name != "StageSelect"||MotionPlayer.m_PlayerHp==0&& SceneManager.GetActiveScene().name != "StageSelect")
+        if (IsGoal == true && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(false);
             NumJewelText.SetActive(false);
@@ -492,7 +493,7 @@ public class GameSystem : MonoBehaviour
             PlayerPosTri.SetActive(false);
 
         }
-        if (IsGoal == false && SceneManager.GetActiveScene().name != "StageSelect" || MotionPlayer.m_PlayerHp != 0 && SceneManager.GetActiveScene().name != "StageSelect")
+        if (IsGoal == false && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(true);
             NumJewelText.SetActive(true);
@@ -501,6 +502,16 @@ public class GameSystem : MonoBehaviour
             CoolDownUI.SetActive(true);
             MaterUI.SetActive(true);
             PlayerPosTri.SetActive(true);
+        }
+        if(MotionPlayer.m_PlayerHp == 0)
+        {
+            PlayerHP.SetActive(false);
+            NumJewelText.SetActive(false);
+            Timer.SetActive(false);
+            CoolDownCountTxt.SetActive(false);
+            CoolDownUI.SetActive(false);
+            MaterUI.SetActive(false);
+            PlayerPosTri.SetActive(false);
         }
     }
 }
