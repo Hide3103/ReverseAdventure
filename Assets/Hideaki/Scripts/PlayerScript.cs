@@ -34,7 +34,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool m_TurnFlg = false;
 
-    public static bool m_IsPlay = false;
+    public static bool m_IsPlay = true;
+
 
     //UIで管理するのにstaticにしました 3/20
     public static int m_PlayerHp = 3;
