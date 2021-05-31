@@ -55,6 +55,9 @@ public class MotionGoal : MonoBehaviour
 
     public GameObject Result;
 
+    AudioSource goalAudio;
+    public AudioClip SE_Open;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +67,8 @@ public class MotionGoal : MonoBehaviour
         spriteRenderer.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         boxCollider2D = GetComponent<BoxCollider2D>();
+
+        goalAudio = GetComponent<AudioSource>();
 
         // キャラクターパラメータ関連を設定 
 
@@ -116,6 +121,7 @@ public class MotionGoal : MonoBehaviour
                     // 攻撃に変更 
                     AnimationChange(AnimationPattern.Openning);
                     m_Step = Step.Openning;
+                    goalAudio.PlayOneShot(SE_Open);
                 }
                 //else
                 //{
