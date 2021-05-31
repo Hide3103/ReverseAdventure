@@ -503,7 +503,7 @@ public class GameSystem : MonoBehaviour
             MaterUI.SetActive(true);
             PlayerPosTri.SetActive(true);
         }
-        if(MotionPlayer.m_PlayerHp == 0 && SceneManager.GetActiveScene().name != "StageSelect")
+        if(MotionPlayer.GetPlayerArriving() == false && SceneManager.GetActiveScene().name != "StageSelect")
         {
             PlayerHP.SetActive(false);
             NumJewelText.SetActive(false);

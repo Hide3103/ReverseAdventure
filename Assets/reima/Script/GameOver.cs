@@ -39,11 +39,11 @@ public class GameOver : MonoBehaviour
     {
        
         //ゲームオーバー
-        if (PlayerScript.PlayerAlive == false)
+        if (MotionPlayer.GetDieMotionEnd() == true)
         {
             GameOverCanvas.SetActive(true);
         }
-        if (PlayerScript.PlayerAlive)
+        if (MotionPlayer.GetDieMotionEnd() == false)
         {
             GameOverCanvas.SetActive(false);
         }
@@ -54,7 +54,7 @@ public class GameOver : MonoBehaviour
             WaitTime -= Time.unscaledDeltaTime;
         }
 
-        if (NumSelect==1&&Input.GetKeyDown(KeyCode.LeftArrow) || (hori < 0 && NumSelect > 1 && WaitTime <= 0)&&PlayerScript.PlayerAlive==false)
+        if (NumSelect==1&&Input.GetKeyDown(KeyCode.LeftArrow) || (hori < 0 && NumSelect > 1 && WaitTime <= 0) && MotionPlayer.GetPlayerArriving() == false)
         {
             gameOverAudio.PlayOneShot(SE_Select);
 
@@ -66,7 +66,7 @@ public class GameOver : MonoBehaviour
             NumSelect--;
             WaitTime = SetWaitTime; ;
         }
-        if(NumSelect==2&&Input.GetKeyDown(KeyCode.RightArrow) || (hori > 0 && NumSelect < 2 && WaitTime <= 0) && PlayerScript.PlayerAlive==false)
+        if(NumSelect==2&&Input.GetKeyDown(KeyCode.RightArrow) || (hori > 0 && NumSelect < 2 && WaitTime <= 0) && MotionPlayer.GetPlayerArriving() == false)
         {
             gameOverAudio.PlayOneShot(SE_Select);
 
@@ -81,7 +81,7 @@ public class GameOver : MonoBehaviour
 
         }
 
-        if (PlayerScript.PlayerAlive == false)
+        if (MotionPlayer.GetPlayerArriving() == false)
         {
             switch (NumSelect)
             {
@@ -115,6 +115,33 @@ public class GameOver : MonoBehaviour
                                 SceneManager.LoadScene("Stage_5");
                                 FeedEffect.DarkeningOn = false;
                                 FeedEffect.FlgEffect = true;
+                                break;
+                            case 6:
+                                SceneManager.LoadScene("Stage_6");
+                                FeedEffect.DarkeningOn = false;
+                                FeedEffect.FlgEffect = true;
+                                break;
+                            case 7:
+                                SceneManager.LoadScene("Stage_7");
+                                FeedEffect.DarkeningOn = false;
+                                FeedEffect.FlgEffect = true;
+                                break;
+                            case 8:
+                                SceneManager.LoadScene("Stage_8");
+                                FeedEffect.DarkeningOn = false;
+                                FeedEffect.FlgEffect = true;
+                                break;
+                            case 9:
+                                SceneManager.LoadScene("Stage_9");
+                                FeedEffect.DarkeningOn = false;
+                                FeedEffect.FlgEffect = true;
+                                break;
+                            case 10:
+                                SceneManager.LoadScene("Stage_10");
+                                FeedEffect.DarkeningOn = false;
+                                FeedEffect.FlgEffect = true;
+                                break;
+                            default:
                                 break;
                         }
                     }

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1254304850523324045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.348, y: 1.867, z: 0}
-  m_LocalScale: {x: 1.032, y: 1.032, z: 1.032}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5c7337c7dc8d244961ecd006453bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyPosY: -10
+  rockSpone: {fileID: 0}
 --- !u!58 &1523284780859353360
 CircleCollider2D:
   m_ObjectHideFlags: 0

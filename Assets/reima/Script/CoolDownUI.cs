@@ -19,7 +19,7 @@ public class CoolDownUI : MonoBehaviour
     void Update()
     {
         //IsRectTf.LookAt(Camera.main.transform);
-        if (PlayerScript.PlayerAlive == true)
+        if (MotionPlayer.GetPlayerArriving() == true)
         {
             this.gameObject.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 0.7f, Player.transform.position.z);
         }

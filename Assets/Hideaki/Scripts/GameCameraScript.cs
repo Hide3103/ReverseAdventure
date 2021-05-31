@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameCameraScript : MonoBehaviour
 {
     public GameObject player;
+    MotionPlayer motionPlayerScript;
     Transform playerTrans;
 
     public GameObject start;
@@ -24,6 +25,9 @@ public class GameCameraScript : MonoBehaviour
         startPos = start.GetComponent<Transform>().position;
         //raderCam = raderCamera.GetComponent<Camera>();
         //raderCam.enabled = true;
+
+        motionPlayerScript = player.GetComponent<MotionPlayer>();
+
         cam = GetComponent<Camera>();
         cam.enabled = true;
     }
@@ -39,7 +43,10 @@ public class GameCameraScript : MonoBehaviour
             {
                 CamPosX = playerPos.x;
             }
-            this.transform.position = new Vector3(CamPosX, playerPos.y + CamPosY, this.transform.position.z);
+            if(motionPlayerScript.m_PlayerDeathPosY + 4.0f < this.gameObject.transform.position.y)
+            {
+                this.transform.position = new Vector3(CamPosX, playerPos.y + CamPosY, this.transform.position.z);
+            }
         }
     }
 }
