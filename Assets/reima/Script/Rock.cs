@@ -27,11 +27,23 @@ public class Rock : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.name == "Player")
+        if (collision.transform.tag == "Player")
         {
             if (DamageOn)
             {
-                MotionPlayer.m_PlayerHp -= 1;
+                GetComponent<MotionPlayer>().Damage();
+                DamageOn = false;
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            if (DamageOn)
+            {
+                collision.gameObject.GetComponent<MotionPlayer>().Damage();
                 DamageOn = false;
             }
         }

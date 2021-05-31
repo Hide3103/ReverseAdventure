@@ -328,25 +328,25 @@ public class GameSystem : MonoBehaviour
                 Stage3JuwelCollection[juwelNum] = Stage3JuwelGetted[juwelNum];
                 break;
             case 4:
-                Stage2JuwelCollection[juwelNum] = Stage4JuwelGetted[juwelNum];
+                Stage4JuwelCollection[juwelNum] = Stage4JuwelGetted[juwelNum];
                 break;
             case 5:
-                Stage3JuwelCollection[juwelNum] = Stage5JuwelGetted[juwelNum];
+                Stage5JuwelCollection[juwelNum] = Stage5JuwelGetted[juwelNum];
                 break;
             case 6:
-                Stage1JuwelCollection[juwelNum] = Stage6JuwelGetted[juwelNum];
+                Stage6JuwelCollection[juwelNum] = Stage6JuwelGetted[juwelNum];
                 break;
             case 7:
-                Stage2JuwelCollection[juwelNum] = Stage7JuwelGetted[juwelNum];
+                Stage7JuwelCollection[juwelNum] = Stage7JuwelGetted[juwelNum];
                 break;
             case 8:
-                Stage3JuwelCollection[juwelNum] = Stage8JuwelGetted[juwelNum];
+                Stage8JuwelCollection[juwelNum] = Stage8JuwelGetted[juwelNum];
                 break;
             case 9:
-                Stage2JuwelCollection[juwelNum] = Stage9JuwelGetted[juwelNum];
+                Stage9JuwelCollection[juwelNum] = Stage9JuwelGetted[juwelNum];
                 break;
             case 10:
-                Stage3JuwelCollection[juwelNum] = Stage10JuwelGetted[juwelNum];
+                Stage10JuwelCollection[juwelNum] = Stage10JuwelGetted[juwelNum];
                 break;
             default:
                 break;

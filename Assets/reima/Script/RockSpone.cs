@@ -10,7 +10,7 @@ public class RockSpone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        RockAlive = false;
     }
 
     // Update is called once per frame

@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4839006405471789575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: -0.207, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 7406290983983559043}
@@ -339,7 +339,8 @@ MonoBehaviour:
   - {fileID: 6228275438500022625, guid: d4f5c60ff3e72d648afa87bea3fd11fe, type: 3}
   - {fileID: 8148582308499959891, guid: 1d5156ee50f3e6742b36317b3fd4dd52, type: 3}
   m_DamagedFlg: 0
-  HavingBlock: 0
+  m_HavingBlock: 0
+  m_LadderFlg: 0
   m_PlayerDeathPosY: -6
   GoalObject: {fileID: 0}
   m_LookKey: 1

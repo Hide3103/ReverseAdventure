@@ -79,7 +79,7 @@ public class MotionPlayer : MonoBehaviour
     public bool m_HavingBlock = false;
 
     // 梯子に接触しているかのフラグ
-    bool m_LadderFlg = false;
+    public bool m_LadderFlg = false;
 
     //プレイヤーが死ぬ座標
     public float m_PlayerDeathPosY = -6.0f;
@@ -205,7 +205,7 @@ public class MotionPlayer : MonoBehaviour
         float hori = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
         //ゴールなどプレイを中断させたい時のフラグ
-        if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false)
+        if (m_IsPlay == true && rawImageScript.GetChanggingFlg() == false )
         {
             switch (m_Step)
             {
@@ -322,11 +322,18 @@ public class MotionPlayer : MonoBehaviour
                             //AnimationChange(AnimationPattern.Attack);
                             //m_Step = Step.Attack;
                         }
+                        else if (collisionScript.LadderFlg == true)
+                        {
+                            // 走りに変更 
+                            AnimationChange(AnimationPattern.Wait);
+                            //Debug.Log("AnimationChange(AnimationPattern.Walk)");
+                        }
                         else if (m_Moving == true)
                         {
                             // 走りに変更 
                             AnimationChange(AnimationPattern.Walk);
                             m_Step = Step.Walk;
+                            Debug.Log("AnimationChange(AnimationPattern.Walk)");
                         }
                     }   
                     break;
@@ -348,6 +355,11 @@ public class MotionPlayer : MonoBehaviour
                             // 待機に変更 
                             AnimationChange(AnimationPattern.Wait);
                             m_Step = Step.Wait;
+                            //Debug.Log("AnimationChange(AnimationPattern.Wait)");
+                        }
+                        else if (collisionScript.LadderFlg == true)
+                        {
+
                         }
 
                         //if(collisionScript.LadderFlg == true)
@@ -367,175 +379,185 @@ public class MotionPlayer : MonoBehaviour
                     break;
             }
 
-            // ダメージを受けている時の処理・ダメージを受けていない時の処理(移動)
-            if (CantMoveRecoveryed == true && m_Step != Step.Throw)
+            if(GameSystem.IsGoal == false)
             {
-                // 移動
-                if (Input.GetKey(KeyCode.LeftArrow) == true || hori < -0.3f)   // 左移動 
+                // ダメージを受けている時の処理・ダメージを受けていない時の処理(移動)
+                if (CantMoveRecoveryed == true && m_Step != Step.Throw)
                 {
-                    //m_LookKey = -1;
-                    transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                    transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
-                    m_Moving = true;
-                }
-                else if (Input.GetKey(KeyCode.RightArrow) == true || hori > 0.3f)  // 右移動 
-                {
-                    //m_LookKey = 1;
-                    transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
-                    transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
-                    m_Moving = true;
-                }
-                else if (Input.GetKeyDown(KeyCode.C) == true || Input.GetKeyDown("joystick button 3"))
-                {
-                    if(m_Step != Step.Reverse)
+                    // 移動
+                    if (Input.GetKey(KeyCode.LeftArrow) == true || hori < -0.3f)   // 左移動 
                     {
-                        if(ChangeWorld.CoolDownTime <= 0 && ChangeWorld.StateFront == true)
+                        //m_LookKey = -1;
+                        transform.position -= new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
+                        transform.localScale = new Vector3(-m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                        m_Moving = true;
+                    }
+                    else if (Input.GetKey(KeyCode.RightArrow) == true || hori > 0.3f)  // 右移動 
+                    {
+                        //m_LookKey = 1;
+                        transform.position += new Vector3(m_MoveSpeed, 0, 0) * Time.deltaTime;
+                        transform.localScale = new Vector3(m_FirstScale.x, m_FirstScale.y, m_FirstScale.z);
+                        m_Moving = true;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.C) == true || Input.GetKeyDown("joystick button 3"))
+                    {
+                        if (m_Step != Step.Reverse)
                         {
-                            m_ReverseDeltaTime = 0.0f;
-                            playerAudio.PlayOneShot(SE_Reverse);
-                            AnimationChange(AnimationPattern.Reverse);
-                            m_Step = Step.Reverse;
+                            if (ChangeWorld.CoolDownTime <= 0 && ChangeWorld.StateFront == true)
+                            {
+                                m_ReverseDeltaTime = 0.0f;
+                                playerAudio.PlayOneShot(SE_Reverse);
+                                AnimationChange(AnimationPattern.Reverse);
+                                m_Step = Step.Reverse;
+                            }
+                            else if (ChangeWorld.UraActiveTime < 10 && ChangeWorld.StateFront == false)
+                            {
+                                m_ReverseDeltaTime = 0.0f;
+                                AnimationChange(AnimationPattern.Reverse);
+                                m_Step = Step.Reverse;
+                            }
+                            else
+                            {
+                                playerAudio.PlayOneShot(SE_Cancel);
+                            }
                         }
-                        else if(ChangeWorld.UraActiveTime < 10 && ChangeWorld.StateFront == false)
+                    }
+                    else
+                    {
+                        m_Moving = false;
+                    }
+
+                    // 空中にいるかの判定
+                    float speedY = Mathf.Abs(this.rigid2D.velocity.y);
+                    if (speedY <= 0.01f)
+                    {
+                        m_Flying = false;
+                    }
+                    else
+                    {
+                        m_Flying = true;
+                    }
+
+                    // ジャンプ処理
+                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
+                    {
+                        if (m_Flying == false && collisionScript.LadderFlg == false)
                         {
-                            m_ReverseDeltaTime = 0.0f;
-                            AnimationChange(AnimationPattern.Reverse);
-                            m_Step = Step.Reverse;
+                            this.rigid2D.AddForce(transform.up * 240.0f);
+                            playerAudio.PlayOneShot(SE_Jump);
+                            if (m_HavingBlock == false)
+                            {
+                                m_Step = Step.Jump;
+                                AnimationChange(AnimationPattern.Jump);
+                            }
+                            m_Flying = true;
+                        }
+                        // 梯子に触れている時に捕まる
+                        else if (collisionScript.LadderFlg == true)
+                        {
+                            m_LadderFlg = true;
+                        }
+                    }
+
+                    //梯子を上り下りする
+                    if (collisionScript.LadderFlg == true)
+                    {
+                        rigid2D.gravityScale = 0;
+                        rigid2D.velocity = new Vector2(0.0f, 0.0f);
+                        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || vert > 0)
+                        {
+                            this.transform.position += new Vector3(0.0f, 2.0f * Time.deltaTime, 0.0f);
+                        }
+                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
+                        {
+                            this.transform.position += new Vector3(0.0f, -2.0f * Time.deltaTime, 0.0f);
+                        }
+                        //else
+                        //{
+                        //m_Step = Step.Wait;
+                        //MotionPatternChange(AnimationPattern.Wait);
+                        //    //AnimationStartClimb();
+                        //}
+                    }
+                    else
+                    {
+                        rigid2D.gravityScale = 1;
+                    }
+
+                    // 攻撃処理
+                    if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 1"))
+                    {
+                        if (m_HavingBlock == false)
+                        {
+                            if (m_Step != Step.Attack)
+                            {
+                                playerAudio.PlayOneShot(SE_SwordSwing);
+                                AnimationChange(AnimationPattern.Attack);
+                                m_Step = Step.Attack;
+                            }
                         }
                         else
                         {
                             playerAudio.PlayOneShot(SE_Cancel);
                         }
                     }
-                }
-                else
-                {
-                    m_Moving = false;
-                }
-                
-                // 空中にいるかの判定
-                float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-                if (speedY <= 0.01f)
-                {
-                    m_Flying = false;
-                }
-                else
-                {
-                    m_Flying = true;
+
                 }
 
-                // ジャンプ処理
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("joystick button 0"))
+                if (m_DamagedFlg == true)
                 {
-                    if (m_Flying == false && collisionScript.LadderFlg == false)
+                    if (m_DamageLimit < m_DamageDelta)
                     {
-                        this.rigid2D.AddForce(transform.up * 240.0f);
-                        playerAudio.PlayOneShot(SE_Jump);
-                        if(m_HavingBlock == false)
+                        m_DamagedFlg = false;
+                        m_DamageDelta = 0.0f;
+                        // 待機に変更 
+                        if (0 < m_PlayerHp)
                         {
-                            m_Step = Step.Jump;
-                            AnimationChange(AnimationPattern.Jump);
+                            AnimationChange(AnimationPattern.Wait);
+                            m_Step = Step.Wait;
                         }
-                        m_Flying = true;
-                    }
-                    // 梯子に触れている時に捕まる
-                    else if (collisionScript.LadderFlg == true)
-                    {
-                        m_LadderFlg = true;
-                    }
-                }
 
-                //梯子を上り下りする
-                if (collisionScript.LadderFlg == true)
-                {
-                    rigid2D.gravityScale = 0;
-                    rigid2D.velocity = new Vector2(0.0f, 0.0f);
-                    if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || vert > 0)
-                    {
-                        this.transform.position += new Vector3(0.0f, 2.0f * Time.deltaTime, 0.0f);
-                    }
-                    else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.DownArrow) || vert < 0)
-                    {
-                        this.transform.position += new Vector3(0.0f, -2.0f * Time.deltaTime, 0.0f);
-                    }
-                    //else
-                    //{
-                    m_Step = Step.Wait;
-                    AnimationChange(AnimationPattern.Count);
-                    //    //AnimationStartClimb();
-                    //}
-                }
-                else
-                {
-                    rigid2D.gravityScale = 1;
-                }
-
-                // 攻撃処理
-                if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 1"))
-                {
-                    if (m_HavingBlock == false)
-                    {
-                        if (m_Step != Step.Attack)
-                        {
-                            playerAudio.PlayOneShot(SE_SwordSwing);
-                            AnimationChange(AnimationPattern.Attack);
-                            m_Step = Step.Attack;
-                        }
                     }
                     else
                     {
-                        playerAudio.PlayOneShot(SE_Cancel);
-                    }
-                }
-
-            }
-            
-            if(m_DamagedFlg == true)
-            {
-                if (m_DamageLimit < m_DamageDelta)
-                {
-                    m_DamagedFlg = false;
-                    m_DamageDelta = 0.0f;
-                    // 待機に変更 
-                    if(0 < m_PlayerHp)
-                    {
-                        AnimationChange(AnimationPattern.Wait);
-                        m_Step = Step.Wait;
-                    }
-
-                }
-                else
-                {
-                    m_DamageDelta += Time.deltaTime;
-                    if (CantMoveRecoveryDeltaLimit < m_DamageDelta)
-                    {
-                        if (m_PlayerHp <= 0.0f)
+                        m_DamageDelta += Time.deltaTime;
+                        if (CantMoveRecoveryDeltaLimit < m_DamageDelta)
                         {
-                            m_Step = Step.Die;
-                            AnimationChange(AnimationPattern.Die);
-                            Debug.Log("AnimationChange(AnimationPattern.Die)");
-                        }
-                        else
-                        {
-                            CantMoveRecoveryed = true;
+                            if (m_PlayerHp <= 0.0f)
+                            {
+                                m_Step = Step.Die;
+                                AnimationChange(AnimationPattern.Die);
+                                Debug.Log("AnimationChange(AnimationPattern.Die)");
+                            }
+                            else
+                            {
+                                CantMoveRecoveryed = true;
+                            }
                         }
                     }
                 }
-            }
 
-            //穴に落ちた時の処理
-            if (this.transform.position.y <= m_PlayerDeathPosY)
-            {
-                SceneManager.LoadScene("GameOver");
-                Destroy(this.gameObject);
+                //穴に落ちた時の処理
+                if (this.transform.position.y <= m_PlayerDeathPosY)
+                {
+                    SceneManager.LoadScene("GameOver");
+                    Destroy(this.gameObject);
+                }
             }
+        }
 
-            // ゴールに触れていたら
-            if(GameSystem.IsGoal == true)
-            {
-                AnimationChange(AnimationPattern.Goal);
-                m_Step = Step.Goal;
-            }
+        //if (collisionScript.LadderFlg == true)
+        //{
+        //    // 走りに変更 
+        //    AnimationChange(AnimationPattern.Count);
+        //    //Debug.Log("AnimationChange(AnimationPattern.Walk)");
+        //}
+
+        // ゴールに触れていたら
+        if (GameSystem.IsGoal == true)
+        {
+            AnimationChange(AnimationPattern.Goal);
+            m_Step = Step.Goal;
         }
     }
 

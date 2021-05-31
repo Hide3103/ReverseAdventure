@@ -61,6 +61,27 @@ public class Result : MonoBehaviour
             case 3:
                 array = GameSystem.Stage3JuwelGetted;
                 break;
+            case 4:
+                array = GameSystem.Stage4JuwelGetted;
+                break;
+            case 5:
+                array = GameSystem.Stage5JuwelGetted;
+                break;
+            case 6:
+                array = GameSystem.Stage6JuwelGetted;
+                break;
+            case 7:
+                array = GameSystem.Stage7JuwelGetted;
+                break;
+            case 8:
+                array = GameSystem.Stage8JuwelGetted;
+                break;
+            case 9:
+                array = GameSystem.Stage9JuwelGetted;
+                break;
+            case 10:
+                array = GameSystem.Stage10JuwelGetted;
+                break;
         }
 
         for (int i = 0; i < array.Length; i++)
