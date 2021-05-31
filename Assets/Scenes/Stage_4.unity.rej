@@ -1,0 +1,10 @@
+diff a/Assets/Scenes/Stage_4.unity b/Assets/Scenes/Stage_4.unity	(rejected hunks)
+@@ -173,7 +173,7 @@
+   m_IsTrigger: 1
+   m_UsedByEffector: 0
+   m_UsedByComposite: 0
+-  m_Offset: {x: 5.012703, y: -0.004942417}
++  m_Offset: {x: -0.5179434, y: -0.004942417}
+   m_SpriteTilingProperty:
+     border: {x: 0, y: 0, z: 0, w: 0}
+     pivot: {x: 0, y: 0}
