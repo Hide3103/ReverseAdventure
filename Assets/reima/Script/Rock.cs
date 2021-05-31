@@ -7,6 +7,8 @@ public class Rock : MonoBehaviour
     bool DamageOn = true;
     public float DestroyPosY = -10.0f;
 
+    public float RoringSpeed = 1.0f;
+
     public GameObject rockSpone;
     RockSpone rockSponeScript;
 
@@ -14,13 +16,14 @@ public class Rock : MonoBehaviour
     void Start()
     {
         rockSponeScript = rockSpone.GetComponent<RockSpone>();
+        RoringSpeed = rockSponeScript.RoringSpeed;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3( -1 * Time.deltaTime,0, 0);
+        this.transform.position += new Vector3( -RoringSpeed * Time.deltaTime,0, 0);
         this.transform.Rotate(new Vector3(0, 0, +5));
 
         if (this.transform.position.y <= DestroyPosY)

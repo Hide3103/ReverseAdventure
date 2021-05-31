@@ -9,6 +9,7 @@ public class RockSpone : MonoBehaviour
     public GameObject RockPrehub;
 
     public float RockDeathPosY = 0.0f;
+    public float RoringSpeed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class RockSpone : MonoBehaviour
             GameObject rockPrefub = Instantiate(RockPrehub, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z), Quaternion.identity);
             rockPrefub.GetComponent<Rock>().rockSpone = this.gameObject;
             rockPrefub.GetComponent<Rock>().DestroyPosY = RockDeathPosY;
+            rockPrefub.GetComponent<Rock>().RoringSpeed = RoringSpeed;
 
             RockAlive = true;
         }
