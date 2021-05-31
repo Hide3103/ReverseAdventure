@@ -50,4 +50,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditScene.unity
     guid: 94f3b0d96cef9a7408778f88a730e5ac
+  - enabled: 1
+    path: Assets/Scenes/Stage_7.unity
+    guid: 7c9dd94472f062f4d89244814f7ae7b2
+  - enabled: 1
+    path: Assets/Scenes/Stage_8.unity
+    guid: defec99ae5676f342a24a8a2f6663cf8
+  - enabled: 1
+    path: Assets/Scenes/Stage_9.unity
+    guid: c7aba32c2e285c849afd0b8e20dc0448
+  - enabled: 1
+    path: Assets/Scenes/Stage_10.unity
+    guid: e6d16cbacbc9ae84e9f95157baeb040a
   m_configObjects: {}
