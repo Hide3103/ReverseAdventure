@@ -83,6 +83,10 @@ public class MotionPlayer : MonoBehaviour
 
     //プレイヤーが死ぬ座標
     public float m_PlayerDeathPosY = -6.0f;
+    //落ちて死んだか
+    bool fallDied = false;
+    // 死んだモーションが終了したか
+    static bool m_DieMotionEnd = false;
 
     ////被ダメージ時に透明にする用のコンポーネント
     //SpriteRenderer spriteRenderer;
@@ -258,7 +262,8 @@ public class MotionPlayer : MonoBehaviour
                 case Step.Die:
                     if (IsAnimationPlay() == false)
                     {
-                        PlayerScript.PlayerAlive = false;
+                        m_DieMotionEnd = true;
+                        //PlayerScript.PlayerAlive = false;
                         Time.timeScale = 0;
                         //SceneManager.LoadScene("GameOver");
                         //Destroy(this.gameObject);
@@ -379,7 +384,7 @@ public class MotionPlayer : MonoBehaviour
                     break;
             }
 
-            if(GameSystem.IsGoal == false)
+            if(GameSystem.IsGoal == false && m_Step != Step.Die)
             {
                 // ダメージを受けている時の処理・ダメージを受けていない時の処理(移動)
                 if (CantMoveRecoveryed == true && m_Step != Step.Throw)
@@ -429,7 +434,7 @@ public class MotionPlayer : MonoBehaviour
 
                     // 空中にいるかの判定
                     float speedY = Mathf.Abs(this.rigid2D.velocity.y);
-                    if (speedY <= 0.01f)
+                    if (speedY <= 0.1f)
                     {
                         m_Flying = false;
                     }
@@ -540,8 +545,13 @@ public class MotionPlayer : MonoBehaviour
                 //穴に落ちた時の処理
                 if (this.transform.position.y <= m_PlayerDeathPosY)
                 {
-                    SceneManager.LoadScene("GameOver");
-                    Destroy(this.gameObject);
+                    if(fallDied == false)
+                    {
+                        m_PlayerHp = 0;
+                        m_Step = Step.Die;
+                        AnimationChange(AnimationPattern.Die);
+                        fallDied = true;
+                    }
                 }
             }
         }
@@ -806,6 +816,18 @@ public class MotionPlayer : MonoBehaviour
     public static bool GetPlayerArriving()
     {
         if(0 < m_PlayerHp)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static bool GetDieMotionEnd()
+    {
+        if(m_DieMotionEnd == true)
         {
             return true;
         }
