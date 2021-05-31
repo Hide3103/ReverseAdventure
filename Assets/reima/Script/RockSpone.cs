@@ -5,8 +5,11 @@ using UnityEngine;
 public class RockSpone : MonoBehaviour
 {
 
-    public static bool RockAlive = false;
+    public bool RockAlive = false;
     public GameObject RockPrehub;
+
+    public float RockDeathPosY = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,10 @@ public class RockSpone : MonoBehaviour
     {
         if(RockAlive==false)
         {
-            Instantiate(RockPrehub, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z), Quaternion.identity);
+            GameObject rockPrefub = Instantiate(RockPrehub, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z), Quaternion.identity);
+            rockPrefub.GetComponent<Rock>().rockSpone = this.gameObject;
+            rockPrefub.GetComponent<Rock>().DestroyPosY = RockDeathPosY;
+
             RockAlive = true;
         }
     }

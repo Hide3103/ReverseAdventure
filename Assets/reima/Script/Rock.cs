@@ -5,11 +5,16 @@ using UnityEngine;
 public class Rock : MonoBehaviour
 {
     bool DamageOn = true;
-    float DestroyPosY = -10.0f;
+    public float DestroyPosY = -10.0f;
+
+    public GameObject rockSpone;
+    RockSpone rockSponeScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rockSponeScript = rockSpone.GetComponent<RockSpone>();
+
     }
 
     // Update is called once per frame
@@ -21,7 +26,7 @@ public class Rock : MonoBehaviour
         if (this.transform.position.y <= DestroyPosY)
         {
             Destroy(this.gameObject);
-            RockSpone.RockAlive = false;
+            rockSponeScript.RockAlive = false;
         }
     }
 
