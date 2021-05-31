@@ -43,6 +43,7 @@ public class PlayerDuringJudgment : MonoBehaviour
 
         if (collision.gameObject.name == "Judgment_Obj")
         {
+            Debug.Log("重なった");
             Vector3 playerPos = Player.transform.position;
             SetAfterSwitchingPlayerPos = new Vector3(playerPos.x, playerPos.y, playerPos.z);
         }

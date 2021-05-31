@@ -195,6 +195,8 @@ public class MotionPlayer : MonoBehaviour
         m_vecCharacterScale.y = 0.01f;
         m_vecCharacterScale.z = 0.01f;
 
+        m_DieMotionEnd = false;
+
     }
 
     // Update is called once per frame

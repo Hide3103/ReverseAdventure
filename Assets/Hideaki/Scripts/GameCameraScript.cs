@@ -43,7 +43,7 @@ public class GameCameraScript : MonoBehaviour
             {
                 CamPosX = playerPos.x;
             }
-            if(motionPlayerScript.m_PlayerDeathPosY + 4.0f < this.gameObject.transform.position.y)
+            if(motionPlayerScript.m_PlayerDeathPosY + 4.0f < playerPos.y + CamPosY)
             {
                 this.transform.position = new Vector3(CamPosX, playerPos.y + CamPosY, this.transform.position.z);
             }

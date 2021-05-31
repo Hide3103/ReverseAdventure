@@ -45,7 +45,7 @@ public class Result : MonoBehaviour
     void Start()
     {
         NotNumTextPanel.SetActive(false);
-    GetJewel.gameObject.SetActive(true);
+        GetJewel.gameObject.SetActive(true);
         Time.timeScale = 1;
 
         if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
@@ -183,6 +183,7 @@ public class Result : MonoBehaviour
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[1])
                             {
                                 SceneManager.LoadScene("Stage_2");
+                                GameSystem.WasPlayStage = 2;
                             }
                             else
                             {
@@ -191,26 +192,24 @@ public class Result : MonoBehaviour
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 2;
                             break;
                         case 2:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[2])
                             {
                                 SceneManager.LoadScene("Stage_3");
+                                GameSystem.WasPlayStage = 3;
                             }
                             else
                             {
                                 NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
-
-
-                            GameSystem.WasPlayStage = 3;
                             break;
                         case 3:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[3])
                             {
                                 SceneManager.LoadScene("Stage_4");
+                                GameSystem.WasPlayStage = 4;
                             }
                             else
                             {
@@ -219,12 +218,12 @@ public class Result : MonoBehaviour
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 4;
                             break;
                         case 4:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[4])
                             {
                                 SceneManager.LoadScene("Stage_5");
+                                GameSystem.WasPlayStage = 5;
                             }
                             else
                             {
@@ -233,59 +232,58 @@ public class Result : MonoBehaviour
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 5;
                             break;
                         case 5:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[5])
                             {
                                 SceneManager.LoadScene("Stage_6");
+                                GameSystem.WasPlayStage = 6;
                             }
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 6;
                             break;
                         case 6:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[6])
                             {
                                 SceneManager.LoadScene("Stage_7");
+                                GameSystem.WasPlayStage = 7;
                             }
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 7;
                             break;
 
                         case 7:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[7])
                             {
                                 SceneManager.LoadScene("Stage_8");
+                                GameSystem.WasPlayStage = 8;
                             }
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 8;
                             break;
 
                         case 8:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[8])
                             {
                                 SceneManager.LoadScene("Stage_9");
+                                GameSystem.WasPlayStage = 9;
                             }
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 9;
                             break;
                         case 9:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[9])
                             {
                                 SceneManager.LoadScene("Stage_10");
+                                GameSystem.WasPlayStage = 10;
                             }
                             //リセット内容を記載
 
 
-                            GameSystem.WasPlayStage = 10;
                             break;
                     }
                 }
@@ -326,6 +324,41 @@ public class Result : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
                 {
+                    switch (GameSystem.WasPlayStage)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            GameSystem.WasPlayStage = 1;
+                            break;
+                        case 2:
+                            GameSystem.WasPlayStage = 2;
+                            break;
+                        case 3:
+                            GameSystem.WasPlayStage = 3;
+                            break;
+                        case 4:
+                            GameSystem.WasPlayStage = 4;
+                            break;
+                        case 5:
+                            GameSystem.WasPlayStage = 5;
+                            break;
+                        case 6:
+                            GameSystem.WasPlayStage = 6;
+                            break;
+                        case 7:
+                            GameSystem.WasPlayStage = 7;
+                            break;
+                        case 8:
+                            GameSystem.WasPlayStage = 8;
+                            break;
+                        case 9:
+                            GameSystem.WasPlayStage = 9;
+                            break;
+                        case 10:
+                            GameSystem.WasPlayStage = 10;
+                            break;
+                    }
                     resultAudio.PlayOneShot(SE_Enter);
                     SceneManager.LoadScene("StageSelect");
                 }
@@ -372,22 +405,44 @@ public class Result : MonoBehaviour
                         case 1:
                             SceneManager.LoadScene("Stage_1");
                             //リセット内容を記載
-
                             break;
                         case 2:
                             SceneManager.LoadScene("Stage_2");
                             //リセット内容を記載
-
                             break;
                         case 3:
                             SceneManager.LoadScene("Stage_3");
                             //リセット内容を記載
-
-
                             break;
                         case 4:
                             SceneManager.LoadScene("Stage_4");
                             //リセット内容を記載
+                            break;
+                        case 5:
+                            SceneManager.LoadScene("Stage_5");
+                            //リセット内容を記載
+                            break;
+                        case 6:
+                            SceneManager.LoadScene("Stage_6");
+                            //リセット内容を記載
+                            break;
+                        case 7:
+                            SceneManager.LoadScene("Stage_7");
+                            //リセット内容を記載
+                            break;
+                        case 8:
+                            SceneManager.LoadScene("Stage_8");
+                            //リセット内容を記載
+                            break;
+                        case 9:
+                            SceneManager.LoadScene("Stage_9");
+                            //リセット内容を記載
+                            break;
+                        case 10:
+                            SceneManager.LoadScene("Stage_10");
+                            //リセット内容を記載
+                            break;
+                        default:
                             break;
                     }
                 }

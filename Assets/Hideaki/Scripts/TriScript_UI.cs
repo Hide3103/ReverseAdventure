@@ -4,57 +4,67 @@ using UnityEngine;
 
 public class TriScript_UI : MonoBehaviour
 {
+    public GameObject StageBar;
+    public Vector3 StageBarPos;
+
     public GameObject PlayerStart;
     public GameObject PlayerGoal;
-    public GameObject player;
-    public GameObject StageBar;
+    public GameObject Player;
 
-    Vector3 startPos;
-    Vector3 goalPos;
-    Vector3 playerPos;
-    [SerializeField]
-    Vector3 UI_StartPos;
-    [SerializeField]
-    Vector3 UI_GoalPos;
-    [SerializeField]
-    Vector3 UI_PlayerPos;
+    public Vector3 PlayerStartPos;
+    public Vector3 PlayerGoalPos;
+    public Vector3 PlayerPos;
+
+
+    public GameObject UI_Start;
+    public GameObject UI_Goal;
+    public GameObject UI_Player;
+
+    public Vector3 UI_StartPos;
+    public Vector3 UI_GoalPos;
+    public Vector3 UI_PlayerPos;
 
     public float uiPosx = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos = PlayerStart.GetComponent<Transform>().position;
-        goalPos = PlayerGoal.GetComponent<Transform>().position;
+        PlayerStartPos = PlayerStart.GetComponent<Transform>().position;
+        PlayerGoalPos = PlayerGoal.GetComponent<Transform>().position;
 
-        Transform stageBarTrans = StageBar.GetComponent<Transform>();
-        UI_StartPos = stageBarTrans.position - stageBarTrans.localScale;
-        UI_GoalPos = stageBarTrans.position + stageBarTrans.localScale;
+        UI_StartPos = UI_Start.GetComponent<Transform>().localPosition;
+        UI_GoalPos = UI_Goal.GetComponent<Transform>().localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player)
+        if (Player)
         {
-            playerPos = player.GetComponent<Transform>().position;
+            // プレイヤーの現在地
+            PlayerPos = Player.GetComponent<Transform>().position;
+            // UI上でのプレイヤーの現在地
+            UI_PlayerPos = GetComponent<Transform>().localPosition;
 
-            Vector3 StageDistace = goalPos - startPos;
-            Vector3 toGoalDistance = goalPos - playerPos;
-            float goalStartDistance = Vector3.Distance(goalPos, startPos);
+            // ゴールとスタートの間の距離
+            float StartToGoalDistance = Vector3.Distance(PlayerGoalPos, PlayerStartPos);
+            // プレイヤーとスタートの間の距離
+            float StartToPlayerDistance = Vector3.Distance(PlayerPos, PlayerStartPos);
+            // プレイヤーとゴールの間の距離
+            float GoalToPlayerDistance = Vector3.Distance(PlayerGoalPos, PlayerStartPos);
 
-            Vector3 toPlayerPos = playerPos - startPos;
-            float playerStartDistance = Vector3.Distance(playerPos, startPos);
+            // UI上でのゴールとスタートの間の距離
+            float UI_StartToGoalDistance = Vector3.Distance(UI_GoalPos, UI_StartPos);
+            // UI上でのプレイヤーとスタートの間の距離
+            float UI_StartToPlayerDistance = Vector3.Distance(UI_PlayerPos, UI_StartPos);
+            // UI上でのプレイヤーとゴールの間の距離
+            float UI_GoalToPlayerDistance = Vector3.Distance(UI_GoalPos, UI_StartPos);
 
-            Vector3 UI_StageDistance = UI_GoalPos - UI_StartPos;
+            float UI_PosX = StartToPlayerDistance / StartToGoalDistance * UI_StartToGoalDistance;/* / StartToGoalDistance * UI_StartToGoalDistance;*/
 
-            float PosX = StageDistace.x - toGoalDistance.x; // スタートからの距離
-            float UI_PosX = StageBar.transform.position.x - 2.13f + playerStartDistance * 4 / goalStartDistance;
-
-            uiPosx = UI_PosX;
-            if(startPos.x < playerPos.x)
+            if(PlayerStartPos.x < PlayerPos.x)
             {
-                this.transform.position = new Vector3(UI_PosX, this.transform.position.y, this.transform.position.z);
+                this.transform.localPosition = new Vector3(UI_PosX + UI_StartPos.x, 0.1f, 0.0f);
             }
         }
     }
