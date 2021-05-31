@@ -862,7 +862,7 @@ PrefabInstance:
     - target: {fileID: 4476994817610295483, guid: 8a2dcb039c4861445858a219a5df198b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4476994817610295486, guid: 8a2dcb039c4861445858a219a5df198b,
         type: 3}
@@ -14729,15 +14729,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2042935451859643463, guid: 6b475afa4a4d57e46b99a316a41da029,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2042935452372838662, guid: 6b475afa4a4d57e46b99a316a41da029,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042935451859643463, guid: 6b475afa4a4d57e46b99a316a41da029,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2042935452111589013, guid: 6b475afa4a4d57e46b99a316a41da029,
         type: 3}
@@ -22870,6 +22870,11 @@ PrefabInstance:
       propertyPath: GoalObject
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7406290983983559041, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4959202402984451298, guid: 0f4636ad015506243ac214d277a48bec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22895,21 +22900,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 136107684476456997, guid: 0f4636ad015506243ac214d277a48bec,
-        type: 3}
-      propertyPath: Reference_Obj
-      value: 
-      objectReference: {fileID: 715322054}
-    - target: {fileID: 7406290983983559041, guid: 0f4636ad015506243ac214d277a48bec,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2766815785956577212, guid: 0f4636ad015506243ac214d277a48bec,
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 136107684476456997, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: Reference_Obj
+      value: 
+      objectReference: {fileID: 715322054}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4636ad015506243ac214d277a48bec, type: 3}
 --- !u!1001 &1837263344
