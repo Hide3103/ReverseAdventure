@@ -44,6 +44,8 @@ public class StageSelectCameraScript : MonoBehaviour
 
     bool InfoMenu = false;
 
+    bool MoveStageScene = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -141,66 +143,70 @@ public class StageSelectCameraScript : MonoBehaviour
             }
         }
 
-
+        // 選択項目
         if (WaitTime > 0)
         {
             WaitTime -= Time.unscaledDeltaTime;
         }
         float ver = Input.GetAxis("Vertical");
         float hori = Input.GetAxis("Horizontal");
-        if (BackButtonSelecting == false)
+        if(MoveStageScene == false)
         {
-            if (SelectingStageNum < StageMaxNum)
+            if (BackButtonSelecting == false )
             {
-                if ((Input.GetKeyDown(KeyCode.RightArrow)) || (hori > 0.3f && WaitTime <= 0))
+                if (SelectingStageNum < StageMaxNum)
                 {
-                    transform.position += new Vector3(5.0f, 0.0f, 0.0f);
-                    SelectingStageNum += 1;
+                    if ((Input.GetKeyDown(KeyCode.RightArrow)) || (hori > 0.3f && WaitTime <= 0))
+                    {
+                        transform.position += new Vector3(5.0f, 0.0f, 0.0f);
+                        SelectingStageNum += 1;
+                        stageSelectAudio.PlayOneShot(SE_ItemChange);
+                        RightCursorScript.ButtonPressed = true;
+                        RightCursorScript.flashDelta = 0.0f;
+                        WaitTime = SetWaitTime;
+                        TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                        //Open_TitleBackImg.SetActive(false);
+                    }
+                }
+                if (1 < SelectingStageNum)
+                {
+                    if ((Input.GetKeyDown(KeyCode.LeftArrow)) || (hori < -0.3f && WaitTime <= 0))
+                    {
+                        transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
+                        SelectingStageNum -= 1;
+                        stageSelectAudio.PlayOneShot(SE_ItemChange);
+                        LeftCursorScript.ButtonPressed = true;
+                        LeftCursorScript.flashDelta = 0.0f;
+                        WaitTime = SetWaitTime;
+                        TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
+                        //Open_TitleBackImg.SetActive(false);
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.DownArrow) || (ver < 0 && WaitTime <= 0))
+                {
                     stageSelectAudio.PlayOneShot(SE_ItemChange);
-                    RightCursorScript.ButtonPressed = true;
-                    RightCursorScript.flashDelta = 0.0f;
+                    beforeStageNum = SelectingStageNum;
+                    SelectingStageNum = 0;
+                    BackButtonSelecting = true;
                     WaitTime = SetWaitTime;
-                    TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
-                    //Open_TitleBackImg.SetActive(false);
+                    TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
+                    //Open_TitleBackImg.SetActive(true);
                 }
             }
-            if (1 < SelectingStageNum)
+            else
             {
-                if ((Input.GetKeyDown(KeyCode.LeftArrow)) || (hori < -0.3f && WaitTime <= 0))
+                if (Input.GetKeyDown(KeyCode.UpArrow) || (ver > 0 && WaitTime <= 0))
                 {
-                    transform.position += new Vector3(-5.0f, 0.0f, 0.0f);
-                    SelectingStageNum -= 1;
                     stageSelectAudio.PlayOneShot(SE_ItemChange);
-                    LeftCursorScript.ButtonPressed = true;
-                    LeftCursorScript.flashDelta = 0.0f;
+                    SelectingStageNum = beforeStageNum;
+                    BackButtonSelecting = false;
                     WaitTime = SetWaitTime;
                     TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
                     //Open_TitleBackImg.SetActive(false);
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || (ver < 0 && WaitTime <= 0))
-            {
-                stageSelectAudio.PlayOneShot(SE_ItemChange);
-                beforeStageNum = SelectingStageNum;
-                SelectingStageNum = 0;
-                BackButtonSelecting = true;
-                WaitTime = SetWaitTime;
-                TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = true;
-                //Open_TitleBackImg.SetActive(true);
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || (ver > 0 && WaitTime <= 0))
-            {
-                stageSelectAudio.PlayOneShot(SE_ItemChange);
-                SelectingStageNum = beforeStageNum;
-                BackButtonSelecting = false;
-                WaitTime = SetWaitTime;
-                TitleBackImg.GetComponent<MotionButton>().ThisButtonSelecting = false;
-                //Open_TitleBackImg.SetActive(false);
-            }
         }
 
         if (SelectingStageNum != 0)
@@ -261,6 +267,7 @@ public class StageSelectCameraScript : MonoBehaviour
                         MotionPlayer.m_IsPlay = true;
                         FeedEffect.DarkeningOn = true;
                         FeedEffect.FlgEffect = true;
+                        MoveStageScene = true;
                     }
                     else
                     {

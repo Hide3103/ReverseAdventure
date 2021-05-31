@@ -60,7 +60,7 @@ public class GettedJuwel_UI : MonoBehaviour
 
         if (GettedJuwelNum)
         {
-            GettedJuwelNum_Text.text = "× " + GameSystem.GetAllStageJuwelNum();
+            GettedJuwelNum_Text.text = "" + GameSystem.GetAllStageJuwelNum();
         }
     }
 
