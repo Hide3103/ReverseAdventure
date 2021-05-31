@@ -477,6 +477,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6670685523548630437, guid: 74dc270e95ea43843aea4f19c1336db7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6670685524124979571, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -596,11 +601,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TurnSpeed
       value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6670685523548630437, guid: 74dc270e95ea43843aea4f19c1336db7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6670685524984270825, guid: 74dc270e95ea43843aea4f19c1336db7,
         type: 3}
@@ -964,6 +964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 299943350}
+  - component: {fileID: 299943351}
   m_Layer: 0
   m_Name: MedalPos
   m_TagString: Untagged
@@ -979,12 +980,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299943349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81.99, y: 10.97, z: -9.912109}
+  m_LocalPosition: {x: 94.8, y: 7.3, z: -9.912109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &299943351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299943349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d64904f21d04a4c9aedc36cc878a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MedalPrefub: {fileID: 1164542841181539115, guid: e2a0fc25c2d6a0143a0d1541974de14e,
+    type: 3}
+  MedalPos: {fileID: 299943349}
 --- !u!1001 &300981749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2342,7 +2358,7 @@ PrefabInstance:
     - target: {fileID: 4476994817610295483, guid: 8a2dcb039c4861445858a219a5df198b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4476994817610295486, guid: 8a2dcb039c4861445858a219a5df198b,
         type: 3}
@@ -3388,8 +3404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de78ca19a2e14994b85c742fce8f6f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UraObj: {fileID: 0}
-  OmoteObj: {fileID: 0}
+  UraObj: {fileID: 1849245716}
+  OmoteObj: {fileID: 1285171519}
   CoolTimeOver: 0
   CoolDownUI: {fileID: 1334227249}
   UraActiveUI: {fileID: 2093567889}
