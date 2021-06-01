@@ -48,10 +48,10 @@ public class Result : MonoBehaviour
         GetJewel.gameObject.SetActive(true);
         Time.timeScale = 1;
 
-        if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
-        {
-            GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
-        }
+        //if(GameSystem.GetClearTime(GameSystem.WasPlayStage) >= GameSystem.ClearTime)
+        //{
+        //    GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
+        //}
 
         switch(GameSystem.WasPlayStage)
         {
@@ -103,7 +103,10 @@ public class Result : MonoBehaviour
     {
         GetJewel.text = "獲得宝石数　:　" + GameSystem.NumJewel+"個";
         //GameSystem.SetClearTime(Mathf.CeilToInt(GameSystem.ClearTime));
-        GameSystem.SetStageCleared(true, GameSystem.WasPlayStage);
+        if(GameSystem.WasPlayStage != 10)
+        {
+            GameSystem.SetStageCleared(true, GameSystem.WasPlayStage);
+        }
 
         SelectSystem();
     }
@@ -182,8 +185,8 @@ public class Result : MonoBehaviour
                         case 1:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[1])
                             {
-                                SceneManager.LoadScene("Stage_2");
                                 GameSystem.WasPlayStage = 2;
+                                SceneManager.LoadScene("Stage_2");
                             }
                             else
                             {
@@ -196,8 +199,8 @@ public class Result : MonoBehaviour
                         case 2:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[2])
                             {
-                                SceneManager.LoadScene("Stage_3");
                                 GameSystem.WasPlayStage = 3;
+                                SceneManager.LoadScene("Stage_3");
                             }
                             else
                             {
@@ -208,22 +211,20 @@ public class Result : MonoBehaviour
                         case 3:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[3])
                             {
-                                SceneManager.LoadScene("Stage_4");
                                 GameSystem.WasPlayStage = 4;
+                                SceneManager.LoadScene("Stage_4");
                             }
                             else
                             {
                                 NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
-
-
                             break;
                         case 4:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[4])
                             {
-                                SceneManager.LoadScene("Stage_5");
                                 GameSystem.WasPlayStage = 5;
+                                SceneManager.LoadScene("Stage_5");
                             }
                             else
                             {
@@ -236,8 +237,12 @@ public class Result : MonoBehaviour
                         case 5:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[5])
                             {
-                                SceneManager.LoadScene("Stage_6");
                                 GameSystem.WasPlayStage = 6;
+                                SceneManager.LoadScene("Stage_6");
+                            }
+                            else
+                            {
+                                NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
 
@@ -246,8 +251,12 @@ public class Result : MonoBehaviour
                         case 6:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[6])
                             {
-                                SceneManager.LoadScene("Stage_7");
                                 GameSystem.WasPlayStage = 7;
+                                SceneManager.LoadScene("Stage_7");
+                            }
+                            else
+                            {
+                                NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
 
@@ -257,8 +266,12 @@ public class Result : MonoBehaviour
                         case 7:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[7])
                             {
-                                SceneManager.LoadScene("Stage_8");
                                 GameSystem.WasPlayStage = 8;
+                                SceneManager.LoadScene("Stage_8");
+                            }
+                            else
+                            {
+                                NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
 
@@ -268,8 +281,12 @@ public class Result : MonoBehaviour
                         case 8:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[8])
                             {
-                                SceneManager.LoadScene("Stage_9");
                                 GameSystem.WasPlayStage = 9;
+                                SceneManager.LoadScene("Stage_9");
+                            }
+                            else
+                            {
+                                NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
 
@@ -278,12 +295,17 @@ public class Result : MonoBehaviour
                         case 9:
                             if (GameSystem.GetAllStageJuwelNum() > GameSystem.ClearJuwel[9])
                             {
-                                SceneManager.LoadScene("Stage_10");
                                 GameSystem.WasPlayStage = 10;
+                                SceneManager.LoadScene("Stage_10");
+                            }
+                            else
+                            {
+                                NotNumTextPanel.SetActive(true);
                             }
                             //リセット内容を記載
-
-
+                            break;
+                        default:
+                            resultAudio.PlayOneShot(SE_Cancel);
                             break;
                     }
                 }

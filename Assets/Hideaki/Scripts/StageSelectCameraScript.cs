@@ -57,6 +57,7 @@ public class StageSelectCameraScript : MonoBehaviour
         if (1 <= GameSystem.WasPlayStage)
         {
             this.transform.position = new Vector3((GameSystem.WasPlayStage - 1) * 5, transform.position.y, -10);
+            SelectingStageNum = GameSystem.WasPlayStage;
         }
     }
 
@@ -279,17 +280,21 @@ public class StageSelectCameraScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            for (int stageNum = 0; stageNum < 10; stageNum++)
-            {
-                for (int juwelNum = 0; juwelNum < 5; juwelNum++)
-                {
-                    GameSystem.SetJuwelCollection(juwelNum, stageNum, true);
-                }
-                GameSystem.SetStageCleared(true, stageNum);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    for (int stageNum = 0; stageNum < 11; stageNum++)
+        //    {
+        //        for (int juwelNum = 0; juwelNum < 5; juwelNum++)
+        //        {
+        //            GameSystem.SetJuwelCollection(juwelNum, stageNum, true);
+        //        }
+        //        if(stageNum < 10)
+        //        {
+        //            GameSystem.SetStageCleared(true, stageNum);
+
+        //        }
+        //    }
+        //}
     }
 
     string GetStageName(int selectingStageNum)
