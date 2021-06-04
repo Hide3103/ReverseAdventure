@@ -324,6 +324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b799799ae1930054c9d86d7b8da7a80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TitleCanvas: {fileID: 0}
+  SettingCanvas: {fileID: 0}
+  CloudCanvas: {fileID: 0}
+  CreditCanvas: {fileID: 0}
 --- !u!1 &538750888
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +547,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b79fb52a9dccda240bbea2a41517b61a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4d7dcdc003a7e444a53d4b9824f988f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
