@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CollisionScript : MonoBehaviour
 {
-    public bool CollisionFlg = false;
-    public bool LadderFlg = false;
+    public bool m_CollisionFlg = false;
+    public bool m_LadderFlg = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class CollisionScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            CollisionFlg = true;
+            m_CollisionFlg = true;
             Debug.Log("CollisionFlg : true");
         }
     }
@@ -32,7 +32,7 @@ public class CollisionScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            CollisionFlg = false;
+            m_CollisionFlg = false;
             Debug.Log("CollisionFlg : false");
         }
     }
@@ -41,7 +41,7 @@ public class CollisionScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Ladder")
         {
-            LadderFlg = true;
+            m_LadderFlg = true;
             Debug.Log("LadderFlg : true");
         }
     }
@@ -50,7 +50,7 @@ public class CollisionScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Ladder")
         {
-            LadderFlg = true;
+            m_LadderFlg = true;
             Debug.Log("LadderFlg : true");
         }
     }
@@ -59,13 +59,13 @@ public class CollisionScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Ladder")
         {
-            LadderFlg = false;
+            m_LadderFlg = false;
             Debug.Log("LadderFlg : false");
         }
     }
 
     public bool GetCollisionFlg()
     {
-        return CollisionFlg;
+        return m_CollisionFlg;
     }
 }

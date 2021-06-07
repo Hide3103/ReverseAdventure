@@ -21,6 +21,8 @@ public class MotionButton : MonoBehaviour
         Result_StageSelect_NotMove,
         Select_Back_Move,
         Select_Back_NotMove,
+        Select_Shop_Move,
+        Select_Shop_NotMove,
         Title_Credit_Move,
         Title_Credit_NotMove,
         Title_End_Move,
@@ -68,6 +70,7 @@ public class MotionButton : MonoBehaviour
     //テープがどちらの面にあるか(true:前面、false:裏面)
     public bool m_TapeOnFrontSide = true;
 
+    // モーションを変更する
     void MotionPatternChange(AnimationPattern pattern)
     {
         if (NowMotionPatternNum != (int)pattern)
@@ -303,6 +306,12 @@ public class MotionButton : MonoBehaviour
                     iTimesPlaey = 0;    // ループ再生 
                     break;
                 case AnimationPattern.Select_Back_NotMove:
+                    iTimesPlaey = 0;    // ループ再生 
+                    break;
+                case AnimationPattern.Select_Shop_Move:
+                    iTimesPlaey = 0;    // ループ再生 
+                    break;
+                case AnimationPattern.Select_Shop_NotMove:
                     iTimesPlaey = 0;    // ループ再生 
                     break;
                 case AnimationPattern.Title_Credit_Move:
