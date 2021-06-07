@@ -18,14 +18,14 @@ public class PadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         CheckInput();
-        if(PadOn ==true && SceneManager.GetActiveScene().name != "CreditScene")
+
+        if(PadOn ==true && SceneManager.GetActiveScene().name != "CreditScene" && MotionPlayer.GetPlayerArriving() == false)
         {
             KeyBoardUI.SetActive(false);
             PadUI.SetActive(true);
         }
-        if(PadOn==false&&SceneManager.GetActiveScene().name!="CreditScene")
+        if(PadOn==false&&SceneManager.GetActiveScene().name!="CreditScene" && MotionPlayer.GetPlayerArriving() == true)
         {
             KeyBoardUI.SetActive(true);
             PadUI.SetActive(false);
@@ -48,6 +48,11 @@ public class PadScript : MonoBehaviour
                 PadUI.SetActive(false);
             }
         }
+        if(MotionPlayer.GetPlayerArriving()==false)
+        {
+            KeyBoardUI.SetActive(false);
+            PadUI.SetActive(false);
+        }
     }
 
     //接続されているコントローラーチェック
@@ -56,7 +61,7 @@ public class PadScript : MonoBehaviour
         // 接続されているコントローラの名前を調べる
         var ControllerNames = Input.GetJoystickNames();
 
-        if (ControllerNames[0] == "")
+        if (ControllerNames.Length == 0)
         {
             PadOn = false;
         }

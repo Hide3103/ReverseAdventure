@@ -21,9 +21,6 @@ public class FeedEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(FlgEffect+ "FlgEffect");
-        Debug.Log(DarkeningOn+ "DarkeningOn");
-        Debug.Log(GoScene + "GoScene");
         if (FlgEffect)
         {
             if (DarkeningOn)

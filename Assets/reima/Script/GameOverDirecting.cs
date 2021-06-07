@@ -59,13 +59,13 @@ public class GameOverDirecting : MonoBehaviour
                 {
                     if (SetAlpha3 < 1)
                     {
-                        SetAlpha3 += FlashSpeed * Time.deltaTime;
+                        SetAlpha3 += FlashSpeed * Time.unscaledDeltaTime;
                     }
                     TitleCanvasGroupstage3.alpha = SetAlpha3;
                 }
                 if (FlashTime > 1.5 && SetAlpha3 > 0.4)
                 {
-                    SetAlpha3 -= FlashSpeed * Time.deltaTime;
+                    SetAlpha3 -= FlashSpeed * Time.unscaledDeltaTime;
                     if (SetAlpha3 < 0.4)
                     {
                         FlashTime = 0;
@@ -79,13 +79,13 @@ public class GameOverDirecting : MonoBehaviour
                 {
                     if (SetAlpha4 < 1)
                     {
-                        SetAlpha4 += FlashSpeed * Time.deltaTime;
+                        SetAlpha4 += FlashSpeed * Time.unscaledDeltaTime;
                     }
                     TitleCanvasGroupstage4.alpha = SetAlpha3;
                 }
                 if (FlashTime > 1.5 && SetAlpha4 > 0.4)
                 {
-                    SetAlpha4 -= FlashSpeed * Time.deltaTime;
+                    SetAlpha4 -= FlashSpeed * Time.unscaledDeltaTime;
                     if (SetAlpha4 < 0.4)
                     {
                         FlashTime = 0;

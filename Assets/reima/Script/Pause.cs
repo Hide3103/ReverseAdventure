@@ -26,6 +26,7 @@ public class Pause : MonoBehaviour
     RawImageScript rawImageScript;
 
     bool UseStick = false;
+    public static bool Flg_PauseNow = false;
 
     float SetWaitTime = GameSystem.SetWaitTime;
     // Start is called before the first frame update
@@ -39,19 +40,24 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(Flg_PauseNow);
         float vert = Input.GetAxis("Vertical");
         UseStick = true;
 
-        if (GameSystem.IsGoal == false)
+        if(PauseUI.activeSelf == false)
         {
-            if (Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown("joystick button 7"))
+            Flg_PauseNow = false;
+        }
+        else
+        {
+            Flg_PauseNow = true;
+        }
+
+        if (GameSystem.IsGoal == false && PauseUI.activeSelf == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
             {
                 PauseUI.SetActive(!PauseUI.activeSelf);
-            }
-            if (PauseUI.activeSelf == true)
-            {
-                Time.timeScale = 0;
             }
             else
             {
@@ -67,26 +73,43 @@ public class Pause : MonoBehaviour
                     }
                 }
             }
+        }
 
             //ポーズ画面がtrueの時
-            if (PauseUI.activeSelf == true)
+            if (PauseUI.activeSelf == true&& GameSystem.IsGoal == false)
             {
+                Time.timeScale = 0;
                 if (WaitTime > 0)
                 {
                     WaitTime -= Time.unscaledDeltaTime;
                 }
-                if (((Input.GetKeyDown(KeyCode.UpArrow) && NowNumSelect > 1) || (vert>0 && NowNumSelect > 1&&WaitTime<=0)))
+                if (PadScript.PadOn==false)
                 {
+                    if (Input.GetKeyDown(KeyCode.UpArrow) && NowNumSelect > 1)
+                    {
+                        NowNumSelect--;
+                    }
+                    if (Input.GetKeyDown(KeyCode.DownArrow) && NowNumSelect < 3) 
+                    {
+                        NowNumSelect++;
+
+                    }
+                }
+                else
+                {
+                    if(vert > 0 && NowNumSelect > 1 && WaitTime <= 0)
+                    {
                         NowNumSelect--;
                         WaitTime = SetWaitTime;
-                }
-                if (((Input.GetKeyDown(KeyCode.DownArrow) && NowNumSelect < 3) || (vert < 0 && NowNumSelect < 3 && WaitTime <= 0)))
-                {
+                    }
+                    if(vert < 0 && NowNumSelect < 3 && WaitTime <= 0)
+                    {
                         NowNumSelect++;
                         WaitTime = SetWaitTime;
+
+                    }
                 }
             }
-        }
 
 
         switch(NowNumSelect)
@@ -122,7 +145,7 @@ public class Pause : MonoBehaviour
                     SetAlpha2 = 1.0f;
                     TitleCanvasGroupstage2.alpha = SetAlpha2;
                 }
-                if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown("joystick button 0")&&PauseUI.activeSelf==true)
+                if (Input.GetKeyDown(KeyCode.Return) && PauseUI.activeSelf == true || Input.GetKeyDown("joystick button 0")&&PauseUI.activeSelf==true)
                 {
                     //ゲームに戻る
                     PauseUI.SetActive(!PauseUI.activeSelf);

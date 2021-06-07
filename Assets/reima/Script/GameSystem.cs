@@ -176,7 +176,6 @@ public class GameSystem : MonoBehaviour
     void Update()
     {
         GoalAfterDeleteUI();
-        Debug.Log(MotionPlayer.m_PlayerHp);
         if (PlayerScript.m_IsPlay && GameSystem.IsGoal == false)
         {
             ClearTime += Time.deltaTime;
