@@ -37,7 +37,7 @@ public class GameOverDirecting : MonoBehaviour
         //{
         //    SetAlpha2 += PlusTime * Time.deltaTime;
         //}
-        //TitleCanvasGroupstage2.alpha = SetAlpha2;
+        //TitleC-anvasGroupstage2.alpha = SetAlpha2;
 
         switch (GameOver.NumSelect)
         {
