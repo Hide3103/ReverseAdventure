@@ -45,13 +45,13 @@ public class GameOverDirecting : MonoBehaviour
                // Flash();
                 break;
             case 2:
-              //  Flash();
+               // Flash();
                 break;
         }
     }
     void Flash()
     {
-        FlashTime += Time.deltaTime;
+        FlashTime += Time.unscaledDeltaTime;
         switch (GameOver.NumSelect)
         {
             case 1:

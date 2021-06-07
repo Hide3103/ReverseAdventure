@@ -40,7 +40,6 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Flg_PauseNow);
         float vert = Input.GetAxis("Vertical");
         UseStick = true;
 
