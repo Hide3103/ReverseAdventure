@@ -342,7 +342,7 @@ public class MotionPlayer : MonoBehaviour
 
     void MoveBehaviour()
     {
-        if(GameSystem.IsGoal == false && m_Step != Step.Die)
+        if(GameSystem.IsGoal == false && m_Step != Step.Die && Pause.Flg_PauseNow == false)
         {
             // ダメージを受けている時の処理・ダメージを受けていない時の処理(移動)
             if (CantMoveRecoveryed == true && m_Step != Step.Throw)
