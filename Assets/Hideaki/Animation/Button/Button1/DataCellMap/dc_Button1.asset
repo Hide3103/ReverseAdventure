@@ -140,6 +140,20 @@ MonoBehaviour:
       Mesh:
         TableCoordinate: []
         TableIndexVertex: 
+  - Name: Select_Shop_1
+    SizeOriginal: {x: 512, y: 128}
+    TableCell:
+    - Name: Select_Shop_1
+      Rectangle:
+        serializedVersion: 2
+        x: 126
+        y: 25
+        width: 261
+        height: 78
+      Pivot: {x: 130.5, y: 39}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
   - Name: Tape_Button
     SizeOriginal: {x: 128, y: 64}
     TableCell:
