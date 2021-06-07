@@ -506,6 +506,26 @@ PrefabInstance:
       propertyPath: GoalObject
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7406290983983559052, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_GoalObject
+      value: 
+      objectReference: {fileID: 83455002}
+    - target: {fileID: 7406290983983559052, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_PauseUI
+      value: 
+      objectReference: {fileID: 1053558186}
+    - target: {fileID: 7406290983983559052, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_RawImage
+      value: 
+      objectReference: {fileID: 2075706272}
+    - target: {fileID: 7406290983983559052, guid: 0f4636ad015506243ac214d277a48bec,
+        type: 3}
+      propertyPath: m_ChangeWorld
+      value: 
+      objectReference: {fileID: 381304810}
     - target: {fileID: 4959202402984451298, guid: 0f4636ad015506243ac214d277a48bec,
         type: 3}
       propertyPath: m_LocalPosition.x

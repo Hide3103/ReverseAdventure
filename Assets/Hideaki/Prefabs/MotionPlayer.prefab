@@ -60,8 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e853da5deff7d54a83286f654d2e001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionFlg: 0
-  LadderFlg: 0
+  m_CollisionFlg: 0
+  m_LadderFlg: 0
 --- !u!1 &4325189621714343752
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,14 +342,14 @@ MonoBehaviour:
   m_HavingBlock: 0
   m_LadderFlg: 0
   m_PlayerDeathPosY: -6
-  GoalObject: {fileID: 0}
+  m_GoalObject: {fileID: 0}
   m_LookKey: 1
-  AttackLange: {fileID: 4325189621714343752}
-  PauseUI: {fileID: 0}
-  rawImage: {fileID: 0}
+  m_AttackLange: {fileID: 4325189621714343752}
+  m_PauseUI: {fileID: 0}
+  m_RawImage: {fileID: 0}
   m_ReverseCoolTime: 0.4
-  CollisionObj: {fileID: 3267178610316034196}
-  changeWorld: {fileID: 0}
+  m_CollisionObj: {fileID: 3267178610316034196}
+  m_ChangeWorld: {fileID: 0}
   SE_Attack: {fileID: 8300000, guid: 02a26e8f0417ae5418f8d470d82cda2d, type: 3}
   SE_Jump: {fileID: 8300000, guid: 9a79ba929bcc8dd4b8619383144a9e46, type: 3}
   SE_Reverse: {fileID: 8300000, guid: ea141fcfc629731449f578373d82e149, type: 3}
